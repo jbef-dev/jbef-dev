@@ -9,24 +9,31 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
     './ui/**/*.{js,ts,jsx,tsx}',
   ],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
-    screens: {
-      xs: '0px',
-      ...defaultTheme.screens,
-    },
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
+        logo: ['var(--font-logo)', ...defaultTheme.fontFamily.sans],
+        title: ['var(--font-title)', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
-        'responsive-xs': 'clamp(1rem, 4.5vw, 1.3rem)',
-        'responsive-sm': 'clamp(1rem, 5.5vw, 1.7rem)',
-        'responsive-md': 'clamp(1rem, 6vw, 2rem)',
-        'responsive-lg': 'clamp(1rem, 7vw, 2.4rem)',
-        'responsive-xl': 'clamp(1.15rem, 8.2vw, 2.8rem)',
-        'responsive-2xl': 'clamp(1.2rem, 9.5vw, 3.5rem)',
-        'responsive-3xl': 'clamp(1.5rem, 9.75vw, 3.8rem)',
-        'responsive-4xl': 'clamp(1.8rem, 10.1vw, 4.2rem)',
+        'responsive-xs': 'clamp(0.75rem, 1.15vw, 0.9rem)',
+        'responsive-sm': 'clamp(0.85rem, 1.25vw, 1rem)',
+        'responsive-md': 'clamp(1rem, 1.5vw, 1.2rem)',
+        'responsive-lg': 'clamp(1.25rem, 1.9vw, 1.5rem)',
+        'responsive-xl': 'clamp(1.5rem, 2.4vw, 1.9rem)',
+        'responsive-2xl': 'clamp(1.75rem, 3vw, 2.4rem)',
+        'responsive-3xl': 'clamp(2rem, 4.1vw, 3rem)',
+        'responsive-4xl': 'clamp(2.2rem, 5.8vw, 3.8rem)',
+        'responsive-5xl': 'clamp(2.45rem, 7.8vw, 4.6rem)',
+        'responsive-6xl': 'clamp(2.65rem, 8.2vw, 5rem)',
+        'responsive-7xl': 'clamp(2.8rem, 10vw, 6.1rem)',
+        'responsive-8xl': 'clamp(2.95rem, 13vw, 7.3rem)',
+        'responsive-9xl': 'clamp(3.05rem, 13vw, 8.8rem)',
+        'responsive-10xl': 'clamp(3.15rem, 13vw, 10rem)',
       },
       borderRadius: {
         xs: '1px',
@@ -50,8 +57,9 @@ module.exports = {
         accent: {
           lightest: '#4AA0FC',
           light: '#228BFC',
-          main: '#0474ed',
-          dark: '#E89B00',
+          main: 'rgb(226 50 94)',
+          dark: 'rgb(196 72 104)',
+          // dark: 'rgb(43 109 182)',
         },
         grayscale: {
           50: '#F8F9FA',
@@ -69,8 +77,15 @@ module.exports = {
     },
   },
   plugins: [
-    plugin(function({ addComponents, theme }) {
+    plugin(function ({ addComponents, theme }) {
       addComponents({
+        '.scrollbar-hide::-webkit-scrollbar': {
+          display: 'none',
+        },
+        '.scrollbar-hide': {
+          msOverflowStyle: 'none',
+          scrollbarWidth: 'none',
+        },
         '.gradient-primary': {
           background: theme('colors.primary.500'),
           background:
@@ -105,23 +120,6 @@ module.exports = {
             theme('colors.grayscale.700') +
             ' 0%, ' +
             theme('colors.grayscale.900') +
-            ' 100%)',
-        },
-        '.gradient-hero': {
-          background: theme('colors.grayscale.900'),
-          background:
-            'linear-gradient(180deg, ' +
-            '#000000' +
-            '90 0%, ' +
-            '#000000' +
-            '50 10%, ' +
-            '#000000' +
-            '35 20%, ' +
-            '#000000' +
-            '45 40%, ' +
-            '#000000' +
-            'aa 75%, ' +
-            '#000000' +
             ' 100%)',
         },
       });

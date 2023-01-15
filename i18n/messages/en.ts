@@ -1,0 +1,85 @@
+const enMessages = {
+  // Pages
+  pages: {
+    home: {
+      pagetitle:'Web Design',
+      title1:'Web Designer / Programmer',
+      hero: {
+        welcome: 'Welcome',
+        title1:
+          'Guido Audisio Dental Clinic - Your dental clinic in Torrevieja',
+        title2: 'Next.js 13!',
+      },
+    },
+
+    about: {
+      pagetitle:'Meet the team',
+      title1: 'Meet our team of <hl>experts</hl>',
+      copy1:
+        'Meet our team of skilled professionals, dentists and hygienists with more than <highlight>30+ years</highlight> combined years of experience, dedicated to providing high-quality dental care to patients of all ages in our clinic in Torrevieja, Alicante.',
+      copy2:
+        'We are committed to making our patients feel comfortable and at ease during their visits, and we take the time to listen to your concerns and address all of your dental needs.',
+    },
+
+    services: {
+      pagetitle:'Meet the team',
+      title1: 'Highest <hl>quality</hl> service',
+      subtitle1:
+        'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat. Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum. Minim sint cillum sint consectetur minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
+      title2: '',
+      subtitle2: 'Best quality <hl>service</hl>',
+    },
+
+    contact: {
+      pagetitle:'Contact us',
+      title1: 'Get <hl>in touch</hl>',
+      subtitle1: 'Contact us without obligation. We will be able to help you have the smile of your dreams at the best price with the best with the best quality in Torrevieja.',
+      copy1:
+        'Meet our team made up of professionals with <hl>30+ years</hl> of combined experience in treating our patients in Torrevieja, Alicante.',
+      title2: '1ª consulta <hl>gratuita</hl>',
+      subtitle2: '',
+      copy2:
+        'Meet our team made up of professionals with <hl>30+ years</hl> of combined experience in treating our patients in Torrevieja, Alicante.',
+      contactForm: {
+        fullName: 'Full name',
+        phone: 'Telephone number',
+        email: 'email',
+        message: 'Your message...',
+      },
+    },
+  },
+
+  ui: {
+    // UI elements
+    navbar: {
+      home: 'home',
+      services: 'services',
+      about: 'about us',
+      contact: 'contact',
+    },
+  },
+
+  // Data
+  data: {
+    services: {
+      service1: {
+        title: 'Latest <hl>technology</hl>',
+        short_desc:
+          'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum. Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
+      },
+      service2: {
+        title: 'Dental <hl>implants</hl>',
+        short_desc:
+          'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat. Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
+      },
+    },
+  },
+
+  // Common utils
+  common: {
+    open: 'open',
+    close: 'close',
+  },
+};
+
+export default enMessages;

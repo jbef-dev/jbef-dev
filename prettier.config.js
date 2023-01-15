@@ -9,6 +9,5 @@ module.exports = {
   singleQuote: true,
   bracketSpacing: true,
   jsxSingleQuote: true,
-  singleQuote: true,
   arrowParens: 'avoid',
 }

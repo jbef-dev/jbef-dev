@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -14,6 +13,17 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "paths": {
+      "@/*": ["./*"],
+      "@app/*": ["./app/*"],
+      "@components/*": ["./app/components/*"],
+      "@config/*": ["./config/*"],
+      "@i18n/*": ["./i18n/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@styles/*": ["./styles/*"],
+      "@ui/*": ["./app/ui/*"],
+      "@util/*": ["./util/*"]
+    },
     "plugins": [
       {
         "name": "next"
