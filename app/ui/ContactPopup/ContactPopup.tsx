@@ -1,4 +1,4 @@
-import {animations} from '@/styles/customAnimations';
+import {myAnimation} from '@/styles/customAnimations';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Button } from '@ui/Button/Button';
 import clsx from 'clsx';
@@ -21,7 +21,7 @@ export default function ContactPopup() {
           initial={{ y: '100%' }}
           animate={{ y: 0 }}
           exit={{ y: '100%' }}
-          transition={animations.transition.normal}
+          transition={myAnimation.transition.normal}
         >
           <motion.div
             // className='relative flex w-10/12 min-w-[10rem] max-w-screen-sm justify-around gap-3 rounded-xl bg-grayscale-300 p-5'
@@ -34,7 +34,7 @@ export default function ContactPopup() {
             layout
             initial='initial'
             animate={minimized ? 'animate' : 'initial'}
-            transition={animations.transition.normal}
+            transition={myAnimation.transition.normal}
             variants={{
               initial: {
                 padding: '1rem 1.5rem',

@@ -1,4 +1,4 @@
-import { animations } from '@/styles/customAnimations';
+import { myAnimation } from '@/styles/customAnimations';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { setCookie, parseCookies } from 'nookies';
@@ -33,7 +33,7 @@ export const CookiePopup = () => {
           // initial={{ y: '100%' }}
           animate={{ y: 0 }}
           exit={{ y: '100%' }}
-          transition={animations.transition.normal}
+          transition={myAnimation.transition.normal}
         >
           <div className='flex w-10/12 min-w-[10rem] max-w-screen-sm justify-around gap-3 rounded-lg bg-primary-500 p-4'>
             <div className='flex items-center justify-center'>

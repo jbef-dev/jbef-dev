@@ -4,7 +4,7 @@ import { useModal } from './useModal';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { HTMLAttributes, PropsWithChildren, MouseEvent } from 'react';
 import { IoClose } from 'react-icons/io5';
-import { animations } from '@styles/customAnimations';
+import { myAnimation } from '@styles/customAnimations';
 import { useTranslations } from 'next-intl';
 import { Button } from '@ui/Button/Button';
 
@@ -64,12 +64,12 @@ export const Modal = ({
           animate='show'
           // exit='exit'
           exit='initial'
-          transition={{ duration: animations.values.duration.fast }}
+          transition={{ duration: myAnimation.values.duration.fast }}
         >
           <motion.div
             className='relative h-[85vh] w-[90vw] max-w-xl overflow-hidden'
             variants={modalVariants}
-            transition={animations.transition.modalInOut}
+            transition={myAnimation.transition.modalInOut}
           >
             {children}
             <Button

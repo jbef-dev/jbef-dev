@@ -5,7 +5,7 @@ import { locales } from '@i18n/config';
 import { motion, Variants } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
 import { useLocaleSwitcher } from './useLocaleSwitcher';
-import { animations } from '@styles/customAnimations';
+import { myAnimation } from '@styles/customAnimations';
 import { LocalizedLink, useLocale } from 'next-intl';
 import { IoTriangle } from 'react-icons/io5';
 import clsx from 'clsx';
@@ -27,10 +27,10 @@ export const LocaleSwitcher = () => {
       height: 'auto',
       y: '100%',
       transition: {
-        delayChildren: animations.values.duration.fastest,
+        delayChildren: myAnimation.values.duration.fastest,
         staggerChildren: 0.09,
         staggerDirection: 1,
-        ...animations.transition.menuOpen,
+        ...myAnimation.transition.menuOpen,
       },
     },
     closed: {
@@ -40,8 +40,8 @@ export const LocaleSwitcher = () => {
       transition: {
         staggerChildren: 0.09,
         staggerDirection: -1,
-        delay: animations.values.duration.normal,
-        ...animations.transition.menuClose,
+        delay: myAnimation.values.duration.normal,
+        ...myAnimation.transition.menuClose,
       },
     },
   };
@@ -50,12 +50,12 @@ export const LocaleSwitcher = () => {
     open: {
       y: 0,
       opacity: 1,
-      transition: { ...animations.transition.normal },
+      transition: { ...myAnimation.transition.normal },
     },
     closed: {
       y: '-50%',
       opacity: 0,
-      transition: { ...animations.transition.normal },
+      transition: { ...myAnimation.transition.normal },
     },
   };
 

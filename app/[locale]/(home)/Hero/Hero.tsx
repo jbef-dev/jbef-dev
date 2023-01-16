@@ -6,7 +6,9 @@ import Image from 'next/image';
 import { useRef } from 'react';
 import { TitleLetter } from './TitleLetter';
 
+import colorful_animals from '@/public/img/colorful_animals.png';
 import architecture from '@/public/img/architecture_ai.png';
+import { RiArrowDownLine } from 'react-icons/ri';
 
 export const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -18,12 +20,12 @@ export const Hero = () => {
 
   const { scrollYProgress: accentH2Progress } = useScroll({
     target: containerRef,
-    offset: ['30% start', 'end start'],
+    offset: ['25% start', 'end 65%'],
   });
 
   const { scrollYProgress: normalH2Progress } = useScroll({
     target: containerRef,
-    offset: ['50% start', 'end start'],
+    offset: ['30% start', 'end start'],
   });
 
   const headerVariants: { x: string[] }[] = [
@@ -43,18 +45,34 @@ export const Hero = () => {
   );
 
   const videoY = useTransform(mediaElementProgress, [0, 1], ['0vh', '-50vh']);
+  const image1Y = useTransform(mediaElementProgress, [0, 1], ['0vh', '-80vh']);
+  const image2Y = useTransform(mediaElementProgress, [0, 1], ['0vh', '-25vh']);
+  const arrowY = useTransform(mediaElementProgress, [0, 1], ['0vh', '-45vh']);
+
+  const MotionImage = motion(Image);
 
   return (
-    <FlexContainer ref={containerRef} flexCol>
-      <div className='h-screen'></div>
-      <section className='fixed top-0 grid place-content-center h-screen w-full -z-10 '>
-        <div className='flex flex-col w-fit items-center justify-center font-title leading-none lg:leading-[1.15] tracking-wide text-responsive-10xl uppercase'>
-          <div className='flex w-full'>
-            <motion.h2 style={{ x: headerXLtr }}>BUILDING</motion.h2>
+    <FlexContainer ref={containerRef} flexCol className='bg-gray-200'>
+      <div className='h-screen -z-20'></div>
+      <section className='fixed top-0 flex items-center max-w-screen-2xl justify-center h-screen px-3 md:px-6 w-full bg-gray-200'>
+        <div className='flex w-full flex-col items-center justify-center font-title leading-none tracking-wide text-responsive-10xl text-white uppercase'>
+          <div className='flex w-full items-center justify-around'>
+            <motion.h2
+              className='mix-blend-difference'
+              style={{ x: headerXLtr }}
+            >
+              BUILDING
+            </motion.h2>
+            <MotionImage
+              src={colorful_animals}
+              className='max-md:absolute max-md:right-[48vw] max-md:top-[8vh] max-md:h-[1.6em] h-[1em] object-cover -z-20 justify-self-end w-auto'
+              alt='example work'
+              style={{ y: image2Y }}
+            />
           </div>
-          <div className='flex gap-4 w-full justify-end'>
+          <div className='flex gap-[0.4em] w-full items-center justify-end'>
             <motion.video
-              className='h-[1em] object-cover -z-10'
+              className='max-md:absolute max-md:bottom-[5vh] max-md:h-[1.2em] max-md:left-[9vw] h-[1em] bottom-20 object-cover -z-10'
               src='/vid/test_vid.mp4'
               autoPlay
               muted
@@ -72,18 +90,37 @@ export const Hero = () => {
               ))}
             </div>
           </div>
-          <div className='flex w-full pl-14 gap-20'>
-            <motion.h2 style={{ x: headerXRtl }}>WEB</motion.h2>
-            <Image src={architecture} className='h-[1em] object-cover w-auto' alt='example work' />
+          <div className='flex w-full pl-[0.6em] pr-[0.2em] items-center justify-between'>
+            <motion.h2
+              className='mix-blend-difference'
+              style={{ x: headerXRtl }}
+            >
+              WEB
+            </motion.h2>
+            <MotionImage
+              src={architecture}
+              className='max-md:absolute max-md:right-0 max-md:bottom-[20vh] max-md:h-[1.3em] h-[1em] object-cover -z-20 justify-self-end w-auto'
+              alt='example work'
+              style={{ y: image1Y }}
+            />
           </div>
-          <div className='flex'>
-            <motion.h2 style={{ x: headerXRtl }}>EXPERIENCES</motion.h2>
+          <div className='flex w-full justify-between'>
+            <motion.h2
+              className='-z-20 mix-blend-difference'
+              style={{ x: headerXRtl }}
+            >
+              EXPERIENCES
+            </motion.h2>
+            <motion.span
+              className='max-md:absolute max-md:right-4 max-md:bottom-[5vh] mix-blend-difference'
+              style={{ y: arrowY }}
+            >
+              <RiArrowDownLine />
+            </motion.span>
           </div>
         </div>
       </section>
-      <section className='relative h-screen overflow-hidden'>
-        <div className='absolute w-full rounded-full'></div>
-      </section>
+      <div className='relative h-screen -z-20 overflow-hidden'></div>
     </FlexContainer>
   );
 };

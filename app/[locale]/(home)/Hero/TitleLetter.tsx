@@ -1,3 +1,4 @@
+import { myAnimation } from '@/styles/customAnimations';
 import {
   HTMLMotionProps,
   motion,
@@ -31,8 +32,8 @@ export const TitleLetter = ({
   const ref = useRef<HTMLSpanElement>(null);
 
   const springOptions = {
-    stiffness: 350,
-    damping: 100,
+    stiffness: myAnimation.values.stiffness.high,
+    damping: myAnimation.values.damping.max,
   };
 
   const springProgress = useSpring(containerScroll, springOptions);

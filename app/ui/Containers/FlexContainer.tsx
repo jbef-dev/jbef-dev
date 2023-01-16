@@ -40,7 +40,7 @@ export const FlexContainer = forwardRef<HTMLDivElement, FlexContainerProps>(
       <div
         ref={ref}
         className={clsx([
-          'flex',
+          'relative flex',
           flexCol ? 'flex-col' : 'flex-row',
           px && {
             'pr-5 lg:pr-12': pr,

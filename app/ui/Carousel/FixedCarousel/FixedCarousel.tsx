@@ -4,7 +4,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { useCarouselFixed } from './useFixedCarousel'
 import { CarouselProps } from '../Carousel'
 import clsx from 'clsx'
-import {animations} from '@/styles/customAnimations'
+import {myAnimation} from '@/styles/customAnimations'
 
 interface CarouselFixedVariantProps<T>
   extends Omit<CarouselProps<T>, 'variant'> {}
@@ -87,11 +87,11 @@ export const FixedCarousel = <T extends Record<string, any>>(
             drag='x'
             dragSnapToOrigin
             dragTransition={{
-              bounceStiffness: animations.values.stiffness.max,
-              bounceDamping: animations.values.damping.max,
+              bounceStiffness: myAnimation.values.stiffness.max,
+              bounceDamping: myAnimation.values.damping.max,
             }}
             onDrag={handleDrag}
-            transition={animations.transition.fast}
+            transition={myAnimation.transition.fast}
             onDragEnd={(_, info) => handleDragEnd(info)}
           >
             {items &&
@@ -109,7 +109,7 @@ export const FixedCarousel = <T extends Record<string, any>>(
                     } *(${elementSizeCss} + ${elementGap}))`,
                     scale: position === index ? 1 : 0.85,
                   }}
-                  transition={animations.transition.normal}
+                  transition={myAnimation.transition.normal}
                   variants={containerVariants}
                   whileTap='hover'
                   whileHover='hover'

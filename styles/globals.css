@@ -19,18 +19,18 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: black;
-    background: white;
-  }
-}
+/* @media (prefers-color-scheme: light) { */
+/*   html { */
+/*     color-scheme: dark; */
+/*   } */
+/*   body { */
+/*     color: black; */
+/*     background: white; */
+/*   } */
+/* } */
 
 @layer base {
   body {
-    @apply bg-white text-black;
+    @apply bg-gray-50 text-black;
   }
 }

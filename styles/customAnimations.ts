@@ -31,10 +31,11 @@ const values = {
     max: 550,
   },
   damping: {
-    low: 10,
-    mid: 25,
-    high: 30,
-    max: 50,
+    min:20,
+    low: 35,
+    mid: 60,
+    high: 85,
+    max: 100,
   },
 } as const satisfies CustomValues;
 
@@ -131,7 +132,7 @@ interface CustomAnimations {
   variants: { [k: string]: Variants };
 }
 
-export const animations = {
+export const myAnimation = {
   values: values,
   transition: transition,
   variants: variants,

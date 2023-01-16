@@ -11,7 +11,7 @@ import {
 } from 'react';
 import { ServiceType } from './ServicesList';
 import { use100vh } from '@util/use100vh';
-import { animations } from '@styles/customAnimations';
+import { myAnimation } from '@styles/customAnimations';
 import { useTranslations } from 'next-intl';
 
 interface ServiceSectionProps {
@@ -100,7 +100,7 @@ const ServiceSection = (props: ServiceSectionProps) => {
             scale: 1,
           },
         }}
-        transition={animations.transition.easeOutSlow}
+        transition={myAnimation.transition.easeOutSlow}
       >
         <AnimatePresence mode='popLayout'>
           {service.imgArray.map((imgSrc, i) =>
@@ -122,7 +122,7 @@ const ServiceSection = (props: ServiceSectionProps) => {
                     opacity: 0,
                   },
                 }}
-                transition={animations.transition.easeOutSlow}
+                transition={myAnimation.transition.easeOutSlow}
               >
                 <Image
                   src={imgSrc}
