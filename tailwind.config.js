@@ -15,9 +15,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        logo: ['var(--font-logo)', ...defaultTheme.fontFamily.sans],
-        title: ['var(--font-title)', ...defaultTheme.fontFamily.sans],
         sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
+        logo: ['var(--font-logo)', ...defaultTheme.fontFamily.sans],
+        special: ['var(--font-special)', ...defaultTheme.fontFamily.sans],
+        title: ['var(--font-title)', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         'responsive-xs': 'clamp(0.75rem, 1.15vw, 0.9rem)',
@@ -58,7 +59,7 @@ module.exports = {
           lightest: '#4AA0FC',
           light: '#228BFC',
           main: 'rgb(226 50 94)',
-          dark: 'rgb(196 72 104)',
+          dark: 'rgb(87 74 226)',
           // dark: 'rgb(43 109 182)',
         },
         grayscale: {

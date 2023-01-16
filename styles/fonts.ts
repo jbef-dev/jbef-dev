@@ -1,4 +1,4 @@
-import { Inter, Jost, Montserrat, Raleway,  } from '@next/font/google';
+import { Inter, Jost, Montserrat, Raleway, Space_Grotesk,  } from '@next/font/google';
 
 export const inter = Inter({
   subsets: ['latin'],
@@ -12,8 +12,14 @@ export const openSans = Jost({
   display: 'swap',
 });
 
-export const font_title = Raleway({
+export const font_title = Inter({
   subsets: ['latin'],
   variable: '--font-title',
+  display: 'swap',
+});
+
+export const font_special = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-special',
   display: 'swap',
 });

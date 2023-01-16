@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import clsx from 'clsx';
 import { Navbar } from '@ui/Navbar/Navbar';
 
-import { inter, openSans, font_title } from '@styles/fonts';
+import { inter, openSans, font_title, font_special } from '@styles/fonts';
 import '@styles/globals.css';
 // import { ScrollIndicator } from './(home)/ScrollIndicator/ScrollIndicator';
 // import { NextIntlServerProvider } from 'next-intl/server';
@@ -44,6 +44,7 @@ head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conve
         <body
           className={clsx(
             font_title.variable,
+            font_special.variable,
             inter.variable,
             openSans.variable,
             'font-sans'
