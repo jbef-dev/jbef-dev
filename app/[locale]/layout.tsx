@@ -34,27 +34,27 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   }
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      <html lang={locale} dir='ltr' className='scrollbar-hide'>
-        {/*
+    <html lang={locale} dir='ltr' className='scrollbar-hide'>
+      {/*
 <head /> will contain the components returned by the nearest parent
 head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
 */}
-        <head />
-        <body
-          className={clsx(
-            font_title.variable,
-            font_special.variable,
-            inter.variable,
-            openSans.variable,
-            'font-sans'
-          )}
-        >
+      <head />
+      <body
+        className={clsx(
+          font_title.variable,
+          font_special.variable,
+          inter.variable,
+          openSans.variable,
+          'font-sans'
+        )}
+      >
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Navbar />
           {children}
           {/* <Footer /> */}
-        </body>
-      </html>
-    </NextIntlClientProvider>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }
