@@ -9,21 +9,21 @@ export const LoadingSpinner = () => {
       <defs>
         <linearGradient x1='8.042%' y1='0%' x2='65.682%' y2='23.865%' id='a'>
           <stop
-            className='fill-primary-500 stroke-primary-500'
+            className='fill-accent-main stroke-accent-main'
             stopColor='currentcolor'
             stopOpacity='0'
             offset='0%'
           />
           <stop
-            // stopColor={theme.palette.primary.main}
-            className='fill-primary-500 stroke-primary-500'
+            // stopColor={theme.palette.accent-main.main}
+            className='fill-accent-main stroke-accent-main'
             stopColor='currentcolor'
             stopOpacity='.631'
             offset='63.146%'
           />
           <stop
-            // stopColor={theme.palette.primary.main}
-            className='fill-primary-500 stroke-primary-500'
+            // stopColor={theme.palette.accent-main.main}
+            className='fill-accent-main stroke-accent-main'
             stopColor='currentcolor'
             offset='100%'
           />
@@ -47,8 +47,8 @@ export const LoadingSpinner = () => {
             />
           </path>
           <circle
-            // fill={theme.palette.primary.main}
-            className='fill-primary-500'
+            // fill={theme.palette.accent-main.main}
+            className='fill-accent-main'
             cx='36'
             cy='18'
             r='1'

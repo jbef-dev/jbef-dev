@@ -6,11 +6,11 @@ import { HTMLAttributes, useState } from 'react';
 import ServiceSection from './ServiceSection';
 import clsx from 'clsx';
 
-import { MessagesType } from '@/i18n/config';
+import { I18nMessages } from '@/i18n/config';
 import { ImageProps } from 'next/image';
 
 export type ServiceType = {
-  service: keyof MessagesType['data']['services'];
+  service: keyof I18nMessages['data']['services'];
   imgArray: ImageProps['src'][];
 };
 

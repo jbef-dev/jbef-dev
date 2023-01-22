@@ -40,7 +40,7 @@ export const CountUp = (props: FeatureDivProps) => {
 
   return (
     <div
-      className='m-0 text-5xl font-black text-primary-500'
+      className='m-0 text-5xl font-black text-accent-main'
       ref={ref}
       // style={{
       //   color: color,

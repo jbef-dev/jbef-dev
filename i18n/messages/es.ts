@@ -1,19 +1,23 @@
-import { MessagesType } from '@/i18n/config';
+import { I18nMessages } from '@/i18n/config';
 
-const esMessages: MessagesType = {
+const esMessages: I18nMessages = {
   pages: {
     // Pages
     home: {
-      title1:'Diseño web / programación web',
-      pagetitle:'Dentista en Torrevieja',
+      SEO: {
+        title: 'Diseño web a medida',
+      },
+      title1: 'Diseño web / programación web',
+      pagetitle: 'Dentista en Torrevieja',
       hero: {
-        welcome: 'Bienvenido',
-        title1: 'Bienvenido a',
-        title2: 'Next.js 13!',
+        heading1: 'DISEÑO',
+        heading2: 'A MEDIDA',
+        heading3: 'DIGITAL',
+        heading4: 'EXPERIENCES',
       },
     },
     about: {
-      pagetitle:'Meet the team',
+      pagetitle: 'Meet the team',
       title1: 'Conoce nuestro equipo de <hl>expertos</hl>',
       copy1:
         'Meet our team made up of professionals with <highlight>30+ years</highlight> of combined experience in treating our patients in Torrevieja, Alicante.',
@@ -22,7 +26,7 @@ const esMessages: MessagesType = {
     },
 
     services: {
-      pagetitle:'Meet the team',
+      pagetitle: 'Meet the team',
       title1: 'Servicio de alta <hl>calidad</hl>',
       subtitle1:
         'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat. Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
@@ -31,9 +35,10 @@ const esMessages: MessagesType = {
     },
 
     contact: {
-      pagetitle:'Póngase en contacto',
+      pagetitle: 'Póngase en contacto',
       title1: 'Póngase en <hl>contacto</hl>',
-      subtitle1: 'Contáctenos sin compromiso. Le ayudaremos a conseguir la sonrisa de sus sueños.',
+      subtitle1:
+        'Contáctenos sin compromiso. Le ayudaremos a conseguir la sonrisa de sus sueños.',
       copy1:
         'Meet our team made up of professionals with <hl>30+ years</hl> of combined experience in treating our patients in Torrevieja, Alicante.',
       title2: '1st consultation <hl>for free</hl>',

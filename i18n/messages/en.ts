@@ -2,18 +2,21 @@ const enMessages = {
   // Pages
   pages: {
     home: {
-      pagetitle:'Web Design',
-      title1:'Web Designer / Programmer',
+      SEO: {
+        title: 'Custom web development',
+      },
+      pagetitle: 'Web Design',
+      title1: 'Web Designer / Programmer',
       hero: {
-        welcome: 'Welcome',
-        title1:
-          'Guido Audisio Dental Clinic - Your dental clinic in Torrevieja',
-        title2: 'Next.js 13!',
+        heading1: 'BUILDING',
+        heading2: 'BESPOKE',
+        heading3: 'DIGITAL',
+        heading4: 'EXPERIENCES',
       },
     },
 
     about: {
-      pagetitle:'Meet the team',
+      pagetitle: 'Meet the team',
       title1: 'Meet our team of <hl>experts</hl>',
       copy1:
         'Meet our team of skilled professionals, dentists and hygienists with more than <highlight>30+ years</highlight> combined years of experience, dedicated to providing high-quality dental care to patients of all ages in our clinic in Torrevieja, Alicante.',
@@ -22,7 +25,7 @@ const enMessages = {
     },
 
     services: {
-      pagetitle:'Meet the team',
+      pagetitle: 'Meet the team',
       title1: 'Highest <hl>quality</hl> service',
       subtitle1:
         'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat. Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum. Minim sint cillum sint consectetur minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
@@ -31,9 +34,10 @@ const enMessages = {
     },
 
     contact: {
-      pagetitle:'Contact us',
+      pagetitle: 'Contact us',
       title1: 'Get <hl>in touch</hl>',
-      subtitle1: 'Contact us without obligation. We will be able to help you have the smile of your dreams at the best price with the best with the best quality in Torrevieja.',
+      subtitle1:
+        'Contact us without obligation. We will be able to help you have the smile of your dreams at the best price with the best with the best quality in Torrevieja.',
       copy1:
         'Meet our team made up of professionals with <hl>30+ years</hl> of combined experience in treating our patients in Torrevieja, Alicante.',
       title2: '1ª consulta <hl>gratuita</hl>',

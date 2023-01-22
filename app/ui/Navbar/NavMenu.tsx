@@ -9,7 +9,7 @@ import { LocalizedLink, useTranslations } from 'next-intl';
 import { unlocalizedPath } from '@util/i18n';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { LayoutGroup, motion, Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { myAnimation } from '@/styles/customAnimations';
 
 export const NavMenu = ({
@@ -46,7 +46,7 @@ export const NavMenu = ({
   return (
     <motion.nav
       className={clsx([
-        'fixed top-0 left-0 z-30 h-full w-full px-4 md:px-12 bg-white flex flex-col items-center justify-around',
+        'fixed top-0 left-0 z-30 h-full w-full px-4 md:px-12 bg-white flex flex-col items-center justify-around font-title',
       ])}
       initial='close'
       variants={menuVariants}
@@ -80,6 +80,7 @@ export const NavMenu = ({
       >
         {NAVBAR_LINKS.map((link, i) => (
           <motion.div
+            key={link.label}
             className='overflow-hidden'
             animate
             variants={{
@@ -103,7 +104,7 @@ export const NavMenu = ({
               ])}
               onClick={() => window.scrollTo({ top: 0 })}
             >
-              <div className='flex gap-4 relative w-fit group-hover:text-accent-dark leading-none tracking-wide'>
+              <div className='flex gap-4 relative w-fit group-hover:text-accent-main leading-none tracking-wide'>
                 <span className='text-responsive-xs pt-[2.5%] self-start transition-colors duration-500'>
                   0{i + 1}.
                 </span>

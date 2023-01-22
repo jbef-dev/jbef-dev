@@ -31,6 +31,6 @@ a {
 
 @layer base {
   body {
-    @apply bg-gray-50 text-black;
+    @apply bg-gray-100 text-black;
   }
 }

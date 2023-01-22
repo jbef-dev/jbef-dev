@@ -3,18 +3,19 @@ import { NextIntlClientProvider } from 'next-intl/client';
 import { notFound } from 'next/navigation';
 import clsx from 'clsx';
 import { Navbar } from '@ui/Navbar/Navbar';
+// import { LOCALES } from '@i18n/config';
 
-import { inter, openSans, font_title, font_special } from '@styles/fonts';
+import { fontSans, fontLogo, fontTitle, fontSpecial } from '@styles/fonts';
 import '@styles/globals.css';
 // import { ScrollIndicator } from './(home)/ScrollIndicator/ScrollIndicator';
 // import { NextIntlServerProvider } from 'next-intl/server';
 import { useLocale } from 'next-intl';
-import { LocalesType } from '@/i18n/config';
+import { I18nLocales } from '@/i18n/config';
 
 interface LayoutProps {
   children: React.ReactNode;
   params: {
-    locale: LocalesType;
+    locale: I18nLocales;
   };
 }
 
@@ -42,10 +43,10 @@ head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conve
       <head />
       <body
         className={clsx(
-          font_title.variable,
-          font_special.variable,
-          inter.variable,
-          openSans.variable,
+          fontTitle.variable,
+          fontSpecial.variable,
+          fontSans.variable,
+          fontLogo.variable,
           'font-sans'
         )}
       >
@@ -58,3 +59,8 @@ head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conve
     </html>
   );
 }
+
+// IMPORTANT
+// fixes issue with page being created statically and used dynamically
+// with this setting, it is only created dynamically, SSR
+export const dynamic = 'force-dynamic';

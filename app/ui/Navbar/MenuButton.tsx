@@ -33,7 +33,7 @@ export const MenuButton = ({
   return (
     <button
       // className='flex gap-1 relative items-center z-50 [filter:_saturate(1)_brightness(0.75)_contrast(3)] rounded-full'
-      className='flex gap-1 group relative overflow-hidden items-center z-50 rounded-full'
+      className='flex gap-1 group relative font-title overflow-hidden items-center z-50 rounded-full'
       aria-label={open ? t('open') : t('close')}
       title={open ? t('open') : t('close')}
       onClick={() => toggleOpen()}

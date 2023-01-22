@@ -1,21 +1,24 @@
-import { MessagesType } from '@/i18n/config';
+import { I18nMessages } from '@/i18n/config';
 
-const frMessages: MessagesType = {
+const frMessages: I18nMessages = {
   pages: {
     home: {
+      SEO: {
+        title: 'Diseño web a medida',
+      },
       title1: 'Web design / programming',
-      pagetitle:'Clinique dentaire à Torrevieja',
+      pagetitle: 'Clinique dentaire à Torrevieja',
       hero: {
-        welcome: 'Bienvenue',
-        title1: 'Welcome to',
-        title2: 'Next.js 13!',
+        heading1: 'BUILDING',
+        heading2: 'CUSTOM',
+        heading3: 'DIGITAL',
+        heading4: 'EXPERIENCES',
       },
     },
 
     about: {
-      pagetitle:'Meet the team',
-      title1:
-        'Conoce nuestro equipo de <hl>expertos</hl> cualificados',
+      pagetitle: 'Meet the team',
+      title1: 'Conoce nuestro equipo de <hl>expertos</hl> cualificados',
       copy1:
         'Meet our team made up of professionals with <highlight>30+ years</highlight> of combined experience in treating our patients in Torrevieja, Alicante.',
       copy2:
@@ -23,7 +26,7 @@ const frMessages: MessagesType = {
     },
 
     services: {
-      pagetitle:'Meet the team',
+      pagetitle: 'Meet the team',
       title1: 'Best quality <hl>service</hl>',
       subtitle1:
         'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat. Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
@@ -32,7 +35,7 @@ const frMessages: MessagesType = {
     },
 
     contact: {
-      pagetitle:'Contactez-nous',
+      pagetitle: 'Contactez-nous',
       title1: '1er consultation <hl>gratuite</hl>',
       subtitle1: '',
       copy1:

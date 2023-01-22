@@ -14,6 +14,9 @@ module.exports = {
   },
   theme: {
     extend: {
+      screens: {
+        '3xl': '1920px',
+      },
       fontFamily: {
         sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
         logo: ['var(--font-logo)', ...defaultTheme.fontFamily.sans],
@@ -30,11 +33,11 @@ module.exports = {
         'responsive-3xl': 'clamp(2rem, 4.1vw, 3rem)',
         'responsive-4xl': 'clamp(2.2rem, 5.8vw, 3.8rem)',
         'responsive-5xl': 'clamp(2.45rem, 7.8vw, 4.6rem)',
-        'responsive-6xl': 'clamp(2.65rem, 8.2vw, 5rem)',
-        'responsive-7xl': 'clamp(2.8rem, 9.8vw, 6.1rem)',
-        'responsive-8xl': 'clamp(2.95rem, 10.6vw, 7.3rem)',
-        'responsive-9xl': 'clamp(3.05rem, 11.2vw, 8.8rem)',
-        'responsive-10xl': 'clamp(3.15rem, 11.7vw, 10rem)',
+        'responsive-6xl': 'clamp(2.6rem, 8.2vw, 5rem)',
+        'responsive-7xl': 'clamp(2.7rem, 9.8vw, 6.1rem)',
+        'responsive-8xl': 'clamp(2.8rem, 10.2vw, 7.3rem)',
+        'responsive-9xl': 'clamp(2.95rem, 11.8vw, 12.1rem)',
+        'responsive-10xl': 'clamp(3rem, 13.2vw, 13.5rem)',
       },
       borderRadius: {
         xs: '1px',
@@ -44,35 +47,13 @@ module.exports = {
         // navbar: '0px 50px 50px rgba(0,0,0,0.08)', // BIG BIG PERFORMANCE DROP
       },
       colors: {
-        primary: {
-          100: '#72B5FD',
-          200: '#4AA0FC',
-          300: '#4AA0FC',
-          400: '#008CFF',
-          500: '#0474ed',
-          600: '#025BCF',
-          700: '#366381',
-          800: '#366381',
-          900: '#12212B',
-        },
         accent: {
           lightest: '#4AA0FC',
           light: '#228BFC',
           main: 'rgb(226 50 94)',
-          dark: 'rgb(87 74 226)',
-          // dark: 'rgb(43 109 182)',
-        },
-        grayscale: {
-          50: '#F8F9FA',
-          100: '#F0F2F2',
-          200: '#E7EBEE',
-          300: '#DBE0E6',
-          400: '#C3CCD5',
-          500: '#6C757D',
-          600: '#495057',
-          700: '#343A40',
-          800: '#212529',
-          900: '#121417',
+          // dark: 'rgb(87 74 226)',
+          // dark: '#E8175D',
+          dark: 'rgb(225 10 10)',
         },
       },
     },
@@ -87,41 +68,41 @@ module.exports = {
           msOverflowStyle: 'none',
           scrollbarWidth: 'none',
         },
-        '.gradient-primary': {
-          background: theme('colors.primary.500'),
-          background:
-            'linear-gradient(90deg, ' +
-            theme('colors.primary.400') +
-            ' 0%, ' +
-            theme('colors.primary.500') +
-            ' 100%)',
+        '.font-stretch-normal': {
+          fontStretch: 'normal',
         },
-        '.gradient-primary-light': {
-          background: theme('colors.primary.500'),
-          background:
-            'linear-gradient(90deg, ' +
-            theme('colors.primary.300') +
-            ' 0%, ' +
-            theme('colors.primary.400') +
-            ' 100%)',
+        '.font-stretch-unset': {
+          fontStretch: 'unset',
         },
-        '.gradient-light': {
-          background: theme('colors.grayscale.50'),
-          background:
-            'linear-gradient(90deg, ' +
-            theme('colors.grayscale.50') +
-            ' 0%, ' +
-            theme('colors.grayscale.200') +
-            ' 100%)',
+        '.font-stretch-initial': {
+          fontStretch: 'initial',
         },
-        '.gradient-dark': {
-          background: theme('colors.grayscale.700'),
-          background:
-            'linear-gradient(90deg, ' +
-            theme('colors.grayscale.700') +
-            ' 0%, ' +
-            theme('colors.grayscale.900') +
-            ' 100%)',
+        '.font-stretch-semi-expanded': {
+          fontStretch: 'expanded',
+        },
+        '.font-stretch-expanded': {
+          fontStretch: 'expanded',
+        },
+        '.font-stretch-extra-expanded': {
+          fontStretch: 'expanded',
+        },
+        '.font-stretch-ultra-expanded': {
+          fontStretch: 'expanded',
+        },
+        '.font-stretch-semi-condensed': {
+          fontStretch: 'semi-condensed',
+        },
+        '.font-stretch-condensed': {
+          fontStretch: 'condensed',
+        },
+        '.font-stretch-extra-condensed': {
+          fontStretch: 'extra-condensed',
+        },
+        '.font-stretch-ultra-condensed': {
+          fontStretch: 'ultra-condensed',
+        },
+        '.font-stretch-condensed': {
+          fontStretch: 'condensed',
         },
       });
     }),
