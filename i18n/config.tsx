@@ -1,8 +1,8 @@
 import { NextIntlConfig } from 'next-intl';
 
-import enMessages from '@i18n/messages/en';
-import esMessages from '@i18n/messages/es';
-import frMessages from '@i18n/messages/fr';
+import enMessages from '@/i18n/messages/en';
+import esMessages from '@/i18n/messages/es';
+import frMessages from '@/i18n/messages/fr';
 
 // using 'as const' to infer the types, but makes
 // it incompatible with mutable type string[]
@@ -27,7 +27,7 @@ const config: NextIntlConfig = {
   locales: LOCALES,
   defaultLocale: defaultLocale,
   async getMessages({ locale }) {
-    return (await import(`@i18n/messages/${locale}.ts`)).default;
+    return (await import(`@/i18n/messages/${locale}.ts`)).default;
   },
 };
 

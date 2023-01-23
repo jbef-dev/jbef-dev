@@ -1,9 +1,9 @@
 // import { useTranslations } from 'next-intl';
-import { FlexContainer } from '@ui/Containers/FlexContainer';
-import { PageContainer } from '@ui/Containers/PageContainer';
+import { Separator } from '@/components/Separator/Separator';
+import { FlexContainer } from '@/ui/Containers/FlexContainer';
+import { PageContainer } from '@/ui/Containers/PageContainer';
 
 import { Hero } from './Hero/Hero';
-import SquareSeparator from './SquareSeparator/SquareSeparator';
 
 export default function Home({}) {
   // const t = useTranslations('pages.home');
@@ -12,15 +12,18 @@ export default function Home({}) {
     <PageContainer mt={false}>
       <Hero />
 
-      <FlexContainer gap={false} py={false}>
-        <SquareSeparator />
+      <FlexContainer flexCol className='bg-black text-white'>
+        <Separator className='bg-black' />
+        {[...new Array(20)].map((_, i) => (
+          <div key={i} className='w-full'>THIS IS TEXT</div>
+        ))}
       </FlexContainer>
 
-      {[...new Array(10)].map((_, i) => (
-        <FlexContainer key={i}>
-          <div>TESTING</div>
-        </FlexContainer>
-      ))}
+      {/* {[...new Array(10)].map((_, i) => ( */}
+      {/*   <FlexContainer key={i} className='bg-black'> */}
+      {/*     <div>TESTING</div> */}
+      {/*   </FlexContainer> */}
+      {/* ))} */}
     </PageContainer>
   );
 }

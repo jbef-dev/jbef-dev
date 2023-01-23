@@ -1,7 +1,7 @@
-import { ForwardedRef, forwardRef, HTMLAttributes, RefObject } from 'react';
+import { forwardRef, HTMLAttributes, RefObject } from 'react';
 import clsx from 'clsx';
 
-interface FlexContainerProps extends HTMLAttributes<HTMLDivElement> {
+interface FlexContainerProps extends HTMLAttributes<HTMLElement> {
   center?: boolean;
   gap?: boolean;
   grow?: boolean;
@@ -16,13 +16,12 @@ interface FlexContainerProps extends HTMLAttributes<HTMLDivElement> {
   altRef?: RefObject<HTMLDivElement>;
 }
 
-export const FlexContainer = forwardRef<HTMLDivElement, FlexContainerProps>(
-  // export const FlexContainer = (props: FlexContainerProps) => {
-  (props: FlexContainerProps, ref: ForwardedRef<HTMLDivElement>) => {
+export const SectionContainer = forwardRef<HTMLElement, FlexContainerProps>(
+  (props, ref) => {
     const {
       center = true,
       gap = true,
-      px = false,
+      px = true,
       pr = true,
       pl = true,
       py = true,
@@ -37,7 +36,7 @@ export const FlexContainer = forwardRef<HTMLDivElement, FlexContainerProps>(
     } = props;
 
     return (
-      <div
+      <section
         ref={ref}
         className={clsx([
           'relative flex',
@@ -61,7 +60,7 @@ export const FlexContainer = forwardRef<HTMLDivElement, FlexContainerProps>(
         {...rest}
       >
         {children}
-      </div>
+      </section>
     );
   }
 );

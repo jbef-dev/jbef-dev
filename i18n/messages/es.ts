@@ -10,10 +10,10 @@ const esMessages: I18nMessages = {
       title1: 'Diseño web / programación web',
       pagetitle: 'Dentista en Torrevieja',
       hero: {
-        heading1: 'DISEÑO',
+        heading1: 'CREAR',
         heading2: 'A MEDIDA',
-        heading3: 'DIGITAL',
-        heading4: 'EXPERIENCES',
+        heading3: 'VISIONES',
+        heading4: 'DIGITALES',
       },
     },
     about: {

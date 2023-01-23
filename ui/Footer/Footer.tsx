@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { BUSINESS_INFO } from '@config/constants/pageContent';
+import { BUSINESS_INFO } from '@/config/constants/pageContent';
 import logo from '@/public/logo.svg';
 import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { SiGooglemaps, SiGooglemybusiness } from 'react-icons/si';

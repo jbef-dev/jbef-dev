@@ -1,11 +1,11 @@
 'use client';
 
 import useOutsideClick from '@/hooks/useOutsideClick';
-import { LOCALES } from '@i18n/config';
+import { LOCALES } from '@/i18n/config';
 import { motion, Variants } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
 import { useLocaleSwitcher } from './useLocaleSwitcher';
-import { myAnimation } from '@styles/customAnimations';
+import { myAnimation } from '@/styles/customAnimations';
 import { LocalizedLink, useLocale } from 'next-intl';
 import { IoTriangle } from 'react-icons/io5';
 import clsx from 'clsx';

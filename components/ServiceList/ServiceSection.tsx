@@ -10,8 +10,8 @@ import {
   useState,
 } from 'react';
 import { ServiceType } from './ServicesList';
-import { use100vh } from '@util/use100vh';
-import { myAnimation } from '@styles/customAnimations';
+import { use100vh } from '@/util/use100vh';
+import { myAnimation } from '@/styles/customAnimations';
 import { useTranslations } from 'next-intl';
 
 interface ServiceSectionProps {

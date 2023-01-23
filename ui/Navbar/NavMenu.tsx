@@ -2,11 +2,11 @@
 
 import { useModal } from '@/hooks/useModal';
 import clsx from 'clsx';
-import { LocaleSwitcher } from '@ui/LocaleSwitcher/LocaleSwitcher';
+import { LocaleSwitcher } from 'ui/LocaleSwitcher/LocaleSwitcher';
 import Link from 'next/link';
 import { NAVBAR_LINKS, SOCIALS } from '@/config/constants/pageContent';
 import { LocalizedLink, useTranslations } from 'next-intl';
-import { unlocalizedPath } from '@util/i18n';
+import { unlocalizedPath } from '@/util/i18n';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, Variants } from 'framer-motion';
@@ -52,6 +52,9 @@ export const NavMenu = ({
       variants={menuVariants}
       animate={open ? 'open' : 'close '}
       transition={myAnimation.transition.easeOutSlow}
+      style={{
+        transform: 'translate3d(0px, 0px, 0px)',
+      }}
     >
       <div className='flex w-full items-center justify-around'>
         <LocaleSwitcher />

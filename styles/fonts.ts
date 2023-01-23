@@ -1,5 +1,4 @@
 import { Archivo, Inter, Jost } from '@next/font/google';
-
 import localFont from '@next/font/local';
 
 export const fontSans = Inter({

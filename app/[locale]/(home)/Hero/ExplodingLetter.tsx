@@ -14,7 +14,7 @@ interface TitleLetterProps extends HTMLMotionProps<'span'> {
   letter: string;
 }
 
-export const TitleLetter = ({
+export const ExplodingLetter = ({
   containerScroll,
   count,
   letter,
@@ -51,7 +51,7 @@ export const TitleLetter = ({
 
   return (
     <motion.span
-      className='overflow-visible bg-transparent'
+      className='overflow-visible -mr-1 bg-transparent'
       ref={ref}
       style={{
         y,

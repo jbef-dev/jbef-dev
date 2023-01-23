@@ -1,12 +1,12 @@
-// import { Footer } from '@ui/Footer/Footer';
+// import { Footer } from 'ui/Footer/Footer';
 import { NextIntlClientProvider } from 'next-intl/client';
 import { notFound } from 'next/navigation';
 import clsx from 'clsx';
-import { Navbar } from '@ui/Navbar/Navbar';
+import { Navbar } from 'ui/Navbar/Navbar';
 // import { LOCALES } from '@i18n/config';
 
-import { fontSans, fontLogo, fontTitle, fontSpecial } from '@styles/fonts';
-import '@styles/globals.css';
+import { fontSans, fontLogo, fontTitle, fontSpecial } from '@/styles/fonts';
+import '@/styles/globals.css';
 // import { ScrollIndicator } from './(home)/ScrollIndicator/ScrollIndicator';
 // import { NextIntlServerProvider } from 'next-intl/server';
 import { useLocale } from 'next-intl';
@@ -29,12 +29,13 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
 
   let messages;
   try {
-    messages = (await import(`@i18n/messages/${locale}.ts`)).default;
+    messages = (await import(`@/i18n/messages/${locale}.ts`)).default;
   } catch (e) {
     notFound();
   }
 
   return (
+    // <html lang={locale} dir='ltr' className='scrollbar-hide'>
     <html lang={locale} dir='ltr' className='scrollbar-hide'>
       {/*
 <head /> will contain the components returned by the nearest parent

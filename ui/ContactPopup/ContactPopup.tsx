@@ -1,6 +1,6 @@
 import {myAnimation} from '@/styles/customAnimations';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Button } from '@ui/Button/Button';
+import { Button } from 'ui/Button/Button';
 import clsx from 'clsx';
 import { FaWhatsapp } from 'react-icons/fa';
 import { usePopup } from './usePopup';

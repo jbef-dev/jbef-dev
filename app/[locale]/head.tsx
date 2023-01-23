@@ -1,4 +1,4 @@
-import DefaultHead from '@components/SEO/DefaultHead';
+import DefaultHead from 'components/SEO/DefaultHead';
 import { useTranslations } from 'next-intl';
 
 export default function Head() {
