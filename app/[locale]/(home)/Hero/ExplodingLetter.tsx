@@ -51,7 +51,7 @@ export const ExplodingLetter = ({
 
   return (
     <motion.span
-      className='overflow-visible -mr-1 bg-transparent'
+      className='-mr-1 bg-transparent'
       ref={ref}
       style={{
         y,

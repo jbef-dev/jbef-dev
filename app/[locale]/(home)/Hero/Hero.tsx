@@ -127,12 +127,15 @@ export const Hero = () => {
               )}
               variants={rowVariants}
             >
-              <MotionImage
-                src={colorful_animals}
-                className='max-md:absolute max-md:right-[48vw] max-md:top-4 max-md:h-[1.8em] h-[1em] object-cover -z-20 justify-self-end w-auto'
-                alt='example work'
-                style={{ y: image1Y }}
-              />
+              <div className='max-md:absolute max-md:right-[48vw] max-md:top-4 max-md:h-[1.8em] h-[1em] overflow-hidden'>
+                <MotionImage
+                  src={colorful_animals}
+                  className='object-cover -z-20 justify-self-end w-auto'
+                  alt='example work'
+                  style={{ y: image1Y }}
+                  // fill={true}
+                />
+              </div>
               <motion.span
                 className='flex mix-blend-difference'
                 variants={spanVariants}
@@ -185,12 +188,14 @@ export const Hero = () => {
               )}
               variants={rowVariants}
             >
-              <MotionImage
-                src={architecture}
-                className='max-md:absolute max-md:right-0 max-md:bottom-[20%] max-md:h-[1.9em] h-[1em] object-cover -z-20 justify-self-end w-auto'
-                alt='example work'
-                style={{ y: image2Y }}
-              />
+              <div className='max-md:absolute max-md:right-0 max-md:bottom-[20%] max-md:h-[1.9em] h-[1em] aspect-video overflow-hidden'>
+                <MotionImage
+                  src={architecture}
+                  className='object-cover -z-20 justify-self-end'
+                  alt='example work'
+                  style={{ y: image2Y }}
+                />
+              </div>
               <motion.span
                 className='flex mix-blend-difference -z-20'
                 variants={spanVariants}
