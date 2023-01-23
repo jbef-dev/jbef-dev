@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { ExplodingLetter } from './ExplodingLetter';
 
-import colorful_animals from '@/public/img/colorful_animals.png';
-import architecture from '@/public/img/architecture_ai.png';
+import colorful_animals from '@/public/img/colorful_animals_preview.webp';
+import architecture from '@/public/img/architecture_preview.webp';
 import { RiArrowDownLine } from 'react-icons/ri';
 import { useTranslations } from 'next-intl';
 import { SectionContainer } from '@/ui/Containers/SectionContainer';
@@ -93,8 +93,6 @@ export const Hero = () => {
     },
   };
 
-  const MotionImage = motion(Image);
-
   const [overflowVisible, setOverflowVisible] = useState(false);
 
   return (
@@ -122,20 +120,22 @@ export const Hero = () => {
           >
             <motion.div
               className={clsx(
-                'flex items-center gap-[0.3em] pl-[1em] md:pl-[0.9em]',
+                'flex items-center gap-[0.2em] pl-[0.9em]',
                 overflowVisible ? 'overflow-visible' : 'overflow-hidden'
               )}
               variants={rowVariants}
             >
-              <div className='max-md:absolute max-md:right-[48vw] max-md:top-4 max-md:h-[1.8em] h-[1em] overflow-hidden'>
-                <MotionImage
+              <motion.div
+                className='max-md:absolute max-md:right-[48vw] max-md:top-4 max-md:h-[1.8em] h-[1em] aspect-square overflow-hidden -z-20'
+                style={{ y: image1Y }}
+              >
+                <Image
                   src={colorful_animals}
-                  className='object-cover -z-20 justify-self-end w-auto'
+                  className='object-cover'
                   alt='example work'
-                  style={{ y: image1Y }}
                   // fill={true}
                 />
-              </div>
+              </motion.div>
               <motion.span
                 className='flex mix-blend-difference'
                 variants={spanVariants}
@@ -147,7 +147,7 @@ export const Hero = () => {
 
             <motion.div
               className={clsx(
-                'flex items-center pl-[0.3em] md:pl-[0.5em] gap-[0.3em]',
+                'flex items-center pl-[0.3em] md:pl-[0.5em] gap-[0.2em]',
                 overflowVisible ? 'overflow-visible' : 'overflow-hidden'
               )}
               variants={rowVariants}
@@ -168,34 +168,34 @@ export const Hero = () => {
                     />
                   ))}
               </motion.span>
-              <motion.video
+              <motion.div
                 className={clsx(
-                  'max-md:absolute max-md:bottom-0 max-md:h-[1.5em] max-md:left-[9vw] h-[1em] object-cover -z-10',
+                  'max-md:absolute max-md:bottom-0 max-md:h-[1.5em] max-md:left-[9vw] h-[1em] aspect-video object-cover -z-10',
                   overflowVisible ? 'overflow-visible' : 'overflow-hidden'
                 )}
-                src='/vid/test_vid.mp4'
-                autoPlay
-                muted
-                playsInline
                 style={{ y: videoY }}
-              />
+              >
+                <video src='/vid/test_vid.mp4' autoPlay muted playsInline />
+              </motion.div>
             </motion.div>
 
             <motion.div
               className={clsx(
-                'flex pl-[1.8em] md:pl-[0.3em] gap-[0.3em] items-center',
+                'flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center',
                 overflowVisible ? 'overflow-visible' : 'overflow-hidden'
               )}
               variants={rowVariants}
             >
-              <div className='max-md:absolute max-md:right-0 max-md:bottom-[20%] max-md:h-[1.9em] h-[1em] aspect-video overflow-hidden'>
-                <MotionImage
+              <motion.div
+                className='max-md:absolute max-md:right-0 max-md:bottom-[20%] max-md:h-[1.9em] h-[1em] aspect-video overflow-hidden -z-20'
+                style={{ y: image2Y }}
+              >
+                <Image
                   src={architecture}
-                  className='object-cover -z-20 justify-self-end'
+                  className='object-cover '
                   alt='example work'
-                  style={{ y: image2Y }}
                 />
-              </div>
+              </motion.div>
               <motion.span
                 className='flex mix-blend-difference -z-20'
                 variants={spanVariants}

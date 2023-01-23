@@ -36,7 +36,7 @@ module.exports = {
         'responsive-6xl': 'clamp(2.6rem, 8.2vw, 5rem)',
         'responsive-7xl': 'clamp(2.7rem, 9.8vw, 6.1rem)',
         'responsive-8xl': 'clamp(2.8rem, 10.2vw, 7.3rem)',
-        'responsive-9xl': 'clamp(2.95rem, 11.8vw, 12.1rem)',
+        'responsive-9xl': 'clamp(2.95rem, 11.5vw, 12.1rem)',
         'responsive-10xl': 'clamp(3rem, 12.8vw, 13.5rem)',
       },
       borderRadius: {
