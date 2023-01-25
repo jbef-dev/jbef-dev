@@ -1,10 +1,9 @@
-import React, { ComponentPropsWithRef } from 'react';
-import { ButtonIcon } from './ButtonIcon';
-import { ButtonContainer } from './ButtonContainer';
-import { ButtonText } from './ButtonText';
-import { Variants } from 'framer-motion';
+import React, { ComponentPropsWithoutRef, forwardRef } from 'react';
+import clsx, { ClassValue } from 'clsx';
+import { DefaultIcon } from './DefaultIcon';
+import { LoadingSpinner } from './LoadingSpinner';
 
-export type ButtonFlavors =
+type ButtonFlavors =
   | 'basic'
   | 'transparent'
   | 'black'
@@ -12,49 +11,69 @@ export type ButtonFlavors =
   | 'outlined'
   | 'glass';
 
-export type ButtonSizes = 'sm' | 'md' | 'lg';
+type ButtonSizes = 'sm' | 'md' | 'lg';
 
-/**
- * Used to describe the `framer-motion` variants for each flavor and each
- * component inside the Button
- * */
-export type FlavorMotionVariants = { [k in ButtonFlavors]: Variants };
-
-export interface ButtonProps extends ComponentPropsWithRef<'button'> {
+export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   flavor?: ButtonFlavors;
   icon?: boolean | React.ReactNode;
   isLoading?: boolean;
   buttonSize?: ButtonSizes;
-  direction?: 'ltr' | 'rtl';
   glow?: boolean;
 }
 
-export const defaultValues = {
-  flavor: 'basic',
-  icon: false,
-  buttonSize: 'md',
-  isLoading: false,
-  direction: 'ltr',
-  glow: false,
-} as const satisfies ButtonProps;
-/**
- * Custom `Button` component with different flavors (variants)
- *
- * @param props.flavor - The flavor of the button ('basic', 'squared', etc...)
- * @param props.icon - Whether to use icon or not (custom icon, true or false)
- * @param props.color - Color for the button text
- * @param props.bgColor - Background color for the button
- * @param props.bgHover - Background color for main part of button when hovered
- * @param props.bgLight - ('squared' flavor) Background color for main part of button when hovered
- * @param props.bgDark - ('squared' flavor) Background color for icon part of button when hovered
- * */
-export const Button = (props: ButtonProps) => {
-  const { children, ...rest } = props;
-
-  return (
-    <ButtonContainer {...rest}>
-      <ButtonText {...rest}>{children}</ButtonText>
-      <ButtonIcon {...rest} />
-    </ButtonContainer>
-  );
+const flavors: { [k in ButtonFlavors]: ClassValue } = {
+  basic: clsx('bg-accent-dark text-white rounded-sm hover:bg-accent-main'),
+  transparent: clsx('bg-transparent'),
+  black: clsx(
+    'bg-gradient-to-br from-black to-black rounded-sm hover:bg-primary-900'
+  ),
+  glass: clsx('backdrop-blur-lg bg-grayscale-800/40'),
+  square: undefined,
+  outlined: clsx('ring-1 text-black ring-black hover:ring-2'),
 };
+
+const size: { [s in ButtonSizes]: ClassValue } = {
+  sm: clsx('px-3 py-[6px] text-sm'),
+  md: clsx('px-4 py-2 text-base'),
+  lg: clsx('px-5 py-3 text-lg'),
+};
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, ref) => {
+    const {
+      flavor = 'basic',
+      icon = false,
+      isLoading = false,
+      buttonSize = 'md',
+      glow = false,
+      className,
+      children,
+      ...rest
+    } = props;
+
+    return (
+      <button
+        ref={ref}
+        className={clsx(
+          'group relative flex cursor-pointer items-center justify-center gap-4 duration-200 ease-in-out leading-none',
+          flavors[flavor],
+          size[buttonSize],
+          className
+        )}
+        {...rest}
+      >
+        {children}
+
+        <div className='flex items-center justify-center transition-all group-hover:translate-x-1 group-active:translate-x-1'>
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : icon === true ? (
+            <DefaultIcon />
+          ) : icon !== false ? (
+            icon
+          ) : null}
+        </div>
+      </button>
+    );
+  }
+);
