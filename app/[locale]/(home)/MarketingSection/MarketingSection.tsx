@@ -23,13 +23,13 @@ export const MarketingSection = () => {
         </h3>
         <motion.div
           ref={dotContainerRef}
-          className='flex gap-2 min-w-max my-9'
+          className='flex gap-3 min-w-max my-9'
           style={{ x }}
         >
           {[...new Array(15)].map((_, i) => (
             <div
               className={clsx(
-                'rounded-full h-[clamp(4rem,10vw,10rem)]',
+                'rounded-full h-[clamp(4rem,8vw,8rem)]',
                 i === 5
                   ? 'aspect-[5/3] bg-accent-main opacity-100'
                   : 'aspect-square bg-white opacity-30'

@@ -51,7 +51,11 @@ export const NavMenu = ({
       initial='close'
       variants={menuVariants}
       animate={open ? 'open' : 'close '}
-      transition={myAnimation.transition.easeOutSlow}
+      transition={{
+        type: 'keyframes',
+        ease: 'easeInOut',
+        duration: myAnimation.values.duration.verySlow,
+      }}
       style={{
         transform: 'translate3d(0px, 0px, 0px)',
       }}
