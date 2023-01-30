@@ -1,10 +1,10 @@
-import { forwardRef, HTMLAttributes, RefObject } from 'react';
+import { ComponentPropsWithoutRef, forwardRef, RefObject } from 'react';
 import clsx from 'clsx';
 
-interface FlexContainerProps extends HTMLAttributes<HTMLElement> {
+interface SectionContainerProps extends ComponentPropsWithoutRef<'section'> {
   center?: boolean;
   gap?: boolean;
-  grow?: boolean;
+  wFull?: boolean;
   px?: boolean;
   pr?: boolean;
   pl?: boolean;
@@ -12,14 +12,15 @@ interface FlexContainerProps extends HTMLAttributes<HTMLElement> {
   pb?: boolean;
   pt?: boolean;
   maxW?: boolean;
+  flex?: boolean;
   flexCol?: boolean;
   altRef?: RefObject<HTMLDivElement>;
 }
 
-export const SectionContainer = forwardRef<HTMLElement, FlexContainerProps>(
+export const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
   (props, ref) => {
     const {
-      center = true,
+      center = false,
       gap = true,
       px = true,
       pr = true,
@@ -28,7 +29,8 @@ export const SectionContainer = forwardRef<HTMLElement, FlexContainerProps>(
       pb = true,
       pt = true,
       maxW = false,
-      grow = true,
+      wFull = true,
+      flex = false,
       flexCol = false,
       className,
       children,
@@ -39,21 +41,22 @@ export const SectionContainer = forwardRef<HTMLElement, FlexContainerProps>(
       <section
         ref={ref}
         className={clsx([
-          'relative flex',
+          'relative',
+          flex ? 'flex' : 'block',
           flexCol ? 'flex-col' : 'flex-row',
-          px && {
-            'pr-5 lg:pr-12': pr,
-            'pl-5 lg:pl-12': pl,
+          (px || pl || pr) && {
+            'pr-5 lg:pr-12': pr || px,
+            'pl-5 lg:pl-12': pl || px,
           },
-          py && {
-            'pt-16 lg:pt-24 first:pt-0': pt,
-            'pb-16 lg:pb-24': pb,
+          (py || pb || pt) && {
+            'pt-16 lg:pt-24 first:pt-0': pt || py,
+            'pb-16 lg:pb-24': pb || py,
           },
           {
             'gap-y-12 lg:gap-y-20': gap,
             'max-w-screen-xl': maxW,
             'items-center justify-center': center,
-            'w-full': grow,
+            'w-full': wFull,
           },
           className,
         ])}

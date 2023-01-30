@@ -31,7 +31,7 @@ const values = {
     max: 550,
   },
   damping: {
-    min:20,
+    min: 20,
     low: 35,
     mid: 60,
     high: 85,
@@ -126,14 +126,44 @@ const variants = {
   },
 } as const satisfies CustomVariants;
 
+interface VelocityOptions {
+  velocity?: number;
+  restSpeed?: number;
+  restDelta?: number;
+}
+
+interface DurationSpringOptions {
+  duration?: number;
+  bounce?: number;
+}
+
+interface SpringOptions extends DurationSpringOptions, VelocityOptions {
+  stiffness?: number;
+  damping?: number;
+  mass?: number;
+}
+
+interface CustomSprings {
+  [k: string]: SpringOptions;
+}
+
+const springs = {
+  default: {
+    stiffness: values.stiffness.high,
+    damping: values.damping.max,
+  },
+} as const satisfies CustomSprings;
+
 interface CustomAnimations {
-  values: typeof values;
-  transition: { [k: string]: Transition };
-  variants: { [k: string]: Variants };
+  values: CustomValues;
+  transition: CustomTransitions;
+  variants: CustomVariants;
+  spring: CustomSprings;
 }
 
 export const myAnimation = {
   values: values,
   transition: transition,
   variants: variants,
+  spring: springs,
 } as const satisfies CustomAnimations;

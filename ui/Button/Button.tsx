@@ -3,14 +3,7 @@ import clsx, { ClassValue } from 'clsx';
 import { DefaultIcon } from './DefaultIcon';
 import { LoadingSpinner } from './LoadingSpinner';
 
-type ButtonFlavors =
-  | 'basic'
-  | 'transparent'
-  | 'black'
-  | 'square'
-  | 'outlined'
-  | 'glass';
-
+type ButtonFlavors = 'basic' | 'transparent' | 'square' | 'outlined' | 'glass';
 type ButtonSizes = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
@@ -24,9 +17,6 @@ export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
 const flavors: { [k in ButtonFlavors]: ClassValue } = {
   basic: clsx('bg-accent-dark text-white rounded-sm hover:bg-accent-main'),
   transparent: clsx('bg-transparent'),
-  black: clsx(
-    'bg-gradient-to-br from-black to-black rounded-sm hover:bg-primary-900'
-  ),
   glass: clsx('backdrop-blur-lg bg-grayscale-800/40'),
   square: undefined,
   outlined: clsx('ring-1 text-black ring-black hover:ring-2'),

@@ -15,32 +15,34 @@ export const RoundedSeparator = (props: SeparatorProps) => {
     offset: ['start end', 'end start'],
   });
 
-  const springOpts = {
-    stiffness: myAnimation.values.stiffness.high,
-    damping: myAnimation.values.damping.max,
-  };
-  const springInput = useSpring(containerProgress, springOpts);
-  const roundedScale = useTransform(springInput, [0, 1], [1, 1.5]);
+  // const springOpts = {
+  //   stiffness: myAnimation.values.stiffness.high,
+  //   damping: myAnimation.values.damping.max,
+  // };
+  const springInput = useSpring(containerProgress, myAnimation.spring.default);
+  const scaleY = useTransform(springInput, [0, 1], [1, 1.5]);
+  const scaleX = useTransform(springInput, [0, 1], [1, 2.1]);
 
   return (
     <motion.div
+      ref={containerRef}
       className={clsx([
-        'absolute flex items-center justify-center w-full h-[clamp(6rem,15vw,12rem)] overflow-hidden',
+        'absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-full h-[clamp(4rem,10vw,11rem)] -z-10',
         position === 'top'
           ? 'top-0 -translate-y-full'
           : 'bottom-0 translate-y-full',
       ])}
-      ref={containerRef}
     >
       <motion.div
         className={clsx([
-          'absolute w-[120%] h-[220%] origin-top',
+          'absolute w-[120%] h-[220%]',
           position === 'top' ? 'top-0' : 'bottom-0',
           className,
         ])}
         style={{
           borderRadius: '100%',
-          scaleX: roundedScale,
+          scaleY: scaleY,
+          scaleX: scaleX,
         }}
         {...rest}
       ></motion.div>

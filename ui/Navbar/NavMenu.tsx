@@ -111,7 +111,7 @@ export const NavMenu = ({
                 <span className='text-responsive-xs pt-[2.5%] self-start transition-colors duration-500'>
                   0{i + 1}.
                 </span>
-                <div className='flex relative text-responsive-3xl lg:text-responsive-4xl group-hover:-translate-y-full transition-all duration-500'>
+                <div className='flex relative text-responsive-xl group-hover:-translate-y-full transition-all duration-500'>
                   <span>{t(link.label).toUpperCase()}</span>
                   <span className='absolute top-full'>
                     {t(link.label).toUpperCase()}

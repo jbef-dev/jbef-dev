@@ -10,27 +10,28 @@ interface PageContainerProps extends HTMLAttributes<HTMLElement> {
   gap?: boolean;
 }
 
-export const PageContainer = ({
-  children,
-  mt = true,
-  mb = true,
-  py = false,
-  pb = true,
-  pt = true,
-  gap = false,
-  ...props
-}: PropsWithChildren<PageContainerProps>) => {
-  const { className, ...rest } = props;
+export const PageContainer = (props: PropsWithChildren<PageContainerProps>) => {
+  const {
+    children,
+    mt = true,
+    mb = false,
+    py = false,
+    pb = false,
+    pt = true,
+    gap = false,
+    className,
+    ...rest
+  } = props;
 
   return (
     <main
       className={clsx(
-        'block',
+        'block overflow-hidden',
         { 'mt-28 lg:mt-36': mt },
         { 'mb-32': mb },
-        py && {
-          'pt-4 lg:pt-10 first:pt-0': pt,
-          'pb-4 lg:pb-10': pb,
+        (py || pb || pt) && {
+          'pt-4 lg:pt-10 first:pt-0': pt || py,
+          'pb-4 lg:pb-10': pb || py,
         },
         className
       )}

@@ -1,18 +1,17 @@
 'use client';
 
+import { myAnimation } from '@/styles/customAnimations';
+import { use100vh } from '@/util/use100vh';
+import clsx from 'clsx';
 import { motion, useScroll, useTransform, Variants } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { RiArrowDownLine } from 'react-icons/ri';
 import { ExplodingLetter } from './ExplodingLetter';
 
-import colorful_animals from '@/public/img/colorful_animals_preview.webp';
 import architecture from '@/public/img/architecture_preview.webp';
-import { RiArrowDownLine } from 'react-icons/ri';
-import { useTranslations } from 'next-intl';
-import { SectionContainer } from '@/ui/Containers/SectionContainer';
-import { use100vh } from '@/util/use100vh';
-import { myAnimation } from '@/styles/customAnimations';
-import clsx from 'clsx';
+import colorful_animals from '@/public/img/colorful_animals_preview.webp';
 
 export const Hero = () => {
   const t = useTranslations('pages.home.hero');
@@ -34,11 +33,11 @@ export const Hero = () => {
   });
   const { scrollYProgress: explodingProgress } = useScroll({
     target: containerRef,
-    offset: ['15% start', 'center start'],
+    offset: ['25% start', '70% start'],
   });
   const { scrollYProgress: normalH2Progress } = useScroll({
     target: containerRef,
-    offset: ['10% start', 'end start'],
+    offset: ['30% start', 'end start'],
   });
 
   const headerVariants: { x: string[] }[] = [
@@ -85,7 +84,7 @@ export const Hero = () => {
 
   const spanVariants: Variants = {
     initial: {
-      y: '100%',
+      y: '120%',
     },
     animate: {
       y: 0,
@@ -96,9 +95,12 @@ export const Hero = () => {
   const [overflowVisible, setOverflowVisible] = useState(false);
 
   return (
-    <SectionContainer ref={containerRef} px={false} py={false} flexCol>
+    <div
+      ref={containerRef}
+      className='relative flex flex-col items-center justify-center'
+    >
       <div
-        className='fixed top-0 text-responsive-10xl md:text-responsive-9xl flex items-center justify-center w-full bg-gray-100'
+        className='fixed top-0 text-responsive-3xl flex items-center justify-center w-full bg-gray-100'
         style={{
           height: vh || '100vh',
         }}
@@ -110,7 +112,7 @@ export const Hero = () => {
               initial: {},
               animate: {
                 transition: {
-                  staggerChildren: 0.1,
+                  staggerChildren: 0.18,
                 },
               },
             }}
@@ -126,12 +128,14 @@ export const Hero = () => {
               variants={rowVariants}
             >
               <motion.div
-                className='max-md:absolute max-md:right-[48vw] max-md:top-4 max-md:h-[1.8em] h-[1em] aspect-square overflow-hidden -z-20'
+                className='max-md:absolute max-md:right-[48vw] max-md:top-4 max-md:h-[1.8em] h-[1em] aspect-square overflow-hidden -z-30'
                 style={{ y: image1Y }}
               >
                 <Image
                   src={colorful_animals}
                   className='object-cover'
+                  priority
+                  loading='eager'
                   alt='example work'
                   // fill={true}
                 />
@@ -170,7 +174,7 @@ export const Hero = () => {
               </motion.span>
               <motion.div
                 className={clsx(
-                  'max-md:absolute max-md:bottom-0 max-md:h-[1.5em] max-md:left-[9vw] h-[1em] aspect-video object-cover -z-10',
+                  'max-md:absolute max-md:bottom-0 max-md:h-[1.5em] max-md:left-[9vw] h-[1em] aspect-video object-cover -z-20',
                   overflowVisible ? 'overflow-visible' : 'overflow-hidden'
                 )}
                 style={{ y: videoY }}
@@ -187,17 +191,19 @@ export const Hero = () => {
               variants={rowVariants}
             >
               <motion.div
-                className='max-md:absolute max-md:right-0 max-md:bottom-[20%] max-md:h-[1.9em] h-[1em] aspect-video overflow-hidden -z-20'
+                className='max-md:absolute max-md:right-0 max-md:bottom-[20%] max-md:h-[1.9em] h-[1em] aspect-video overflow-hidden -z-30'
                 style={{ y: image2Y }}
               >
                 <Image
                   src={architecture}
                   className='object-cover '
+                  priority
+                  loading='eager'
                   alt='example work'
                 />
               </motion.div>
               <motion.span
-                className='flex mix-blend-difference -z-20'
+                className='flex mix-blend-difference -z-30'
                 variants={spanVariants}
                 style={{ x: headerXRtl }}
               >
@@ -207,7 +213,7 @@ export const Hero = () => {
 
             <motion.div
               className={clsx(
-                'flex w-full max-md:justify-center -z-10 mix-blend-difference',
+                'flex w-full max-md:justify-center -z-20 mix-blend-difference',
                 overflowVisible ? 'overflow-visible' : 'overflow-hidden'
               )}
               variants={rowVariants}
@@ -218,14 +224,14 @@ export const Hero = () => {
           </motion.h1>
 
           <motion.div
-            className='max-md:absolute max-md:bottom-4 max-md:right-4 self-end'
+            className='max-md:absolute max-md:bottom-4 -z-20 max-md:right-4 self-end'
             style={{ y: arrowY }}
           >
             <RiArrowDownLine />
           </motion.div>
         </div>
 
-        <div className='flex absolute max-md:left-[15vw] bottom-[20%] md:right-[3vw] md:bottom-[40%] font-sans text-responsive-xs gap-1 -z-10 text-white mix-blend-difference'>
+        <div className='flex absolute max-md:left-[15vw] bottom-[20%] md:right-[15vw] md:bottom-[45%] font-sans text-responsive-xs gap-1 -z-20 text-white mix-blend-difference'>
           <div className='pt-1'>
             <svg
               viewBox='0 0 24 24'
@@ -246,6 +252,6 @@ export const Hero = () => {
       </div>
 
       <div style={{ height: (vh && 2.5 * vh) || '250vh' }}></div>
-    </SectionContainer>
+    </div>
   );
 };

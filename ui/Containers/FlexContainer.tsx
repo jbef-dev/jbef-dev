@@ -19,7 +19,7 @@ interface FlexContainerProps extends HTMLAttributes<HTMLDivElement> {
 export const FlexContainer = forwardRef<HTMLDivElement, FlexContainerProps>(
   (props, ref) => {
     const {
-      center = true,
+      center = false,
       gap = true,
       px = false,
       pr = true,
