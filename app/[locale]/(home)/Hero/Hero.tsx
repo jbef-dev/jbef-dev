@@ -12,6 +12,7 @@ import { ExplodingLetter } from './ExplodingLetter';
 
 import architecture from '@/public/img/architecture_preview.webp';
 import colorful_animals from '@/public/img/colorful_animals_preview.webp';
+import { Heading1 } from '@/ui/Typography/Heading1';
 
 export const Hero = () => {
   const t = useTranslations('pages.home.hero');
@@ -106,122 +107,126 @@ export const Hero = () => {
         }}
       >
         <div className='flex w-full max-w-screen-3xl justify-between'>
-          <motion.h1
-            className='flex justify-center items-start w-full px-2 flex-col font-title font-light leading-none text-white uppercase'
-            variants={{
-              initial: {},
-              animate: {
-                transition: {
-                  staggerChildren: 0.18,
+          <Heading1 className='flex w-full'>
+            <motion.div
+              className='flex justify-center items-start w-full px-2 flex-col text-white'
+              variants={{
+                initial: {},
+                animate: {
+                  transition: {
+                    staggerChildren: 0.18,
+                  },
                 },
-              },
-            }}
-            onAnimationComplete={() => setOverflowVisible(true)}
-            initial='initial'
-            animate='animate'
-          >
-            <motion.div
-              className={clsx(
-                'flex items-center gap-[0.2em] pl-[0.9em]',
-                overflowVisible ? 'overflow-visible' : 'overflow-hidden'
-              )}
-              variants={rowVariants}
+              }}
+              onAnimationComplete={() => setOverflowVisible(true)}
+              initial='initial'
+              animate='animate'
             >
-              <motion.div
-                className='max-md:absolute max-md:right-[48vw] max-md:top-4 max-md:h-[1.8em] h-[1em] aspect-square overflow-hidden -z-30'
-                style={{ y: image1Y }}
-              >
-                <Image
-                  src={colorful_animals}
-                  className='object-cover'
-                  priority
-                  loading='eager'
-                  alt='example work'
-                  // fill={true}
-                />
-              </motion.div>
-              <motion.span
-                className='flex mix-blend-difference'
-                variants={spanVariants}
-                style={{ x: headerXLtr }}
-              >
-                {t('heading1')}
-              </motion.span>
-            </motion.div>
-
-            <motion.div
-              className={clsx(
-                'flex items-center pl-[0.3em] md:pl-[0.5em] gap-[0.2em]',
-                overflowVisible ? 'overflow-visible' : 'overflow-hidden'
-              )}
-              variants={rowVariants}
-            >
-              <motion.span
-                className='flex tracking-widest text-accent-main italic font-special'
-                variants={spanVariants}
-              >
-                {t('heading2')
-                  .split('')
-                  // .split(/(\s+)/)
-                  .map((letter, i) => (
-                    <ExplodingLetter
-                      key={letter + i}
-                      containerScroll={explodingProgress}
-                      letter={letter}
-                      count={i}
-                    />
-                  ))}
-              </motion.span>
               <motion.div
                 className={clsx(
-                  'max-md:absolute max-md:bottom-0 max-md:h-[1.5em] max-md:left-[9vw] h-[1em] aspect-video object-cover -z-20',
+                  'flex items-center gap-[0.2em] pl-[0.9em]',
                   overflowVisible ? 'overflow-visible' : 'overflow-hidden'
                 )}
-                style={{ y: videoY }}
+                variants={rowVariants}
               >
-                <video src='/vid/test_vid.mp4' autoPlay muted playsInline />
+                <motion.div
+                  className='max-md:absolute max-md:right-[48vw] max-md:top-4 max-md:h-[1.8em] h-[1em] aspect-square overflow-hidden -z-30'
+                  style={{ y: image1Y }}
+                >
+                  <Image
+                    src={colorful_animals}
+                    className='object-cover'
+                    priority
+                    loading='eager'
+                    alt='example work'
+                    // fill={true}
+                  />
+                </motion.div>
+                <motion.span
+                  className='flex mix-blend-difference'
+                  variants={spanVariants}
+                  style={{ x: headerXLtr }}
+                >
+                  {t('heading1')}
+                </motion.span>
               </motion.div>
-            </motion.div>
 
-            <motion.div
-              className={clsx(
-                'flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center',
-                overflowVisible ? 'overflow-visible' : 'overflow-hidden'
-              )}
-              variants={rowVariants}
-            >
               <motion.div
-                className='max-md:absolute max-md:right-0 max-md:bottom-[20%] max-md:h-[1.9em] h-[1em] aspect-video overflow-hidden -z-30'
-                style={{ y: image2Y }}
+                className={clsx(
+                  'flex items-center pl-[0.3em] md:pl-[0.5em] gap-[0.2em]',
+                  overflowVisible ? 'overflow-visible' : 'overflow-hidden'
+                )}
+                variants={rowVariants}
               >
-                <Image
-                  src={architecture}
-                  className='object-cover '
-                  priority
-                  loading='eager'
-                  alt='example work'
-                />
+                <motion.span
+                  className='flex tracking-widest text-accent-main italic font-special'
+                  variants={spanVariants}
+                >
+                  {t('heading2')
+                    .split('')
+                    // .split(/(\s+)/)
+                    .map((letter, i) => (
+                      <ExplodingLetter
+                        key={letter + i}
+                        containerScroll={explodingProgress}
+                        letter={letter}
+                        count={i}
+                      />
+                    ))}
+                </motion.span>
+                <motion.div
+                  className={clsx(
+                    'max-md:absolute max-md:bottom-0 max-md:h-[1.5em] max-md:left-[9vw] h-[1em] aspect-video object-cover -z-20',
+                    overflowVisible ? 'overflow-visible' : 'overflow-hidden'
+                  )}
+                  style={{ y: videoY }}
+                >
+                  <video src='/vid/test_vid.mp4' autoPlay muted playsInline />
+                </motion.div>
               </motion.div>
-              <motion.span
-                className='flex mix-blend-difference -z-30'
-                variants={spanVariants}
+
+              <motion.div
+                className={clsx(
+                  'flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center',
+                  overflowVisible ? 'overflow-visible' : 'overflow-hidden'
+                )}
+                variants={rowVariants}
+              >
+                <motion.div
+                  className='max-md:absolute max-md:right-0 max-md:bottom-[20%] max-md:h-[1.9em] h-[1em] aspect-video overflow-hidden -z-30'
+                  style={{ y: image2Y }}
+                >
+                  <Image
+                    src={architecture}
+                    className='object-cover '
+                    priority
+                    loading='eager'
+                    alt='example work'
+                  />
+                </motion.div>
+                <motion.span
+                  className='flex mix-blend-difference -z-30'
+                  variants={spanVariants}
+                  style={{ x: headerXRtl }}
+                >
+                  {t('heading3')}
+                </motion.span>
+              </motion.div>
+
+              <motion.div
+                className={clsx(
+                  'flex w-full max-md:justify-center -z-20 mix-blend-difference',
+                  overflowVisible ? 'overflow-visible' : 'overflow-hidden'
+                )}
+                variants={rowVariants}
                 style={{ x: headerXRtl }}
               >
-                {t('heading3')}
-              </motion.span>
+                <motion.span variants={spanVariants}>
+                  {t('heading4')}
+                </motion.span>
+              </motion.div>
             </motion.div>
-
-            <motion.div
-              className={clsx(
-                'flex w-full max-md:justify-center -z-20 mix-blend-difference',
-                overflowVisible ? 'overflow-visible' : 'overflow-hidden'
-              )}
-              variants={rowVariants}
-              style={{ x: headerXRtl }}
-            >
-              <motion.span variants={spanVariants}>{t('heading4')}</motion.span>
-            </motion.div>
-          </motion.h1>
+          </Heading1>
 
           <motion.div
             className='max-md:absolute max-md:bottom-4 -z-20 max-md:right-4 self-end'

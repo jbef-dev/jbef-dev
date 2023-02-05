@@ -29,7 +29,7 @@ export const MarketingSection = () => {
           {[...new Array(15)].map((_, i) => (
             <div
               className={clsx(
-                'rounded-full h-[clamp(4rem,8vw,8rem)]',
+                'rounded-full h-[clamp(4rem,8vw,18rem)]',
                 i === 5
                   ? 'aspect-[5/3] bg-accent-main opacity-100'
                   : 'aspect-square bg-white opacity-30'
