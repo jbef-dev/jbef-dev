@@ -61,16 +61,16 @@ export const Hero = () => {
   // const image2Y = useTransform(mediaElementProgress, [0, 1], ['0%', '-65%']);
   // const arrowY = useTransform(mediaElementProgress, [0, 1], ['0%', '-55%']);
 
-  const videoY = useTransform(mediaElementProgress, [0, 1], ['0rem', '-65rem']);
+  const videoY = useTransform(mediaElementProgress, [0, 1], ['0rem', '-85rem']);
   const image1Y = useTransform(
     mediaElementProgress,
     [0, 1],
-    ['0rem', '-10rem']
+    ['0rem', '-19rem']
   );
   const image2Y = useTransform(
     mediaElementProgress,
     [0, 1],
-    ['0rem', '-45rem']
+    ['0rem', '-75rem']
   );
   const arrowY = useTransform(mediaElementProgress, [0, 1], ['0rem', '-35rem']);
 
