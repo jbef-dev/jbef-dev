@@ -28,6 +28,7 @@ export const MarketingSection = () => {
         >
           {[...new Array(15)].map((_, i) => (
             <div
+              key={i}
               className={clsx(
                 'rounded-full h-[clamp(4rem,8vw,18rem)]',
                 i === 5

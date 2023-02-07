@@ -11,7 +11,7 @@ specifiers:
   eslint-config-next: 13.1.6
   framer-motion: ^9.0.1
   next: 13.1.6
-  next-intl: ^2.11.0-beta.1
+  next-intl: 2.11.0-beta.7
   nookies: ^2.5.2
   postcss: ^8.4.21
   react: 18.2.0
@@ -31,7 +31,7 @@ dependencies:
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
   framer-motion: 9.0.1_biqbaboplfbrettd7655fr4n2y
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
-  next-intl: 2.11.0-beta.1_next@13.1.6+react@18.2.0
+  next-intl: 2.11.0-beta.7_next@13.1.6+react@18.2.0
   nookies: 2.5.2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1950,8 +1950,8 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: false
 
-  /next-intl/2.11.0-beta.1_next@13.1.6+react@18.2.0:
-    resolution: {integrity: sha512-rq+Y7AfTGWfor9ujOG75x9o19eq4LLx6ev90m+tyqXINJN3b90jHLjhaXfLf4e1UxDtP39YHFpIfHokkl2UJDg==}
+  /next-intl/2.11.0-beta.7_next@13.1.6+react@18.2.0:
+    resolution: {integrity: sha512-XKMi/DZxuDKOU9Dtx3ba9PYiDAo2MK6oP2W81EB68bEIFpC74YKDxj19tSEBVdvTMKPefHhI/ikDZ8zDY20wng==}
     engines: {node: '>=10'}
     peerDependencies:
       next: ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0
