@@ -13,7 +13,6 @@ import architecture from '@/public/img/architecture_preview.webp';
 import colorful_animals from '@/public/img/colorful_animals_preview.webp';
 import { Heading1 } from '@/ui/Typography/Heading1';
 import { MotionSpan } from './MotionSpan';
-import { CircleSpring } from './CircleSpring';
 
 export const Hero = () => {
   const t = useTranslations('pages.home.hero');
@@ -100,7 +99,7 @@ export const Hero = () => {
               </motion.div>
 
               <div className='flex items-center pl-[0.3em] md:pl-[0.5em] gap-[0.2em]'>
-                <MotionSpan className='text-accent-main tracking-widest italic font-special'>
+                <MotionSpan className='text-accent-main tracking-wider italic font-special'>
                   {t('heading2')
                     .split('')
                     // .split(/(\s+)/)

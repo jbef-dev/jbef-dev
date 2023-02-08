@@ -28,7 +28,7 @@ export const StandOutHeading = () => {
       >
         <h3 className='flex items-center justify-center flex-col w-full max-w-screen-xl'>
           <AppearingSpan
-            className='self-start pl-20 font-special italic'
+            className='self-start pl-20 font-special italic tracking-wider'
             style={{ x: spanX1 }}
           >
             EVOLVE &nbsp;
@@ -59,7 +59,7 @@ export const StandOutHeading = () => {
         </motion.div>
         <h3 className='flex flex-col font-light w-full max-w-screen-xl'>
           <AppearingSpan
-            className='self-center font-special italic'
+            className='self-center font-special italic tracking-wider'
             style={{ x: spanX3 }}
           >
             STAND OUT &nbsp;

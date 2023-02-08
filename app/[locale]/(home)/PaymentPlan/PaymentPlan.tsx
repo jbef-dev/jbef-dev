@@ -1,16 +1,19 @@
 import { AppearingSpan } from '@/ui/Typography/AppearingSpan';
+import clsx from 'clsx';
 
 export const PaymentPlan = () => {
+  const iconStyles = clsx('w-6 lg:w-14 aspect-square');
+
   return (
     <div className='flex flex-col gap-20 w-full'>
       <div className='flex flex-col items-start gap-10 w-full'>
-        <h3 className='flex items-center font-special italic leading-none gap-6 uppercase font-light text-responsive-xl'>
-          <div className='flex flex-col'>
+        <h3 className='flex items-center leading-[1.1] gap-6 uppercase font-light text-responsive-xl'>
+          <div className='flex flex-col gap-2 lg:gap-6'>
             <svg
               viewBox='0 0 24 24'
               strokeWidth={1.5}
               stroke='currentColor'
-              className='w-8 lg:w-12 aspect-square'
+              className={iconStyles}
             >
               <path
                 strokeLinecap='round'
@@ -22,7 +25,7 @@ export const PaymentPlan = () => {
               viewBox='0 0 24 24'
               strokeWidth={1.5}
               stroke='currentColor'
-              className='w-8 lg:w-12 aspect-square'
+              className={iconStyles}
             >
               <path
                 strokeLinecap='round'
@@ -31,9 +34,11 @@ export const PaymentPlan = () => {
               />
             </svg>
           </div>
-          <span className='flex flex-col'>
+          <span className='flex flex-col w-full'>
             <AppearingSpan>No upfront</AppearingSpan>
-            <AppearingSpan>payment</AppearingSpan>
+            <AppearingSpan className='font-special italic tracking-wider'>
+              payment
+            </AppearingSpan>
           </span>
         </h3>
 
@@ -41,15 +46,15 @@ export const PaymentPlan = () => {
       </div>
 
       <div className='flex justify-end items-end flex-col gap-10 w-full'>
-        <h3 className='flex items-center leading-none gap-6 bg-red-400 uppercase font-light text-responsive-xl'>
-          <div className='flex flex-col h-full bg-green-400'>
+        <h3 className='flex items-center leading-[1.1] gap-6 uppercase font-light text-responsive-xl'>
+          <div className='flex flex-col gap-2 lg:gap-6'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
               viewBox='0 0 24 24'
               strokeWidth={1.5}
               stroke='currentColor'
-              className='w-8 lg:w-12 aspect-square'
+              className={iconStyles}
             >
               <path
                 strokeLinecap='round'
@@ -63,7 +68,7 @@ export const PaymentPlan = () => {
               viewBox='0 0 24 24'
               strokeWidth={1.5}
               stroke='currentColor'
-              className='w-8 lg:w-12 aspect-square'
+              className={iconStyles}
             >
               <path
                 strokeLinecap='round'
@@ -72,6 +77,7 @@ export const PaymentPlan = () => {
               />
             </svg>
           </div>
+
           <span className='flex flex-col'>
             <AppearingSpan>Developer</AppearingSpan>
             <AppearingSpan>on duty</AppearingSpan>
