@@ -49,11 +49,11 @@ export const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
             'pl-5 lg:pl-12': pl || px,
           },
           (py || pb || pt) && {
-            'pt-16 lg:pt-24 first:pt-0': pt || py,
-            'pb-16 lg:pb-24': pb || py,
+            'pt-20 lg:pt-36 first:pt-0': pt || py,
+            'pb-20 lg:pb-36': pb || py,
           },
           {
-            'gap-y-12 lg:gap-y-20': gap,
+            'gap-y-32 lg:gap-y-60': gap,
             'max-w-screen-xl': maxW,
             'items-center justify-center': center,
             'w-full': wFull,

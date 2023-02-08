@@ -40,8 +40,10 @@ export const ExplodingLetter = ({
 
   const springInput = useSpring(containerScroll, springOpts);
 
-  const y = useTransform(springInput, [0, 1], outputOpts[count].y);
-  const x = useTransform(springInput, [0, 1], outputOpts[count].x);
+  const animationStart = 0.25;
+
+  const y = useTransform(springInput, [animationStart, 1], outputOpts[count].y);
+  const x = useTransform(springInput, [animationStart, 1], outputOpts[count].x);
   const rotate = useTransform(springInput, [0, 1], outputOpts[count].rotate);
 
   // RENDER WHITE SPACE!!!

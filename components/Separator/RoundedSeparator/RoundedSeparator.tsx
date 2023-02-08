@@ -20,7 +20,7 @@ export const RoundedSeparator = (props: SeparatorProps) => {
   //   damping: myAnimation.values.damping.max,
   // };
   const springInput = useSpring(containerProgress, myAnimation.spring.default);
-  const scaleY = useTransform(springInput, [0, 1], [1, 1.5]);
+  const scaleY = useTransform(springInput, [0, 1], [1, 1.2]);
   const scaleX = useTransform(springInput, [0, 1], [1, 2.1]);
 
   return (
@@ -29,13 +29,13 @@ export const RoundedSeparator = (props: SeparatorProps) => {
       className={clsx([
         'absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-full h-[clamp(4rem,10vw,11rem)] -z-10',
         position === 'top'
-          ? 'top-0 -translate-y-full'
-          : 'bottom-0 translate-y-full',
+          ? 'top-0 -translate-y-2/3'
+          : 'bottom-0 -translate-y-2/3',
       ])}
     >
       <motion.div
         className={clsx([
-          'absolute w-[120%] h-[220%]',
+          'absolute w-[130%] h-[320%]',
           position === 'top' ? 'top-0' : 'bottom-0',
           className,
         ])}

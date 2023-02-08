@@ -55,7 +55,7 @@ const transition = {
   easeOut: {
     type: 'keyframes',
     ease: 'easeInOut',
-    duration: values.duration.slow,
+    duration: values.duration.verySlow,
   },
   easeOutSlow: {
     type: 'keyframes',

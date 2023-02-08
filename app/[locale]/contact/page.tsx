@@ -3,9 +3,6 @@ import { Separator } from '@/components/Separator/Separator';
 import { PageContainer } from '@/ui/Containers/PageContainer';
 import { SectionContainer } from '@/ui/Containers/SectionContainer';
 
-import { Hero } from './Hero/Hero';
-import { PaymentPlan } from './PaymentPlan/PaymentPlan';
-import { StandOutHeading } from './StandOutHeading/StandOutHeading';
 
 export default function Home({}) {
   // const t = useTranslations('pages.home');
@@ -21,16 +18,17 @@ export default function Home({}) {
         wFull
         className='-z-20'
       >
-        <Hero />
+
       </SectionContainer>
 
       <SectionContainer flex flexCol className='bg-black text-white'>
         <Separator position='top' className='bg-black' />
-        <StandOutHeading />
-      </SectionContainer>
-
-      <SectionContainer flex flexCol className='bg-black text-white'>
-        <PaymentPlan />
+        {/* {[...new Array(20)].map((_, i) => ( */}
+        {/*   <div key={i} className='w-full'> */}
+        {/*     <Button>TESTINGG</Button> */}
+        {/*     THIS IS TEXT */}
+        {/*   </div> */}
+        {/* ))} */}
       </SectionContainer>
     </PageContainer>
   );
