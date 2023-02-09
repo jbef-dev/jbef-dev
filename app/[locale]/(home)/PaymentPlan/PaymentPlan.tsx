@@ -1,14 +1,15 @@
 import { AppearingSpan } from '@/ui/Typography/AppearingSpan';
+import { Heading3 } from '@/ui/Typography/Heading3';
 import clsx from 'clsx';
 
 export const PaymentPlan = () => {
   const iconStyles = clsx('w-6 lg:w-14 aspect-square');
 
   return (
-    <div className='flex flex-col gap-20 w-full'>
-      <div className='flex flex-col items-start gap-10 w-full'>
-        <h3 className='flex items-center leading-[1.1] gap-6 uppercase font-light text-responsive-xl'>
-          <div className='flex flex-col gap-2 lg:gap-6'>
+    <div className='flex flex-col gap-y-32 w-full'>
+      <div className='flex flex-col items-start gap-y-8 w-full'>
+        <Heading3 className='flex items-center gap-x-4'>
+          <div className='flex flex-col gap-y-4'>
             <svg
               viewBox='0 0 24 24'
               strokeWidth={1.5}
@@ -40,14 +41,19 @@ export const PaymentPlan = () => {
               payment
             </AppearingSpan>
           </span>
-        </h3>
+        </Heading3>
 
-        <p>Flexible monthly payments</p>
+        <p className='text-responsive-lg'>
+          <AppearingSpan>
+            No up front payment, instead, we establish a relationship and pay
+            monthly to include all work done on the website.
+          </AppearingSpan>
+        </p>
       </div>
 
-      <div className='flex justify-end items-end flex-col gap-10 w-full'>
-        <h3 className='flex items-center leading-[1.1] gap-6 uppercase font-light text-responsive-xl'>
-          <div className='flex flex-col gap-2 lg:gap-6'>
+      <div className='flex justify-end items-end flex-col gap-y-8 w-full'>
+        <Heading3 className='flex items-center gap-x-4'>
+          <div className='flex flex-col gap-y-4'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
@@ -82,7 +88,7 @@ export const PaymentPlan = () => {
             <AppearingSpan>Developer</AppearingSpan>
             <AppearingSpan>on duty</AppearingSpan>
           </span>
-        </h3>
+        </Heading3>
 
         <p className='text-responsive-lg'>Flexible monthly payments</p>
       </div>
