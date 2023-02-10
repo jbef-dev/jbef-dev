@@ -5,11 +5,11 @@ import { HTMLMotionProps, motion, useInView, Variants } from 'framer-motion';
 import { myAnimation } from '@/styles/customAnimations';
 import clsx from 'clsx';
 
-export const AppearingSpan = ({
-  children,
-  className,
-  ...props
-}: HTMLMotionProps<'span'>) => {
+interface Props extends HTMLMotionProps<'span'> {
+  children: string;
+}
+
+export const AnimatedSpan = ({ children, className, ...props }: Props) => {
   const spanRef = useRef<HTMLSpanElement>(null);
   const isVisible = useInView(spanRef, { once: true, amount: 0.6 });
 
@@ -34,7 +34,8 @@ export const AppearingSpan = ({
       {...props}
     >
       <motion.span
-        className='flex'
+        className='flex w-full'
+        initial='initial'
         animate={isVisible ? 'animate' : 'initial'}
         variants={spanVariants}
       >

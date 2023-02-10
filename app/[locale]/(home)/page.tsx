@@ -12,25 +12,23 @@ export default function Home({}) {
 
   return (
     <PageContainer mt={false} mb={false}>
-      <SectionContainer
-        flex
-        flexCol
-        px={false}
-        gap={false}
-        center
-        wFull
-        className='-z-20'
-      >
+      <SectionContainer flexCol center px={false} gap={false} className='-z-20'>
         <Hero />
       </SectionContainer>
 
-      <SectionContainer flex flexCol className='bg-black text-white'>
-        <Separator position='top' className='bg-black' />
+      <SectionContainer flexCol center className='bg-black text-white'>
+        <Separator position='top' className='bg-red-400' />
         <StandOutHeading />
       </SectionContainer>
 
-      <SectionContainer flex flexCol className='bg-black text-white'>
+      <SectionContainer flexCol center className='bg-black text-white'>
         <PaymentPlan />
+      </SectionContainer>
+
+      <SectionContainer flexCol center className='bg-white'>
+        <Separator position='top' className='bg-white' />
+        <div className='z-10'>TESTING</div>
+        <div>TESTING</div>
       </SectionContainer>
     </PageContainer>
   );

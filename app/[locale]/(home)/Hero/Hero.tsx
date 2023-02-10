@@ -13,6 +13,8 @@ import architecture from '@/public/img/architecture_preview.webp';
 import colorful_animals from '@/public/img/colorful_animals_preview.webp';
 import { Heading1 } from '@/ui/Typography/Heading1';
 import { MotionSpan } from './MotionSpan';
+// import { myAnimation } from '@/styles/customAnimations';
+import { CircleSpring } from './CircleSpring';
 
 export const Hero = () => {
   const t = useTranslations('pages.home.hero');
@@ -55,13 +57,9 @@ export const Hero = () => {
           height: vh || '100vh',
         }}
       >
-        {/* <div className='absolute flex top-0 left-0 w-full h-full [background-size:_40px_40px] [background-image:_radial-gradient(circle,#000000_2px,_rgba(0,0,0,0)_1px)] -z-30'> */}
-        {/*   {/* <div className='flex w-full h-full bg-gradient-to-r from-white/0 via-white to-white/0'></div> */}
-        {/* </div> */}
+        <div className='flex relative w-full max-w-screen-3xl justify-between'>
+          <CircleSpring containerScroll={scrollYProgress} />
 
-        {/* <CircleSpring containerScroll={scrollYProgress} /> */}
-
-        <div className='flex w-full max-w-screen-3xl justify-between'>
           <Heading1 className='flex w-full'>
             <motion.div
               className='flex justify-center items-start w-full px-2 flex-col text-white'
@@ -79,7 +77,7 @@ export const Hero = () => {
             >
               <motion.div className='flex items-center gap-[0.2em] pl-[0.9em]'>
                 <motion.div
-                  className='max-md:absolute max-md:right-[48vw] max-md:top-4 max-md:h-[1.8em] h-[1em] aspect-square overflow-hidden -z-30'
+                  className='max-md:fixed max-md:right-[48vw] max-md:top-4 max-md:h-[1.8em] h-[1em] aspect-square overflow-hidden -z-30'
                   style={{ y: img1Y }}
                 >
                   <Image
@@ -114,7 +112,7 @@ export const Hero = () => {
                   &nbsp;
                 </MotionSpan>
                 <motion.div
-                  className='max-md:absolute max-md:bottom-0 max-md:h-[1.5em] max-md:left-[9vw] h-[1em] aspect-video object-cover -z-20'
+                  className='max-md:fixed max-md:bottom-0 max-md:h-[1.5em] max-md:left-[9vw] h-[1em] aspect-video object-cover -z-20'
                   style={{ y: videoY }}
                 >
                   <video src='/vid/test_vid.mp4' autoPlay muted playsInline />
@@ -123,7 +121,7 @@ export const Hero = () => {
 
               <div className='flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center'>
                 <motion.div
-                  className='max-md:absolute max-md:right-0 max-md:bottom-[20%] max-md:h-[1.9em] h-[1em] aspect-video overflow-hidden -z-30'
+                  className='max-md:fixed max-md:right-0 max-md:bottom-[20%] max-md:h-[1.9em] h-[1em] aspect-video overflow-hidden -z-30'
                   style={{ y: img2Y }}
                 >
                   <Image
@@ -155,7 +153,7 @@ export const Hero = () => {
           </Heading1>
 
           <motion.div
-            className='max-md:absolute max-md:bottom-4 -z-20 max-md:right-4 self-end'
+            className='max-md:fixed max-md:bottom-4 -z-20 max-md:right-4 self-end'
             style={{ y: arrowY }}
           >
             <RiArrowDownLine />

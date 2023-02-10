@@ -1,4 +1,5 @@
-import { AppearingSpan } from '@/ui/Typography/AppearingSpan';
+import { AnimatedParagraph } from '@/ui/Typography/AnimatedParagraph';
+import { AnimatedSpan } from '@/ui/Typography/AnimatedSpan';
 import { Heading3 } from '@/ui/Typography/Heading3';
 import clsx from 'clsx';
 
@@ -6,8 +7,8 @@ export const PaymentPlan = () => {
   const iconStyles = clsx('w-6 lg:w-14 aspect-square');
 
   return (
-    <div className='flex flex-col gap-y-32 w-full'>
-      <div className='flex flex-col items-start gap-y-8 w-full'>
+    <>
+      <div className='flex flex-col items-start gap-y-8 max-w-screen-2xl w-full'>
         <Heading3 className='flex items-center gap-x-4'>
           <div className='flex flex-col gap-y-4'>
             <svg
@@ -36,22 +37,20 @@ export const PaymentPlan = () => {
             </svg>
           </div>
           <span className='flex flex-col w-full'>
-            <AppearingSpan>No upfront</AppearingSpan>
-            <AppearingSpan className='font-special italic tracking-wider'>
+            <AnimatedSpan>No upfront</AnimatedSpan>
+            <AnimatedSpan className='font-special italic tracking-wider'>
               payment
-            </AppearingSpan>
+            </AnimatedSpan>
           </span>
         </Heading3>
 
-        <p className='text-responsive-lg'>
-          <AppearingSpan>
-            No up front payment, instead, we establish a relationship and pay
-            monthly to include all work done on the website.
-          </AppearingSpan>
-        </p>
+        <AnimatedParagraph className='flex w-full max-w-screen-md font-light text-responsive-md'>
+          No up front payment, instead, we establish a relationship and pay
+          monthly to include all work done on the website.
+        </AnimatedParagraph>
       </div>
 
-      <div className='flex justify-end items-end flex-col gap-y-8 w-full'>
+      <div className='flex justify-end items-end flex-col gap-y-8 max-w-screen-2xl w-full'>
         <Heading3 className='flex items-center gap-x-4'>
           <div className='flex flex-col gap-y-4'>
             <svg
@@ -85,13 +84,64 @@ export const PaymentPlan = () => {
           </div>
 
           <span className='flex flex-col'>
-            <AppearingSpan>Developer</AppearingSpan>
-            <AppearingSpan>on duty</AppearingSpan>
+            <AnimatedSpan>Developer</AnimatedSpan>
+            <AnimatedSpan className='font-special italic tracking-wider'>
+              on duty
+            </AnimatedSpan>
           </span>
         </Heading3>
 
-        <p className='text-responsive-lg'>Flexible monthly payments</p>
+        <AnimatedParagraph className='flex w-full max-w-screen-md justify-end font-light text-responsive-md'>
+          Keep your website updated! Update to your website when needed, within
+          48h, as many times as you need. It's like having a web developer in
+          your team on payroll.
+        </AnimatedParagraph>
       </div>
-    </div>
+
+      <div className='flex flex-col items-start gap-y-8 max-w-screen-2xl w-full'>
+        <Heading3 className='flex items-center gap-x-4'>
+          <div className='flex flex-col gap-y-4'>
+            <svg
+              viewBox='0 0 24 24'
+              strokeWidth={1.5}
+              stroke='currentColor'
+              className={iconStyles}
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+              />
+            </svg>
+            <svg
+              viewBox='0 0 24 24'
+              strokeWidth={1.5}
+              stroke='currentColor'
+              className={iconStyles}
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+              />
+            </svg>
+          </div>
+          <span className='flex flex-col w-full'>
+            <AnimatedSpan>hand coded</AnimatedSpan>
+            <AnimatedSpan className='font-special italic tracking-wider'>
+              website
+            </AnimatedSpan>
+          </span>
+        </Heading3>
+
+        <AnimatedParagraph className='flex w-full max-w-screen-md font-light text-responsive-md'>
+          Forget about cookie-cutter websites, we hand code all our work, using
+          the most modern technologies used by all major companies. We make
+          billion-dollar company technologies accessible to everyone. From the
+          largest layout to the smallest button, everything is custom coded and
+          the performance benefits are obvious.
+        </AnimatedParagraph>
+      </div>
+    </>
   );
 };

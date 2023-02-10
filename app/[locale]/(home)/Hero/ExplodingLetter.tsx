@@ -21,14 +21,14 @@ export const ExplodingLetter = ({
   ...rest
 }: TitleLetterProps) => {
   const outputOpts: { x: string[]; y: string[]; rotate: string[] }[] = [
-    { x: ['0%', '-45%'], y: ['0%', '-91%'], rotate: ['0deg', '-35deg'] },
-    { x: ['0%', '-65%'], y: ['0%', '60%'], rotate: ['0deg', '25deg'] },
-    { x: ['0%', '-35%'], y: ['0%', '-45%'], rotate: ['0deg', '-30deg'] },
-    { x: ['0%', '-25%'], y: ['0%', '75%'], rotate: ['0deg', '10deg'] },
-    { x: ['0%', '34%'], y: ['0%', '-78%'], rotate: ['0deg', '20deg'] },
-    { x: ['0%', '64%'], y: ['0%', '63%'], rotate: ['0deg', '-35deg'] },
-    { x: ['0%', '79%'], y: ['0%', '-89%'], rotate: ['0deg', '20deg'] },
-    { x: ['0%', '89%'], y: ['0%', '79%'], rotate: ['0deg', '-20deg'] },
+    { x: ['0%', '-65%'], y: ['0%', '-101%'], rotate: ['0deg', '-35deg'] },
+    { x: ['0%', '-95%'], y: ['0%', '70%'], rotate: ['0deg', '25deg'] },
+    { x: ['0%', '-45%'], y: ['0%', '-55%'], rotate: ['0deg', '-30deg'] },
+    { x: ['0%', '-35%'], y: ['0%', '85%'], rotate: ['0deg', '10deg'] },
+    { x: ['0%', '44%'], y: ['0%', '-88%'], rotate: ['0deg', '20deg'] },
+    { x: ['0%', '74%'], y: ['0%', '73%'], rotate: ['0deg', '-35deg'] },
+    { x: ['0%', '89%'], y: ['0%', '-99%'], rotate: ['0deg', '20deg'] },
+    { x: ['0%', '109%'], y: ['0%', '89%'], rotate: ['0deg', '-20deg'] },
   ];
 
   const ref = useRef<HTMLSpanElement>(null);
@@ -44,7 +44,8 @@ export const ExplodingLetter = ({
 
   const y = useTransform(springInput, [animationStart, 1], outputOpts[count].y);
   const x = useTransform(springInput, [animationStart, 1], outputOpts[count].x);
-  const rotate = useTransform(springInput, [0, 1], outputOpts[count].rotate);
+  const rotate = useTransform(springInput, [animationStart, 1], outputOpts[count].rotate);
+  const scale = useTransform(springInput, [animationStart, 1], [1, 1.3]);
 
   // RENDER WHITE SPACE!!!
   if (letter === ' ') {
@@ -59,6 +60,7 @@ export const ExplodingLetter = ({
         y,
         x,
         rotate,
+        scale,
       }}
       {...rest}
     >

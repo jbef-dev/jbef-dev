@@ -30,7 +30,7 @@ export const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
       pt = true,
       maxW = false,
       wFull = true,
-      flex = false,
+      flex = true,
       flexCol = false,
       className,
       children,
@@ -49,11 +49,11 @@ export const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
             'pl-5 lg:pl-12': pl || px,
           },
           (py || pb || pt) && {
-            'pt-20 lg:pt-36 first:pt-0': pt || py,
-            'pb-20 lg:pb-36': pb || py,
+            'pt-24 lg:pt-48 first:pt-0': pt || py,
+            'pb-24 lg:pb-48': pb || py,
           },
           {
-            'gap-y-32 lg:gap-y-60': gap,
+            'gap-y-24 lg:gap-y-48': gap,
             'max-w-screen-xl': maxW,
             'items-center justify-center': center,
             'w-full': wFull,

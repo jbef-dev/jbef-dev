@@ -27,20 +27,22 @@ export const RoundedSeparator = (props: SeparatorProps) => {
     <motion.div
       ref={containerRef}
       className={clsx([
-        'absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-full h-[clamp(4rem,10vw,11rem)] -z-10',
+        'absolute overflow-hidden left-0 flex items-center justify-center w-full h-[clamp(5rem,10vw,12rem)]',
         position === 'top'
-          ? 'top-0 -translate-y-2/3'
-          : 'bottom-0 -translate-y-2/3',
+          ? 'top-0 -translate-y-full'
+          : 'bottom-0 translate-y-full',
       ])}
     >
       <motion.div
         className={clsx([
-          'absolute w-[130%] h-[320%]',
+          'absolute w-full aspect-square',
           position === 'top' ? 'top-0' : 'bottom-0',
           className,
         ])}
         style={{
-          borderRadius: '100%',
+          borderRadius: '50%',
+          originX: '50%',
+          originY: '0%',
           scaleY: scaleY,
           scaleX: scaleX,
         }}
