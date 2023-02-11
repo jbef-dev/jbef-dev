@@ -5,6 +5,7 @@ import { SectionContainer } from '@/ui/Containers/SectionContainer';
 
 import { Hero } from './Hero/Hero';
 import { PaymentPlan } from './PaymentPlan/PaymentPlan';
+import { PricingTable } from './PricingTable/PricingTable';
 import { StandOutHeading } from './StandOutHeading/StandOutHeading';
 
 export default function Home({}) {
@@ -16,8 +17,14 @@ export default function Home({}) {
         <Hero />
       </SectionContainer>
 
-      <SectionContainer flexCol center className='bg-black text-white'>
-        <Separator position='top' className='bg-red-400' />
+      <SectionContainer
+        flexCol
+        center
+        gap={false}
+        pt={false}
+        className='bg-black text-white'
+      >
+        <Separator position='top' className='bg-black' />
         <StandOutHeading />
       </SectionContainer>
 
@@ -25,10 +32,14 @@ export default function Home({}) {
         <PaymentPlan />
       </SectionContainer>
 
-      <SectionContainer flexCol center className='bg-white'>
+      <SectionContainer
+        py={false}
+        className='bg-black py-[clamp(5rem,10vw,11rem)]'
+      />
+
+      <SectionContainer flexCol center pt={false} className='bg-white'>
         <Separator position='top' className='bg-white' />
-        <div className='z-10'>TESTING</div>
-        <div>TESTING</div>
+        <PricingTable/> 
       </SectionContainer>
     </PageContainer>
   );

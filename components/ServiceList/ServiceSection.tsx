@@ -21,9 +21,12 @@ interface ServiceSectionProps {
   service: ServiceType;
 }
 
-const ServiceSection = (props: ServiceSectionProps) => {
-  const { count, active, setActive, service } = props;
-
+const ServiceSection = ({
+  count,
+  active,
+  setActive,
+  service,
+}: ServiceSectionProps) => {
   const t = useTranslations(`data.services.${service.service}`);
 
   const viewportH = use100vh();

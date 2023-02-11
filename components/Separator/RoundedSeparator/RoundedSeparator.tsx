@@ -6,47 +6,48 @@ import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { SeparatorProps } from '../Separator';
 
-export const RoundedSeparator = (props: SeparatorProps) => {
-  const { flavor, position = 'top', className, ...rest } = props;
-
+export const RoundedSeparator = ({
+  flavor,
+  position = 'top',
+  className,
+  ...props
+}: SeparatorProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: containerProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
   });
 
-  // const springOpts = {
-  //   stiffness: myAnimation.values.stiffness.high,
-  //   damping: myAnimation.values.damping.max,
-  // };
   const springInput = useSpring(containerProgress, myAnimation.spring.default);
-  const scaleY = useTransform(springInput, [0, 1], [1, 1.2]);
-  const scaleX = useTransform(springInput, [0, 1], [1, 2.1]);
+  const containerScaleY = useTransform(springInput, [0, 1], [1, 1.8]);
+
+  const circleScaleX = useTransform(springInput, [0, 1], [1.2, 2.1]);
 
   return (
     <motion.div
       ref={containerRef}
       className={clsx([
-        'absolute overflow-hidden left-0 flex items-center justify-center w-full h-[clamp(5rem,10vw,12rem)]',
-        position === 'top'
-          ? 'top-0 -translate-y-full'
-          : 'bottom-0 translate-y-full',
+        'absolute overflow-hidden left-0 flex items-center justify-center w-full h-[clamp(5rem,10vw,18rem)]',
+        position === 'top' ? 'bottom-full' : 'top-full',
       ])}
+      style={{
+        originY: '100%',
+        scaleY: containerScaleY,
+      }}
     >
       <motion.div
         className={clsx([
-          'absolute w-full aspect-square',
+          'absolute w-full h-[200%]',
           position === 'top' ? 'top-0' : 'bottom-0',
           className,
         ])}
         style={{
-          borderRadius: '50%',
+          borderRadius: '100% 100% 0 0',
           originX: '50%',
           originY: '0%',
-          scaleY: scaleY,
-          scaleX: scaleX,
+          scaleX: circleScaleX,
         }}
-        {...rest}
+        {...props}
       ></motion.div>
     </motion.div>
   );

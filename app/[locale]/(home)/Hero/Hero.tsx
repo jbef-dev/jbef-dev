@@ -13,8 +13,7 @@ import architecture from '@/public/img/architecture_preview.webp';
 import colorful_animals from '@/public/img/colorful_animals_preview.webp';
 import { Heading1 } from '@/ui/Typography/Heading1';
 import { MotionSpan } from './MotionSpan';
-// import { myAnimation } from '@/styles/customAnimations';
-import { CircleSpring } from './CircleSpring';
+// import { CircleSpring } from './CircleSpring';
 
 export const Hero = () => {
   const t = useTranslations('pages.home.hero');
@@ -52,13 +51,13 @@ export const Hero = () => {
       className='relative flex flex-col items-center justify-center'
     >
       <div
-        className='fixed top-0 text-responsive-3xl flex items-center justify-center w-full bg-gray-100'
+        className='fixed top-0 text-responsive-3xl flex items-center justify-center w-full bg-white'
         style={{
           height: vh || '100vh',
         }}
       >
         <div className='flex relative w-full max-w-screen-3xl justify-between'>
-          <CircleSpring containerScroll={scrollYProgress} />
+          {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 
           <Heading1 className='flex w-full'>
             <motion.div

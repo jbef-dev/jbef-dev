@@ -44,15 +44,11 @@ export const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
           'relative',
           flex ? 'flex' : 'block',
           flexCol ? 'flex-col' : 'flex-row',
-          (px || pl || pr) && {
-            'pr-5 lg:pr-12': pr || px,
-            'pl-5 lg:pl-12': pl || px,
-          },
-          (py || pb || pt) && {
-            'pt-24 lg:pt-48 first:pt-0': pt || py,
-            'pb-24 lg:pb-48': pb || py,
-          },
           {
+            'pr-5 lg:pr-12': pr && px,
+            'pl-5 lg:pl-12': pl && px,
+            'pt-24 lg:pt-48 first:pt-0': pt && py,
+            'pb-24 lg:pb-48': pb && py,
             'gap-y-24 lg:gap-y-48': gap,
             'max-w-screen-xl': maxW,
             'items-center justify-center': center,

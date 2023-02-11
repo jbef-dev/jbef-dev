@@ -35,8 +35,8 @@ export const AnimatedParagraph = ({ children, className, ...props }: Props) => {
         staggerDirection: 1,
       }}
     >
-      {children.split(' ').map(k => (
-        <motion.span className='flex overflow-hidden'>
+      {children.split(' ').map((k, i) => (
+        <motion.span key={i} className='flex overflow-hidden'>
           <motion.span
             className='flex'
             variants={spanVariants}
