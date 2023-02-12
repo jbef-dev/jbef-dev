@@ -4,7 +4,7 @@ import { PageContainer } from '@/ui/Containers/PageContainer';
 import { SectionContainer } from '@/ui/Containers/SectionContainer';
 
 import { Hero } from './Hero/Hero';
-import { PaymentPlan } from './PaymentPlan/PaymentPlan';
+import { PaymentPlan } from './PaymentSection/PaymentSection';
 import { PricingTable } from './PricingTable/PricingTable';
 import { StandOutHeading } from './StandOutHeading/StandOutHeading';
 

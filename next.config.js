@@ -12,9 +12,9 @@ const nextConfig = {
   },
 };
 
-const withNextIntl = require('next-intl/withNextIntl');
+const withNextIntl = require('next-intl/plugin')('./i18n/config.tsx');
 
 module.exports = withNextIntl({
-  i18nConfig: './i18n/config.tsx',
+  // i18nConfig: './i18n/config.tsx',
   ...nextConfig,
 });
