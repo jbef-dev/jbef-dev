@@ -3,7 +3,13 @@ import clsx, { ClassValue } from 'clsx';
 import { DefaultIcon } from './DefaultIcon';
 import { LoadingSpinner } from './LoadingSpinner';
 
-type ButtonFlavors = 'basic' | 'transparent' | 'square' | 'outlined' | 'glass';
+type ButtonFlavors =
+  | 'basic'
+  | 'gradient'
+  | 'transparent'
+  | 'square'
+  | 'outlined'
+  | 'glass';
 type ButtonSizes = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
@@ -15,7 +21,10 @@ export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
 }
 
 const flavors: { [k in ButtonFlavors]: ClassValue } = {
-  basic: clsx('bg-accent-dark text-white rounded-sm hover:bg-accent-main'),
+  basic: clsx('bg-accent-main text-white rounded-sm hover:bg-accent-main'),
+  gradient: clsx(
+    'bg-gradient-to-r from-primary to-secondary text-black font-medium'
+  ),
   transparent: clsx('bg-transparent'),
   glass: clsx('backdrop-blur-lg bg-grayscale-800/40'),
   square: undefined,
@@ -54,15 +63,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {children}
 
-        <div className='flex items-center justify-center transition-all group-hover:translate-x-1 group-active:translate-x-1'>
-          {isLoading ? (
-            <LoadingSpinner />
-          ) : icon === true ? (
-            <DefaultIcon />
-          ) : icon !== false ? (
-            icon
-          ) : null}
-        </div>
+        {icon !== false ? (
+          <div className='flex items-center justify-center transition-all group-hover:translate-x-1 group-active:translate-x-1'>
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : icon === true ? (
+              <DefaultIcon />
+            ) : (
+              icon
+            )}
+          </div>
+        ) : null}
       </button>
     );
   }
