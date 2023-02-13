@@ -1,7 +1,6 @@
 'use client';
 
 import { use100vh } from '@/util/use100vh';
-import clsx from 'clsx';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -43,8 +42,6 @@ export const Hero = () => {
   const img2Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-75rem']);
   const arrowY = useTransform(scrollYProgress, [0, 1], ['0rem', '-35rem']);
 
-  const [overflowVisible, setOverflowVisible] = useState(false);
-
   return (
     <div
       ref={containerRef}
@@ -70,7 +67,6 @@ export const Hero = () => {
                   },
                 },
               }}
-              onAnimationComplete={() => setOverflowVisible(true)}
               initial='initial'
               animate='animate'
             >
@@ -95,7 +91,7 @@ export const Hero = () => {
                 </MotionSpan>
               </motion.div>
 
-              <div className='flex items-center pl-[0.3em] md:pl-[0.5em] gap-[0.2em]'>
+              <div className='flex items-center pl-[0.3em] overflow-visible md:pl-[0.5em] gap-[0.2em]'>
                 <MotionSpan className='text-accent-main tracking-wider italic font-special'>
                   {t('heading2')
                     .split('')
@@ -140,10 +136,7 @@ export const Hero = () => {
               </div>
 
               <motion.div
-                className={clsx(
-                  'flex w-full max-md:justify-center -z-20 mix-blend-difference',
-                  overflowVisible ? 'overflow-visible' : 'overflow-hidden'
-                )}
+                className='flex w-full max-md:justify-center -z-20 mix-blend-difference'
                 style={{ x: xRTL }}
               >
                 <MotionSpan>{t('heading4')}</MotionSpan>

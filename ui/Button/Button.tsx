@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, forwardRef } from 'react';
+import React, { ComponentPropsWithoutRef, forwardRef, ReactNode } from 'react';
 import clsx, { ClassValue } from 'clsx';
 import { DefaultIcon } from './DefaultIcon';
 import { LoadingSpinner } from './LoadingSpinner';
@@ -22,9 +22,7 @@ export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
 
 const flavors: { [k in ButtonFlavors]: ClassValue } = {
   basic: clsx('bg-accent-main text-white rounded-sm hover:bg-accent-main'),
-  gradient: clsx(
-    'bg-gradient-to-r from-primary to-secondary text-black font-medium'
-  ),
+  gradient: clsx('bg-gradient-to-r from-primary to-secondary text-black'),
   transparent: clsx('bg-transparent'),
   glass: clsx('backdrop-blur-lg bg-grayscale-800/40'),
   square: undefined,
@@ -37,9 +35,19 @@ const size: { [s in ButtonSizes]: ClassValue } = {
   lg: clsx('px-5 py-3 text-lg'),
 };
 
+const ConditionalWrapper = ({
+  condition,
+  wrapper,
+  children,
+}: {
+  condition: boolean;
+  wrapper: (c: ReactNode) => any; // WARNING FIX THIS ANY
+  children: ReactNode;
+}) => (condition ? wrapper(children) : children);
+
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (props, ref) => {
-    const {
+  (
+    {
       flavor = 'basic',
       icon = false,
       isLoading = false,
@@ -47,9 +55,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       glow = false,
       className,
       children,
-      ...rest
-    } = props;
-
+      ...props
+    },
+    ref
+  ) => {
     return (
       <button
         ref={ref}
@@ -59,21 +68,30 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           size[buttonSize],
           className
         )}
-        {...rest}
+        {...props}
       >
-        {children}
-
-        {icon !== false ? (
-          <div className='flex items-center justify-center transition-all group-hover:translate-x-1 group-active:translate-x-1'>
-            {isLoading ? (
-              <LoadingSpinner />
-            ) : icon === true ? (
-              <DefaultIcon />
-            ) : (
-              icon
-            )}
-          </div>
-        ) : null}
+        <ConditionalWrapper
+          condition={flavor === 'gradient'}
+          wrapper={children => (
+            <>
+              <div className='absolute top-0.5 left-0.5 right-0.5 bottom-0.5 group-hover:left-[3px] group-hover:top-[3px] group-hover:bottom-[3px] group-hover:right-[3px] bg-white z-0 duration-200 ease-in-out'></div>
+              <div className='z-10'>{children}</div>
+            </>
+          )}
+        >
+          {children}
+          {icon !== false ? (
+            <div className='flex items-center justify-center transition-all group-hover:translate-x-1 group-active:translate-x-1'>
+              {isLoading ? (
+                <LoadingSpinner />
+              ) : icon === true ? (
+                <DefaultIcon />
+              ) : (
+                icon
+              )}
+            </div>
+          ) : null}
+        </ConditionalWrapper>
       </button>
     );
   }

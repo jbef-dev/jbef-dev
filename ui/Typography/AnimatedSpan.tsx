@@ -15,11 +15,21 @@ export const AnimatedSpan = ({ children, className, ...props }: Props) => {
 
   const spanVariants: Variants = {
     initial: {
-      y: '120%',
+      // y: '120%',
+      opacity: 0,
+      rotateX: '75deg',
+      rotateY: '4deg',
+      rotateZ: '-10deg',
+      // transform: 'rotateX(75deg) rotateY(10deg) rotateZ(-9deg)',
+      transformOrigin: 'bottom',
       transition: myAnimation.transition.easeOut,
     },
     animate: {
-      y: 0,
+      // y: 0,
+      opacity: 1,
+      rotateX: '0deg',
+      rotateY: '0deg',
+      rotateZ: '0deg',
       transition: {
         delay: myAnimation.values.duration.fastest,
         ...myAnimation.transition.easeOut,
@@ -28,11 +38,7 @@ export const AnimatedSpan = ({ children, className, ...props }: Props) => {
   };
 
   return (
-    <motion.span
-      ref={spanRef}
-      className={clsx('flex overflow-hidden', className)}
-      {...props}
-    >
+    <motion.span ref={spanRef} className={clsx('flex', className)} {...props}>
       <motion.span
         className='flex w-full'
         initial='initial'

@@ -18,14 +18,14 @@ export const StandOutHeading = () => {
 
   const spanX1 = useTransform(springInput, [0, 1], ['0%', '2%']);
   const spanX2 = useTransform(springInput, [0, 1], ['5%', '-5%']);
-  const spanX3 = useTransform(springInput, [0, 1], ['0%', '-5%']);
-  const spanX4 = useTransform(springInput, [0, 1], ['0%', '25%']);
+  const spanX3 = useTransform(springInput, [0, 1], ['0%', '-15%']);
+  const spanX4 = useTransform(springInput, [0, 1], ['0%', '5%']);
 
   return (
     <>
       <Heading2 className='flex items-center justify-center flex-col w-full max-w-screen-2xl'>
         <AnimatedSpan
-          className='self-start pl-20 font-special italic tracking-wider'
+          className='self-start pl-[20%] font-special italic tracking-wider'
           style={{ x: spanX1 }}
         >
           EVOLVE &nbsp;
@@ -57,12 +57,12 @@ export const StandOutHeading = () => {
       </motion.div>
       <Heading2 className='flex flex-col w-full max-w-screen-xl'>
         <AnimatedSpan
-          className='self-center font-special italic tracking-wider'
+          className='self-end pr-[15%] font-special italic tracking-wider'
           style={{ x: spanX3 }}
         >
           STAND OUT &nbsp;
         </AnimatedSpan>
-        <AnimatedSpan className='self-start pl-20' style={{ x: spanX4 }}>
+        <AnimatedSpan className='self-center pl-10' style={{ x: spanX4 }}>
           ONLINE
         </AnimatedSpan>
       </Heading2>
