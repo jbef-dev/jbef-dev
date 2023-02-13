@@ -11,7 +11,7 @@ interface Props extends HTMLMotionProps<'span'> {
 
 export const AnimatedSpan = ({ children, className, ...props }: Props) => {
   const spanRef = useRef<HTMLSpanElement>(null);
-  const isVisible = useInView(spanRef, { once: true, amount: 0.6 });
+  const isVisible = useInView(spanRef, { once: false, amount: 0.6 });
 
   const spanVariants: Variants = {
     initial: {
@@ -50,3 +50,38 @@ export const AnimatedSpan = ({ children, className, ...props }: Props) => {
     </motion.span>
   );
 };
+
+// 'use client';
+//
+// import { ComponentPropsWithoutRef, useRef } from 'react';
+// import clsx from 'clsx';
+// import { useInView } from '@/hooks/useInView';
+//
+// interface Props extends ComponentPropsWithoutRef<'span'> {
+//   children: string;
+// }
+//
+// export const AnimatedSpan = ({ children, className, ...props }: Props) => {
+//   const spanRef = useRef<HTMLSpanElement>(null);
+//
+//   const isVisible = useInView(spanRef, {
+//     once: false,
+//     root: null,
+//     rootMargin: '0px 0px 0% 0px',
+//     threshold: 1,
+//   });
+//   return (
+//     <span ref={spanRef} className={clsx('flex', className)} {...props}>
+//       <span
+//         className={clsx(
+//           'flex w-full will-change-transform transition-all duration-1000',
+//           isVisible
+//             ? 'opacity-100 [transform:_rotateX(0deg)_rotateY(0deg)_rotateZ(0deg)]'
+//             : 'opacity-0 [transform:_rotateX(75deg)_rotateY(10deg)_rotateZ(-9deg)]'
+//         )}
+//       >
+//         {children}
+//       </span>
+//     </span>
+//   );
+// };

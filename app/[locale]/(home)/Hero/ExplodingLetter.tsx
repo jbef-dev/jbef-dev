@@ -44,7 +44,11 @@ export const ExplodingLetter = ({
 
   const y = useTransform(springInput, [animationStart, 1], outputOpts[count].y);
   const x = useTransform(springInput, [animationStart, 1], outputOpts[count].x);
-  const rotate = useTransform(springInput, [animationStart, 1], outputOpts[count].rotate);
+  const rotate = useTransform(
+    springInput,
+    [animationStart, 1],
+    outputOpts[count].rotate
+  );
   const scale = useTransform(springInput, [animationStart, 1], [1, 1.3]);
 
   // RENDER WHITE SPACE!!!
@@ -54,7 +58,7 @@ export const ExplodingLetter = ({
 
   return (
     <motion.span
-      className='-mr-1 bg-transparent'
+      className='-mr-2 pr-1'
       ref={ref}
       style={{
         y,

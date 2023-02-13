@@ -28,7 +28,7 @@ module.exports = {
         'responsive-sm': 'clamp(0.85rem, 1.15vw, 1rem)',
         'responsive-md': 'clamp(1rem, 1.75vw, 1.2rem)',
         'responsive-lg': 'clamp(1.2rem, 3vw, 1.75rem)',
-        'responsive-xl': 'clamp(1.9rem, 7vw, 5rem)',
+        'responsive-xl': 'clamp(2.05rem, 7vw, 5rem)',
         'responsive-2xl': 'clamp(2.6rem, 10vw, 7.5rem)',
         'responsive-3xl': 'clamp(3rem, 13vw, 10.5rem)',
         // 'responsive-xs': 'clamp(0.7rem, 1.05vw, 0.85rem)',

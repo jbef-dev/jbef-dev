@@ -37,9 +37,9 @@ export const Hero = () => {
   const xLTR = useTransform(scrollYProgress, [headingStart, 1], ['0%', '40%']);
   const xRTL = useTransform(scrollYProgress, [headingStart, 1], ['0%', '-40%']);
 
-  const videoY = useTransform(scrollYProgress, [0, 1], ['0rem', '-85rem']);
-  const img1Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-19rem']);
-  const img2Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-75rem']);
+  const videoY = useTransform(scrollYProgress, [0, 1], ['0rem', '-95rem']);
+  const img1Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-29rem']);
+  const img2Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-82rem']);
   const arrowY = useTransform(scrollYProgress, [0, 1], ['0rem', '-35rem']);
 
   return (
@@ -48,12 +48,12 @@ export const Hero = () => {
       className='relative flex flex-col items-center justify-center'
     >
       <div
-        className='fixed top-0 text-responsive-3xl flex items-center justify-center w-full bg-white'
+        className='fixed h-screen top-0 text-responsive-3xl flex items-center justify-center w-full bg-white'
         style={{
           height: vh || '100vh',
         }}
       >
-        <div className='flex relative w-full max-w-screen-3xl justify-between'>
+        <div className='flex relative h-full w-full max-w-screen-3xl justify-between'>
           {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 
           <Heading1 className='flex w-full'>
@@ -84,7 +84,7 @@ export const Hero = () => {
                   />
                 </motion.div>
                 <MotionSpan
-                  className='flex mix-blend-difference'
+                  className='flex z-0 mix-blend-difference'
                   style={{ x: xLTR }}
                 >
                   {t('heading1')}
@@ -92,7 +92,7 @@ export const Hero = () => {
               </motion.div>
 
               <div className='flex items-center pl-[0.3em] overflow-visible md:pl-[0.5em] gap-[0.2em]'>
-                <MotionSpan className='text-accent-main tracking-wider italic font-special'>
+                <MotionSpan className='z-0 text-accent-main overflow-visible tracking-wider italic font-special'>
                   {t('heading2')
                     .split('')
                     // .split(/(\s+)/)
@@ -107,7 +107,7 @@ export const Hero = () => {
                   &nbsp;
                 </MotionSpan>
                 <motion.div
-                  className='max-md:fixed max-md:bottom-0 max-md:h-[1.5em] max-md:left-[9vw] h-[1em] aspect-video object-cover -z-20'
+                  className='max-md:absolute max-md:-bottom-5 max-md:h-[1.5em] max-md:left-[9vw] h-[1em] aspect-video object-cover -z-20'
                   style={{ y: videoY }}
                 >
                   <video src='/vid/test_vid.mp4' autoPlay muted playsInline />
@@ -116,7 +116,7 @@ export const Hero = () => {
 
               <div className='flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center'>
                 <motion.div
-                  className='max-md:fixed max-md:right-0 max-md:bottom-[20%] max-md:h-[1.9em] h-[1em] aspect-video overflow-hidden -z-30'
+                  className='max-md:absolute max-md:right-0 max-md:bottom-[15%] max-md:h-[1.9em] h-[1em] aspect-video overflow-hidden -z-30'
                   style={{ y: img2Y }}
                 >
                   <Image
@@ -145,7 +145,7 @@ export const Hero = () => {
           </Heading1>
 
           <motion.div
-            className='max-md:fixed max-md:bottom-4 -z-20 max-md:right-4 self-end'
+            className='max-md:absolute max-md:bottom-4 -z-20 max-md:right-4 self-end'
             style={{ y: arrowY }}
           >
             <RiArrowDownLine />
