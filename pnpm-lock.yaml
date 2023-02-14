@@ -11,7 +11,7 @@ specifiers:
   eslint-config-next: 13.1.6
   framer-motion: ^9.0.2
   next: 13.1.6
-  next-intl: 2.11.0-beta.7
+  next-intl: 2.11.0-beta.10
   nookies: ^2.5.2
   postcss: ^8.4.21
   react: 18.2.0
@@ -31,7 +31,7 @@ dependencies:
   eslint-config-next: 13.1.6_7kw3g6rralp5ps6mg3uyzz6azm
   framer-motion: 9.0.2_biqbaboplfbrettd7655fr4n2y
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
-  next-intl: 2.11.0-beta.7_next@13.1.6+react@18.2.0
+  next-intl: 2.11.0-beta.10_next@13.1.6+react@18.2.0
   nookies: 2.5.2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -458,10 +458,6 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.48.1
       eslint-visitor-keys: 3.3.0
-    dev: false
-
-  /accept-language-parser/1.5.0:
-    resolution: {integrity: sha512-QhyTbMLYo0BBGg1aWbeMG4ekWtds/31BrEU+DONOg/7ax23vxpL03Pb7/zBmha2v7vdD3AyzZVWBVGEZxKOXWw==}
     dev: false
 
   /acorn-jsx/5.3.2_acorn@8.8.1:
@@ -1950,14 +1946,20 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: false
 
-  /next-intl/2.11.0-beta.7_next@13.1.6+react@18.2.0:
-    resolution: {integrity: sha512-XKMi/DZxuDKOU9Dtx3ba9PYiDAo2MK6oP2W81EB68bEIFpC74YKDxj19tSEBVdvTMKPefHhI/ikDZ8zDY20wng==}
+  /negotiator/0.6.3:
+    resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
+    engines: {node: '>= 0.6'}
+    dev: false
+
+  /next-intl/2.11.0-beta.10_next@13.1.6+react@18.2.0:
+    resolution: {integrity: sha512-PXvf4h77Zkl5MkijX0+pUb6t1of8QxzyPOS+X6hl8e9/h7kNPjMJ6Ze+LzqR0I6Cf+dRxwfYt7PsPir1W/SSTQ==}
     engines: {node: '>=10'}
     peerDependencies:
       next: ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      accept-language-parser: 1.5.0
+      '@formatjs/intl-localematcher': 0.2.32
+      negotiator: 0.6.3
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       server-only: 0.0.1

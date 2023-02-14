@@ -1,14 +1,18 @@
-import clsx from 'clsx';
-import { useTranslations } from 'next-intl';
+'use client';
 
-export const MenuButton = ({
-  open,
-  toggleOpen,
-}: {
-  open: boolean;
-  toggleOpen: () => void;
-}) => {
-  const t = useTranslations('common');
+import clsx from 'clsx';
+// import { useTranslations } from 'next-intl';
+import { ComponentPropsWithoutRef } from 'react';
+import { useNavBarContext } from './NavBarContainer';
+
+interface Props extends ComponentPropsWithoutRef<'button'> {
+  // open: boolean;
+}
+
+export const MenuButton = ({ className, ...props }: Props) => {
+  // const t = useTranslations('common');
+
+  const { open, toggleOpen } = useNavBarContext();
 
   const conditionalStyle = {
     1: clsx('-rotate-45 scale-x-75 translate-y-[3px]'),
@@ -32,11 +36,14 @@ export const MenuButton = ({
 
   return (
     <button
-      // className='flex gap-1 relative items-center z-50 [filter:_saturate(1)_brightness(0.75)_contrast(3)] rounded-full'
-      className='flex gap-1 group relative font-title overflow-hidden items-center z-50 rounded-full'
-      aria-label={open ? t('open') : t('close')}
-      title={open ? t('open') : t('close')}
-      onClick={() => toggleOpen()}
+      className={clsx(
+        'flex gap-1 group relative font-title overflow-hidden items-center z-50 rounded-full',
+        className
+      )}
+      // aria-label={open ? t('open') : t('close')}
+      // title={open ? t('open') : t('close')}
+      onClick={toggleOpen}
+      {...props}
     >
       <div className='flex w-7 flex-col items-center justify-center gap-1'>
         <div className={pathStyles(open, 1)}></div>

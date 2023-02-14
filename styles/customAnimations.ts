@@ -119,10 +119,32 @@ const variants = {
     animate: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: '2rem' },
   },
-  appearFromBelow: {
-    initial: { opacity: 0, y: '2rem' },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: '2rem' },
+  fromBelow: {
+    initial: { y: '120%' },
+    animate: { y: 0 },
+    exit: { y: '120%' },
+  },
+  appear3d: {
+    initial: {
+      opacity: 0,
+      rotateX: '75deg',
+      rotateY: '4deg',
+      rotateZ: '-10deg',
+      transformOrigin: 'bottom',
+    },
+    animate: {
+      opacity: 1,
+      rotateX: '0deg',
+      rotateY: '0deg',
+      rotateZ: '0deg',
+    },
+    exit: {
+      opacity: 0,
+      rotateX: '75deg',
+      rotateY: '4deg',
+      rotateZ: '-10deg',
+      transformOrigin: 'bottom',
+    },
   },
 } as const satisfies CustomVariants;
 

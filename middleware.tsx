@@ -1,4 +1,4 @@
-import { createIntlMiddleware } from 'next-intl/server';
+import createIntlMiddleware from 'next-intl/middleware';
 import { DEFAULTLOCALE, LOCALES } from './i18n/config';
 
 // The middleware intercepts requests to `/` and will redirect
@@ -14,5 +14,7 @@ export default createIntlMiddleware({
 
 export const config = {
   // Skip all internal paths
-  matcher: ['/((?!_next).*)'],
+  // matcher: ['/((?!_next).*)'],
+  // // Skip all non-content paths
+  matcher: ['/((?!api|_next|favicon|vid).*)'],
 };

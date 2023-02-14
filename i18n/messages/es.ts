@@ -12,8 +12,8 @@ const esMessages: I18nMessages = {
       hero: {
         heading1: 'DISEÑO',
         heading2: 'A MEDIDA',
-        heading3: 'CREA TU',
-        heading4: 'EXPERIENCIA',
+        heading3: 'CREANDO',
+        heading4: 'EXPERIENCIAS',
       },
     },
     about: {

@@ -29,7 +29,7 @@ export const MotionSpan = ({
       rotateZ: '-10deg',
       // transform: 'rotateX(75deg) rotateY(10deg) rotateZ(-9deg)',
       transformOrigin: 'bottom',
-      transition: myAnimation.transition.easeOut,
+      transition: myAnimation.transition.easeOutSlow,
     },
     animate: {
       // y: 0,
@@ -40,7 +40,7 @@ export const MotionSpan = ({
       transition: {
         delay: myAnimation.values.duration.fastest,
         // duration: 4,
-        ...myAnimation.transition.easeOut,
+        ...myAnimation.transition.easeOutSlow,
       },
     },
   };
