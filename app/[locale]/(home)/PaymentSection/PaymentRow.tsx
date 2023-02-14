@@ -35,7 +35,7 @@ export const PaymentRow = ({ icons, title, paragraph, align }: Props) => {
           <span className='flex flex-col w-full'>{title}</span>
         </Heading3>
 
-        <AnimatedParagraph className='flex w-full max-w-screen-sm font-light text-responsive-md'>
+        <AnimatedParagraph className='flex w-full max-w-md lg:max-w-screen-sm font-light text-responsive-md'>
           {paragraph}
         </AnimatedParagraph>
       </div>
