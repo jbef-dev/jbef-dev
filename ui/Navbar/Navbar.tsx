@@ -2,7 +2,7 @@ import { MenuButton } from './MenuButton';
 import { NavMenu } from './NavMenu';
 import { LocalizedLink, useTranslations } from 'next-intl';
 import { Logo } from '@/components/Logo/Logo';
-import { NavBarContainer } from './NavBarContainer';
+import { NavBarContainer } from '@/ui/Navbar/NavBarContainer';
 import { NAVBAR_LINKS } from '@/config/constants/pageContent';
 
 export const Navbar = () => {
