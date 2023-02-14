@@ -11,9 +11,6 @@ interface INavBarCtx {
   handleClose: () => void;
 }
 
-export const NavBarCtx = createContext<INavBarCtx>({} as INavBarCtx);
-export const useNavBarContext = () => useContext<INavBarCtx>(NavBarCtx);
-
 export const NavBarContainer = ({ children, ...props }: Props) => {
   const { openMenu: open, toggleOpen, handleClose } = useNavbar();
 
@@ -25,3 +22,6 @@ export const NavBarContainer = ({ children, ...props }: Props) => {
     </>
   );
 };
+
+export const NavBarCtx = createContext<INavBarCtx>({} as INavBarCtx);
+export const useNavBarContext = () => useContext<INavBarCtx>(NavBarCtx);
