@@ -4,12 +4,12 @@ import { useModal } from '@/hooks/useModal';
 import clsx from 'clsx';
 import { HTMLMotionProps, motion, Variants } from 'framer-motion';
 import { myAnimation } from '@/styles/customAnimations';
-import { useNavBarContext } from './NavBarContainer';
+import { useNavbarCtx } from './NavbarContainer';
 
 interface Props extends HTMLMotionProps<'nav'> {}
 
 export const NavMenuContainer = ({ className, children, ...props }: Props) => {
-  const { open, handleClose } = useNavBarContext();
+  const { open, handleClose } = useNavbarCtx();
 
   useModal({
     open: open,

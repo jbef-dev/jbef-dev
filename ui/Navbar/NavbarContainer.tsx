@@ -11,17 +11,17 @@ interface INavBarCtx {
   handleClose: () => void;
 }
 
-export const NavBarContainer = ({ children, ...props }: Props) => {
+export const NavbarCtx = createContext<INavBarCtx>({} as INavBarCtx);
+export const useNavbarCtx = () => useContext<INavBarCtx>(NavbarCtx);
+
+export const NavbarContainer = ({ children, ...props }: Props) => {
   const { openMenu: open, toggleOpen, handleClose } = useNavbar();
 
   return (
     <>
-      <NavBarCtx.Provider value={{ open, toggleOpen, handleClose }}>
+      <NavbarCtx.Provider value={{ open, toggleOpen, handleClose }}>
         <header {...props}>{children}</header>
-      </NavBarCtx.Provider>
+      </NavbarCtx.Provider>
     </>
   );
 };
-
-export const NavBarCtx = createContext<INavBarCtx>({} as INavBarCtx);
-export const useNavBarContext = () => useContext<INavBarCtx>(NavBarCtx);

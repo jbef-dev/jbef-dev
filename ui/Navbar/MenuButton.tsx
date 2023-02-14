@@ -2,12 +2,12 @@
 
 import clsx from 'clsx';
 import { ComponentPropsWithoutRef } from 'react';
-import { useNavBarContext } from './NavBarContainer';
+import { useNavbarCtx } from './NavbarContainer';
 
 interface Props extends ComponentPropsWithoutRef<'button'> {}
 
 export const MenuButton = ({ className, ...props }: Props) => {
-  const { open, toggleOpen } = useNavBarContext();
+  const { open, toggleOpen } = useNavbarCtx();
 
   const conditionalStyle = {
     1: clsx('-rotate-45 scale-x-75 translate-y-[3px]'),
