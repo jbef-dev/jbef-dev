@@ -18,8 +18,10 @@ export const NavBarContainer = ({ children, ...props }: Props) => {
   const { openMenu: open, toggleOpen, handleClose } = useNavbar();
 
   return (
-    <NavBarCtx.Provider value={{ open, toggleOpen, handleClose }}>
-      <header {...props}>{children}</header>
-    </NavBarCtx.Provider>
+    <>
+      <NavBarCtx.Provider value={{ open, toggleOpen, handleClose }}>
+        <header {...props}>{children}</header>
+      </NavBarCtx.Provider>
+    </>
   );
 };
