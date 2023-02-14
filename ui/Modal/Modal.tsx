@@ -6,7 +6,7 @@ import { HTMLAttributes, PropsWithChildren, MouseEvent } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { myAnimation } from '@/styles/customAnimations';
 import { useTranslations } from 'next-intl';
-import { Button } from 'ui/Button/Button';
+import { Button } from '@/ui/Button/Button';
 
 export interface ModalProps {
   open: boolean;

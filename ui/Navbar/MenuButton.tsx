@@ -1,17 +1,12 @@
 'use client';
 
 import clsx from 'clsx';
-// import { useTranslations } from 'next-intl';
 import { ComponentPropsWithoutRef } from 'react';
 import { useNavBarContext } from './NavBarContainer';
 
-interface Props extends ComponentPropsWithoutRef<'button'> {
-  // open: boolean;
-}
+interface Props extends ComponentPropsWithoutRef<'button'> {}
 
 export const MenuButton = ({ className, ...props }: Props) => {
-  // const t = useTranslations('common');
-
   const { open, toggleOpen } = useNavBarContext();
 
   const conditionalStyle = {

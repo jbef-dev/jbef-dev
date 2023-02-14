@@ -1,4 +1,4 @@
-import { useCountUp } from 'ui/CountUp/useCountUp'
+import { useCountUp } from '@/ui/CountUp/useCountUp'
 import { CSSProperties } from 'react'
 
 /**

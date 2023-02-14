@@ -1,7 +1,7 @@
 // import { NextIntlClientProvider } from 'next-intl/client';
 import { notFound } from 'next/navigation';
 import clsx from 'clsx';
-import { Navbar } from 'ui/Navbar/Navbar';
+import { Navbar } from '@/ui/Navbar/Navbar';
 
 import { fontSans, fontLogo, fontTitle, fontSpecial } from '@/styles/fonts';
 import '@/styles/globals.css';
