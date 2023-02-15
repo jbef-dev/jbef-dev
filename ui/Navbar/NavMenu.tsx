@@ -1,19 +1,21 @@
 import Link from 'next/link';
-import { SOCIALS } from '@/config/constants/pageContent';
+import { NAVBAR_LINKS, SOCIALS } from '@/config/constants/pageContent';
 import { useTranslations } from 'next-intl';
 import { NavMenuContainer } from './NavMenuContainer';
 import { NavMenuLinks } from './NavMenuLinks';
 import { LocaleSwitcher } from '../LocaleSwitcher/LocaleSwitcher';
 
-export const NavMenu = () => {
+export async function NavMenu() {
   const t = useTranslations('ui.navbar');
+
+  const navLinks = await NAVBAR_LINKS();
 
   return (
     <NavMenuContainer>
       <div className='flex w-full items-center justify-around'>
         <LocaleSwitcher />
       </div>
-      <NavMenuLinks />
+      <NavMenuLinks navLinks={navLinks} />
 
       <div className='flex gap-12 text-xl text-black items-center justify-center'>
         {SOCIALS.map(social => (
@@ -29,4 +31,4 @@ export const NavMenu = () => {
       </div>
     </NavMenuContainer>
   );
-};
+}

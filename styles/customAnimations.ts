@@ -127,6 +127,7 @@ const variants = {
   appear3d: {
     initial: {
       opacity: 0,
+      scale: '85%',
       rotateX: '75deg',
       rotateY: '4deg',
       rotateZ: '-10deg',
@@ -134,12 +135,14 @@ const variants = {
     },
     animate: {
       opacity: 1,
+      scale: '100%',
       rotateX: '0deg',
       rotateY: '0deg',
       rotateZ: '0deg',
     },
     exit: {
       opacity: 0,
+      scale: '85%',
       rotateX: '75deg',
       rotateY: '4deg',
       rotateZ: '-10deg',

@@ -6,12 +6,10 @@ import { motion, Variants } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
 import { useLocaleSwitcher } from './useLocaleSwitcher';
 import { myAnimation } from '@/styles/customAnimations';
-import { LocalizedLink } from 'next-intl';
+import { Link } from 'next-intl';
 import { IoTriangle } from 'react-icons/io5';
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { unlocalizedPath } from '@/util/i18n';
-import { usePathname } from 'next/navigation';
+import { usePathname } from 'next-intl/client';
 
 interface Props {
   locale: string;
@@ -90,9 +88,9 @@ export const LocaleOptions = ({ locale, otherLocales }: Props) => {
             animate
             variants={langItemVariants}
           >
-            <LocalizedLink href={pathName || '/'} locale={l}>
+            <Link href={pathName || '/'} locale={l}>
               {l.toUpperCase()}
-            </LocalizedLink>
+            </Link>
           </motion.div>
         ))}
       </motion.div>

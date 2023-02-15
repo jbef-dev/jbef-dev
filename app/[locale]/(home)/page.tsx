@@ -7,7 +7,7 @@ import { PaymentPlan } from './PaymentSection/PaymentSection';
 import { PricingTable } from './PricingTable/PricingTable';
 import { EvolveSection } from './EvolveSection/EvolveSection';
 
-export default function Home({}) {
+export default async function Home() {
   return (
     <PageContainer mt={false} mb={false}>
       <SectionContainer flexCol center px={false} gap={false} className='-z-20'>

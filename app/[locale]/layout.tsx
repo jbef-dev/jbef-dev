@@ -15,7 +15,7 @@ interface LayoutProps {
   };
 }
 
-export default function LocaleLayout({ children, params }: LayoutProps) {
+export default async function LocaleLayout({ children, params }: LayoutProps) {
   const locale = useLocale();
 
   // Show a 404 error for unknown locales

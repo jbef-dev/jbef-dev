@@ -1,13 +1,17 @@
 'use client';
 
 import clsx from 'clsx';
-import { NAVBAR_LINKS } from '@/config/constants/pageContent';
-import { LocalizedLink } from 'next-intl';
+import { Link } from 'next-intl';
 import { motion } from 'framer-motion';
 import { myAnimation } from '@/styles/customAnimations';
-import { usePathname } from 'next/navigation';
+import { usePathname } from 'next-intl/client';
+import { NavbarLink } from '@/config/constants/pageContent';
 
-export const NavMenuLinks = () => {
+interface Props {
+  navLinks: NavbarLink[];
+}
+
+export const NavMenuLinks = ({ navLinks }: Props) => {
   const path = usePathname();
 
   return (
@@ -32,30 +36,20 @@ export const NavMenuLinks = () => {
         },
       }}
     >
-      {NAVBAR_LINKS.map((link, i) => (
+      {navLinks.map((link, i) => (
         <motion.div
           key={link.label}
           className='overflow-hidden'
-          variants={{
-            initial: {
-              x: '-30%',
-              opacity: 0,
-            },
-            animate: {
-              x: 0,
-              opacity: 1,
-            },
-          }}
+          variants={myAnimation.variants.appear3d}
           transition={myAnimation.transition.easeOut}
         >
-          <LocalizedLink
+          <Link
             key={link.label}
             href={link.url}
             className={clsx([
               'group',
-              path === link.url ? 'text-black' : 'text-black',
+              path === link.url ? 'text-black' : 'text-neutral-800',
             ])}
-            onClick={() => window.scrollTo({ top: 0 })}
           >
             <div className='flex gap-4 relative w-fit group-hover:text-accent-main leading-none tracking-wide'>
               <span className='text-responsive-xs pt-[2.5%] self-start transition-colors duration-500'>
@@ -68,7 +62,7 @@ export const NavMenuLinks = () => {
                 </span>
               </div>
             </div>
-          </LocalizedLink>
+          </Link>
         </motion.div>
       ))}
     </motion.div>

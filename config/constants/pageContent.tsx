@@ -2,7 +2,9 @@ import { FaInstagram } from 'react-icons/fa';
 import { SiGooglemaps, SiWhatsapp } from 'react-icons/si';
 import { IoMail } from 'react-icons/io5';
 import { MdPhone } from 'react-icons/md';
-import { I18nMessages } from '@/i18n/config';
+// import { I18nMessages } from '@/i18n/config';
+
+import { getTranslations } from 'next-intl/server';
 
 interface BusinessInfo {
   [key: string]: string;
@@ -16,29 +18,34 @@ export const BUSINESS_INFO = {
   email: '633 274 856',
 } as const satisfies BusinessInfo;
 
-interface NavbarLink {
-  label: keyof I18nMessages['ui']['navbar'];
+export interface NavbarLink {
+  // label: keyof I18nMessages['ui']['navbar'];
+  label: string;
   url: string;
 }
 
-export const NAVBAR_LINKS: NavbarLink[] = [
-  {
-    label: 'home',
-    url: '/',
-  },
-  {
-    label: 'services',
-    url: '/services',
-  },
-  {
-    label: 'about',
-    url: '/about',
-  },
-  {
-    label: 'contact',
-    url: '/contact',
-  },
-];
+export const NAVBAR_LINKS = async (): Promise<NavbarLink[]> => {
+  const t = await getTranslations('ui.navbar');
+
+  return [
+    {
+      label: t('home'),
+      url: '/',
+    },
+    {
+      label: t('services'),
+      url: '/services',
+    },
+    {
+      label: t('about'),
+      url: '/about',
+    },
+    {
+      label: t('contact'),
+      url: '/contact',
+    },
+  ];
+};
 
 interface Social {
   name: string;
