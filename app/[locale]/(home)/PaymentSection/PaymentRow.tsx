@@ -18,7 +18,7 @@ export const PaymentRow = ({ icons, title, paragraph, align }: Props) => {
         align === 'left' ? 'justify-start' : 'justify-end'
       )}
     >
-      <div className='flex flex-col gap-y-8'>
+      <div className='flex flex-col gap-y-4'>
         <Heading3 className='flex items-center gap-x-4'>
           <div className='flex flex-col gap-y-4'>
             {icons.map((icon, i) => (

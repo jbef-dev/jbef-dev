@@ -7,7 +7,7 @@ import { FaCheck } from 'react-icons/fa';
 export const PricingTable = () => {
   return (
     <>
-      <div className='flex flex-col w-full max-w-screen-xl'>
+      <div className='flex flex-col w-full gap-y-4 max-w-screen-xl'>
         <Heading3 className='flex flex-col items-start gap-x-4'>
           {/* <AnimatedSpan className='bg-transparent backdrop-blur-xl shadow-lg'>Transparent</AnimatedSpan> */}
           <AnimatedSpan>Transparent</AnimatedSpan>
