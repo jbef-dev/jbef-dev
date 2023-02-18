@@ -2,7 +2,6 @@ import { FaInstagram } from 'react-icons/fa';
 import { SiGooglemaps, SiWhatsapp } from 'react-icons/si';
 import { IoMail } from 'react-icons/io5';
 import { MdPhone } from 'react-icons/md';
-// import { I18nMessages } from '@/i18n/config';
 
 import { getTranslations } from 'next-intl/server';
 
@@ -19,7 +18,6 @@ export const BUSINESS_INFO = {
 } as const satisfies BusinessInfo;
 
 export interface NavbarLink {
-  // label: keyof I18nMessages['ui']['navbar'];
   label: string;
   url: string;
 }

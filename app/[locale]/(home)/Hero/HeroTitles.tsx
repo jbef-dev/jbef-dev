@@ -1,9 +1,8 @@
 'use client';
 
-import { use100vh } from '@/util/use100vh';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { RiArrowDownLine } from 'react-icons/ri';
 import { ExplodingLetter } from './ExplodingLetter';
 
@@ -17,15 +16,6 @@ interface Props {
 }
 
 export const HeroTitles = (props: Props) => {
-  const viewportH = use100vh();
-
-  const [vh, setVH] = useState<number | undefined>(undefined);
-
-  useEffect(() => {
-    if (vh) return;
-    if (viewportH === null) return;
-    setVH(viewportH);
-  }, [viewportH, vh]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -45,15 +35,9 @@ export const HeroTitles = (props: Props) => {
   return (
     <div
       ref={containerRef}
-      className='flex w-full'
-      style={{ height: (vh && 2.5 * vh) || '250vh' }}
+      className='flex w-full h-[250lvh]'
     >
-      <div
-        className='fixed h-screen top-0 text-responsive-3xl flex items-center justify-center w-full bg-white'
-        style={{
-          height: vh || '100vh',
-        }}
-      >
+      <div className='fixed h-[100svh] top-0 text-responsive-3xl flex items-center justify-center w-full bg-white'>
         <div className='flex relative h-full w-full max-w-screen-3xl justify-between'>
           {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 
