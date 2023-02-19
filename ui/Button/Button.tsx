@@ -1,18 +1,16 @@
 import React, { ComponentPropsWithoutRef, forwardRef, ReactNode } from 'react';
 import clsx, { ClassValue } from 'clsx';
-import { DefaultIcon } from './DefaultIcon';
-import { LoadingSpinner } from './LoadingSpinner';
 
 type ButtonFlavors =
   | 'basic'
-  | 'gradient'
+  | 'gradientOutline'
   | 'transparent'
   | 'square'
   | 'outlined'
   | 'glass';
 type ButtonSizes = 'sm' | 'md' | 'lg';
 
-export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
+interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   flavor?: ButtonFlavors;
   icon?: boolean | React.ReactNode;
   isLoading?: boolean;
@@ -22,7 +20,7 @@ export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
 
 const flavors: { [k in ButtonFlavors]: ClassValue } = {
   basic: clsx('bg-accent-main text-white rounded-sm hover:bg-accent-main'),
-  gradient: clsx('bg-gradient-to-r from-primary to-secondary text-black'),
+  gradientOutline: clsx('bg-gradient-to-r from-primary to-secondary text-black'),
   transparent: clsx('bg-transparent'),
   glass: clsx('backdrop-blur-lg bg-grayscale-800/40'),
   square: undefined,
@@ -45,7 +43,44 @@ const ConditionalWrapper = ({
   children: ReactNode;
 }) => (condition ? wrapper(children) : children);
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const DefaultIcon = () => {
+  return (
+    <svg
+      viewBox='1 0 5 9'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      className='w-[9px] overflow-visible duration-[inherit]'
+    >
+      <g className='duration-[inherit] group-active:translate-x-[1px] group-hover:translate-x-[1px]'>
+        <path
+          d='M1 1C4.5 4 5 4.38484 5 4.5C5 4.61516 4.5 5 1 8'
+          stroke='currentColor'
+          strokeWidth='1.0'
+        />
+      </g>
+      <g className='translate-x-[-2px] opacity-0 duration-[inherit] group-active:opacity-100 group-hover:opacity-100'>
+        <path d='M7 4.5H0' stroke='currentColor' strokeWidth='1.0' />
+      </g>
+    </svg>
+  );
+};
+
+const LoadingSpinner = () => (
+  <div aria-label='Loading...' role='status'>
+    <svg className='h-5 w-5 animate-spin' viewBox='3 3 18 18'>
+      <path
+        className='fill-white/20'
+        d='M12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5ZM3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z'
+      ></path>
+      <path
+        className='fill-white'
+        d='M16.9497 7.05015C14.2161 4.31648 9.78392 4.31648 7.05025 7.05015C6.65973 7.44067 6.02656 7.44067 5.63604 7.05015C5.24551 6.65962 5.24551 6.02646 5.63604 5.63593C9.15076 2.12121 14.8492 2.12121 18.364 5.63593C18.7545 6.02646 18.7545 6.65962 18.364 7.05015C17.9734 7.44067 17.3403 7.44067 16.9497 7.05015Z'
+      ></path>
+    </svg>
+  </div>
+);
+
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       flavor = 'basic',
@@ -71,7 +106,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <ConditionalWrapper
-          condition={flavor === 'gradient'}
+          condition={flavor === 'gradientOutline'}
           wrapper={children => (
             <>
               <div className='absolute top-0.5 left-0.5 right-0.5 bottom-0.5 group-hover:left-[3px] group-hover:top-[3px] group-hover:bottom-[3px] group-hover:right-[3px] bg-white z-0 duration-200 ease-in-out'></div>
@@ -96,3 +131,5 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
   }
 );
+
+export { Button, type ButtonProps };
