@@ -1,7 +1,8 @@
 // import { NextIntlClientProvider } from 'next-intl/client';
 import { notFound } from 'next/navigation';
 import clsx from 'clsx';
-import { Navbar } from '@/ui/Navbar/Navbar';
+import { Header } from '@/components/Header/Header';
+// import { Header } from '@/ui/Header/Header';
 
 import { fontSans, fontLogo, fontTitle, fontSpecial } from '@/styles/fonts';
 import '@/styles/globals.css';
@@ -23,19 +24,8 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     notFound();
   }
 
-  // let messages;
-  // try {
-  //   messages = (await import(`@/i18n/messages/${locale}.ts`)).default;
-  // } catch (e) {
-  //   notFound();
-  // }
-
   return (
     <html lang={locale} dir='ltr' className='scrollbar-hide'>
-      {/*
-<head /> will contain the components returned by the nearest parent
-head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-*/}
       <head />
       <body
         className={clsx(
@@ -46,11 +36,10 @@ head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conve
           'font-sans'
         )}
       >
-        {/* <NextIntlClientProvider locale={locale} messages={messages}> */}
-        <Navbar />
+        {/* @ts-expect-error Server Component */}
+        <Header />
         {children}
         {/* <Footer /> */}
-        {/* </NextIntlClientProvider> */}
       </body>
     </html>
   );

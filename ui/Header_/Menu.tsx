@@ -1,13 +1,10 @@
 import Link from 'next/link';
 import { NAVBAR_LINKS, SOCIALS } from '@/config/constants/pageContent';
-import { useTranslations } from 'next-intl';
-import { NavMenuContainer } from './NavMenuContainer';
 import { NavMenuLinks } from './NavMenuLinks';
-import { LocaleSwitcher } from '../LocaleSwitcher/LocaleSwitcher';
+import { LocaleSwitcher } from '@/ui/LocaleSwitcher/LocaleSwitcher';
+import { NavMenuContainer } from './NavMenuContainer';
 
-export async function NavMenu() {
-  const t = useTranslations('ui.navbar');
-
+export const Menu = async () => {
   const navLinks = await NAVBAR_LINKS();
 
   return (
@@ -31,4 +28,4 @@ export async function NavMenu() {
       </div>
     </NavMenuContainer>
   );
-}
+};

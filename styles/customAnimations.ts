@@ -119,6 +119,11 @@ const variants = {
     animate: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: '2rem' },
   },
+  appearFromTop: {
+    initial: { opacity: 0, y: '-10%' },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: '-10%' },
+  },
   fromBelow: {
     initial: { y: '120%' },
     animate: { y: 0 },

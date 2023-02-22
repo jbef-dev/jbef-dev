@@ -60,7 +60,7 @@ export const PricingTable = () => {
             <h4 className='text-4xl font-medium'>
               100$<span className='text-xl'>/mo</span>
             </h4>
-            <Button flavor='gradient' buttonSize='lg' className='font-medium'>
+            <Button flavor='gradientOutline' buttonSize='lg' className='font-medium'>
               Start now
             </Button>
           </div>
@@ -82,7 +82,7 @@ export const PricingTable = () => {
             <h4 className='text-4xl font-medium'>
               100$<span className='text-xl'>/mo</span>
             </h4>
-            <Button flavor='gradient' buttonSize='lg' className='font-medium'>
+            <Button flavor='gradientOutline' buttonSize='lg' className='font-medium'>
               Start now
             </Button>
           </div>
