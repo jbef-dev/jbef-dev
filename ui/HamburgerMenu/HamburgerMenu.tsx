@@ -32,6 +32,7 @@ const HamburgerMenu = ({ children }: HamburgerMenuProps) => {
 };
 
 const HamburgerMenuButton = ({
+  className,
   children,
   ...props
 }: React.ComponentPropsWithoutRef<'button'>) => {
@@ -43,12 +44,21 @@ const HamburgerMenuButton = ({
     clsx('rotate-45 scale-x-75 -translate-y-[3px]'),
   ];
   return (
-    <button onClick={() => setOpen(o => !o)} {...props}>
+    <button
+      className={clsx('flex gap-x-2 items-center justify-center', className)}
+      onClick={() => setOpen(o => !o)}
+      {...props}
+    >
       <div className='flex w-7 flex-col items-center justify-center gap-1'>
         <div className={clsx(pathBase, open ? pathOpen[0] : pathClosed)}></div>
         <div className={clsx(pathBase, open ? pathOpen[1] : pathClosed)}></div>
       </div>
-      {children}
+      <div className='overflow-hidden'>
+        <div className='relative group-hover:-translate-y-full group-active:-translate-y-full group-target:-translate-y-full transition duration-500 flex flex-col'>
+          <div>{children}</div>
+          <div className='absolute top-full'>{children}</div>
+        </div>
+      </div>
     </button>
   );
 };
@@ -61,7 +71,7 @@ const HamburgerMenuContent = ({
   const { open } = useHamburgerMenuCtx();
   return (
     <motion.nav
-      className={clsx('fixed top-0 left-0 z-30 h-full w-full', className)}
+      className={clsx('fixed top-0 left-0 h-full w-full', className)}
       initial='initial'
       variants={{ initial: { y: '-100%' }, animate: { y: 0 } }}
       animate={open ? 'animate' : 'initial '}
@@ -80,7 +90,7 @@ const HamburgerMenuContent = ({
   );
 };
 
-const HambugerMenuNavigation = ({
+const HamburgerMenuNavigation = ({
   children,
   ...props
 }: HTMLMotionProps<'div'>) => {
@@ -103,7 +113,7 @@ const HambugerMenuNavigation = ({
             when: 'afterChildren',
             staggerDirection: -1,
             staggerChildren: 0.2,
-            ...myAnimation.transition.tween,
+            ...myAnimation.transition.normal,
           },
         },
       }}
@@ -114,7 +124,10 @@ const HambugerMenuNavigation = ({
   );
 };
 
-const HambugerMenuLink = ({ children, ...props }: HTMLMotionProps<'div'>) => (
+const HamburgerMenuNavItem = ({
+  children,
+  ...props
+}: HTMLMotionProps<'div'>) => (
   <motion.div
     variants={myAnimation.variants.appear3d}
     transition={myAnimation.transition.easeOut}
@@ -123,10 +136,11 @@ const HambugerMenuLink = ({ children, ...props }: HTMLMotionProps<'div'>) => (
     {children}
   </motion.div>
 );
+
 export {
   HamburgerMenu,
   HamburgerMenuContent,
   HamburgerMenuButton,
-  HambugerMenuNavigation,
-  HambugerMenuLink,
+  HamburgerMenuNavigation,
+  HamburgerMenuNavItem,
 };
