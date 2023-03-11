@@ -37,7 +37,7 @@ export const HeroTitles = (props: Props) => {
       ref={containerRef}
       className='flex w-full h-[250lvh]'
     >
-      <div className='fixed h-[100svh] top-0 text-responsive-3xl flex items-center justify-center w-full bg-white'>
+      <div className='fixed h-[100svh] top-0 text-responsive-4xl flex items-center justify-center w-full bg-white'>
         <div className='flex relative h-full w-full max-w-screen-3xl justify-between'>
           {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 

@@ -11,6 +11,9 @@ interface SectionContainerProps extends ComponentPropsWithoutRef<'section'> {
   py?: boolean;
   pb?: boolean;
   pt?: boolean;
+  my?: boolean;
+  mb?: boolean;
+  mt?: boolean;
   maxW?: boolean;
   flex?: boolean;
   flexCol?: boolean;
@@ -28,6 +31,9 @@ export const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
       py = true,
       pb = true,
       pt = true,
+      my = false,
+      mb = false,
+      mt = false,
       maxW = false,
       wFull = true,
       flex = true,
@@ -49,6 +55,8 @@ export const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
             'pl-5 lg:pl-12': pl && px,
             'pt-16 lg:pt-32 first:pt-0': pt && py,
             'pb-16 lg:pb-32': pb && py,
+            'mt-16 lg:mt-32': mt || my,
+            'mb-16 lg:mb-32': mb || my,
             'gap-y-16 lg:gap-y-32': gap,
             'max-w-screen-xl': maxW,
             'items-center justify-center': center,
