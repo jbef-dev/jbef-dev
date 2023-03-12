@@ -44,13 +44,15 @@ interface CustomTransitions {
 }
 
 const transition = {
-  tweenFast: { type: 'tween', duration: values.duration.fastest },
-  tween: { type: 'tween', duration: values.duration.slow },
-  tweenSlow: { type: 'tween', duration: values.duration.verySlow },
   fastest: {
     type: 'spring',
     duration: values.duration.fastest,
     bounce: values.bounce.none,
+  },
+  easeInOut: {
+    type: 'keyframes',
+    ease: 'easeInOut',
+    duration: values.duration.normal,
   },
   easeOut: {
     type: 'keyframes',
@@ -87,25 +89,15 @@ const transition = {
     duration: values.duration.verySlow,
     bounce: values.bounce.low,
   },
-  appear: {
-    type: 'spring',
-    duration: values.duration.verySlow,
-    bounce: values.bounce.low,
-  },
-  menuOpen: {
-    type: 'spring',
+  appearMenu: {
+    type: 'keyframes',
+    ease: 'easeInOut',
     duration: values.duration.normal,
-    bounce: values.bounce.none,
   },
   menuClose: {
     type: 'spring',
     duration: values.duration.slow,
     bounce: values.bounce.none,
-  },
-  bouncy: {
-    type: 'spring',
-    duration: values.duration.normal,
-    bounce: values.bounce.high,
   },
 } as const satisfies CustomTransitions;
 
@@ -124,10 +116,25 @@ const variants = {
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: '-10%' },
   },
+  appearFromBottom: {
+    initial: { opacity: 0, y: '10%' },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: '10%' },
+  },
+  enterBottomExitTop: {
+    initial: { opacity: 0, translateY: '10%' },
+    animate: { opacity: 1, translateY: 0 },
+    exit: { opacity: 0, translateY: '-10%' },
+  },
   fromBelow: {
     initial: { y: '120%' },
     animate: { y: 0 },
     exit: { y: '120%' },
+  },
+  appearMenu: {
+    initial: { opacity: 0, y: '-10%', scale: 0.95 },
+    animate: { opacity: 1, y: 0, scale: 1 },
+    exit: { opacity: 0, y: '-10%', scale: 0.95 },
   },
   appear3d: {
     initial: {

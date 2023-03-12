@@ -3,7 +3,8 @@ const enMessages = {
   pages: {
     home: {
       SEO: {
-        title: 'Custom web development',
+        title: 'jbef.dev - Custom web development for your business',
+        description: 'Custom web development',
       },
       pagetitle: 'Web Design',
       title1: 'Web Designer / Programmer',

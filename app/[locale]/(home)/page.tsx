@@ -6,8 +6,10 @@ import { Hero } from './Hero/Hero';
 import { PaymentPlan } from './PaymentSection/PaymentSection';
 import { PricingTable } from './PricingTable/PricingTable';
 import { EvolveSection } from './EvolveSection/EvolveSection';
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-export default async function Home() {
+export default function Home() {
   return (
     <PageContainer mt={false} mb={false}>
       <SectionContainer flexCol center px={false} gap={false} className='-z-20'>
@@ -39,4 +41,12 @@ export default async function Home() {
       </SectionContainer>
     </PageContainer>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('pages.home.SEO');
+
+  return {
+    title: t('title'),
+  };
 }

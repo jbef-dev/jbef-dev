@@ -8,7 +8,7 @@ import enMessages from '@/i18n/messages/en';
 export const DEFAULTLOCALE = 'en';
 const validLocales = [DEFAULTLOCALE, 'es', 'fr'] as const;
 export const LOCALES = [...validLocales]; // make LOCALES mutable
-export type I18nLocales = typeof LOCALES[number];
+export type I18nLocales = (typeof LOCALES)[number];
 
 export type I18nMessages = typeof enMessages;
 

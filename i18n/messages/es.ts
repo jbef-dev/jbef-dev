@@ -5,7 +5,8 @@ const esMessages: I18nMessages = {
     // Pages
     home: {
       SEO: {
-        title: 'Diseño web a medida',
+        title: 'jbef.dev - Custom web development for your business',
+        description: 'Custom web development',
       },
       title1: 'Diseño web / programación web',
       pagetitle: 'Dentista en Torrevieja',

@@ -5,7 +5,7 @@ import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { HTMLAttributes, PropsWithChildren, MouseEvent } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { myAnimation } from '@/styles/customAnimations';
-import { useTranslations } from 'next-intl';
+// import { useTranslations } from 'next-intl';
 import { Button } from '@/ui/Button/Button';
 
 export interface ModalProps {
@@ -18,7 +18,7 @@ export const Modal = ({
   handleClose,
   children,
 }: PropsWithChildren<ModalProps> & HTMLAttributes<HTMLDivElement>) => {
-  const t = useTranslations('common');
+  // const t = useTranslations('common');
 
   const { onOverlayClick } = useModal({ open: open, handleClose: handleClose });
 
@@ -77,7 +77,8 @@ export const Modal = ({
               buttonSize='lg'
               className='!absolute !p-1.5 !top-4 !right-4'
               onClick={() => handleClose()}
-              title={t('close')}
+              // title={t('close')}
+              title='close'
             >
               <IoClose />
             </Button>

@@ -8,15 +8,17 @@ import { fontSans, fontLogo, fontTitle, fontSpecial } from '@/styles/fonts';
 import '@/styles/globals.css';
 import { useLocale } from 'next-intl';
 import { I18nLocales } from '@/i18n/config';
+import { Metadata } from 'next';
 
-interface LayoutProps {
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
   children: React.ReactNode;
   params: {
     locale: I18nLocales;
   };
-}
-
-export default async function LocaleLayout({ children, params }: LayoutProps) {
+}) {
   const locale = useLocale();
 
   // Show a 404 error for unknown locales
@@ -49,3 +51,26 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
 // fixes issue with page being created statically and used dynamically
 // with this setting, it is only created dynamically, SSR
 export const dynamic = 'force-dynamic';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    icons: {
+      icon: [
+        {
+          sizes: '32x32',
+          type: 'image/png',
+          url: '/favicons/favicon-32x32.png',
+        },
+        {
+          sizes: '16x16',
+          type: 'image/png',
+          url: '/favicons/favicon-16x16.png',
+        },
+      ],
+      apple: { sizes: '180x180', url: '/favicons/apple-touch-icon.png' },
+      shortcut: '/favicons/favicon.ico',
+    },
+    manifest: '/favicons/site.webmanifest',
+    themeColor: '#ffffff',
+  };
+}
