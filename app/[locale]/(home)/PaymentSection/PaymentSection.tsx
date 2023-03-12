@@ -7,12 +7,14 @@ export const PaymentPlan = () => {
       <PaymentRow
         icons={[
           <path
+            key={1}
             className='stroke-emerald-700'
             strokeLinecap='round'
             strokeLinejoin='round'
             d='M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
           />,
           <path
+            key={2}
             className='stroke-yellow-700'
             strokeLinecap='round'
             strokeLinejoin='round'
@@ -34,12 +36,14 @@ export const PaymentPlan = () => {
       <PaymentRow
         icons={[
           <path
+            key={1}
             className='stroke-blue-600'
             strokeLinecap='round'
             strokeLinejoin='round'
             d='M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25'
           />,
           <path
+            key={2}
             className='stroke-slate-500'
             strokeLinecap='round'
             strokeLinejoin='round'
@@ -61,6 +65,7 @@ export const PaymentPlan = () => {
       <PaymentRow
         icons={[
           <path
+            key={1}
             className='stroke-violet-600'
             strokeLinecap='round'
             strokeLinejoin='round'
@@ -68,6 +73,7 @@ export const PaymentPlan = () => {
           />,
 
           <path
+            key={2}
             className='stroke-fuchsia-800'
             strokeLinecap='round'
             strokeLinejoin='round'

@@ -31,7 +31,7 @@ export const NavMenuLinks = ({ navLinks }: Props) => {
             when: 'afterChildren',
             staggerDirection: -1,
             staggerChildren: 0.2,
-            ...myAnimation.transition.tween,
+            ...myAnimation.transition.easeOutSlow,
           },
         },
       }}

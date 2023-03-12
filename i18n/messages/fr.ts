@@ -5,6 +5,7 @@ const frMessages: I18nMessages = {
     home: {
       SEO: {
         title: 'Diseño web a medida',
+        description: 'kdkdkdkd',
       },
       title1: 'Web design / programming',
       pagetitle: 'Clinique dentaire à Torrevieja',

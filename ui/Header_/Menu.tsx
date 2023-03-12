@@ -10,7 +10,7 @@ export const Menu = async () => {
   return (
     <NavMenuContainer>
       <div className='flex w-full items-center justify-around'>
-        <LocaleSwitcher />
+        <LocaleSwitcher currentLocale='en' />
       </div>
       <NavMenuLinks navLinks={navLinks} />
 
