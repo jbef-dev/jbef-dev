@@ -2,15 +2,15 @@ import { myAnimation } from '@/styles/customAnimations';
 import { Heading1 } from '@/ui/Typography/Heading1';
 import clsx from 'clsx';
 import { HTMLMotionProps, motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
 
-export const MotionSpan = ({
-  children,
-  className,
-  ...props
-}: HTMLMotionProps<'div'> & { children: ReactNode }) => {
+export const MotionSpan = forwardRef<
+  HTMLDivElement,
+  HTMLMotionProps<'div'> & { children: ReactNode }
+>(({ children, className, ...props }, ref) => {
   return (
     <motion.div
+      ref={ref}
       className={clsx('flex', className)}
       variants={myAnimation.variants.appear3d}
       transition={myAnimation.transition.easeOutSlow}
@@ -19,4 +19,4 @@ export const MotionSpan = ({
       <Heading1>{children}</Heading1>
     </motion.div>
   );
-};
+});
