@@ -12,7 +12,7 @@ import { getTranslations } from 'next-intl/server';
 export default function Home() {
   return (
     <PageContainer mt={false} mb={false}>
-      <SectionContainer flexCol center px={false} gap={false} className='-z-20'>
+      <SectionContainer flexCol center px={false} gap={false}>
         <Hero />
       </SectionContainer>
 

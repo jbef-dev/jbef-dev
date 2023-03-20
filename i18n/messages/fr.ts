@@ -10,8 +10,8 @@ const frMessages: I18nMessages = {
       title1: 'Web design / programming',
       pagetitle: 'Clinique dentaire à Torrevieja',
       hero: {
-        heading1: 'BUILDING',
-        heading2: 'CUSTOM',
+        heading1: 'Design',
+        heading2: 'Sur mesure',
         heading3: 'DIGITAL',
         heading4: 'EXPERIENCES',
       },

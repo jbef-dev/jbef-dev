@@ -1,5 +1,12 @@
-import { Archivo, Inter, Jost } from "next/font/google";
-import localFont from "next/font/local";
+import {
+  Archivo,
+  Inter,
+  Jost,
+  Hind,
+  Questrial,
+  Poppins,
+} from 'next/font/google';
+import localFont from 'next/font/local';
 
 export const fontSans = Inter({
   subsets: ['latin'],
@@ -13,19 +20,29 @@ export const fontLogo = Jost({
   display: 'swap',
 });
 
-// export const fontTitle = localFont({
-//   src: '../public/fonts/ClashGrotesk-Variable.ttf',
+// export const fontTitle = Archivo({
+//   subsets: ['latin'],
+//   // weight:['300','400','500','700','900'],
 //   variable: '--font-title',
 //   display: 'swap',
+//   axes: ['wdth'],
 // });
 
-export const fontTitle = Archivo({
+export const fontTitle = Poppins({
   subsets: ['latin'],
-  // weight:['300','400','500','700','900'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   variable: '--font-title',
+  // style: 'normal',
   display: 'swap',
-  axes: ['wdth'],
 });
+
+// export const fontTitle = Hind({
+//   subsets: ['latin'],
+//   weight: ['400', '300', '500'],
+//   variable: '--font-title',
+//   // style: 'normal',
+//   display: 'swap',
+// });
 
 // export const fontSpecial = Fraunces({
 //   subsets: ['latin'],

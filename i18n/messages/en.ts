@@ -9,10 +9,10 @@ const enMessages = {
       pagetitle: 'Web Design',
       title1: 'Web Designer / Programmer',
       hero: {
-        heading1: 'BUILDING',
-        heading2: 'BESPOKE',
-        heading3: 'DIGITAL',
-        heading4: 'EXPERIENCES',
+        heading1: 'Building',
+        heading2: 'Custom',
+        heading3: 'Online',
+        heading4: 'Experiences',
       },
     },
 

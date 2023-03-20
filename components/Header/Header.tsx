@@ -19,7 +19,7 @@ export const Header = async () => {
     <header>
       <HamburgerMenu>
         {/* <div className='fixed z-50 lg:z-30 top-0 flex items-center justify-between pl-5 pr-0 lg:px-5 h-16 left-0 w-full right-0'> */}
-        <div className='fixed z-50 top-0 flex mix-blend-difference items-center justify-between pl-5 pr-0 lg:px-5 h-16 left-0 w-full right-0'>
+        <div className='fixed z-50 top-0 flex mix-blend-exclusion items-center justify-between pl-5 pr-0 lg:px-5 h-16 left-0 w-full right-0'>
           <Link className='flex z-50' href='/'>
             <Logo />
           </Link>

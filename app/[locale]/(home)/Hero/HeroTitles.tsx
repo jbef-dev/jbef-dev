@@ -8,15 +8,14 @@ import { ExplodingLetter } from './ExplodingLetter';
 
 import architecture from '@/public/img/architecture_preview.webp';
 import colorful_animals from '@/public/img/colorful_animals_preview.webp';
-import { Heading1 } from '@/ui/Typography/Heading1';
 import { MotionSpan } from './MotionSpan';
+import { myAnimation } from '@/styles/customAnimations';
 
 interface Props {
   titles: string[];
 }
 
-export const HeroTitles = (props: Props) => {
-
+export const HeroTitles = ({ titles }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -33,111 +32,101 @@ export const HeroTitles = (props: Props) => {
   const arrowY = useTransform(scrollYProgress, [0, 1], ['0rem', '-35rem']);
 
   return (
-    <div
-      ref={containerRef}
-      className='flex w-full h-[250lvh]'
-    >
-      <div className='fixed h-[100svh] top-0 text-responsive-4xl flex items-center justify-center w-full bg-white'>
-        <div className='flex relative h-full w-full max-w-screen-3xl justify-between'>
-          {/* <CircleSpring containerScroll={scrollYProgress} /> */}
+    <div ref={containerRef} className='flex w-full h-[250lvh] justify-center'>
+      <div className='fixed h-[100svh] top-0 max-w-screen-3xl flex items-center justify-center w-full bg-white'>
+        {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 
-          <Heading1 className='flex w-full'>
+        <motion.div
+          className='flex justify-center items-start w-full text-responsive-4xl px-2 flex-col text-white'
+          variants={{
+            initial: {},
+            animate: {
+              transition: {
+                staggerChildren: 0.18,
+              },
+            },
+          }}
+          initial='initial'
+          animate='animate'
+        >
+          <div className='flex items-center gap-[0.2em] pl-[0.9em]'>
             <motion.div
-              className='flex justify-center items-start w-full px-2 flex-col text-white'
-              variants={{
-                initial: {},
-                animate: {
-                  transition: {
-                    staggerChildren: 0.18,
-                  },
-                },
-              }}
-              initial='initial'
-              animate='animate'
+              className='max-md:fixed max-md:right-[48vw] rounded-full max-md:top-4 max-md:h-[1.2em] h-[0.65em] aspect-square overflow-hidden'
+              whileHover={{ scale: 1.4 }}
+              style={{ y: img1Y }}
             >
-              <div className='flex items-center gap-[0.2em] pl-[0.9em]'>
-                <motion.div
-                  className='max-md:fixed max-md:right-[48vw] max-md:top-4 max-md:h-[1.8em] h-[1em] aspect-square overflow-hidden -z-30'
-                  style={{ y: img1Y }}
-                >
-                  <Image
-                    src={colorful_animals}
-                    className='object-cover'
-                    priority
-                    loading='eager'
-                    alt='example work'
-                  />
-                </motion.div>
-                <MotionSpan
-                  className='flex z-0 mix-blend-difference'
-                  style={{ x: xLTR }}
-                >
-                  {props.titles[0]}
-                </MotionSpan>
-              </div>
-
-              <div className='flex items-center pl-[0.5em] overflow-visible md:pl-[0.5em] gap-[0.2em]'>
-                <MotionSpan className='z-0 text-accent-main overflow-visible tracking-wider italic font-special'>
-                  {props.titles[1]
-                    .split('')
-                    // .split(/(\s+)/)
-                    .map((letter, i) => (
-                      <ExplodingLetter
-                        key={letter + i}
-                        containerScroll={scrollYProgress}
-                        letter={letter}
-                        count={i}
-                      />
-                    ))}
-                  &nbsp;
-                </MotionSpan>
-                <motion.div
-                  className='max-md:absolute max-md:-bottom-5 max-md:h-[1.5em] max-md:left-[9vw] h-[1em] aspect-video object-cover -z-20'
-                  style={{ y: videoY }}
-                >
-                  <video src='/vid/test_vid.mp4' autoPlay muted playsInline />
-                </motion.div>
-              </div>
-
-              <div className='flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center'>
-                <motion.div
-                  className='max-md:absolute max-md:right-0 max-md:bottom-[15%] max-md:h-[1.9em] h-[1em] aspect-video overflow-hidden -z-30'
-                  style={{ y: img2Y }}
-                >
-                  <Image
-                    src={architecture}
-                    className='object-cover '
-                    priority
-                    loading='eager'
-                    alt='example work'
-                  />
-                </motion.div>
-                <MotionSpan
-                  className='mix-blend-difference -z-30'
-                  style={{ x: xRTL }}
-                >
-                  {props.titles[2]}
-                </MotionSpan>
-              </div>
-
-              <motion.div
-                className='flex w-full justify-center -z-20 mix-blend-difference'
-                style={{ x: xRTL }}
-              >
-                <MotionSpan>{props.titles[3]}</MotionSpan>
-              </motion.div>
+              <Image
+                src={colorful_animals}
+                className='object-cover'
+                priority
+                loading='eager'
+                alt='example work'
+              />
             </motion.div>
-          </Heading1>
 
-          <motion.div
-            className='max-md:absolute max-md:bottom-4 -z-20 max-md:right-4 self-end'
-            style={{ y: arrowY }}
+            <MotionSpan
+              className='flex mix-blend-difference'
+              style={{ x: xLTR }}
+            >
+              {titles[0]}
+            </MotionSpan>
+          </div>
+
+          <div className='flex items-center pl-[0.5em] overflow-visible md:pl-[0.5em] gap-[0.2em]'>
+            <MotionSpan className='overflow-visible tracking-[0.02em]'>
+              {titles[1].split('').map((letter, i) => (
+                <ExplodingLetter
+                  key={letter + i}
+                  containerScroll={scrollYProgress}
+                  letter={letter}
+                />
+              ))}
+              {/* &nbsp; */}
+            </MotionSpan>
+            <motion.div
+              className='max-md:absolute rounded-full overflow-hidden max-md:-bottom-5 max-md:h-[1.2em] max-md:left-[9vw] h-[0.65em] aspect-video object-cover'
+              whileHover={{ scale: 1.4 }}
+              transition={myAnimation.transition.easeInOut}
+              style={{ y: videoY }}
+            >
+              <video src='/vid/test_vid.mp4' autoPlay muted playsInline />
+            </motion.div>
+          </div>
+
+          <div className='flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center'>
+            <motion.div
+              className='max-md:absolute max-md:right-0 max-md:bottom-[15%] rounded-full max-md:h-[1.2em] h-[0.65em] aspect-video overflow-hidden'
+              style={{ y: img2Y }}
+            >
+              <Image
+                src={architecture}
+                className='object-cover '
+                priority
+                loading='eager'
+                alt='example work'
+              />
+            </motion.div>
+            <MotionSpan className='mix-blend-difference' style={{ x: xRTL }}>
+              {titles[2]}
+            </MotionSpan>
+          </div>
+
+          <MotionSpan
+            className='flex w-full justify-start pl-[0.4em] mix-blend-difference'
+            style={{ x: xRTL }}
           >
-            <RiArrowDownLine />
-          </motion.div>
-        </div>
+            {titles[3]}
+          </MotionSpan>
+        </motion.div>
 
-        <div className='flex absolute max-md:left-[15vw] bottom-[18%] lg:right-[6vw] lg:bottom-[45%] font-sans text-responsive-xs gap-1 -z-20 text-white mix-blend-difference'>
+        <motion.div
+          className='max-md:absolute max-md:bottom-4 text-responsive-4xl max-md:right-4 self-end'
+          style={{ y: arrowY }}
+        >
+          <RiArrowDownLine />
+        </motion.div>
+
+        <div className='flex absolute max-md:left-[15vw] bottom-[18%] lg:right-[6vw] lg:bottom-[45%] font-sans text-responsive-xs gap-1 text-white mix-blend-difference'>
           <div className='pt-1'>
             <svg
               viewBox='0 0 24 24'
