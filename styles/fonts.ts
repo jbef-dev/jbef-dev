@@ -1,11 +1,4 @@
-import {
-  Archivo,
-  Inter,
-  Jost,
-  Hind,
-  Questrial,
-  Poppins,
-} from 'next/font/google';
+import { Inter, Jost, Poppins } from 'next/font/google';
 import localFont from 'next/font/local';
 
 export const fontSans = Inter({
@@ -20,14 +13,6 @@ export const fontLogo = Jost({
   display: 'swap',
 });
 
-// export const fontTitle = Archivo({
-//   subsets: ['latin'],
-//   // weight:['300','400','500','700','900'],
-//   variable: '--font-title',
-//   display: 'swap',
-//   axes: ['wdth'],
-// });
-
 export const fontTitle = Poppins({
   subsets: ['latin'],
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -35,26 +20,6 @@ export const fontTitle = Poppins({
   // style: 'normal',
   display: 'swap',
 });
-
-// export const fontTitle = Hind({
-//   subsets: ['latin'],
-//   weight: ['400', '300', '500'],
-//   variable: '--font-title',
-//   // style: 'normal',
-//   display: 'swap',
-// });
-
-// export const fontSpecial = Fraunces({
-//   subsets: ['latin'],
-//   variable: '--font-special',
-//   display: 'swap',
-// });
-
-// export const fontSpecial = Montserrat({
-//   subsets: ['latin'],
-//   variable: '--font-special',
-//   display: 'swap',
-// });
 
 export const fontSpecial = localFont({
   src: '../public/fonts/MESHED-VF.ttf',
