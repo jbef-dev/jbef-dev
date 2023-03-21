@@ -50,19 +50,19 @@ export const HeroTitles = ({ titles }: Props) => {
           animate='animate'
         >
           <div className='flex items-center gap-[0.2em] pl-[0.9em]'>
-            <motion.div
-              className='max-md:fixed max-md:right-[48vw] rounded-full max-md:top-4 max-md:h-[1.2em] h-[0.65em] aspect-square overflow-hidden'
-              whileHover={{ scale: 1.4 }}
-              style={{ y: img1Y }}
-            >
-              <Image
-                src={colorful_animals}
-                className='object-cover'
-                priority
-                loading='eager'
-                alt='example work'
-              />
-            </motion.div>
+            {/* <motion.div */}
+            {/*   className='max-md:fixed max-md:right-[48vw] rounded-full max-md:top-4 max-md:h-[1.2em] h-[0.65em] aspect-square overflow-hidden' */}
+            {/*   whileHover={{ scale: 1.4 }} */}
+            {/*   style={{ y: img1Y }} */}
+            {/* > */}
+            {/*   <Image */}
+            {/*     src={colorful_animals} */}
+            {/*     className='object-cover' */}
+            {/*     priority */}
+            {/*     loading='eager' */}
+            {/*     alt='example work' */}
+            {/*   /> */}
+            {/* </motion.div> */}
 
             <MotionSpan
               className='flex mix-blend-difference'
@@ -81,7 +81,6 @@ export const HeroTitles = ({ titles }: Props) => {
                   letter={letter}
                 />
               ))}
-              {/* &nbsp; */}
             </MotionSpan>
             <motion.div
               className='max-md:absolute rounded-full overflow-hidden max-md:-bottom-5 max-md:h-[1.2em] max-md:left-[9vw] h-[0.65em] aspect-video object-cover'
@@ -112,7 +111,7 @@ export const HeroTitles = ({ titles }: Props) => {
           </div>
 
           <MotionSpan
-            className='flex w-full justify-start pl-[0.4em] mix-blend-difference'
+            className='flex w-full justify-center mix-blend-difference'
             style={{ x: xRTL }}
           >
             {titles[3]}

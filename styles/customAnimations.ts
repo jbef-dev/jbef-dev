@@ -151,6 +151,7 @@ const variants = {
       rotateX: '0deg',
       rotateY: '0deg',
       rotateZ: '0deg',
+      transformOrigin: 'bottom',
     },
     exit: {
       opacity: 0,
