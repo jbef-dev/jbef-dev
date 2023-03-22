@@ -6,7 +6,7 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion';
-import { forwardRef, useRef } from 'react';
+import { forwardRef } from 'react';
 
 interface TitleLetterProps extends HTMLMotionProps<'span'> {
   containerScroll: MotionValue<number>;
@@ -51,15 +51,14 @@ export const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
 
     const animationStart = 0.21;
 
-    const y = useTransform(containerScroll, [animationStart, 1], outputOpts.y);
-    const x = useTransform(containerScroll, [animationStart, 1], outputOpts.x);
+    const y = useTransform(springInput, [animationStart, 1], outputOpts.y);
+    const x = useTransform(springInput, [animationStart, 1], outputOpts.x);
     const rotate = useTransform(
-      containerScroll,
+      springInput,
       [animationStart, 1],
       outputOpts.rotate
     );
-    const opacity = useTransform(containerScroll, [animationStart, 1], [1, 0]);
-    // const color = useTransform(springInput, [animationStart, 1], []);
+    const opacity = useTransform(springInput, [animationStart, 1], [1, 0]);
 
     // RENDER WHITE SPACE!!!
     if (letter === ' ') {

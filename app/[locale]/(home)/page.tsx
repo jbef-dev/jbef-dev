@@ -8,12 +8,17 @@ import { PricingTable } from './PricingTable/PricingTable';
 import { EvolveSection } from './EvolveSection/EvolveSection';
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 
 export default function Home() {
+  const t = useTranslations('pages.home.hero');
+
   return (
     <PageContainer mt={false} mb={false}>
       <SectionContainer flexCol center px={false} gap={false}>
-        <Hero />
+        <Hero
+          titles={[t('heading1'), t('heading2'), t('heading3'), t('heading4')]}
+        />
       </SectionContainer>
 
       <SectionContainer
@@ -35,7 +40,13 @@ export default function Home() {
         className='bg-black py-[clamp(5rem,10vw,11rem)]'
       />
 
-      <SectionContainer flexCol center pt={false} className='bg-white'>
+      <SectionContainer
+        flexCol
+        center
+        gap={false}
+        pt={false}
+        className='bg-white'
+      >
         <Separator position='top' className='bg-white' />
         <PricingTable />
       </SectionContainer>

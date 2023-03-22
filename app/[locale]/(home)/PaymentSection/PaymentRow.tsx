@@ -1,3 +1,4 @@
+import { FlexContainer } from '@/ui/Containers/FlexContainer';
 import { AnimatedParagraph } from '@/ui/Typography/AnimatedParagraph';
 import { Heading3 } from '@/ui/Typography/Heading3';
 import clsx from 'clsx';
@@ -18,7 +19,7 @@ export const PaymentRow = ({ icons, title, paragraph, align }: Props) => {
         align === 'left' ? 'justify-start' : 'justify-end'
       )}
     >
-      <div className='flex flex-col gap-y-4'>
+      <FlexContainer flexCol grow={false}>
         <Heading3 className='flex items-center gap-x-4'>
           <div className='flex flex-col gap-y-4'>
             {icons.map((icon, i) => (
@@ -32,13 +33,13 @@ export const PaymentRow = ({ icons, title, paragraph, align }: Props) => {
               </svg>
             ))}
           </div>
-          <span className='flex flex-col w-full'>{title}</span>
+          <span className='flex flex-col gap-y-2 w-full'>{title}</span>
         </Heading3>
 
-        <AnimatedParagraph className='flex w-full max-w-md lg:max-w-screen-sm font-light text-responsive-md'>
+        <AnimatedParagraph className='flex text-neutral-300 w-full max-w-md lg:max-w-screen-sm font-light text-responsive-md'>
           {paragraph}
         </AnimatedParagraph>
-      </div>
+      </FlexContainer>
     </div>
   );
 };

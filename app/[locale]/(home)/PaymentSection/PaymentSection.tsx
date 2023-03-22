@@ -1,4 +1,5 @@
-import { AnimatedSpan } from '@/ui/Typography/AnimatedSpan';
+import { FlexContainer } from '@/ui/Containers/FlexContainer';
+import { AOSText } from '@/ui/Typography/AOSText';
 import { PaymentRow } from './PaymentRow';
 
 export const PaymentPlan = () => {
@@ -23,10 +24,10 @@ export const PaymentPlan = () => {
         ]}
         title={
           <>
-            <AnimatedSpan>No upfront</AnimatedSpan>
-            <AnimatedSpan className='font-special italic tracking-wider'>
+            <AOSText className='font-medium'>No upfront</AOSText>
+            <AOSText className='font-extralight tracking-wider'>
               payment
-            </AnimatedSpan>
+            </AOSText>
           </>
         }
         paragraph='No up front payment, instead, we establish a relationship and pay monthly to include all work done on the website.'
@@ -52,10 +53,10 @@ export const PaymentPlan = () => {
         ]}
         title={
           <>
-            <AnimatedSpan>Developer</AnimatedSpan>
-            <AnimatedSpan className='font-special italic tracking-wider'>
+            <AOSText className='font-medium'>Developer</AOSText>
+            <AOSText className='font-extralight tracking-wider'>
               on duty
-            </AnimatedSpan>
+            </AOSText>
           </>
         }
         paragraph='Keep your website updated! Update to your website when needed, within 48h, as many times as you need. Its like having a web developer in your team on payroll.'
@@ -82,10 +83,10 @@ export const PaymentPlan = () => {
         ]}
         title={
           <>
-            <AnimatedSpan>hand coded</AnimatedSpan>
-            <AnimatedSpan className='font-special italic tracking-wider'>
+            <AOSText className='font-medium'>hand coded</AOSText>
+            <AOSText className='font-extralight tracking-wider'>
               website
-            </AnimatedSpan>
+            </AOSText>
           </>
         }
         paragraph='Forget about cookie-cutter websites, we hand code all our work, using the most modern technologies used by all major companies. We make billion-dollar company technologies accessible to everyone. From the largest layout to the smallest button, everything is custom coded and the performance benefits are obvious.'

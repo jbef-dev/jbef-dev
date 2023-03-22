@@ -20,21 +20,3 @@ export const MotionSpan = forwardRef<
     </motion.div>
   );
 });
-
-// export const MotionSpan = forwardRef<
-//   HTMLSpanElement,
-//   ComponentPropsWithoutRef<'span'>
-// >(({ children, className, ...props }, ref) => {
-//   return (
-//     <span ref={ref} className={clsx('flex', className)} {...props}>
-//       <motion.span
-//         className='flex leading-none'
-//         variants={myAnimation.variants.appear3d}
-//         transition={myAnimation.transition.easeOutSlow}
-//         style={props.style}
-//       >
-//         {children}
-//       </motion.span>
-//     </span>
-//   );
-// });

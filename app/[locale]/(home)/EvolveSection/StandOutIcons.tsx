@@ -1,14 +1,22 @@
 'use client';
 
+import { myAnimation } from '@/styles/customAnimations';
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
-import { useEvolveSectionCtx } from './EvolveContainer';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 export const StandOutIcons = () => {
-  const { standOutX: circlesX } = useEvolveSectionCtx();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+  const springInput = useSpring(scrollYProgress, myAnimation.spring.default);
+  const circlesX = useTransform(springInput, [0, 1], ['0%', '-20%']);
 
   return (
     <motion.div
+      ref={containerRef}
       className='flex gap-3 min-w-max my-8 lg:my-10'
       style={{ x: circlesX }}
     >

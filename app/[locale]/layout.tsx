@@ -1,14 +1,14 @@
 // import { NextIntlClientProvider } from 'next-intl/client';
 import { notFound } from 'next/navigation';
 import clsx from 'clsx';
-import { Header } from '@/components/Header/Header';
-// import { Header } from '@/ui/Header/Header';
+import { Header } from '@/ui/Header/Header';
 
 import { fontSans, fontLogo, fontTitle, fontSpecial } from '@/styles/fonts';
 import '@/styles/globals.css';
 import { useLocale } from 'next-intl';
 import { I18nLocales } from '@/i18n/config';
 import { Metadata } from 'next';
+import { Footer } from '@/ui/Footer/Footer';
 
 export default async function LocaleLayout({
   children,
@@ -41,16 +41,16 @@ export default async function LocaleLayout({
         {/* @ts-expect-error Server Component */}
         <Header />
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );
 }
 
-// // IMPORTANT
-// // fixes issue with page being created statically and used dynamically
-// // with this setting, it is only created dynamically, SSR
-// export const dynamic = 'force-dynamic';
+// IMPORTANT
+// fixes issue with page being created statically and used dynamically
+// with this setting, it is only created dynamically, SSR
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
