@@ -1,4 +1,4 @@
-import { forwardRef, HTMLAttributes, RefObject } from 'react';
+import { ForwardedRef, forwardRef, HTMLAttributes, RefObject } from 'react';
 import clsx from 'clsx';
 
 interface FlexContainerProps extends HTMLAttributes<HTMLDivElement> {
@@ -17,17 +17,18 @@ interface FlexContainerProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const FlexContainer = forwardRef<HTMLDivElement, FlexContainerProps>(
-  (props, ref) => {
+  // export const FlexContainer = (props: FlexContainerProps) => {
+  (props: FlexContainerProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       center = false,
       gap = true,
       px = false,
-      pr = true,
-      pl = true,
-      py = true,
-      pb = true,
-      pt = true,
-      maxW = false,
+      pr = false,
+      pl = false,
+      py = false,
+      pb = false,
+      pt = false,
+      maxW = true,
       grow = true,
       flexCol = false,
       className,
@@ -39,19 +40,15 @@ export const FlexContainer = forwardRef<HTMLDivElement, FlexContainerProps>(
       <div
         ref={ref}
         className={clsx([
-          'relative flex',
+          'flex',
           flexCol ? 'flex-col' : 'flex-row',
-          px && {
-            'pr-5 lg:pr-12': pr,
-            'pl-5 lg:pl-12': pl,
-          },
-          py && {
-            'pt-16 lg:pt-24 first:pt-0': pt,
-            'pb-16 lg:pb-24': pb,
-          },
           {
-            'gap-y-12 lg:gap-y-20': gap,
-            'max-w-screen-xl': maxW,
+            'pr-5 lg:pr-12': pr || px,
+            'pl-5 lg:pl-12': pl || px,
+            'pt-12 lg:pt-20': pt || py,
+            'pb-12 lg:pb-20': pb || py,
+            'gap-10 lg:gap-16': gap,
+            'max-w-screen-2xl': maxW,
             'items-center justify-center': center,
             'w-full': grow,
           },
