@@ -19,3 +19,5 @@ export const MotionSpan = forwardRef<
     </motion.div>
   );
 });
+
+MotionSpan.displayName = 'MotionSpan';

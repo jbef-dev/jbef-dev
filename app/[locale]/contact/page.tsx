@@ -7,7 +7,6 @@ import { FlexContainer } from '@/ui/Containers/FlexContainer';
 import { PageContainer } from '@/ui/Containers/PageContainer';
 import { SectionContainer } from '@/ui/Containers/SectionContainer';
 import { Heading1 } from '@/ui/Typography/Heading1';
-import { Heading2 } from '@/ui/Typography/Heading2';
 import { Heading3 } from '@/ui/Typography/Heading3';
 
 export default function Home({}) {
@@ -16,7 +15,7 @@ export default function Home({}) {
   return (
     <PageContainer mt={false} mb={false}>
       <SectionContainer flex pb={false} center>
-        <Heading1>Let's get in touch</Heading1>
+        <Heading1>Let&apos;s get in touch</Heading1>
       </SectionContainer>
 
       <SeparatorMargin className='bg-white' />

@@ -16,7 +16,7 @@ export const Footer = () => {
           {/* <Logo /> */}
           Get in touch
         </Heading3>
-        <div className='flex justify-around'>
+        <div className='flex max-sm:flex-col justify-around'>
           <Button buttonSize='lg' flavor='outlined' colorMode='light'>
             jorge@jbef.dev
           </Button>

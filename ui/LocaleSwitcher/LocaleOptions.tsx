@@ -10,6 +10,7 @@ import { Link } from 'next-intl';
 import { IoTriangle } from 'react-icons/io5';
 import clsx from 'clsx';
 import { usePathname } from 'next-intl/client';
+import { useRef } from 'react';
 
 interface Props {
   locale: string;
@@ -20,7 +21,10 @@ export const LocaleOptions = ({ locale, otherLocales }: Props) => {
   const pathName = usePathname();
 
   const { open, toggleOpen } = useLocaleSwitcher();
-  const [ref] = useOutsideClick(toggleOpen, open);
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  useOutsideClick(toggleOpen, open, ref);
 
   const dropdownVariants: Variants = {
     open: {
