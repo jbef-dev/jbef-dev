@@ -11,7 +11,7 @@ const values = {
     fastest: 0.1,
     veryFast: 0.19,
     fast: 0.28,
-    normal: 0.35,
+    normal: 0.39,
     slow: 0.51,
     verySlow: 0.73,
     slowest: 0.95,
@@ -186,7 +186,15 @@ interface CustomSprings {
 }
 
 const springs = {
+  slow: {
+    stiffness: 280,
+    damping: 70,
+  },
   default: {
+    stiffness: values.stiffness.high,
+    damping: values.damping.max,
+  },
+  fast: {
     stiffness: values.stiffness.high,
     damping: values.damping.max,
   },

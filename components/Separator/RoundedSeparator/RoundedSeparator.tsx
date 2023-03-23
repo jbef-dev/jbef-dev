@@ -28,7 +28,7 @@ export const RoundedSeparator = ({
       ref={containerRef}
       className={clsx([
         'absolute overflow-hidden left-0 flex items-center justify-center w-full h-[clamp(5rem,10vw,18rem)]',
-        position === 'top' ? 'bottom-full' : 'top-full',
+        position === 'top' ? 'bottom-[99.9%]' : 'top-full',
       ])}
       style={{
         originY: '100%',

@@ -25,7 +25,7 @@ const enMessages = {
         'We are committed to making our patients feel comfortable and at ease during their visits, and we take the time to listen to your concerns and address all of your dental needs.',
     },
 
-    services: {
+    portfolio: {
       pagetitle: 'Meet the team',
       title1: 'Highest <hl>quality</hl> service',
       subtitle1:
@@ -57,10 +57,10 @@ const enMessages = {
   ui: {
     // UI elements
     navbar: {
-      home: 'home',
-      services: 'services',
-      about: 'about us',
-      contact: 'contact',
+      home: 'Home',
+      portfolio: 'Portfolio',
+      about: 'About me',
+      contact: 'Contact',
     },
   },
 

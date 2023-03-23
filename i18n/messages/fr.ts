@@ -26,7 +26,7 @@ const frMessages: I18nMessages = {
         'Meet our team made up of professionals with <highlight>30+ years</highlight> of combined experience in treating our patients in Torrevieja, Alicante.',
     },
 
-    services: {
+    portfolio: {
       pagetitle: 'Meet the team',
       title1: 'Best quality <hl>service</hl>',
       subtitle1:
@@ -57,10 +57,10 @@ const frMessages: I18nMessages = {
   ui: {
     // UI elements
     navbar: {
-      home: 'inicio',
-      services: 'services',
-      about: 'qui sommes-nous',
-      contact: 'contact',
+      home: 'Inicio',
+      portfolio: 'Portfolio',
+      about: 'Qui sommes-nous',
+      contact: 'Contact',
     },
   },
 

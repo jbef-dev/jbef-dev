@@ -31,8 +31,8 @@ export const NAVBAR_LINKS = async (): Promise<NavbarLink[]> => {
       url: '/',
     },
     {
-      label: t('services'),
-      url: '/services',
+      label: t('portfolio'),
+      url: '/work',
     },
     {
       label: t('about'),
