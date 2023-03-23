@@ -8,10 +8,8 @@ import { ExplodingLetter } from './ExplodingLetter';
 
 import architecture from '@/public/img/architecture_preview.webp';
 import colorful_animals from '@/public/img/colorful_animals_preview.webp';
-import { MotionSpan } from './MotionSpan';
 import { myAnimation } from '@/styles/customAnimations';
-import { AOSText } from '@/ui/Typography/AOSText';
-import { Heading1 } from '@/ui/Typography/Heading1';
+import { MotionSpan } from './MotionSpan';
 
 interface Props {
   titles: string[];
@@ -40,11 +38,11 @@ export const Hero = ({ titles }: Props) => {
 
   return (
     <div ref={containerRef} className='flex w-full h-[250lvh] justify-center'>
-      <div className='fixed h-[100svh] top-0 max-w-screen-3xl flex items-center justify-center w-full bg-white'>
+      <div className='fixed h-[100svh] top-0 max-w-screen-3xl font-title flex items-center justify-center w-full bg-white'>
         {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 
         <motion.div
-          className='flex justify-center items-start w-full text-responsive-4xl px-2 flex-col text-white'
+          className='flex leading-none text-responsive-hero justify-center items-start w-full px-2 flex-col text-white'
           variants={{
             initial: {},
             animate: {
@@ -71,12 +69,12 @@ export const Hero = ({ titles }: Props) => {
             {/*   /> */}
             {/* </motion.div> */}
 
-            <AOSText
+            <MotionSpan
               className='flex mix-blend-difference'
               style={{ x: xLTR }}
             >
-              <Heading1>{titles[0]}</Heading1>
-            </AOSText>
+              <h1>{titles[0]}</h1>
+            </MotionSpan>
           </div>
 
           <div className='flex items-center pl-[0.5em] md:pl-[0.5em] gap-[0.2em]'>
@@ -113,20 +111,20 @@ export const Hero = ({ titles }: Props) => {
               />
             </motion.div>
             <MotionSpan className='mix-blend-difference' style={{ x: xRTL }}>
-              {titles[2]}
+              <h1>{titles[2]}</h1>
             </MotionSpan>
           </div>
 
           <MotionSpan
-            className='flex w-full pl-[0.5em] mix-blend-difference'
+            className='flex w-full max-lg:justify-center lg:pl-[0.5em] mix-blend-difference'
             style={{ x: xRTL }}
           >
-            {titles[3]}
+            <h1>{titles[3]}</h1>
           </MotionSpan>
         </motion.div>
 
         <motion.div
-          className='max-md:absolute max-md:bottom-4 text-responsive-4xl max-md:right-4 self-end'
+          className='max-md:absolute max-md:bottom-4 text-responsive-hero max-md:right-4 self-end'
           style={{ y: arrowY }}
         >
           <RiArrowDownLine />

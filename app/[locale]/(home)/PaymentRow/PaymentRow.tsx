@@ -13,15 +13,14 @@ interface Props {
 
 export const PaymentRow = ({ icons, title, paragraph, align }: Props) => {
   return (
-    <div
-      className={clsx(
-        'flex w-full max-w-screen-2xl',
-        align === 'left' ? 'justify-start' : 'justify-end'
-      )}
-    >
-      <FlexContainer flexCol grow={false}>
+    <FlexContainer flexCol>
+      <FlexContainer
+        flexCol
+        grow={false}
+        className={clsx(align === 'left' ? 'self-start' : 'self-end')}
+      >
         <Heading3 className='flex items-center gap-x-4'>
-          <div className='flex flex-col gap-y-4'>
+          <div className='flex flex-col gap-y-6'>
             {icons.map((icon, i) => (
               <svg
                 key={i}
@@ -33,13 +32,13 @@ export const PaymentRow = ({ icons, title, paragraph, align }: Props) => {
               </svg>
             ))}
           </div>
-          <span className='flex flex-col gap-y-2 w-full'>{title}</span>
+          <div className='flex flex-col w-full'>{title}</div>
         </Heading3>
 
         <AnimatedParagraph className='flex text-neutral-300 w-full max-w-md lg:max-w-screen-sm font-light text-responsive-md'>
           {paragraph}
         </AnimatedParagraph>
       </FlexContainer>
-    </div>
+    </FlexContainer>
   );
 };

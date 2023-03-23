@@ -17,7 +17,7 @@ export const StandOutIcons = () => {
   return (
     <motion.div
       ref={containerRef}
-      className='flex gap-3 min-w-max my-8 lg:my-10'
+      className='flex gap-3 min-w-max'
       style={{ x: circlesX }}
     >
       {[...new Array(20)].map((_, i) => (

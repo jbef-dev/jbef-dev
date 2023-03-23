@@ -1,8 +1,7 @@
 import { myAnimation } from '@/styles/customAnimations';
-import { Heading1 } from '@/ui/Typography/Heading1';
 import clsx from 'clsx';
 import { HTMLMotionProps, motion } from 'framer-motion';
-import { ComponentPropsWithoutRef, forwardRef, ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
 
 export const MotionSpan = forwardRef<
   HTMLDivElement,
@@ -16,7 +15,7 @@ export const MotionSpan = forwardRef<
       transition={myAnimation.transition.easeOutSlow}
       {...props}
     >
-      <Heading1>{children}</Heading1>
+      {children}
     </motion.div>
   );
 });
