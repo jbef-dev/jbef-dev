@@ -10,7 +10,7 @@ export const Heading1 = forwardRef<HTMLHeadingElement, Heading1Props>(
       <h1
         ref={ref}
         className={clsx(
-          'flex text-responsive-4xl leading-none font-title',
+          'text-responsive-3xl leading-tight font-title',
           className
         )}
         {...rest}

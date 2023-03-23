@@ -41,7 +41,7 @@ export const Header = async () => {
               {navLinks.map((link, i) => (
                 <HamburgerMenuNavItem
                   key={link.label}
-                  className='flex flex-col group gap-4 uppercase relative w-fit text-responsive-xl leading-none tracking-wide hover:text-accent-main'
+                  className='flex flex-col group gap-4   relative w-fit text-responsive-2xl leading-none tracking-wide hover:text-accent-main'
                 >
                   <HamburgerMenuNavLink
                     className='flex gap-x-2'
@@ -53,9 +53,9 @@ export const Header = async () => {
                     <div className='flex flex-col gap-4'>
                       <div className='overflow-hidden'>
                         <div className='flex flex-col relative group-hover:-translate-y-full transition-all duration-500'>
-                          <span>{link.label.toUpperCase()}</span>
+                          <span>{link.label}</span>
                           <span className='absolute top-full'>
-                            {link.label.toUpperCase()}
+                            {link.label}
                           </span>
                         </div>
                       </div>

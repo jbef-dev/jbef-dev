@@ -2,7 +2,7 @@
 
 import { LOCALES } from '@/i18n/config';
 import clsx from 'clsx';
-import { ComponentPropsWithoutRef, useState } from 'react';
+import { ComponentPropsWithoutRef, useRef, useState } from 'react';
 
 import useOutsideClick from '@/hooks/useOutsideClick';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -25,7 +25,9 @@ export const LocaleSwitcher = ({
 
   const [open, setOpen] = useState<boolean>(false);
   const toggleOpen = () => setOpen(open => !open);
-  const [ref] = useOutsideClick(toggleOpen, open);
+
+  const ref = useRef<HTMLDivElement>(null);
+  useOutsideClick(toggleOpen, open, ref);
   const otherLocales = LOCALES.filter(l => l != currentLocale);
 
   // const dropdownVariants: Variants = {

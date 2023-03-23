@@ -8,7 +8,7 @@ export const Heading2 = (props: PropsWithChildren<Heading1Props>) => {
   return (
     <h2
       className={clsx(
-        'text-responsive-2xl font-light leading-[1.1] font-title uppercase',
+        'text-responsive-2xl leading-[1.1] font-title',
         className
       )}
       {...rest}

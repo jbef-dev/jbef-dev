@@ -47,7 +47,7 @@ export const FlexContainer = forwardRef<HTMLDivElement, FlexContainerProps>(
             'pl-5 lg:pl-12': pl || px,
             'pt-12 lg:pt-20': pt || py,
             'pb-12 lg:pb-20': pb || py,
-            'gap-10 lg:gap-16': gap,
+            'gap-8 lg:gap-12': gap,
             'max-w-screen-2xl': maxW,
             'items-center justify-center': center,
             'w-full': grow,

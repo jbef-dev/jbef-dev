@@ -5,56 +5,45 @@ import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { SiGooglemaps, SiGooglemybusiness } from 'react-icons/si';
 import { MdMail } from 'react-icons/md';
 import { Logo } from '@/components/Logo/Logo';
+import { Heading3 } from '../Typography/Heading3';
+import { Button } from '../Button/Button';
 
 export const Footer = () => {
   return (
-    <footer className='flex relative w-full h-[100rem] bg-black items-center justify-center bg-grayscale-900 p-4 text-grayscale-600'>
-      <div className='flex max-w-screen-xl flex-col items-center justify-evenly gap-5'>
-        <div className='flex flex-col items-center justify-center gap-5 lg:flex-row lg:justify-around'>
-          <div className='flex items-center justify-center gap-6 lg:flex-col'>
-            <Logo />
-            <div className='hidden flex-col md:flex'>
-              {Object.values(BUSINESS_INFO).map((val, i) => (
-                <span key={i}>{val}</span>
-              ))}
-            </div>
-          </div>
+    <footer className='flex flex-col relative w-full bg-black items-center gap-y-8 justify-center p-8'>
+      <div className='text-white flex flex-col gap-y-6'>
+        <Heading3 className='flex items-center gap-x-2'>
+          {/* <Logo /> */}
+          Get in touch
+        </Heading3>
+        <div className='flex justify-around'>
+          <Button buttonSize='lg' flavor='outlined' colorMode='light'>
+            jorge@jbef.dev
+          </Button>
+          <Button buttonSize='lg' flavor='outlined' colorMode='light' icon>
+            +34 606 516 718
+          </Button>
+        </div>
+      </div>
 
-          <div className='flex w-full items-center justify-center gap-6 text-3xl text-grayscale-500'>
-            <a
-              href='https://www.instagram.com/guidoaudisio_clinicadental/'
-              target='_blank'
-              rel='noreferrer'
-            >
-              <FaInstagram />
-            </a>
-            <a href='mailto:info@guidoaudisio.com' rel='noreferrer'>
-              <MdMail />
-            </a>
-            <FaWhatsapp />
-            <a
-              href='https://goo.gl/maps/vvmeJAXyA7nCFfzp6'
-              target='_blank'
-              rel='noreferrer'
-            >
-              <SiGooglemybusiness />
-            </a>
-            <a
-              href='https://goo.gl/maps/vvmeJAXyA7nCFfzp6'
-              target='_blank'
-              rel='noreferrer'
-            >
-              <SiGooglemaps />
-            </a>
+      <div className='flex max-w-screen-2xl w-full text-white justify-between'>
+        <div className='flex gap-x-10'>
+          <div className='flex flex-col gap-y-2'>
+            <span className='text-neutral-500'>Design and development</span>
+            <span>jbef.dev © 2023</span>
+          </div>
+          <div className='flex flex-col gap-y-2'>
+            <span className='text-neutral-500'>Local time</span>
+            <span>13:00 PM GMT+1</span>
           </div>
         </div>
 
-        <div className='flex w-full items-center justify-center text-center text-grayscale-600'>
-          <span>
-            © 2022 Designed and developed by: <b>jbef.es</b>
-            <br />
-            All rights reserved
-          </span>
+        <div className='flex flex-col gap-y-2'>
+          <span className='text-neutral-500'>Socials</span>
+          <div className='flex gap-x-6'>
+            <span>Twitter</span>
+            <span>Dribbble</span>
+          </div>
         </div>
       </div>
     </footer>

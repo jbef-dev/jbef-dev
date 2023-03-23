@@ -7,10 +7,7 @@ export const Heading3 = (props: PropsWithChildren<Heading3Props>) => {
   const { className, children, ...rest } = props;
   return (
     <h1
-      className={clsx(
-        'leading-[1.1] uppercase font-light text-responsive-xl',
-        className
-      )}
+      className={clsx('leading-tight font-title text-responsive-xl', className)}
       {...rest}
     >
       {children}

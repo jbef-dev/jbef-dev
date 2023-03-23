@@ -1,5 +1,16 @@
-import React, { ComponentPropsWithoutRef, forwardRef, ReactNode } from 'react';
+'use client';
+
+import { forwardRef, ReactNode, useEffect, useState } from 'react';
 import clsx, { ClassValue } from 'clsx';
+import {
+  AnimatePresence,
+  HTMLMotionProps,
+  motion,
+  Variants,
+} from 'framer-motion';
+import { myAnimation } from '@/styles/customAnimations';
+import useOutsideClick from '@/hooks/useOutsideClick';
+import useForwardedRef from '@/hooks/useForwardedRef';
 
 type ButtonFlavors =
   | 'basic'
@@ -9,22 +20,37 @@ type ButtonFlavors =
   | 'outlined'
   | 'glass';
 type ButtonSizes = 'sm' | 'md' | 'lg';
+type ButtonColorModes = 'light' | 'dark';
 
-interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
+interface ButtonProps extends HTMLMotionProps<'button'> {
   flavor?: ButtonFlavors;
-  icon?: boolean | React.ReactNode;
+  icon?: boolean | ReactNode;
   isLoading?: boolean;
   buttonSize?: ButtonSizes;
   glow?: boolean;
+  colorMode?: ButtonColorModes;
 }
 
-const flavors: { [k in ButtonFlavors]: ClassValue } = {
-  basic: clsx('bg-accent-main text-white rounded-sm hover:bg-accent-main'),
-  gradientOutline: clsx('bg-gradient-to-r from-primary to-secondary text-black'),
-  transparent: clsx('bg-transparent'),
-  glass: clsx('backdrop-blur-lg bg-grayscale-800/40'),
+const flavors: {
+  [k in ButtonFlavors]: { tw: ClassValue; variants: Variants } | undefined;
+} = {
+  basic: {
+    tw: clsx('bg-accent-main rounded-sm hover:bg-accent-main'),
+    variants: {},
+  },
+  gradientOutline: {
+    tw: clsx('bg-gradient-to-r from-primary to-secondary text-black'),
+    variants: {},
+  },
+  transparent: { tw: clsx('bg-transparent'), variants: {} },
+  glass: { tw: clsx('backdrop-blur-lg bg-grayscale-800/40'), variants: {} },
   square: undefined,
-  outlined: clsx('ring-1 text-black ring-black hover:ring-2'),
+  outlined: {
+    tw: clsx('ring-2 ring-inset'),
+    variants: {
+      hover: {},
+    },
+  },
 };
 
 const size: { [s in ButtonSizes]: ClassValue } = {
@@ -33,35 +59,50 @@ const size: { [s in ButtonSizes]: ClassValue } = {
   lg: clsx('px-5 py-3 text-lg'),
 };
 
-const ConditionalWrapper = ({
-  condition,
-  wrapper,
-  children,
-}: {
-  condition: boolean;
-  wrapper: (c: ReactNode) => any; // WARNING FIX THIS ANY
-  children: ReactNode;
-}) => (condition ? wrapper(children) : children);
+const mode: { [m in ButtonColorModes]: ClassValue } = {
+  light: clsx('text-white ring-neutral-400 fill-white'),
+  dark: clsx('text-black ring-neutral-600 fill-black'),
+};
 
 const DefaultIcon = () => {
   return (
-    <svg
+    <motion.svg
       viewBox='1 0 5 9'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
-      className='w-[9px] overflow-visible duration-[inherit]'
+      className='w-[9px] overflow-visible'
     >
-      <g className='duration-[inherit] group-active:translate-x-[1px] group-hover:translate-x-[1px]'>
-        <path
-          d='M1 1C4.5 4 5 4.38484 5 4.5C5 4.61516 4.5 5 1 8'
-          stroke='currentColor'
-          strokeWidth='1.0'
-        />
-      </g>
-      <g className='translate-x-[-2px] opacity-0 duration-[inherit] group-active:opacity-100 group-hover:opacity-100'>
-        <path d='M7 4.5H0' stroke='currentColor' strokeWidth='1.0' />
-      </g>
-    </svg>
+      <motion.path
+        d='M1 1C4.5 4 5 4.38484 5 4.5C5 4.61516 4.5 5 1 8'
+        stroke='currentColor'
+        strokeWidth='1.0'
+        variants={{
+          hover: {
+            translateX: '1px',
+          },
+          active: {
+            translateX: '1px',
+          },
+        }}
+      />
+      <motion.path
+        d='M7 4.5H0'
+        stroke='currentColor'
+        strokeWidth='1.0'
+        className='-translate-x-0.5'
+        variants={{
+          initial: {
+            opacity: 0,
+          },
+          hover: {
+            opacity: 1,
+          },
+          active: {
+            opacity: 1,
+          },
+        }}
+      />
+    </motion.svg>
   );
 };
 
@@ -69,11 +110,11 @@ const LoadingSpinner = () => (
   <div aria-label='Loading...' role='status'>
     <svg className='h-5 w-5 animate-spin' viewBox='3 3 18 18'>
       <path
-        className='fill-white/20'
+        className='opacity-20'
         d='M12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5ZM3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z'
       ></path>
       <path
-        className='fill-white'
+        className='opacity-100'
         d='M16.9497 7.05015C14.2161 4.31648 9.78392 4.31648 7.05025 7.05015C6.65973 7.44067 6.02656 7.44067 5.63604 7.05015C5.24551 6.65962 5.24551 6.02646 5.63604 5.63593C9.15076 2.12121 14.8492 2.12121 18.364 5.63593C18.7545 6.02646 18.7545 6.65962 18.364 7.05015C17.9734 7.44067 17.3403 7.44067 16.9497 7.05015Z'
       ></path>
     </svg>
@@ -87,6 +128,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       icon = false,
       isLoading = false,
       buttonSize = 'md',
+      colorMode = 'dark',
       glow = false,
       className,
       children,
@@ -94,40 +136,104 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
+    const [isHover, setHover] = useState(false);
+
+    const reference = useForwardedRef(ref);
+
+    useOutsideClick(() => setHover(false), isHover, reference);
+
     return (
-      <button
-        ref={ref}
+      <motion.button
+        ref={reference}
         className={clsx(
-          'group relative flex cursor-pointer items-center justify-center gap-4 duration-200 ease-in-out leading-none',
-          flavors[flavor],
+          'relative rounded-full overflow-hidden cursor-pointer',
+          flavors[flavor]?.tw,
           size[buttonSize],
+          mode[colorMode],
           className
         )}
+        initial='initial'
+        whileHover='hover'
+        onTapStart={() => setHover(true)}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        variants={flavors[flavor]?.variants}
         {...props}
       >
-        <ConditionalWrapper
-          condition={flavor === 'gradientOutline'}
-          wrapper={children => (
-            <>
-              <div className='absolute top-0.5 left-0.5 right-0.5 bottom-0.5 group-hover:left-[3px] group-hover:top-[3px] group-hover:bottom-[3px] group-hover:right-[3px] bg-white z-0 duration-200 ease-in-out'></div>
-              <div className='z-10'>{children}</div>
-            </>
-          )}
-        >
-          {children}
-          {icon !== false ? (
-            <div className='flex items-center justify-center transition-all group-hover:translate-x-1 group-active:translate-x-1'>
-              {isLoading ? (
-                <LoadingSpinner />
-              ) : icon === true ? (
-                <DefaultIcon />
-              ) : (
-                icon
-              )}
-            </div>
+        {/* THIS IS THE ANIMATED BACKGROUND TO APPEAR */}
+        <AnimatePresence mode='wait'>
+          {isHover ? (
+            <motion.div
+              className='absolute overflow-hidden rounded-full flex items-center justify-center w-full z-10 h-full top-0 left-0'
+              initial='initial'
+              animate='animate'
+              exit='exit'
+            >
+              <motion.div
+                className='w-full h-[300%] bg-primary rounded-[300%]'
+                variants={{
+                  initial: {
+                    y: '100%',
+                  },
+                  animate: {
+                    y: '0%',
+                  },
+                  exit: {
+                    y: '-100%',
+                  },
+                }}
+                transition={{
+                  type: 'keyframes',
+                  duration: 0.45,
+                  ease: 'easeOut',
+                }}
+              ></motion.div>
+            </motion.div>
           ) : null}
-        </ConditionalWrapper>
-      </button>
+        </AnimatePresence>
+
+        {flavor == 'gradientOutline' ? (
+          <motion.div
+            className='absolute z-0 rounded-full inset-0.5 bg-white'
+            variants={{
+              hover: {
+                left: '3px',
+                top: '3px',
+                bottom: '3px',
+                right: '3px',
+              },
+            }}
+            transition={myAnimation.transition.easeInOut}
+          ></motion.div>
+        ) : null}
+        <motion.div className='relative flex gap-x-4 items-center leading-none justify-center z-20 w-full h-full'>
+          <>
+            {children}
+            {icon !== false ? (
+              <motion.div
+                className='flex relative z-20 items-center justify-center'
+                variants={{
+                  active: {
+                    translateX: '0.25rem',
+                  },
+                  hover: {
+                    translateX: '0.25rem',
+                  },
+                }}
+                transition={myAnimation.transition.easeInOut}
+              >
+                {isLoading ? (
+                  <LoadingSpinner />
+                ) : icon === true ? (
+                  <DefaultIcon />
+                ) : (
+                  icon
+                )}
+              </motion.div>
+            ) : null}
+          </>
+        </motion.div>
+      </motion.button>
     );
   }
 );
