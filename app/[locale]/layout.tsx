@@ -1,4 +1,3 @@
-// import { NextIntlClientProvider } from 'next-intl/client';
 import { notFound } from 'next/navigation';
 import clsx from 'clsx';
 import { Header } from '@/ui/Header/Header';
@@ -40,11 +39,6 @@ export default async function LocaleLayout({
     </html>
   );
 }
-
-// IMPORTANT
-// fixes issue with page being created statically and used dynamically
-// with this setting, it is only created dynamically, SSR
-// export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
