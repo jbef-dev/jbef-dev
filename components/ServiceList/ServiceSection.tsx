@@ -145,7 +145,7 @@ const ServiceSection = ({
       >
         <h2
           className={clsx([
-            'relative text-responsive-4xl font-bold',
+            'relative text-responsive-4xl font-medium',
             isCurrentEl() ? 'text-white' : 'text-grayscale-400',
           ])}
         >

@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import clsx from 'clsx';
 import { Header } from '@/ui/Header/Header';
 
-import { fontSans, fontLogo, fontTitle, fontSpecial } from '@/styles/fonts';
+import { fontSans, fontTitle } from '@/styles/fonts';
 import '@/styles/globals.css';
 import { useLocale } from 'next-intl';
 import { I18nLocales } from '@/i18n/config';
@@ -30,13 +30,7 @@ export default async function LocaleLayout({
     <html lang={locale} dir='ltr' className='scrollbar-hide'>
       <head />
       <body
-        className={clsx(
-          fontTitle.variable,
-          fontSpecial.variable,
-          fontSans.variable,
-          fontLogo.variable,
-          'font-sans'
-        )}
+        className={clsx(fontTitle.variable, fontSans.variable, 'font-sans')}
       >
         {/* @ts-expect-error Server Component */}
         <Header />
