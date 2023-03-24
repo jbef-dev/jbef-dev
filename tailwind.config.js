@@ -20,7 +20,7 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
         logo: ['var(--font-logo)', ...defaultTheme.fontFamily.sans],
-        special: ['var(--font-special)', ...defaultTheme.fontFamily.sans],
+        // special: ['var(--font-special)', ...defaultTheme.fontFamily.sans],
         title: ['var(--font-title)', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
