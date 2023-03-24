@@ -104,7 +104,8 @@ export const Hero = ({ titles }: Props) => {
               style={{ y: img2Y }}
             >
               <Image
-                src={architecture}
+                // src={architecture}
+                src={colorful_animals}
                 className='object-cover '
                 priority
                 loading='eager'
