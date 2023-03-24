@@ -1,24 +1,25 @@
-// import {
-//   SeparatorMargin,
-//   SeparatorRounded,
-// } from '@/components/Separator/Separator';
-const DynamicSeparatorMargin = dynamic(() =>
-  import('@/components/Separator/Separator').then(mod => mod.SeparatorMargin)
-);
-const DynamicSeparatorRounded = dynamic(() =>
-  import('@/components/Separator/Separator').then(mod => mod.SeparatorRounded)
-);
+import {
+  SeparatorMargin,
+  SeparatorRounded,
+} from '@/components/Separator/Separator';
+// const SeparatorMargin = dynamic(() =>
+//   import('@/components/Separator/Separator').then(mod => mod.SeparatorMargin)
+// );
+// const SeparatorRounded = dynamic(() =>
+//   import('@/components/Separator/Separator').then(mod => mod.SeparatorRounded)
+// );
 
 import { PageContainer } from '@/ui/Containers/PageContainer';
 import { SectionContainer } from '@/ui/Containers/SectionContainer';
 
-import { Hero } from './Hero/Hero';
+// import { Hero } from './Hero/Hero';
+const Hero = dynamic(() => import('./Hero/Hero'));
 // import { PricingTable } from './PricingTable/PricingTable';
-const DynamicPricingTable = dynamic(() =>
+const PricingTable = dynamic(() =>
   import('./PricingTable/PricingTable').then(mod => mod.PricingTable)
 );
 // import { EvolveSection } from './EvolveSection/EvolveSection';
-const DynamicEvolveSection = dynamic(() =>
+const EvolveSection = dynamic(() =>
   import('./EvolveSection/EvolveSection').then(mod => mod.EvolveSection)
 );
 import { Metadata } from 'next';
@@ -53,8 +54,8 @@ export default function Home() {
         pt={false}
         className='bg-black text-white'
       >
-        <DynamicSeparatorRounded position='top' className='bg-black' />
-        <DynamicEvolveSection />
+        <SeparatorRounded position='top' className='bg-black' />
+        <EvolveSection />
       </SectionContainer>
 
       <SectionContainer flexCol className='bg-black text-white'>
@@ -144,10 +145,10 @@ export default function Home() {
         />
       </SectionContainer>
 
-      <DynamicSeparatorMargin className='bg-black' />
+      <SeparatorMargin className='bg-black' />
 
       <SectionContainer flexCol center pt={false} className='bg-white'>
-        <DynamicSeparatorRounded position='top' className='bg-white' />
+        <SeparatorRounded position='top' className='bg-white' />
         <FlexContainer flexCol className='max-w-screen-xl'>
           <div className='flex flex-col pb-12 lg:pb-20 w-full gap-y-6'>
             <Heading3 className='flex flex-col items-start'>
@@ -161,7 +162,7 @@ export default function Home() {
             </AnimatedParagraph>
           </div>
 
-          <DynamicPricingTable
+          <PricingTable
             pricingStrategy={[
               {
                 title: 'Standard',

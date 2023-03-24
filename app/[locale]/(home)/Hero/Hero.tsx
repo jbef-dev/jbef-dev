@@ -15,7 +15,7 @@ interface Props {
   titles: string[];
 }
 
-export const Hero = ({ titles }: Props) => {
+const Hero = ({ titles }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -153,3 +153,5 @@ export const Hero = ({ titles }: Props) => {
     </div>
   );
 };
+
+export default Hero;
