@@ -93,7 +93,8 @@ export const Hero = ({ titles }: Props) => {
               transition={myAnimation.transition.easeInOut}
               style={{ y: videoY }}
             >
-              <video src='/vid/test_vid.mp4' autoPlay muted playsInline />
+              {/* <video src='/vid/test_vid.mp4' autoPlay muted playsInline /> */}
+              <Image src={colorful_animals} alt='colorful animals' />
             </motion.div>
           </div>
 
