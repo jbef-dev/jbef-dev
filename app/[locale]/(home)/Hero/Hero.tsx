@@ -47,7 +47,7 @@ export const Hero = ({ titles }: Props) => {
             initial: {},
             animate: {
               transition: {
-                // staggerChildren: 0.18,
+                staggerChildren: 0.18,
               },
             },
           }}
@@ -104,8 +104,7 @@ export const Hero = ({ titles }: Props) => {
               style={{ y: img2Y }}
             >
               <Image
-                // src={architecture}
-                src={colorful_animals}
+                src={architecture}
                 className='object-cover '
                 priority
                 loading='eager'
