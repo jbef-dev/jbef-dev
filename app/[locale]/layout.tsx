@@ -50,7 +50,7 @@ export default async function LocaleLayout({
 // IMPORTANT
 // fixes issue with page being created statically and used dynamically
 // with this setting, it is only created dynamically, SSR
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
