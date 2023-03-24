@@ -47,7 +47,7 @@ export const Hero = ({ titles }: Props) => {
             initial: {},
             animate: {
               transition: {
-                staggerChildren: 0.18,
+                // staggerChildren: 0.18,
               },
             },
           }}
