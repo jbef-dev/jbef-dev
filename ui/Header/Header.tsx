@@ -8,7 +8,7 @@ import {
   HamburgerMenuNavItem,
   HamburgerMenuNavLink,
 } from '@/ui/HamburgerMenu/HamburgerMenu';
-import { NAVBAR_LINKS, SOCIALS } from '@/config/constants/pageContent';
+import { NAVBAR_LINKS } from '@/config/constants/pageContent';
 import { Logo } from '@/components/Logo/Logo';
 
 export const Header = async () => {

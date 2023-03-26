@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { HTMLMotionProps, motion } from 'framer-motion';
 import { forwardRef, ReactNode } from 'react';
 
-export const MotionSpan = forwardRef<
+const MotionSpan = forwardRef<
   HTMLDivElement,
   HTMLMotionProps<'div'> & { children: ReactNode }
 >(({ children, className, ...props }, ref) => {
@@ -20,4 +20,6 @@ export const MotionSpan = forwardRef<
   );
 });
 
-MotionSpan.displayName = 'MotionSpan';
+// MotionSpan.displayName = 'MotionSpan';
+
+export { MotionSpan };

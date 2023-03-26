@@ -1,12 +1,12 @@
-import Image from 'next/image';
-import { BUSINESS_INFO } from '@/config/constants/pageContent';
+// import Image from 'next/image';
+// import { BUSINESS_INFO } from '@/config/constants/pageContent';
 // import logo from '@/public/logo.svg';
-import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
-import { SiGooglemaps, SiGooglemybusiness } from 'react-icons/si';
-import { MdMail } from 'react-icons/md';
-import { Logo } from '@/components/Logo/Logo';
-import { Heading3 } from '../Typography/Heading3';
-import { Button } from '../Button/Button';
+// import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
+// import { SiGooglemaps, SiGooglemybusiness } from 'react-icons/si';
+// import { MdMail } from 'react-icons/md';
+// import { Logo } from '@/components/Logo/Logo';
+import { Heading3 } from '@/ui/Typography';
+import { Button } from '@/ui/Button/Button';
 
 export const Footer = () => {
   return (

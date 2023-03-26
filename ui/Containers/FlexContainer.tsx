@@ -16,7 +16,7 @@ interface FlexContainerProps extends HTMLAttributes<HTMLDivElement> {
   altRef?: RefObject<HTMLDivElement>;
 }
 
-export const FlexContainer = forwardRef<HTMLDivElement, FlexContainerProps>(
+const FlexContainer = forwardRef<HTMLDivElement, FlexContainerProps>(
   // export const FlexContainer = (props: FlexContainerProps) => {
   (props: FlexContainerProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
@@ -61,3 +61,5 @@ export const FlexContainer = forwardRef<HTMLDivElement, FlexContainerProps>(
     );
   }
 );
+
+export default FlexContainer;

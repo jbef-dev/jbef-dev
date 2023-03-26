@@ -10,7 +10,7 @@ interface PageContainerProps extends HTMLAttributes<HTMLElement> {
   gap?: boolean;
 }
 
-export const PageContainer = (props: PropsWithChildren<PageContainerProps>) => {
+const PageContainer = (props: PropsWithChildren<PageContainerProps>) => {
   const {
     children,
     mt = true,
@@ -41,3 +41,5 @@ export const PageContainer = (props: PropsWithChildren<PageContainerProps>) => {
     </main>
   );
 };
+
+export default PageContainer;

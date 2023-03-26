@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, ReactNode, useEffect, useState } from 'react';
+import { forwardRef, ReactNode, useState } from 'react';
 import clsx, { ClassValue } from 'clsx';
 import {
   AnimatePresence,
@@ -140,7 +140,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const reference = useForwardedRef(ref);
 
-    useOutsideClick(() => setHover(false), isHover, reference);
+    const toggleHover = () => setHover(h => !h);
+
+    useOutsideClick(toggleHover, isHover, reference);
 
     return (
       <motion.button
@@ -154,9 +156,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         initial='initial'
         whileHover='hover'
-        onTapStart={() => setHover(true)}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
+        onTapStart={toggleHover}
+        onMouseEnter={toggleHover}
+        onMouseLeave={toggleHover}
         variants={flavors[flavor]?.variants}
         {...props}
       >

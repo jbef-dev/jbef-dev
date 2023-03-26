@@ -4,7 +4,13 @@ import clsx from 'clsx';
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
 import { myAnimation } from '@/styles/customAnimations';
 import { Link } from 'next-intl';
-import * as React from 'react';
+import {
+  createContext,
+  forwardRef,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 interface HamburgerMenuCtxI {
   open: boolean;
@@ -12,21 +18,21 @@ interface HamburgerMenuCtxI {
   activeSubmenu: string | undefined;
   setActiveSubmenu: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
-const HamburgerMenuCtx = React.createContext<HamburgerMenuCtxI>(
+const HamburgerMenuCtx = createContext<HamburgerMenuCtxI>(
   {} as HamburgerMenuCtxI
 );
 const useHamburgerMenuCtx = () =>
-  React.useContext<HamburgerMenuCtxI>(HamburgerMenuCtx);
+  useContext<HamburgerMenuCtxI>(HamburgerMenuCtx);
 interface HamburgerMenuProps {
   children: React.ReactNode;
 }
 
 const HamburgerMenu = ({ children }: HamburgerMenuProps) => {
-  const [open, setOpen] = React.useState(false);
-  const [activeSubmenu, setActiveSubmenu] = React.useState<string | undefined>(
+  const [open, setOpen] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | undefined>(
     undefined
   );
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.style.overflowY = open ? 'hidden' : 'scroll';
     document.body.style.overflowX = 'hidden';
   }, [open]);
@@ -71,36 +77,35 @@ const HamburgerMenuButton = ({
   );
 };
 
-const HamburgerMenuContent = React.forwardRef<
-  HTMLElement,
-  HTMLMotionProps<'nav'>
->(({ className, children, ...props }, ref) => {
-  const { open } = useHamburgerMenuCtx();
-  return (
-    <AnimatePresence>
-      <motion.nav
-        ref={ref}
-        className={clsx(className)}
-        initial='initial'
-        variants={{ initial: { y: '-100%' }, animate: { y: 0 } }}
-        animate={open ? 'animate' : 'initial '}
-        transition={{
-          type: 'keyframes',
-          ease: 'easeInOut',
-          duration: myAnimation.values.duration.verySlow,
-        }}
-        style={{
-          transform: 'translate3d(0px, 0px, 0px)',
-        }}
-        {...props}
-      >
-        {children}
-      </motion.nav>
-    </AnimatePresence>
-  );
-});
+const HamburgerMenuContent = forwardRef<HTMLElement, HTMLMotionProps<'nav'>>(
+  ({ className, children, ...props }, ref) => {
+    const { open } = useHamburgerMenuCtx();
+    return (
+      <AnimatePresence>
+        <motion.nav
+          ref={ref}
+          className={clsx(className)}
+          initial='initial'
+          variants={{ initial: { y: '-100%' }, animate: { y: 0 } }}
+          animate={open ? 'animate' : 'initial '}
+          transition={{
+            type: 'keyframes',
+            ease: 'easeInOut',
+            duration: myAnimation.values.duration.verySlow,
+          }}
+          style={{
+            transform: 'translate3d(0px, 0px, 0px)',
+          }}
+          {...props}
+        >
+          {children}
+        </motion.nav>
+      </AnimatePresence>
+    );
+  }
+);
 
-const HamburgerMenuNavigation = React.forwardRef<
+const HamburgerMenuNavigation = forwardRef<
   HTMLDivElement,
   HTMLMotionProps<'nav'>
 >(({ children, ...props }, ref) => {
@@ -135,7 +140,7 @@ const HamburgerMenuNavigation = React.forwardRef<
   );
 });
 
-const HamburgerMenuSubNavigation = React.forwardRef<
+const HamburgerMenuSubNavigation = forwardRef<
   HTMLDivElement,
   HTMLMotionProps<'nav'> & { value: string }
 >(({ value, children, ...props }, ref) => {
@@ -173,21 +178,20 @@ const HamburgerMenuSubNavigation = React.forwardRef<
   );
 });
 
-const HamburgerMenuNavItem = React.forwardRef<
-  HTMLDivElement,
-  HTMLMotionProps<'div'>
->(({ children, ...props }, ref) => (
-  <motion.div
-    ref={ref}
-    variants={myAnimation.variants.appearFromTop}
-    transition={myAnimation.transition.easeOut}
-    {...props}
-  >
-    {children}
-  </motion.div>
-));
+const HamburgerMenuNavItem = forwardRef<HTMLDivElement, HTMLMotionProps<'div'>>(
+  ({ children, ...props }, ref) => (
+    <motion.div
+      ref={ref}
+      variants={myAnimation.variants.appearFromTop}
+      transition={myAnimation.transition.easeOut}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  )
+);
 
-const HamburgerMenuNavTrigger = React.forwardRef<
+const HamburgerMenuNavTrigger = forwardRef<
   HTMLDivElement,
   HTMLMotionProps<'div'> & { value: string; indicator?: boolean }
 >(({ value, indicator = false, className, children, ...props }, ref) => {
@@ -236,7 +240,7 @@ const HamburgerMenuNavTrigger = React.forwardRef<
   );
 });
 
-const HamburgerMenuNavLink = React.forwardRef<
+const HamburgerMenuNavLink = forwardRef<
   HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof Link>
 >(({ children, ...props }, ref) => {

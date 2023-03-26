@@ -3,7 +3,7 @@ import { forwardRef, HTMLAttributes, PropsWithChildren } from 'react';
 
 interface Heading1Props extends HTMLAttributes<HTMLHeadingElement> {}
 
-export const Heading1 = forwardRef<HTMLHeadingElement, Heading1Props>(
+const Heading1 = forwardRef<HTMLHeadingElement, Heading1Props>(
   (props: PropsWithChildren<Heading1Props>, ref) => {
     const { className, children, ...rest } = props;
     return (
@@ -20,3 +20,5 @@ export const Heading1 = forwardRef<HTMLHeadingElement, Heading1Props>(
     );
   }
 );
+
+export { Heading1 as default };

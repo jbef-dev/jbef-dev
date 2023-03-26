@@ -1,13 +1,11 @@
 // import { useTranslations } from 'next-intl';
+import { SeparatorMargin, SeparatorRounded } from '@/components/Separator';
 import {
-  SeparatorMargin,
-  SeparatorRounded,
-} from '@/components/Separator/Separator';
-import { FlexContainer } from '@/ui/Containers/FlexContainer';
-import { PageContainer } from '@/ui/Containers/PageContainer';
-import { SectionContainer } from '@/ui/Containers/SectionContainer';
-import { Heading1 } from '@/ui/Typography/Heading1';
-import { Heading3 } from '@/ui/Typography/Heading3';
+  FlexContainer,
+  PageContainer,
+  SectionContainer,
+} from '@/ui/Containers';
+import { Heading1, Heading3 } from '@/ui/Typography';
 
 export default function Home({}) {
   // const t = useTranslations('pages.home');

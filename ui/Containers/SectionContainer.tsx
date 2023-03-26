@@ -20,7 +20,7 @@ interface SectionContainerProps extends ComponentPropsWithoutRef<'section'> {
   altRef?: RefObject<HTMLDivElement>;
 }
 
-export const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
+const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
   (props, ref) => {
     const {
       center = true,
@@ -71,3 +71,5 @@ export const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
     );
   }
 );
+
+export default SectionContainer;

@@ -1,7 +1,7 @@
 'use client';
 
 import { myAnimation } from '@/styles/customAnimations';
-import { AOSText } from '@/ui/Typography/AOSText';
+import { AOSText } from '@/ui/Typography';
 import { useScroll, useSpring, useTransform } from 'framer-motion';
 import { ComponentPropsWithoutRef, useRef } from 'react';
 

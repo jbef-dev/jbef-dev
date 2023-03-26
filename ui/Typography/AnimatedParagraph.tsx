@@ -9,7 +9,7 @@ interface Props extends HTMLMotionProps<'p'> {
   children: string;
 }
 
-export const AnimatedParagraph = ({ children, className, ...props }: Props) => {
+const AnimatedParagraph = ({ children, className, ...props }: Props) => {
   const paragraphRef = useRef<HTMLParagraphElement>(null);
   const isVisible = useInView(paragraphRef, { once: true, amount: 0.6 });
 
@@ -42,3 +42,5 @@ export const AnimatedParagraph = ({ children, className, ...props }: Props) => {
     </motion.p>
   );
 };
+
+export default AnimatedParagraph;

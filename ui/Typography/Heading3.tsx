@@ -3,7 +3,7 @@ import { HTMLAttributes, PropsWithChildren } from 'react';
 
 interface Heading3Props extends HTMLAttributes<HTMLHeadingElement> {}
 
-export const Heading3 = (props: PropsWithChildren<Heading3Props>) => {
+const Heading3 = (props: PropsWithChildren<Heading3Props>) => {
   const { className, children, ...rest } = props;
   return (
     <h1
@@ -14,3 +14,5 @@ export const Heading3 = (props: PropsWithChildren<Heading3Props>) => {
     </h1>
   );
 };
+
+export { Heading3 as default };

@@ -1,9 +1,9 @@
-import { Heading2 } from '@/ui/Typography/Heading2';
+import { Heading2 } from '@/ui/Typography';
 import { EvolveTitle } from './EvolveTitle';
 import { StandOutIcons } from './StandOutIcons';
-import { FlexContainer } from '@/ui/Containers/FlexContainer';
+import { FlexContainer } from '@/ui/Containers';
 
-export const EvolveSection = () => {
+const EvolveSection = () => {
   return (
     <FlexContainer flexCol center>
       <Heading2 className='flex items-center justify-center flex-col w-full max-w-screen-2xl'>
@@ -28,3 +28,5 @@ export const EvolveSection = () => {
     </FlexContainer>
   );
 };
+
+export { EvolveSection };

@@ -1,17 +1,18 @@
+import dynamic from 'next/dynamic';
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
+
 import {
   SeparatorMargin,
   SeparatorRounded,
-} from '@/components/Separator/Separator';
+} from '@/components/Separator';
 // const SeparatorMargin = dynamic(() =>
 //   import('@/components/Separator/Separator').then(mod => mod.SeparatorMargin)
 // );
 // const SeparatorRounded = dynamic(() =>
 //   import('@/components/Separator/Separator').then(mod => mod.SeparatorRounded)
 // );
-
-import { PageContainer } from '@/ui/Containers/PageContainer';
-import { SectionContainer } from '@/ui/Containers/SectionContainer';
-
 // import { Hero } from './Hero/Hero';
 const Hero = dynamic(() => import('./Hero/Hero'));
 // import { PricingTable } from './PricingTable/PricingTable';
@@ -22,15 +23,16 @@ const PricingTable = dynamic(() =>
 const EvolveSection = dynamic(() =>
   import('./EvolveSection/EvolveSection').then(mod => mod.EvolveSection)
 );
-import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
-import { Heading3 } from '@/ui/Typography/Heading3';
-import { AOSText } from '@/ui/Typography/AOSText';
-import { AnimatedParagraph } from '@/ui/Typography/AnimatedParagraph';
-import { FlexContainer } from '@/ui/Containers/FlexContainer';
-import { PaymentRow } from './PaymentRow/PaymentRow';
-import dynamic from 'next/dynamic';
+// import { PaymentRow } from './PaymentRow/PaymentRow';
+const PaymentRow = dynamic(() => import('./PaymentRow/PaymentRow'));
+// import { AOSText } from '@/ui/Typography/AOSText';
+const AOSText = dynamic(() => import('@/ui/Typography/AOSText'));
+import {
+  PageContainer,
+  SectionContainer,
+  FlexContainer,
+} from '@/ui/Containers';
+import { AnimatedParagraph, Heading3 } from '@/ui/Typography';
 
 export default function Home() {
   const t = useTranslations('pages.home');

@@ -1,6 +1,5 @@
-import { FlexContainer } from '@/ui/Containers/FlexContainer';
-import { AnimatedParagraph } from '@/ui/Typography/AnimatedParagraph';
-import { Heading3 } from '@/ui/Typography/Heading3';
+import { FlexContainer } from '@/ui/Containers';
+import { AnimatedParagraph, Heading3 } from '@/ui/Typography';
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 
@@ -11,7 +10,7 @@ interface Props {
   align: 'left' | 'right';
 }
 
-export const PaymentRow = ({ icons, title, paragraph, align }: Props) => {
+const PaymentRow = ({ icons, title, paragraph, align }: Props) => {
   return (
     <FlexContainer flexCol>
       <FlexContainer
@@ -42,3 +41,5 @@ export const PaymentRow = ({ icons, title, paragraph, align }: Props) => {
     </FlexContainer>
   );
 };
+
+export default PaymentRow;

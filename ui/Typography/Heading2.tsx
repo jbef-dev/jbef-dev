@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import { HTMLAttributes, PropsWithChildren } from 'react';
 
-interface Heading1Props extends HTMLAttributes<HTMLHeadingElement> {}
+interface Heading2Props extends HTMLAttributes<HTMLHeadingElement> {}
 
-export const Heading2 = (props: PropsWithChildren<Heading1Props>) => {
+const Heading2 = (props: PropsWithChildren<Heading2Props>) => {
   const { className, children, ...rest } = props;
   return (
     <h2
@@ -17,3 +17,5 @@ export const Heading2 = (props: PropsWithChildren<Heading1Props>) => {
     </h2>
   );
 };
+
+export { Heading2 as default };
