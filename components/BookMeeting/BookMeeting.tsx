@@ -1,4 +1,4 @@
-import { AOSText } from '@/ui/Typography/AOSText';
+import { AOSText } from '@/ui/Typography';
 
 export const BookMeeting = () => {
   return (

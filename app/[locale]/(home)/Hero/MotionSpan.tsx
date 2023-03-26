@@ -20,6 +20,6 @@ const MotionSpan = forwardRef<
   );
 });
 
-// MotionSpan.displayName = 'MotionSpan';
+MotionSpan.displayName = 'MotionSpan';
 
 export { MotionSpan };
