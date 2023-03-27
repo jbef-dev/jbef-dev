@@ -11,10 +11,38 @@ const esMessages: I18nMessages = {
       title1: 'Diseño web / programación web',
       pagetitle: 'Dentista en Torrevieja',
       hero: {
-        heading1: 'Diseño',
-        heading2: 'A medida',
-        heading3: 'Creando',
-        heading4: 'Experiencias',
+        titles: {
+          title1: 'Diseño',
+          title2: 'A medida',
+          title3: 'Creando',
+          title4: 'Experiencias',
+        },
+      },
+      evolve: {
+        // title: ['Evolve', 'Your business', 'Stand out', 'Online'],
+        titles: {
+          title1: 'Evolve',
+          title2: 'Your business',
+          title3: 'Stand out',
+          title4: 'Online',
+        },
+      },
+      features: {},
+      pricing: {
+        title: ['Transparent', 'Pricing'],
+        subtitle:
+          'Clear and transparent pricing, no hidden costs or extra charges',
+        standard: {
+          title: 'Standard',
+          features: [
+            'hosting',
+            'Optimized',
+            'SEO',
+            'Edits in 48h',
+            'Responsive design',
+            'Custom design & code',
+          ],
+        },
       },
     },
     about: {
@@ -38,7 +66,8 @@ const esMessages: I18nMessages = {
     contact: {
       SEO: {
         title: 'Contact - call, email or book an online meeting',
-        description: 'Let&apos;s discuss your project to find a solution made to measure',
+        description:
+          'Let&apos;s discuss your project to find a solution made to measure',
       },
       pagetitle: 'Póngase en contacto',
       title1: 'Póngase en <hl>contacto</hl>',

@@ -10,10 +10,38 @@ const frMessages: I18nMessages = {
       title1: 'Web design / programming',
       pagetitle: 'Clinique dentaire à Torrevieja',
       hero: {
-        heading1: 'Design',
-        heading2: 'Sur mesure',
-        heading3: 'DIGITAL',
-        heading4: 'EXPERIENCES',
+        titles: {
+          title1: 'Design',
+          title2: 'Sur mesure',
+          title3: 'DIGITAL',
+          title4: 'EXPERIENCES',
+        },
+      },
+      evolve: {
+        // title: ['Evolve', 'Your business', 'Stand out', 'Online'],
+        titles: {
+          title1: 'Evolve',
+          title2: 'Your business',
+          title3: 'Stand out',
+          title4: 'Online',
+        },
+      },
+      features: {},
+      pricing: {
+        title: ['Transparent', 'Pricing'],
+        subtitle:
+          'Clear and transparent pricing, no hidden costs or extra charges',
+        standard: {
+          title: 'Standard',
+          features: [
+            'hosting',
+            'Optimized',
+            'SEO',
+            'Edits in 48h',
+            'Responsive design',
+            'Custom design & code',
+          ],
+        },
       },
     },
 

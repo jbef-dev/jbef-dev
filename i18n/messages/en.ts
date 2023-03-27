@@ -4,15 +4,44 @@ const enMessages = {
     home: {
       SEO: {
         title: 'jbef.dev - Custom web development for your business',
-        description: 'Custom web development, EU based, flexible and made to fit your needs',
+        description:
+          'Custom web development, EU based, flexible and made to fit your needs',
       },
       pagetitle: 'Web Design',
       title1: 'Web Designer / Programmer',
       hero: {
-        heading1: 'Building',
-        heading2: 'Custom',
-        heading3: 'Online',
-        heading4: 'Experiences',
+        titles: {
+          title1: 'Building',
+          title2: 'Custom',
+          title3: 'Online',
+          title4: 'Experiences',
+        },
+      },
+      evolve: {
+        // title: ['Evolve', 'Your business', 'Stand out', 'Online'],
+        titles: {
+          title1: 'Evolve',
+          title2: 'Your business',
+          title3: 'Stand out',
+          title4: 'Online',
+        },
+      },
+      features: {},
+      pricing: {
+        title: ['Transparent', 'Pricing'],
+        subtitle:
+          'Clear and transparent pricing, no hidden costs or extra charges',
+        standard: {
+          title: 'Standard',
+          features: [
+            'hosting',
+            'Optimized',
+            'SEO',
+            'Edits in 48h',
+            'Responsive design',
+            'Custom design & code',
+          ],
+        },
       },
     },
 
@@ -37,7 +66,8 @@ const enMessages = {
     contact: {
       SEO: {
         title: 'Contact - call, email or book an online meeting',
-        description: 'Let&apos;s discuss your project to find a solution made to measure',
+        description:
+          'Let&apos;s discuss your project to find a solution made to measure',
       },
       pagetitle: 'Contact us',
       title1: 'Get <hl>in touch</hl>',
