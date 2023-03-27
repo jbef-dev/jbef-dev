@@ -4,7 +4,7 @@ const enMessages = {
     home: {
       SEO: {
         title: 'jbef.dev - Custom web development for your business',
-        description: 'Custom web development',
+        description: 'Custom web development, EU based, flexible and made to fit your needs',
       },
       pagetitle: 'Web Design',
       title1: 'Web Designer / Programmer',
@@ -35,6 +35,10 @@ const enMessages = {
     },
 
     contact: {
+      SEO: {
+        title: 'Contact - call, email or book an online meeting',
+        description: 'Let&apos;s discuss your project to find a solution made to measure',
+      },
       pagetitle: 'Contact us',
       title1: 'Get <hl>in touch</hl>',
       subtitle1:

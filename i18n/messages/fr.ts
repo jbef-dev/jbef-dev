@@ -36,6 +36,11 @@ const frMessages: I18nMessages = {
     },
 
     contact: {
+      SEO: {
+        title: 'Contact - call, email or book an online meeting',
+        description:
+          'Let&apos;s discuss your project to find a solution made to measure',
+      },
       pagetitle: 'Contactez-nous',
       title1: '1er consultation <hl>gratuite</hl>',
       subtitle1: '',

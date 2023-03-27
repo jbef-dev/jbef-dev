@@ -36,6 +36,10 @@ const esMessages: I18nMessages = {
     },
 
     contact: {
+      SEO: {
+        title: 'Contact - call, email or book an online meeting',
+        description: 'Let&apos;s discuss your project to find a solution made to measure',
+      },
       pagetitle: 'Póngase en contacto',
       title1: 'Póngase en <hl>contacto</hl>',
       subtitle1:
