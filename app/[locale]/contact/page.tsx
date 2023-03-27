@@ -1,3 +1,5 @@
+import dynamic from 'next/dynamic';
+
 // import { useTranslations } from 'next-intl';
 import { SeparatorMargin, SeparatorRounded } from '@/components/Separator';
 import {
@@ -6,7 +8,7 @@ import {
   SectionContainer,
 } from '@/ui/Containers';
 import { Heading1, Heading3 } from '@/ui/Typography';
-import { CalendarWidget } from './CalendarWidget/CalendarWidget';
+const CalendarWidget = dynamic(() => import('./CalendarWidget/CalendarWidget'));
 
 export default async function Contact() {
   // const t = useTranslations('pages.home');
@@ -30,7 +32,10 @@ export default async function Contact() {
           <h4 className='text-responsive-lg font-title font-light sm:text-center'>
             Book a free online meeting to discuss your project
           </h4>
-          <CalendarWidget className='scrollbar-hide w-full h-full' calLink='jbef-dev/30min' />
+          <CalendarWidget
+            className='scrollbar-hide w-full h-full'
+            calLink='jbef-dev/30min'
+          />
         </FlexContainer>
         {/* {[...new Array(20)].map((_, i) => ( */}
         {/*   <div key={i} className='w-full'> */}

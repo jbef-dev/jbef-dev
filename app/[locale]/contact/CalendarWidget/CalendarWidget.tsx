@@ -25,4 +25,4 @@ const CalendarWidget = (props: ComponentPropsWithoutRef<typeof Cal>) => {
   return <Cal {...props} />;
 };
 
-export { CalendarWidget };
+export { CalendarWidget as default };
