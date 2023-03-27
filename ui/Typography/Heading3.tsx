@@ -15,4 +15,4 @@ const Heading3 = (props: PropsWithChildren<Heading3Props>) => {
   );
 };
 
-export { Heading3 as default };
+export default Heading3;

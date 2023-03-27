@@ -27,4 +27,4 @@ const AOSText = forwardRef<HTMLDivElement, HTMLMotionProps<'div'>>(
   }
 );
 
-export { AOSText as default };
+export default AOSText;

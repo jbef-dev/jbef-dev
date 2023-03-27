@@ -21,4 +21,4 @@ const Heading1 = forwardRef<HTMLHeadingElement, Heading1Props>(
   }
 );
 
-export { Heading1 as default };
+export default Heading1;
