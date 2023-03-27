@@ -11,7 +11,7 @@ import {
 import { NAVBAR_LINKS } from '@/config/constants/pageContent';
 import { Logo } from '@/components/Logo/Logo';
 
-export const Header = async () => {
+const Header = async () => {
   const locale = useLocale();
   const navLinks = await NAVBAR_LINKS();
 
@@ -82,3 +82,5 @@ export const Header = async () => {
     </header>
   );
 };
+
+export { Header };

@@ -15,6 +15,7 @@ export default createIntlMiddleware({
 export const config = {
   // Skip all internal paths
   // matcher: ['/((?!_next).*)'],
-  // // Skip all non-content paths
-  matcher: ['/((?!api|_next|favicon|vid|img).*)'],
+  // Skip all non-content paths (CAREFUL if a folder or file is located as direct child
+  // inside public folder, you need to add it here so the route does not become internationalized)
+  matcher: ['/((?!_next|assets|favicons|favicon.ico).*)'],
 };
