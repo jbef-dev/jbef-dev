@@ -7,7 +7,7 @@ const Hero = () => {
   const t = useTranslations('pages.home.hero');
 
   return (
-    <div className='flex w-full'>
+    <div className='flex w-full min-h-[250lvh]'>
       <HeroTitles
         titles={[
           t('titles.title1'),
