@@ -6,8 +6,8 @@ import { useRef } from 'react';
 import { RiArrowDownLine } from 'react-icons/ri';
 import { ExplodingLetter } from './ExplodingLetter';
 
-import architecture from '@/public/img/architecture_preview.webp';
-import colorful_animals from '@/public/img/colorful_animals_preview.webp';
+import architecture from '@/public/assets/img/architecture_preview.webp';
+import colorful_animals from '@/public/assets/img/colorful_animals_preview.webp';
 import { myAnimation } from '@/styles/customAnimations';
 import { MotionSpan } from './MotionSpan';
 
@@ -93,8 +93,8 @@ const Hero = ({ titles }: Props) => {
               transition={myAnimation.transition.easeInOut}
               style={{ y: videoY }}
             >
-              {/* <video src='/vid/test_vid.mp4' autoPlay muted playsInline /> */}
-              <Image src={colorful_animals} alt='colorful animals' />
+              <video src='/assets/vid/test_vid.mp4' autoPlay muted playsInline />
+              {/* <Image src={colorful_animals} alt='colorful animals' /> */}
             </motion.div>
           </div>
 

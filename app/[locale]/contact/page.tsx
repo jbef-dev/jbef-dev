@@ -6,14 +6,15 @@ import {
   SectionContainer,
 } from '@/ui/Containers';
 import { Heading1, Heading3 } from '@/ui/Typography';
+import { CalendarWidget } from './CalendarWidget/CalendarWidget';
 
-export default function Home({}) {
+export default async function Contact() {
   // const t = useTranslations('pages.home');
 
   return (
     <PageContainer mt={false} mb={false}>
       <SectionContainer flex pb={false} center>
-        <Heading1>Let&apos;s get in touch</Heading1>
+        <Heading1 className='text-center'>Let&apos;s get in touch</Heading1>
       </SectionContainer>
 
       <SeparatorMargin className='bg-white' />
@@ -23,6 +24,13 @@ export default function Home({}) {
         <FlexContainer className='font-medium' flexCol grow>
           <Heading3>jorge@jbef.dev</Heading3>
           <Heading3>+34 606 516 718</Heading3>
+        </FlexContainer>
+
+        <FlexContainer flexCol>
+          <h4 className='text-responsive-lg font-title font-light sm:text-center'>
+            Book a free online meeting to discuss your project
+          </h4>
+          <CalendarWidget className='scrollbar-hide w-full h-full' calLink='jbef-dev/30min' />
         </FlexContainer>
         {/* {[...new Array(20)].map((_, i) => ( */}
         {/*   <div key={i} className='w-full'> */}

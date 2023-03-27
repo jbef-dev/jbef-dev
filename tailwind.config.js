@@ -31,7 +31,7 @@ module.exports = {
         'responsive-xl': 'clamp(2.1rem, 5.5vw, 4.8rem)',
         'responsive-2xl': 'clamp(2.6rem, 8vw, 7.3rem)',
         'responsive-3xl': 'clamp(2.8rem, 10.2vw, 9.5rem)',
-        'responsive-hero': 'clamp(3.5rem, 12vw, 11.5rem)',
+        'responsive-hero': 'clamp(3.5rem, 13vw, 11.5rem)',
       },
       borderRadius: {
         xs: '1px',

@@ -18,10 +18,10 @@ export const EvolveTitle = ({ xStyle, style, ...props }: Props) => {
   });
   const springInput = useSpring(scrollYProgress, myAnimation.spring.default);
 
-  const spanX1 = useTransform(springInput, [0, 1], ['0em', '1.2em']);
-  const spanX2 = useTransform(springInput, [0, 1], ['0em', '-0.8em']);
-  const spanX3 = useTransform(springInput, [0, 1], ['0.5em', '-0.7em']);
-  const spanX4 = useTransform(springInput, [0, 1], ['-0.5em', '1.1em']);
+  const spanX1 = useTransform(springInput, [0, 1], ['0em', '0.85em']);
+  const spanX2 = useTransform(springInput, [0, 1], ['0em', '-0.4em']);
+  const spanX3 = useTransform(springInput, [0, 1], ['0.3em', '-0.4em']);
+  const spanX4 = useTransform(springInput, [0, 1], ['-0.3em', '0.7em']);
 
   const spanXStyles = [spanX1, spanX2, spanX3, spanX4];
 
