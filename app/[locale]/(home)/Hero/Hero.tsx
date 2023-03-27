@@ -2,44 +2,38 @@ import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 
 const HeroTitles = dynamic(() => import('./HeroTitles'));
-const HeroArrow = dynamic(() => import('./HeroArrow'));
 
 const Hero = () => {
   const t = useTranslations('pages.home.hero');
 
   return (
-    <div className='flex w-full h-[230svh] justify-center'>
-      <div className='fixed h-[100svh] top-0 max-w-screen-3xl font-title flex items-center justify-center w-full bg-white'>
-        {/* <CircleSpring containerScroll={scrollYProgress} /> */}
+    <div className='flex w-full'>
+      <HeroTitles
+        titles={[
+          t('titles.title1'),
+          t('titles.title2'),
+          t('titles.title3'),
+          t('titles.title4'),
+        ]}
+      />
 
-        <HeroTitles
-          titles={[
-            t('titles.title1'),
-            t('titles.title2'),
-            t('titles.title3'),
-            t('titles.title4'),
-          ]}
-        />
-        <HeroArrow />
-
-        <div className='flex absolute max-md:left-[15vw] bottom-[18%] lg:right-[6vw] lg:bottom-[45%] font-sans text-responsive-xs gap-1 text-white mix-blend-difference'>
-          <div className='pt-1'>
-            <svg
-              viewBox='0 0 24 24'
-              stroke='currentColor'
-              className='fill-white w-3 h-3'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z'
-              />
-            </svg>
-          </div>
-          <p>
-            Custom websites —<br /> down to earth service
-          </p>
+      <div className='flex absolute max-md:left-[15vw] bottom-[18%] lg:right-[6vw] lg:bottom-[45%] font-sans text-responsive-xs gap-1 text-white mix-blend-difference'>
+        <div className='pt-1'>
+          <svg
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+            className='fill-white w-3 h-3'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z'
+            />
+          </svg>
         </div>
+        <p>
+          Custom websites —<br /> down to earth service
+        </p>
       </div>
     </div>
   );

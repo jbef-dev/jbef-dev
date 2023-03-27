@@ -37,7 +37,14 @@ export default function Home() {
   return (
     <PageContainer mt={false} mb={false}>
       <SectionContainer flexCol center px={false} gap={false}>
-        <Hero />
+        <Hero
+          titles={[
+            t('hero.titles.title1'),
+            t('hero.titles.title2'),
+            t('hero.titles.title3'),
+            t('hero.titles.title4'),
+          ]}
+        />
       </SectionContainer>
 
       <SectionContainer
