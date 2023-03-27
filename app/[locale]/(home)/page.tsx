@@ -10,8 +10,8 @@ import { SeparatorMargin, SeparatorRounded } from '@/components/Separator';
 // const SeparatorRounded = dynamic(() =>
 //   import('@/components/Separator/Separator').then(mod => mod.SeparatorRounded)
 // );
-// import { Hero } from './Hero/Hero';
-const Hero = dynamic(() => import('./Hero/Hero'));
+import Hero from './Hero/Hero';
+// const Hero = dynamic(() => import('./Hero/Hero'));
 // import { PricingTable } from './PricingTable/PricingTable';
 const PricingTable = dynamic(() =>
   import('./PricingTable/PricingTable').then(mod => mod.PricingTable)
