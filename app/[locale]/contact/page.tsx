@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
 
-// import { useTranslations } from 'next-intl';
 import { SeparatorMargin, SeparatorRounded } from '@/components/Separator';
 import {
   FlexContainer,
@@ -8,6 +7,9 @@ import {
   SectionContainer,
 } from '@/ui/Containers';
 import { Heading1, Heading3 } from '@/ui/Typography';
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+
 const CalendarWidget = dynamic(() => import('./CalendarWidget/CalendarWidget'));
 
 export default async function Contact() {
@@ -46,4 +48,12 @@ export default async function Contact() {
       </SectionContainer>
     </PageContainer>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('pages.home.SEO');
+  return {
+    title: t('title'),
+    description: t('description'),
+  };
 }

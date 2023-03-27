@@ -3,10 +3,7 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 
-import {
-  SeparatorMargin,
-  SeparatorRounded,
-} from '@/components/Separator';
+import { SeparatorMargin, SeparatorRounded } from '@/components/Separator';
 // const SeparatorMargin = dynamic(() =>
 //   import('@/components/Separator/Separator').then(mod => mod.SeparatorMargin)
 // );
@@ -208,8 +205,8 @@ export default function Home() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('pages.home.SEO');
-
   return {
     title: t('title'),
+    description: t('description'),
   };
 }
