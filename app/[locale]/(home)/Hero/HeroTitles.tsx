@@ -9,8 +9,8 @@ import architecture from '@/public/assets/img/architecture_preview.webp';
 import colorful_animals from '@/public/assets/img/colorful_animals_preview.webp';
 
 import { myAnimation } from '@/styles/customAnimations';
-const ExplodingLetter = dynamic(() => import('./ExplodingLetter'));
-const MotionSpan = dynamic(() => import('./MotionSpan'));
+import { ExplodingLetter } from './ExplodingLetter';
+import { MotionSpan } from './MotionSpan';
 
 const HeroTitles = ({ titles }: { titles: string[] }) => {
   const containerRef = useRef<HTMLDivElement>(null);

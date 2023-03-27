@@ -123,4 +123,4 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
 
 ExplodingLetter.displayName = 'ExplodingLetter';
 
-export default ExplodingLetter;
+export { ExplodingLetter };
