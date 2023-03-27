@@ -50,15 +50,28 @@ export const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
     const springInput = useSpring(containerScroll, springOpts);
 
     const animationStart = 0.21;
+    const animationEnd = 1;
 
-    const y = useTransform(springInput, [animationStart, 1], outputOpts.y);
-    const x = useTransform(springInput, [animationStart, 1], outputOpts.x);
+    const y = useTransform(
+      springInput,
+      [animationStart, animationEnd],
+      outputOpts.y
+    );
+    const x = useTransform(
+      springInput,
+      [animationStart, animationEnd],
+      outputOpts.x
+    );
     const rotate = useTransform(
       springInput,
-      [animationStart, 1],
+      [animationStart, animationEnd],
       outputOpts.rotate
     );
-    const opacity = useTransform(springInput, [animationStart, 1], [1, 0]);
+    const opacity = useTransform(
+      springInput,
+      [animationStart, animationEnd],
+      [1, 0.2]
+    );
 
     // RENDER WHITE SPACE!!!
     if (letter === ' ') {
