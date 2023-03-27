@@ -3,12 +3,14 @@
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { useRef } from 'react';
-import { ExplodingLetter } from './ExplodingLetter';
+import dynamic from 'next/dynamic';
 
 import architecture from '@/public/assets/img/architecture_preview.webp';
 import colorful_animals from '@/public/assets/img/colorful_animals_preview.webp';
+
 import { myAnimation } from '@/styles/customAnimations';
-import { MotionSpan } from './MotionSpan';
+const ExplodingLetter = dynamic(() => import('./ExplodingLetter'));
+const MotionSpan = dynamic(() => import('./MotionSpan'));
 
 const HeroTitles = ({ titles }: { titles: string[] }) => {
   const containerRef = useRef<HTMLDivElement>(null);

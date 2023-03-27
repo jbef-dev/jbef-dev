@@ -29,7 +29,13 @@ import {
   SectionContainer,
   FlexContainer,
 } from '@/ui/Containers';
-import { AnimatedParagraph, Heading3 } from '@/ui/Typography';
+// import { AnimatedParagraph, Heading3 } from '@/ui/Typography';
+const AnimatedParagraph = dynamic(
+  () => import('@/ui/Typography/AnimatedParagraph')
+);
+const Heading3 = dynamic(
+  () => import('@/ui/Typography/Heading3')
+);
 
 export default function Home() {
   const t = useTranslations('pages.home');

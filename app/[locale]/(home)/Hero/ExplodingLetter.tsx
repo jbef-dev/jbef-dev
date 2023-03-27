@@ -14,7 +14,7 @@ interface TitleLetterProps extends HTMLMotionProps<'span'> {
   letter: string;
 }
 
-export const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
+const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
   ({ containerScroll, letter, ...rest }, ref) => {
     // const outputOpts: { x: string[]; y: string[]; rotate: string[] }[] = [
     //   { x: ['0%', '-65%'], y: ['0%', '-101%'], rotate: ['0deg', '-35deg'] },
@@ -122,3 +122,5 @@ export const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
 );
 
 ExplodingLetter.displayName = 'ExplodingLetter';
+
+export default ExplodingLetter;

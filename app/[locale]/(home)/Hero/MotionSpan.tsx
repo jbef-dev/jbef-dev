@@ -22,4 +22,4 @@ const MotionSpan = forwardRef<
 
 MotionSpan.displayName = 'MotionSpan';
 
-export { MotionSpan };
+export default MotionSpan;
