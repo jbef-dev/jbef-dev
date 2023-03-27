@@ -195,7 +195,7 @@ const springs = {
     damping: values.damping.max,
   },
   fast: {
-    stiffness: values.stiffness.high,
+    stiffness: 1200,
     damping: values.damping.max,
   },
 } as const satisfies CustomSprings;
