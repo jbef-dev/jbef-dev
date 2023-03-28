@@ -18,7 +18,7 @@ module.exports = withNextIntl({
   // i18nConfig: './i18n/config.tsx',
   ...nextConfig,
 
-  headers() {
+  async headers() {
     return [
       {
         // Cache all content pages
