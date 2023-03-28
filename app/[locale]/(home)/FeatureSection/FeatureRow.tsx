@@ -10,7 +10,7 @@ interface Props {
   align: 'left' | 'right';
 }
 
-const PaymentRow = ({ icons, title, paragraph, align }: Props) => {
+const FeatureRow = ({ icons, title, paragraph, align }: Props) => {
   return (
     <FlexContainer flexCol>
       <FlexContainer
@@ -42,4 +42,4 @@ const PaymentRow = ({ icons, title, paragraph, align }: Props) => {
   );
 };
 
-export default PaymentRow;
+export default FeatureRow;

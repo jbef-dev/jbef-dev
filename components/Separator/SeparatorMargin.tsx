@@ -7,7 +7,7 @@ const SeparatorMargin = ({
 }: ComponentPropsWithoutRef<'div'>) => {
   return (
     <div
-      className={clsx('relative py-[clamp(5rem,10vw,11rem)]', className)}
+      className={clsx('relative py-[clamp(1.5rem,5vw,8rem)]', className)}
       {...props}
     ></div>
   );

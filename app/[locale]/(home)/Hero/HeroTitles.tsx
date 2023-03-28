@@ -26,10 +26,10 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
   const xLTR = useTransform(springDefault, [startAnimate, 1], ['0%', '40%']);
   const xRTL = useTransform(springDefault, [startAnimate, 1], ['0%', '-40%']);
 
-  const videoY = useTransform(springStiff, [0, 1], ['0rem', '-75rem']);
-  const img1Y = useTransform(springStiff, [0, 1], ['0rem', '-21rem']);
-  const img2Y = useTransform(springStiff, [0, 1], ['0rem', '-62rem']);
-  const arrowY = useTransform(springStiff, [0, 1], ['0rem', '-25rem']);
+  const videoY = useTransform(scrollYProgress, [0, 1], ['0vh', '-105vh']);
+  const img1Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-21rem']);
+  const img2Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-82rem']);
+  const arrowY = useTransform(scrollYProgress, [0, 1], ['0rem', '-25rem']);
 
   return (
     <div ref={containerRef} className='flex w-full h-[250lvh] justify-center'>
@@ -88,13 +88,13 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
               transition={myAnimation.transition.easeInOut}
               style={{ y: videoY }}
             >
-              <video
-                src='/assets/vid/test_vid.mp4'
-                autoPlay
-                muted
-                playsInline
-              />
-              {/* <Image src={colorful_animals} alt='colorful animals' /> */}
+              {/* <video */}
+              {/*   src='/assets/vid/test_vid.mp4' */}
+              {/*   autoPlay */}
+              {/*   muted */}
+              {/*   playsInline */}
+              {/* /> */}
+              <Image src={colorful_animals} alt='colorful animals' />
             </motion.div>
           </div>
 

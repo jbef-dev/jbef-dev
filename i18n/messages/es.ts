@@ -29,7 +29,7 @@ const esMessages: I18nMessages = {
       },
       features: {},
       pricing: {
-        title: ['Transparent', 'Pricing'],
+        title: { title1: 'Transparent', title2: 'Pricing' },
         subtitle:
           'Clear and transparent pricing, no hidden costs or extra charges',
         standard: {
