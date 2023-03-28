@@ -3,7 +3,6 @@
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { useRef } from 'react';
-import dynamic from 'next/dynamic';
 
 import architecture from '@/public/assets/img/architecture_preview.webp';
 import colorful_animals from '@/public/assets/img/colorful_animals_preview.webp';
@@ -127,19 +126,14 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
 
         <motion.div className='max-md:absolute max-md:bottom-4 text-responsive-hero max-md:right-4 self-end'>
           <motion.svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
+            // className='h-[clamp(3.5rem,_13vw,_11.5rem)] aspect-square'
             viewBox='0 0 24 24'
-            strokeWidth={1.8}
-            stroke='currentColor'
-            className='h-[clamp(3.5rem,_13vw,_11.5rem)] aspect-square'
+            fill='currentColor'
+            height='1.15em'
+            width='1.15em'
             style={{ y: arrowY }}
           >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V5'
-            />
+            <path d='M18.707 12.707l-1.414-1.414L13 15.586V6h-2v9.586l-4.293-4.293-1.414 1.414L12 19.414z' />
           </motion.svg>
         </motion.div>
       </div>
