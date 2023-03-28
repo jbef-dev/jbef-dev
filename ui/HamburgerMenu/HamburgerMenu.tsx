@@ -3,7 +3,6 @@
 import clsx from 'clsx';
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
 import { myAnimation } from '@/styles/customAnimations';
-import { Link } from 'next-intl';
 import {
   createContext,
   forwardRef,
@@ -11,6 +10,7 @@ import {
   useEffect,
   useState,
 } from 'react';
+import Link from 'next/link';
 
 interface HamburgerMenuCtxI {
   open: boolean;

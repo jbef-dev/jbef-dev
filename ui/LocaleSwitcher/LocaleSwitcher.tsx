@@ -10,8 +10,8 @@ import { MdOutlineTranslate } from 'react-icons/md';
 import { myAnimation } from '@/styles/customAnimations';
 import { IoTriangle } from 'react-icons/io5';
 import { usePathname } from 'next/navigation';
-import { Link } from 'next-intl';
-import { getUnlocalizedPath } from '@/i18n/getUnlocalizedPath';
+import Link from 'next/link';
+// import { getUnlocalizedPath } from '@/i18n/getUnlocalizedPath';
 
 interface LocaleSwitcherProps extends ComponentPropsWithoutRef<'button'> {
   currentLocale: Locale;
@@ -24,14 +24,14 @@ export const LocaleSwitcher = ({
 }: LocaleSwitcherProps) => {
   const pathName = usePathname();
 
-  // const redirectedPathName = (locale: string) => {
-  //   if (!pathName) return '/';
-  //   const segments = pathName.split('/');
-  //   console.log(segments[1]);
-  //   segments[1] = locale;
-  //   console.log(segments.join('/'));
-  //   return segments.join('/');
-  // };
+  const redirectedPathName = (locale: string) => {
+    if (!pathName) return '/';
+    const segments = pathName.split('/');
+    console.log(segments[1]);
+    segments[1] = locale;
+    console.log(segments.join('/'));
+    return segments.join('/');
+  };
 
   const [open, setOpen] = useState<boolean>(false);
   const toggleOpen = () => setOpen(open => !open);
@@ -95,9 +95,9 @@ export const LocaleSwitcher = ({
                 key={locale}
                 className='flex w-full items-center justify-center disabled:hidden'
                 // href={pathName || '/'}
-                // href={redirectedPathName(locale)}
-                href={getUnlocalizedPath(pathName)}
-                locale={locale}
+                href={redirectedPathName(locale)}
+                // href={getUnlocalizedPath(pathName)}
+                // locale={locale}
               >
                 {locale.toUpperCase()}
               </Link>

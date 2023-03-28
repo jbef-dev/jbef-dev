@@ -1,4 +1,4 @@
-import 'server-only';
+// import 'server-only';
 import type { Locale } from './config';
 import enMessages from './messages/en';
 

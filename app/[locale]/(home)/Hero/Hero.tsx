@@ -97,7 +97,7 @@ const Hero = ({ titles }: Props) => {
               {/*   muted */}
               {/*   playsInline */}
               {/* /> */}
-              <Image src={colorful_animals} alt='colorful animals' />
+              <Image src={colorful_animals} priority alt='colorful animals' />
             </motion.div>
           </div>
 

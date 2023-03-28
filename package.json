@@ -21,7 +21,6 @@
     "framer-motion": "^10.8.5",
     "negotiator": "^0.6.3",
     "next": "13.2.4",
-    "next-intl": "2.12.0-beta.5",
     "nookies": "^2.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
