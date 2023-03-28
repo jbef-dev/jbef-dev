@@ -1,6 +1,6 @@
-import { I18nMessages } from '@/i18n/config';
+import { Dictionary } from '@/i18n/config';
 
-const esMessages: I18nMessages = {
+const esMessages: Dictionary = {
   pages: {
     // Pages
     home: {

@@ -1,5 +1,10 @@
-export const unlocalizedPath = (inputPath: string | null): string => {
-  if (!inputPath) return '/';
+const getUnlocalizedPath = (pathName: string | null): string => {
+  if (!pathName) return '/';
+
+  const segments = pathName.split('/');
+  segments[1] = '';
+  console.log(segments.join('/'));
+  // return segments.join('/');
 
   const findNthOcurrence = (haystack: string, needle: string, n: number) => {
     const arr = haystack.split('').map((c, i) => {
@@ -9,7 +14,7 @@ export const unlocalizedPath = (inputPath: string | null): string => {
     return resultArray[n - 1] || haystack.length;
   };
 
-  const rawPath = inputPath.slice(findNthOcurrence(inputPath, '/', 2));
+  const rawPath = pathName.slice(findNthOcurrence(pathName, '/', 2));
 
   if (rawPath === '') {
     return '/';
@@ -17,3 +22,5 @@ export const unlocalizedPath = (inputPath: string | null): string => {
     return rawPath;
   }
 };
+
+export { getUnlocalizedPath };

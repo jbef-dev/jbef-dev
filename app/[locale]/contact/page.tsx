@@ -8,20 +8,22 @@ import {
 } from '@/ui/Containers';
 import { Heading1, Heading3 } from '@/ui/Typography';
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/get-dictionary';
 
 const CalendarWidget = dynamic(() => import('./CalendarWidget/CalendarWidget'));
 
-export default async function Contact() {
-  // const t = useTranslations('pages.home');
-
+export default async function Contact({
+  params: { locale },
+}: {
+  params: { locale: Locale };
+}) {
   return (
     <PageContainer mt={false} mb={false}>
-      <SectionContainer flex pb={false} center>
+      <SectionContainer flex flexCol pb={false} center>
         <Heading1 className='text-center'>Let&apos;s get in touch</Heading1>
+        <SeparatorMargin />
       </SectionContainer>
-
-      <SeparatorMargin className='bg-white' />
 
       <SectionContainer flex flexCol pt={false} className='bg-black text-white'>
         <SeparatorRounded position='top' className='bg-black' />
@@ -50,10 +52,14 @@ export default async function Contact() {
   );
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('pages.home.SEO');
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const dict = await getDictionary(locale);
   return {
-    title: t('title'),
-    description: t('description'),
+    title: dict['pages'].contact.SEO.title,
+    description: dict['pages'].contact.SEO.description,
   };
 }

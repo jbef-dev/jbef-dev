@@ -1,4 +1,3 @@
-import { Link, useLocale } from 'next-intl';
 import { LocaleSwitcher } from '@/ui/LocaleSwitcher/LocaleSwitcher';
 import {
   HamburgerMenu,
@@ -8,12 +7,32 @@ import {
   HamburgerMenuNavItem,
   HamburgerMenuNavLink,
 } from '@/ui/HamburgerMenu/HamburgerMenu';
-import { NAVBAR_LINKS } from '@/config/constants/pageContent';
 import { Logo } from '@/components/Logo/Logo';
+import { Locale } from '@/i18n/config';
+import Link from 'next/link';
+import { getDictionary } from '@/i18n/get-dictionary';
 
-const Header = async () => {
-  const locale = useLocale();
-  const navLinks = await NAVBAR_LINKS();
+const Header = async ({ locale }: { locale: Locale }) => {
+  const dict = await getDictionary(locale);
+
+  const navLinks = [
+    {
+      label: dict.ui.navbar.home,
+      url: '/',
+    },
+    {
+      label: dict.ui.navbar.portfolio,
+      url: '/portfolio',
+    },
+    {
+      label: dict.ui.navbar.about,
+      url: '/about',
+    },
+    {
+      label: dict.ui.navbar.contact,
+      url: '/contact',
+    },
+  ];
 
   return (
     <header>

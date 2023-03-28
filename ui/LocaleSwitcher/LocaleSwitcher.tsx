@@ -1,6 +1,6 @@
 'use client';
 
-import { LOCALES } from '@/i18n/config';
+import { Locale, i18n } from '@/i18n/config';
 import clsx from 'clsx';
 import { ComponentPropsWithoutRef, useRef, useState } from 'react';
 
@@ -8,27 +8,37 @@ import useOutsideClick from '@/hooks/useOutsideClick';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
 import { myAnimation } from '@/styles/customAnimations';
-import { Link } from 'next-intl';
 import { IoTriangle } from 'react-icons/io5';
-import { usePathname } from 'next-intl/client';
+import { usePathname } from 'next/navigation';
+import { Link } from 'next-intl';
+import { getUnlocalizedPath } from '@/i18n/getUnlocalizedPath';
 
 interface LocaleSwitcherProps extends ComponentPropsWithoutRef<'button'> {
-  currentLocale: string;
+  currentLocale: Locale;
 }
 export const LocaleSwitcher = ({
-  currentLocale = '',
+  currentLocale,
   className,
   children,
   ...props
 }: LocaleSwitcherProps) => {
   const pathName = usePathname();
 
+  // const redirectedPathName = (locale: string) => {
+  //   if (!pathName) return '/';
+  //   const segments = pathName.split('/');
+  //   console.log(segments[1]);
+  //   segments[1] = locale;
+  //   console.log(segments.join('/'));
+  //   return segments.join('/');
+  // };
+
   const [open, setOpen] = useState<boolean>(false);
   const toggleOpen = () => setOpen(open => !open);
 
   const ref = useRef<HTMLDivElement>(null);
   useOutsideClick(toggleOpen, open, ref);
-  const otherLocales = LOCALES.filter(l => l != currentLocale);
+  const otherLocales = i18n.locales.filter(locale => locale != currentLocale);
 
   // const dropdownVariants: Variants = {
   //   initial: { opacity: 0, y: '-10%', scale: 0.95 },
@@ -40,7 +50,7 @@ export const LocaleSwitcher = ({
     <button
       className={clsx(
         'group relative flex items-center py-1 px-2 justify-center font-title',
-        open ? 'bg-black/50 backdrop-blur-lg' : '',
+        // open ? 'bg-black/50 backdrop-blur-lg' : '',
         className
       )}
       onClick={() => toggleOpen()}
@@ -80,14 +90,16 @@ export const LocaleSwitcher = ({
             variants={myAnimation.variants.appearMenu}
             transition={myAnimation.transition.appearMenu}
           >
-            {otherLocales.map(l => (
+            {otherLocales.map(locale => (
               <Link
-                key={l}
+                key={locale}
                 className='flex w-full items-center justify-center disabled:hidden'
-                href={pathName || '/'}
-                locale={l}
+                // href={pathName || '/'}
+                // href={redirectedPathName(locale)}
+                href={getUnlocalizedPath(pathName)}
+                locale={locale}
               >
-                {l.toUpperCase()}
+                {locale.toUpperCase()}
               </Link>
             ))}
             {/* </div> */}
