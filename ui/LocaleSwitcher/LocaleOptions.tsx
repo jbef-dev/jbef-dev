@@ -6,11 +6,11 @@ import { motion, Variants } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
 import { useLocaleSwitcher } from './useLocaleSwitcher';
 import { myAnimation } from '@/styles/customAnimations';
-import { Link } from 'next-intl';
 import { IoTriangle } from 'react-icons/io5';
 import clsx from 'clsx';
-import { usePathname } from 'next-intl/client';
 import { useRef } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface Props {
   locale: Locale;
