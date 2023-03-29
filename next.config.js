@@ -10,7 +10,7 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  headers() {
+  async headers() {
     return [
       {
         // Cache all content pages

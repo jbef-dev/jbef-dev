@@ -44,6 +44,8 @@ export default async function LocaleLayout({
   );
 }
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata(): Promise<Metadata> {
   return {
     icons: {
