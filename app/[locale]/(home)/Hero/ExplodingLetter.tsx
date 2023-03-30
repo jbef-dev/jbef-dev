@@ -2,20 +2,25 @@ import { myAnimation } from '@/styles/customAnimations';
 import {
   HTMLMotionProps,
   motion,
-  MotionValue,
+  useScroll,
   useSpring,
   useTransform,
 } from 'framer-motion';
-import { forwardRef } from 'react';
+import { forwardRef, RefObject } from 'react';
 
 interface TitleLetterProps extends HTMLMotionProps<'span'> {
-  containerScroll: MotionValue<number>;
+  containerRef: RefObject<any>;
   // count: number;
   letter: string;
 }
 
 const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
-  ({ containerScroll, letter, ...rest }, ref) => {
+  ({ containerRef, letter, ...rest }, ref) => {
+    const { scrollYProgress } = useScroll({
+      target: containerRef,
+      offset: ['start start', 'end start'],
+    });
+
     // const outputOpts: { x: string[]; y: string[]; rotate: string[] }[] = [
     //   { x: ['0%', '-65%'], y: ['0%', '-101%'], rotate: ['0deg', '-35deg'] },
     //   { x: ['0%', '-95%'], y: ['0%', '70%'], rotate: ['0deg', '25deg'] },
@@ -47,10 +52,10 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
       damping: myAnimation.values.damping.max,
     };
 
-    const springInput = useSpring(containerScroll, springOpts);
+    const springInput = useSpring(scrollYProgress, springOpts);
 
-    const animationStart = 0.21;
-    const animationEnd = 1;
+    const animationStart = 0.1;
+    const animationEnd = 0.4;
 
     const y = useTransform(
       springInput,
@@ -91,22 +96,22 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
 
     return (
       <motion.span
-        className='-mr-2 pr-1 bg-clip-text text-transparent'
+        className='-mr-2 pr-1 bg-clip-text bg-gradient-to-br from-primary via-primary to-secondary text-transparent'
         ref={ref}
-        animate={{
-          // backgroundImage: ['#E7277B', '#F59A2C'],
-          backgroundImage: [
-            `linear-gradient(${startRotation}deg, rgba(245,154,44,0.7) ${startLeftColor}%, rgba(231,39,123,1) ${startRightColor}%)`,
-            `linear-gradient(${midRotation}deg, rgba(245,154,44,0.7) ${midLeftColor}%, rgba(231,39,123,1) ${midRightColor}%)`,
-            `linear-gradient(${endRotation}deg, rgba(245,154,44,0.7) ${endLeftColor}%, rgba(231,39,123,1) ${endRightColor}%)`,
-          ],
-        }}
-        transition={{
-          repeat: Infinity,
-          repeatType: 'reverse',
-          duration: 3.5,
-          ease: 'easeInOut',
-        }}
+        // animate={{
+        //   // backgroundImage: ['#E7277B', '#F59A2C'],
+        //   backgroundImage: [
+        //     `linear-gradient(${startRotation}deg, rgba(245,154,44,0.7) ${startLeftColor}%, rgba(231,39,123,1) ${startRightColor}%)`,
+        //     `linear-gradient(${midRotation}deg, rgba(245,154,44,0.7) ${midLeftColor}%, rgba(231,39,123,1) ${midRightColor}%)`,
+        //     `linear-gradient(${endRotation}deg, rgba(245,154,44,0.7) ${endLeftColor}%, rgba(231,39,123,1) ${endRightColor}%)`,
+        //   ],
+        // }}
+        // transition={{
+        //   repeat: Infinity,
+        //   repeatType: 'reverse',
+        //   duration: 3.5,
+        //   ease: 'easeInOut',
+        // }}
         style={{
           y,
           x,

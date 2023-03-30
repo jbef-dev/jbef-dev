@@ -26,8 +26,8 @@ const Hero = ({ titles }: Props) => {
   // const springStiff = useSpring(scrollYProgress, myAnimation.spring.fast);
 
   const headingStart = 0.1;
-  const xLTR = useTransform(springInput, [headingStart, 1], ['0%', '40%']);
-  const xRTL = useTransform(springInput, [headingStart, 1], ['0%', '-40%']);
+  const xLTR = useTransform(scrollYProgress, [headingStart, 1], ['0%', '40%']);
+  const xRTL = useTransform(scrollYProgress, [headingStart, 1], ['0%', '-40%']);
 
   const videoY = useTransform(scrollYProgress, [0, 1], ['0rem', '-95rem']);
   const img1Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-29rem']);
@@ -77,7 +77,7 @@ const Hero = ({ titles }: Props) => {
               {titles[1].split('').map((letter, i) => (
                 <ExplodingLetter
                   key={letter + i}
-                  containerScroll={scrollYProgress}
+                  containerRef={containerRef}
                   letter={letter}
                 />
               ))}
