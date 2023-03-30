@@ -21,18 +21,18 @@ const Hero = ({ titles }: Props) => {
     offset: ['start start', 'end start'],
   });
 
-  const springInput = useSpring(scrollYProgress, myAnimation.spring.default);
+  // const springInput = useSpring(scrollYProgress, myAnimation.spring.default);
 
-  // const springStiff = useSpring(scrollYProgress, myAnimation.spring.fast);
+  const springStiff = useSpring(scrollYProgress, myAnimation.spring.fast);
 
   const headingStart = 0.1;
-  const xLTR = useTransform(scrollYProgress, [headingStart, 1], ['0%', '40%']);
-  const xRTL = useTransform(scrollYProgress, [headingStart, 1], ['0%', '-40%']);
+  const xLTR = useTransform(springStiff, [headingStart, 1], ['0%', '40%']);
+  const xRTL = useTransform(springStiff, [headingStart, 1], ['0%', '-40%']);
 
-  const videoY = useTransform(scrollYProgress, [0, 1], ['0rem', '-95rem']);
-  const img1Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-29rem']);
-  const img2Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-82rem']);
-  const arrowY = useTransform(scrollYProgress, [0, 1], ['0rem', '-35rem']);
+  const videoY = useTransform(springStiff, [0, 1], ['0rem', '-95rem']);
+  const img1Y = useTransform(springStiff, [0, 1], ['0rem', '-39rem']);
+  const img2Y = useTransform(springStiff, [0, 1], ['0rem', '-82rem']);
+  const arrowY = useTransform(springStiff, [0, 1], ['0rem', '-30rem']);
 
   return (
     <div ref={containerRef} className='flex w-full h-[250lvh] justify-center'>

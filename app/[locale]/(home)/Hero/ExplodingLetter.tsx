@@ -47,12 +47,12 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
       rotate: ['0deg', `${rotateMax}deg`],
     };
 
-    const springOpts = {
-      stiffness: myAnimation.values.stiffness.high,
-      damping: myAnimation.values.damping.max,
-    };
+    // const springOpts = {
+    //   stiffness: myAnimation.values.stiffness.high,
+    //   damping: myAnimation.values.damping.max,
+    // };
 
-    const springInput = useSpring(scrollYProgress, springOpts);
+    const springInput = useSpring(scrollYProgress, myAnimation.spring.fast);
 
     const animationStart = 0.1;
     const animationEnd = 0.4;
