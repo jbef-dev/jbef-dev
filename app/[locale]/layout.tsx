@@ -40,7 +40,7 @@ export default async function LocaleLayout({
   );
 }
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
