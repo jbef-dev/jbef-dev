@@ -21,8 +21,8 @@ export default async function Home({
   // const t = useTranslations('pages.home');
 
   return (
-    <PageContainer mt={false} mb={false}>
-      <SectionContainer flexCol center px={false} gap={false}>
+    <PageContainer>
+      <SectionContainer flexCol pt={false} px={false} gap={false}>
         <Hero
           titles={[
             dict['pages'].home.hero.titles.title1,

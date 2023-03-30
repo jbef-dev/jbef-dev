@@ -13,11 +13,11 @@ interface PageContainerProps extends HTMLAttributes<HTMLElement> {
 const PageContainer = (props: PropsWithChildren<PageContainerProps>) => {
   const {
     children,
-    mt = true,
+    mt = false,
     mb = false,
     py = false,
     pb = false,
-    pt = true,
+    pt = false,
     gap = false,
     className,
     ...rest
