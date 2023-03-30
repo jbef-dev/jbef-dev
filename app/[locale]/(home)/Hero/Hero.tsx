@@ -40,7 +40,7 @@ const Hero = ({ titles }: Props) => {
         {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 
         <motion.div
-          className='flex leading-none text-responsive-hero justify-center items-start w-full px-2 flex-col text-white'
+          className='flex leading-none text-responsive-hero justify-center items-start w-full px-2 flex-col text-black'
           variants={{
             initial: {},
             animate: {
@@ -67,10 +67,7 @@ const Hero = ({ titles }: Props) => {
             {/*   /> */}
             {/* </motion.div> */}
 
-            <MotionSpan
-              className='flex mix-blend-difference'
-              style={{ x: xLTR }}
-            >
+            <MotionSpan className='flex' style={{ x: xLTR }}>
               <h1>{titles[0]}</h1>
             </MotionSpan>
           </div>
@@ -114,13 +111,13 @@ const Hero = ({ titles }: Props) => {
                 alt='example work'
               />
             </motion.div>
-            <MotionSpan className='mix-blend-difference' style={{ x: xRTL }}>
+            <MotionSpan style={{ x: xRTL }}>
               <h1>{titles[2]}</h1>
             </MotionSpan>
           </div>
 
           <MotionSpan
-            className='flex w-full max-lg:justify-center lg:pl-[0.5em] mix-blend-difference'
+            className='flex w-full max-lg:justify-center lg:pl-[0.5em]'
             style={{ x: xRTL }}
           >
             <h1>{titles[3]}</h1>
@@ -133,7 +130,7 @@ const Hero = ({ titles }: Props) => {
         >
           <motion.svg
             viewBox='0 0 24 24'
-            fill='currentColor'
+            className='fill-black'
             height='1.15em'
             width='1.15em'
             style={{ y: arrowY }}
@@ -142,12 +139,12 @@ const Hero = ({ titles }: Props) => {
           </motion.svg>
         </motion.div>
 
-        <div className='flex absolute max-md:left-[15vw] bottom-[18%] lg:right-[6vw] lg:bottom-[45%] font-sans text-responsive-xs gap-1 text-white mix-blend-difference'>
+        <div className='flex absolute max-md:left-[15vw] bottom-[18%] lg:right-[6vw] lg:bottom-[45%] font-sans text-responsive-xs gap-1 text-black'>
           <div className='pt-1'>
             <svg
               viewBox='0 0 24 24'
               stroke='currentColor'
-              className='fill-white w-3 h-3'
+              className='fill-black w-3 h-3'
             >
               <path
                 strokeLinecap='round'
