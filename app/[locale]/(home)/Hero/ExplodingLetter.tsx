@@ -18,6 +18,7 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
   ({ containerRef, letter, ...rest }, ref) => {
     const { scrollYProgress } = useScroll({
       target: containerRef,
+      layoutEffect: false,
       offset: ['start start', 'end start'],
     });
 
@@ -31,6 +32,7 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
     //   { x: ['0%', '89%'], y: ['0%', '-99%'], rotate: ['0deg', '20deg'] },
     //   { x: ['0%', '109%'], y: ['0%', '89%'], rotate: ['0deg', '-20deg'] },
     // ];
+
     const xMax = Math.floor(
       (Math.random() * 100 + 70) * (Math.round(Math.random()) * 2 - 1)
     );
@@ -40,22 +42,16 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
     const rotateMax = Math.floor(
       (Math.random() * 100 + 30) * (Math.round(Math.random()) * 2 - 1)
     );
-
     const outputOpts = {
       x: ['0%', `${xMax}%`],
       y: ['0%', `${yMax}%`],
       rotate: ['0deg', `${rotateMax}deg`],
     };
 
-    // const springOpts = {
-    //   stiffness: myAnimation.values.stiffness.high,
-    //   damping: myAnimation.values.damping.max,
-    // };
+    const springInput = useSpring(scrollYProgress, myAnimation.spring.default);
 
-    const springInput = useSpring(scrollYProgress, myAnimation.spring.fast);
-
-    const animationStart = 0.1;
-    const animationEnd = 0.4;
+    const animationStart = 0.3;
+    const animationEnd = 1;
 
     const y = useTransform(
       springInput,
@@ -72,11 +68,6 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
       [animationStart, animationEnd],
       outputOpts.rotate
     );
-    const opacity = useTransform(
-      springInput,
-      [animationStart, animationEnd],
-      [1, 0.2]
-    );
 
     // RENDER WHITE SPACE!!!
     if (letter === ' ') {
@@ -89,7 +80,6 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
     const midRightColor = Math.floor(Math.random() * 100 + 20);
     const endLeftColor = Math.floor(Math.random() * 100 - 75);
     const endRightColor = Math.floor(Math.random() * 100 + 20);
-
     const startRotation = Math.floor(Math.random() * 360 + 90);
     const midRotation = Math.floor(Math.random() * 360 + 20);
     const endRotation = Math.floor(Math.random() * 360 + 180);
@@ -98,25 +88,25 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
       <motion.span
         className='-mr-2 pr-1 bg-clip-text bg-gradient-to-br from-primary via-primary to-secondary text-transparent'
         ref={ref}
-        // animate={{
-        //   // backgroundImage: ['#E7277B', '#F59A2C'],
-        //   backgroundImage: [
-        //     `linear-gradient(${startRotation}deg, rgba(245,154,44,0.7) ${startLeftColor}%, rgba(231,39,123,1) ${startRightColor}%)`,
-        //     `linear-gradient(${midRotation}deg, rgba(245,154,44,0.7) ${midLeftColor}%, rgba(231,39,123,1) ${midRightColor}%)`,
-        //     `linear-gradient(${endRotation}deg, rgba(245,154,44,0.7) ${endLeftColor}%, rgba(231,39,123,1) ${endRightColor}%)`,
-        //   ],
-        // }}
-        // transition={{
-        //   repeat: Infinity,
-        //   repeatType: 'reverse',
-        //   duration: 3.5,
-        //   ease: 'easeInOut',
-        // }}
+        animate={{
+          // backgroundImage: ['#E7277B', '#F59A2C'],
+          backgroundImage: [
+            `linear-gradient(${startRotation}deg, rgba(245,154,44,0.7) ${startLeftColor}%, rgba(231,39,123,1) ${startRightColor}%)`,
+            `linear-gradient(${midRotation}deg, rgba(245,154,44,0.7) ${midLeftColor}%, rgba(231,39,123,1) ${midRightColor}%)`,
+            `linear-gradient(${endRotation}deg, rgba(245,154,44,0.7) ${endLeftColor}%, rgba(231,39,123,1) ${endRightColor}%)`,
+          ],
+        }}
+        transition={{
+          repeat: Infinity,
+          repeatType: 'reverse',
+          duration: 3.5,
+          ease: 'easeInOut',
+        }}
         style={{
-          y,
-          x,
-          rotate,
-          opacity,
+          y: y,
+          x: x,
+          rotate: rotate,
+          // opacity: opacity,
         }}
         {...rest}
       >

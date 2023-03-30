@@ -1,6 +1,12 @@
 'use client';
 
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  useWillChange,
+} from 'framer-motion';
 import Image from 'next/image';
 import { useRef } from 'react';
 import { ExplodingLetter } from './ExplodingLetter';
@@ -8,7 +14,7 @@ import { ExplodingLetter } from './ExplodingLetter';
 import architecture from '@/public/assets/img/architecture_preview.webp';
 import colorful_animals from '@/public/assets/img/colorful_animals_preview.webp';
 import { myAnimation } from '@/styles/customAnimations';
-import { MotionSpan } from './MotionSpan';
+// import { MotionSpan } from './MotionSpan';
 
 interface Props {
   titles: string[];
@@ -21,18 +27,24 @@ const Hero = ({ titles }: Props) => {
     offset: ['start start', 'end start'],
   });
 
+  const willChange = useWillChange();
+
   // const springInput = useSpring(scrollYProgress, myAnimation.spring.default);
 
-  const springStiff = useSpring(scrollYProgress, myAnimation.spring.fast);
+  const springStiff = useSpring(scrollYProgress, {
+    ...myAnimation.spring.fast,
+    // stiffness: 1200,
+    // damping: 200,
+  });
 
   const headingStart = 0.1;
-  const xLTR = useTransform(springStiff, [headingStart, 1], ['0%', '40%']);
-  const xRTL = useTransform(springStiff, [headingStart, 1], ['0%', '-40%']);
+  const xLTR = useTransform(springStiff, [headingStart, 1], ['0em', '2.5em']);
+  const xRTL = useTransform(springStiff, [headingStart, 1], ['0em', '-2.5em']);
 
-  const videoY = useTransform(springStiff, [0, 1], ['0rem', '-71rem']);
-  const img1Y = useTransform(springStiff, [0, 1], ['0rem', '-30rem']);
-  const img2Y = useTransform(springStiff, [0, 1], ['0rem', '-60rem']);
-  const arrowY = useTransform(springStiff, [0, 1], ['0%', '-100%']);
+  const videoY = useTransform(springStiff, [0, 1], ['0rem', '-61rem']);
+  // const img1Y = useTransform(springStiff, [0, 1], ['0rem', '-30rem']);
+  const img2Y = useTransform(springStiff, [0, 1], ['0rem', '-53rem']);
+  const arrowY = useTransform(springStiff, [0, 1], ['0rem', '-37rem']);
 
   return (
     <div ref={containerRef} className='flex w-full h-[200svh] justify-center'>
@@ -67,13 +79,16 @@ const Hero = ({ titles }: Props) => {
             {/*   /> */}
             {/* </motion.div> */}
 
-            <MotionSpan className='flex' style={{ x: xLTR }}>
-              <h1>{titles[0]}</h1>
-            </MotionSpan>
+            <motion.h1
+              className='flex'
+              style={{ willChange: willChange, x: xLTR }}
+            >
+              {titles[0]}
+            </motion.h1>
           </div>
 
           <div className='flex items-center pl-[0.5em] md:pl-[0.5em] gap-[0.2em]'>
-            <MotionSpan className='tracking-[0.02em]'>
+            <motion.h1 className='flex tracking-[0.02em]'>
               {titles[1].split('').map((letter, i) => (
                 <ExplodingLetter
                   key={letter + i}
@@ -81,12 +96,10 @@ const Hero = ({ titles }: Props) => {
                   letter={letter}
                 />
               ))}
-            </MotionSpan>
+            </motion.h1>
             <motion.div
-              className='max-md:absolute rounded-full overflow-hidden max-md:-bottom-5 max-md:h-[1.2em] max-md:left-[9vw] h-[0.65em] aspect-video object-cover'
-              whileHover={{ scale: 1.4 }}
-              transition={myAnimation.transition.easeInOut}
-              style={{ y: videoY }}
+              className='max-md:absolute rounded-full overflow-hidden max-md:bottom-2 max-md:h-[1.2em] max-md:left-[9vw] h-[0.65em] aspect-video object-cover'
+              style={{ willChange: willChange, y: videoY }}
             >
               {/* <video */}
               {/*   src='/assets/vid/test_vid.mp4' */}
@@ -94,46 +107,50 @@ const Hero = ({ titles }: Props) => {
               {/*   muted */}
               {/*   playsInline */}
               {/* /> */}
-              <Image src={colorful_animals} priority alt='colorful animals' />
+              <Image
+                src={colorful_animals}
+                className='object-cover'
+                priority
+                alt='colorful animals'
+              />
             </motion.div>
           </div>
 
           <div className='flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center'>
             <motion.div
               className='max-md:absolute max-md:right-0 max-md:bottom-[15%] rounded-full max-md:h-[1.2em] h-[0.65em] aspect-video overflow-hidden'
-              style={{ y: img2Y }}
+              style={{ willChange: willChange, y: img2Y }}
             >
               <Image
                 src={architecture}
-                className='object-cover '
+                className='object-cover'
                 priority
                 loading='eager'
                 alt='example work'
               />
             </motion.div>
-            <MotionSpan style={{ x: xRTL }}>
-              <h1>{titles[2]}</h1>
-            </MotionSpan>
+            <motion.h1 style={{ willChange: willChange, x: xRTL }}>
+              {titles[2]}
+            </motion.h1>
           </div>
 
-          <MotionSpan
+          <motion.h1
             className='flex w-full max-lg:justify-center lg:pl-[0.5em]'
-            style={{ x: xRTL }}
+            style={{ willChange: willChange, x: xRTL }}
           >
-            <h1>{titles[3]}</h1>
-          </MotionSpan>
+            {titles[3]}
+          </motion.h1>
         </motion.div>
 
         <motion.div
           className='max-md:absolute h-full max-md:bottom-4 text-responsive-hero max-md:right-4 flex items-end'
-          style={{ y: arrowY }}
+          style={{ willChange: willChange, y: arrowY }}
         >
           <motion.svg
             className='fill-black'
             viewBox='0 0 24 24'
             height='1.15em'
             width='1.15em'
-            style={{ y: arrowY }}
           >
             <path d='M18.707 12.707l-1.414-1.414L13 15.586V6h-2v9.586l-4.293-4.293-1.414 1.414L12 19.414z' />
           </motion.svg>
