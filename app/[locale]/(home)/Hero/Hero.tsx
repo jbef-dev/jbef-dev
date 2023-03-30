@@ -35,8 +35,11 @@ const Hero = ({ titles }: Props) => {
   const arrowY = useTransform(scrollYProgress, [0, 1], ['0rem', '-35rem']);
 
   return (
-    <div ref={containerRef} className='flex w-full h-[250lvh] justify-center'>
-      <div className='fixed h-[100svh] top-0 max-w-screen-3xl font-title flex items-center justify-center w-full bg-white'>
+    <div
+      ref={containerRef}
+      className='flex w-full bg-white h-[250lvh] justify-center'
+    >
+      <div className='fixed h-[100svh] top-0 max-w-screen-3xl font-title flex items-center justify-center w-full'>
         {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 
         <motion.div

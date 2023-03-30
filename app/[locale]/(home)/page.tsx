@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <PageContainer mt={false} mb={false}>
-      <SectionContainer flexCol center px={false} gap={false}>
+      <SectionContainer flexCol center pt={false} px={false} gap={false}>
         <Hero
           titles={[
             t('hero.titles.title1'),
