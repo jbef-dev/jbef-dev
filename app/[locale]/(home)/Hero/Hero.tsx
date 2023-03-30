@@ -29,13 +29,13 @@ const Hero = ({ titles }: Props) => {
   const xLTR = useTransform(springStiff, [headingStart, 1], ['0%', '40%']);
   const xRTL = useTransform(springStiff, [headingStart, 1], ['0%', '-40%']);
 
-  const videoY = useTransform(springStiff, [0, 1], ['0rem', '-95rem']);
-  const img1Y = useTransform(springStiff, [0, 1], ['0rem', '-39rem']);
-  const img2Y = useTransform(springStiff, [0, 1], ['0rem', '-82rem']);
-  const arrowY = useTransform(springStiff, [0, 1], ['0rem', '-30rem']);
+  const videoY = useTransform(springStiff, [0, 1], ['0rem', '-71rem']);
+  const img1Y = useTransform(springStiff, [0, 1], ['0rem', '-30rem']);
+  const img2Y = useTransform(springStiff, [0, 1], ['0rem', '-60rem']);
+  const arrowY = useTransform(springStiff, [0, 1], ['0%', '-100%']);
 
   return (
-    <div ref={containerRef} className='flex w-full h-[250lvh] justify-center'>
+    <div ref={containerRef} className='flex w-full h-[200svh] justify-center'>
       <div className='fixed h-[100svh] top-0 max-w-screen-3xl font-title flex items-center justify-center w-full bg-white'>
         {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 
@@ -125,7 +125,7 @@ const Hero = ({ titles }: Props) => {
         </motion.div>
 
         <motion.div
-          className='max-md:absolute max-md:bottom-4 text-responsive-hero max-md:right-4 self-end'
+          className='max-md:absolute h-full max-md:bottom-4 text-responsive-hero max-md:right-4 flex items-end'
           style={{ y: arrowY }}
         >
           <motion.svg
