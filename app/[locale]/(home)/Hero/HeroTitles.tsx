@@ -77,7 +77,7 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
               {titles[1].split('').map((letter, i) => (
                 <ExplodingLetter
                   key={letter + i}
-                  containerScroll={scrollYProgress}
+                  containerRef={containerRef}
                   letter={letter}
                 />
               ))}
