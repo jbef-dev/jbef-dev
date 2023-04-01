@@ -14,7 +14,6 @@ import { ExplodingLetter } from './ExplodingLetter';
 import architecture from '@/public/assets/img/architecture_preview.webp';
 import colorful_animals from '@/public/assets/img/colorful_animals_preview.webp';
 import { myAnimation } from '@/styles/customAnimations';
-// import { MotionSpan } from './MotionSpan';
 
 interface Props {
   titles: string[];
@@ -80,14 +79,20 @@ const Hero = ({ titles }: Props) => {
 
             <motion.h1
               className='flex'
-              style={{ willChange: willChange, x: xLTR }}
+              variants={myAnimation.variants.appear3d}
+              transition={myAnimation.transition.easeOutSlow}
+              style={{ x: xLTR }}
             >
               {titles[0]}
             </motion.h1>
           </div>
 
           <div className='flex items-center pl-[0.5em] md:pl-[0.5em] gap-[0.2em]'>
-            <motion.h1 className='flex tracking-[0.02em]'>
+            <motion.h1
+              className='flex tracking-[0.02em]'
+              variants={myAnimation.variants.appear3d}
+              transition={myAnimation.transition.easeOutSlow}
+            >
               {titles[1].split('').map((letter, i) => (
                 <ExplodingLetter
                   key={letter + i}
@@ -98,7 +103,7 @@ const Hero = ({ titles }: Props) => {
             </motion.h1>
             <motion.div
               className='max-md:absolute rounded-full overflow-hidden max-md:bottom-2 max-md:h-[1.2em] max-md:left-[9vw] h-[0.65em] aspect-video object-cover'
-              style={{ willChange: willChange, x: videoY }}
+              // style={{ x: videoY }}
             >
               {/* <video */}
               {/*   src='/assets/vid/test_vid.mp4' */}
@@ -118,7 +123,7 @@ const Hero = ({ titles }: Props) => {
           <div className='flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center'>
             <motion.div
               className='max-md:absolute max-md:right-0 max-md:bottom-[15%] rounded-full max-md:h-[1.2em] h-[0.65em] aspect-video overflow-hidden'
-              style={{ willChange: willChange, x: img2Y }}
+              // style={{ x: img2Y }}
             >
               <Image
                 src={architecture}
@@ -128,14 +133,20 @@ const Hero = ({ titles }: Props) => {
                 alt='example work'
               />
             </motion.div>
-            <motion.h1 style={{ willChange: willChange, x: xRTL }}>
+            <motion.h1
+              variants={myAnimation.variants.appear3d}
+              transition={myAnimation.transition.easeOutSlow}
+              style={{ x: xRTL }}
+            >
               {titles[2]}
             </motion.h1>
           </div>
 
           <motion.h1
             className='flex w-full max-lg:justify-center lg:pl-[0.5em]'
-            style={{ willChange: willChange, x: xRTL }}
+            variants={myAnimation.variants.appear3d}
+            transition={myAnimation.transition.easeOutSlow}
+            style={{ x: xRTL }}
           >
             {titles[3]}
           </motion.h1>
@@ -143,7 +154,7 @@ const Hero = ({ titles }: Props) => {
 
         <motion.div
           className='max-md:absolute h-full max-md:bottom-4 text-responsive-hero max-md:right-4 flex items-end'
-          style={{ willChange: willChange, y: arrowY }}
+          style={{ y: arrowY }}
         >
           <motion.svg
             className='fill-black'
