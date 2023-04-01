@@ -36,7 +36,7 @@ const Hero = ({ titles }: Props) => {
     // damping: 200,
   });
 
-  const headingStart = 0.1;
+  const headingStart = 0;
   const xLTR = useTransform(springStiff, [headingStart, 1], ['0em', '2.5em']);
   const xRTL = useTransform(springStiff, [headingStart, 1], ['0em', '-2.5em']);
 
@@ -103,14 +103,8 @@ const Hero = ({ titles }: Props) => {
             </motion.h1>
             <motion.div
               className='max-md:absolute rounded-full overflow-hidden max-md:bottom-2 max-md:h-[1.2em] max-md:left-[9vw] h-[0.65em] aspect-video object-cover'
-              // style={{ x: videoY }}
+              style={{ y: videoY }}
             >
-              {/* <video */}
-              {/*   src='/assets/vid/test_vid.mp4' */}
-              {/*   autoPlay */}
-              {/*   muted */}
-              {/*   playsInline */}
-              {/* /> */}
               <Image
                 src={colorful_animals}
                 className='object-cover'
@@ -123,7 +117,7 @@ const Hero = ({ titles }: Props) => {
           <div className='flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center'>
             <motion.div
               className='max-md:absolute max-md:right-0 max-md:bottom-[15%] rounded-full max-md:h-[1.2em] h-[0.65em] aspect-video overflow-hidden'
-              // style={{ x: img2Y }}
+              style={{ translateY: img2Y }}
             >
               <Image
                 src={architecture}
