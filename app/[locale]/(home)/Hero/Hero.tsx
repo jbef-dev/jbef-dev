@@ -54,7 +54,6 @@ const Hero = ({ titles }: Props) => {
         <motion.div
           className='flex leading-none text-responsive-hero justify-center items-start w-full px-2 flex-col text-black'
           variants={{
-            initial: {},
             animate: {
               transition: {
                 staggerChildren: 0.18,
@@ -99,7 +98,7 @@ const Hero = ({ titles }: Props) => {
             </motion.h1>
             <motion.div
               className='max-md:absolute rounded-full overflow-hidden max-md:bottom-2 max-md:h-[1.2em] max-md:left-[9vw] h-[0.65em] aspect-video object-cover'
-              style={{ willChange: willChange, y: videoY }}
+              style={{ willChange: willChange, x: videoY }}
             >
               {/* <video */}
               {/*   src='/assets/vid/test_vid.mp4' */}
@@ -119,7 +118,7 @@ const Hero = ({ titles }: Props) => {
           <div className='flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center'>
             <motion.div
               className='max-md:absolute max-md:right-0 max-md:bottom-[15%] rounded-full max-md:h-[1.2em] h-[0.65em] aspect-video overflow-hidden'
-              style={{ willChange: willChange, y: img2Y }}
+              style={{ willChange: willChange, x: img2Y }}
             >
               <Image
                 src={architecture}
