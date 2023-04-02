@@ -1,4 +1,3 @@
-// import { notFound } from 'next/navigation';
 import clsx from 'clsx';
 import { Header } from '@/ui/Header/Header';
 
