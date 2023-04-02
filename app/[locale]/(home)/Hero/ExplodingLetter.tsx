@@ -74,27 +74,27 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
       return <span>&nbsp;</span>;
     }
 
-    const startLeftColor = Math.floor(Math.random() * 100 - 75);
-    const startRightColor = Math.floor(Math.random() * 100 + 20);
-    const midLeftColor = Math.floor(Math.random() * 100 - 75);
-    const midRightColor = Math.floor(Math.random() * 100 + 20);
-    const endLeftColor = Math.floor(Math.random() * 100 - 75);
-    const endRightColor = Math.floor(Math.random() * 100 + 20);
-    const startRotation = Math.floor(Math.random() * 360 + 90);
-    const midRotation = Math.floor(Math.random() * 360 + 20);
-    const endRotation = Math.floor(Math.random() * 360 + 180);
+    // const startLeftColor = Math.floor(Math.random() * 100 - 75);
+    // const startRightColor = Math.floor(Math.random() * 100 + 20);
+    // const midLeftColor = Math.floor(Math.random() * 100 - 75);
+    // const midRightColor = Math.floor(Math.random() * 100 + 20);
+    // const endLeftColor = Math.floor(Math.random() * 100 - 75);
+    // const endRightColor = Math.floor(Math.random() * 100 + 20);
+    // const startRotation = Math.floor(Math.random() * 360 + 90);
+    // const midRotation = Math.floor(Math.random() * 360 + 20);
+    // const endRotation = Math.floor(Math.random() * 360 + 180);
 
     return (
       <motion.span
         className='-mr-2 pr-1 bg-clip-text bg-gradient-to-br from-primary via-primary to-secondary text-transparent'
         ref={ref}
         animate={{
-          // backgroundImage: ['#E7277B', '#F59A2C'],
-          backgroundImage: [
-            `linear-gradient(${startRotation}deg, rgba(245,154,44,0.7) ${startLeftColor}%, rgba(231,39,123,1) ${startRightColor}%)`,
-            `linear-gradient(${midRotation}deg, rgba(245,154,44,0.7) ${midLeftColor}%, rgba(231,39,123,1) ${midRightColor}%)`,
-            `linear-gradient(${endRotation}deg, rgba(245,154,44,0.7) ${endLeftColor}%, rgba(231,39,123,1) ${endRightColor}%)`,
-          ],
+          backgroundImage: ['#E7277B', '#F59A2C'],
+          // backgroundImage: [
+          //   `linear-gradient(${startRotation}deg, rgba(245,154,44,0.7) ${startLeftColor}%, rgba(231,39,123,1) ${startRightColor}%)`,
+          //   `linear-gradient(${midRotation}deg, rgba(245,154,44,0.7) ${midLeftColor}%, rgba(231,39,123,1) ${midRightColor}%)`,
+          //   `linear-gradient(${endRotation}deg, rgba(245,154,44,0.7) ${endLeftColor}%, rgba(231,39,123,1) ${endRightColor}%)`,
+          // ],
         }}
         transition={{
           repeat: Infinity,

@@ -2,18 +2,20 @@
 
 import {
   motion,
+  motionValue,
   useScroll,
   useSpring,
   useTransform,
   useWillChange,
 } from 'framer-motion';
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { ExplodingLetter } from './ExplodingLetter';
 
 import architecture from '@/public/assets/img/architecture_preview.webp';
-import colorful_animals from '@/public/assets/img/colorful_animals_preview.webp';
+import colorful_animals from '@/public/assets/img/colorful_animals.png';
 import { myAnimation } from '@/styles/customAnimations';
+import useArtificialScroll from '@/hooks/useArtificialScroll';
 
 interface Props {
   titles: string[];
@@ -40,10 +42,10 @@ const Hero = ({ titles }: Props) => {
   const xLTR = useTransform(springStiff, [headingStart, 1], ['0em', '2.5em']);
   const xRTL = useTransform(springStiff, [headingStart, 1], ['0em', '-2.5em']);
 
-  const videoY = useTransform(springStiff, [0, 1], ['0rem', '-61rem']);
+  const videoY = useTransform(scrollYProgress, [0, 1], ['0rem', '-59rem']);
   // const img1Y = useTransform(springStiff, [0, 1], ['0rem', '-30rem']);
-  const img2Y = useTransform(springStiff, [0, 1], ['0rem', '-53rem']);
-  const arrowY = useTransform(springStiff, [0, 1], ['0rem', '-37rem']);
+  const img2Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-53rem']);
+  const arrowY = useTransform(scrollYProgress, [0, 1], ['0rem', '-37rem']);
 
   return (
     <div ref={containerRef} className='flex w-full h-[200svh] justify-center'>
@@ -146,19 +148,15 @@ const Hero = ({ titles }: Props) => {
           </motion.h1>
         </motion.div>
 
-        <motion.div
-          className='max-md:absolute h-full max-md:bottom-4 text-responsive-hero max-md:right-4 flex items-end'
+        <motion.svg
+          className='fill-black will-change-transform max-md:absolute max-md:bottom-4 text-responsive-hero max-md:right-4 flex self-end'
+          viewBox='0 0 24 24'
+          height='1.15em'
+          width='1.15em'
           style={{ y: arrowY }}
         >
-          <motion.svg
-            className='fill-black'
-            viewBox='0 0 24 24'
-            height='1.15em'
-            width='1.15em'
-          >
-            <path d='M18.707 12.707l-1.414-1.414L13 15.586V6h-2v9.586l-4.293-4.293-1.414 1.414L12 19.414z' />
-          </motion.svg>
-        </motion.div>
+          <motion.path d='M18.707 12.707l-1.414-1.414L13 15.586V6h-2v9.586l-4.293-4.293-1.414 1.414L12 19.414z' />
+        </motion.svg>
 
         <div className='flex absolute max-md:left-[15vw] bottom-[18%] lg:right-[6vw] lg:bottom-[45%] font-sans text-responsive-xs gap-1 text-black'>
           <div className='pt-1'>
