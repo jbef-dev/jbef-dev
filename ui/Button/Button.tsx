@@ -187,7 +187,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 transition={{
                   type: 'keyframes',
                   duration: 0.45,
-                  ease: 'easeOut',
+                  ease: 'easeInOut',
                 }}
               ></motion.div>
             </motion.div>

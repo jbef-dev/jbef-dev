@@ -32,7 +32,7 @@ const PricingSection = ({ dict }: { dict: Dictionary }) => {
               { name: 'Customer service', included: true },
               { name: 'SEO', included: true },
             ],
-            price: { amount: '150€', frequency: '/mo' },
+            price: { amount: 'XXX€', frequency: '/mo' },
           },
           {
             title: 'Standard + Blog',
@@ -43,7 +43,7 @@ const PricingSection = ({ dict }: { dict: Dictionary }) => {
               { name: 'SEO', included: true },
               { name: 'Analytics', included: true },
             ],
-            price: { amount: '250€', frequency: '/mo' },
+            price: { amount: 'XXX€', frequency: '/mo' },
           },
           {
             title: 'E-commerce',
