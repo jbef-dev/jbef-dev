@@ -6,10 +6,10 @@ import {
   AnimatePresence,
   HTMLMotionProps,
   motion,
+  useAnimation,
   Variants,
 } from 'framer-motion';
 import { myAnimation } from '@/styles/customAnimations';
-import useOutsideClick from '@/hooks/useOutsideClick';
 import useForwardedRef from '@/hooks/useForwardedRef';
 
 type ButtonFlavors =
@@ -32,25 +32,17 @@ interface ButtonProps extends HTMLMotionProps<'button'> {
 }
 
 const flavors: {
-  [k in ButtonFlavors]: { tw: ClassValue; variants: Variants } | undefined;
+  [k in ButtonFlavors]: ClassValue | undefined;
 } = {
-  basic: {
-    tw: clsx('bg-accent-main rounded-sm hover:bg-accent-main'),
-    variants: {},
-  },
-  gradientOutline: {
-    tw: clsx('bg-gradient-to-r from-primary to-secondary text-black'),
-    variants: {},
-  },
-  transparent: { tw: clsx('bg-transparent'), variants: {} },
-  glass: { tw: clsx('backdrop-blur-lg bg-grayscale-800/40'), variants: {} },
+  basic: clsx('bg-accent-main rounded-sm hover:bg-accent-main'),
+
+  gradientOutline: clsx(
+    'bg-gradient-to-r from-primary to-secondary text-black'
+  ),
+  transparent: clsx('bg-transparent'),
+  glass: clsx('backdrop-blur-lg bg-grayscale-800/40'),
   square: undefined,
-  outlined: {
-    tw: clsx('ring-2 ring-inset'),
-    variants: {
-      hover: {},
-    },
-  },
+  outlined: clsx('ring-2 ring-inset'),
 };
 
 const size: { [s in ButtonSizes]: ClassValue } = {
@@ -134,32 +126,44 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       ...props
     },
-    ref
+    forwardedRef
   ) => {
-    const [isHover, setHover] = useState(false);
+    const [isHover, setIsHover] = useState(false);
 
-    const reference = useForwardedRef(ref);
+    const ref = useForwardedRef(forwardedRef);
 
-    const toggleHover = () => setHover(h => !h);
+    const toggleHover = () => {
+      setIsHover(h => !h);
+    };
 
-    useOutsideClick(toggleHover, isHover, reference);
+    // useOutsideClick(toggleHover, isHover, ref);
 
     return (
       <motion.button
-        ref={reference}
+        ref={ref}
         className={clsx(
-          'relative rounded-full overflow-hidden cursor-pointer',
-          flavors[flavor]?.tw,
+          'relative rounded-full overflow-hidden touch-none select-none cursor-pointer',
+          flavors[flavor],
           size[buttonSize],
           mode[colorMode],
           className
         )}
         initial='initial'
-        whileHover='hover'
+        whileHover='animate'
         onTapStart={toggleHover}
+        onTouchCancel={() => {
+          setTimeout(() => setIsHover(false), 300);
+          console.log('touch cancel');
+        }}
+        onTouchMove={() => {
+          setTimeout(() => setIsHover(false), 300);
+          console.log('touch move');
+        }}
+        onTouchEnd={() => setTimeout(() => setIsHover(false), 300)}
+        onTap={() => setTimeout(() => setIsHover(false), 300)}
         onMouseEnter={toggleHover}
         onMouseLeave={toggleHover}
-        variants={flavors[flavor]?.variants}
+        onMouseUp={() => setIsHover(false)}
         {...props}
       >
         {/* THIS IS THE ANIMATED BACKGROUND TO APPEAR */}
@@ -176,18 +180,29 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 variants={{
                   initial: {
                     y: '100%',
+                    transition: {
+                      type: 'keyframes',
+                      duration: 0.45,
+                      ease: 'easeInOut',
+                    },
                   },
                   animate: {
                     y: '0%',
+                    transition: {
+                      type: 'keyframes',
+                      duration: 0.45,
+                      ease: 'easeInOut',
+                    },
                   },
                   exit: {
                     y: '-100%',
+                    transition: {
+                      // delay: 0.5,
+                      type: 'keyframes',
+                      duration: 0.45,
+                      ease: 'easeInOut',
+                    },
                   },
-                }}
-                transition={{
-                  type: 'keyframes',
-                  duration: 0.45,
-                  ease: 'easeInOut',
                 }}
               ></motion.div>
             </motion.div>

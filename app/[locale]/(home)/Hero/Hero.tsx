@@ -42,13 +42,16 @@ const Hero = ({ titles }: Props) => {
   const xLTR = useTransform(springStiff, [headingStart, 1], ['0em', '2.5em']);
   const xRTL = useTransform(springStiff, [headingStart, 1], ['0em', '-2.5em']);
 
-  const videoY = useTransform(scrollYProgress, [0, 1], ['0rem', '-59rem']);
+  const videoY = useTransform(scrollYProgress, [0, 1], ['0rem', '-9rem']);
   // const img1Y = useTransform(springStiff, [0, 1], ['0rem', '-30rem']);
   const img2Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-53rem']);
   const arrowY = useTransform(scrollYProgress, [0, 1], ['0rem', '-37rem']);
 
   return (
-    <div ref={containerRef} className='flex w-full h-[200svh] justify-center'>
+    <div
+      ref={containerRef}
+      className='flex relative w-full h-[200svh] justify-center'
+    >
       <div className='fixed h-[100svh] top-0 max-w-screen-3xl font-title flex items-center justify-center w-full bg-white'>
         {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 
@@ -103,9 +106,9 @@ const Hero = ({ titles }: Props) => {
                 />
               ))}
             </motion.h1>
-            <motion.div
-              className='max-md:absolute rounded-full overflow-hidden max-md:bottom-2 max-md:h-[1.2em] max-md:left-[9vw] h-[0.65em] aspect-video object-cover'
-              style={{ y: videoY }}
+            <div
+              className='max-md:absolute rounded-full overflow-hidden max-md:top-24 max-md:h-[1.2em] max-md:left-[12vw] h-[0.65em] aspect-video object-cover'
+              // style={{ y: videoY }}
             >
               <Image
                 src={colorful_animals}
@@ -113,22 +116,22 @@ const Hero = ({ titles }: Props) => {
                 priority
                 alt='colorful animals'
               />
-            </motion.div>
+            </div>
           </div>
 
           <div className='flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center'>
-            <motion.div
-              className='max-md:absolute max-md:right-0 max-md:bottom-[15%] rounded-full max-md:h-[1.2em] h-[0.65em] aspect-video overflow-hidden'
-              style={{ translateY: img2Y }}
+            <div
+              className='max-md:absolute max-md:right-2 max-md:bottom-[15%] rounded-full max-md:h-[1.2em] h-[0.65em] aspect-video overflow-hidden'
+              // style={{ translateY: img2Y }}
             >
               <Image
                 src={architecture}
-                className='object-cover'
+                className='object-cover w-full'
                 priority
                 loading='eager'
                 alt='example work'
               />
-            </motion.div>
+            </div>
             <motion.h1
               variants={myAnimation.variants.appear3d}
               transition={myAnimation.transition.easeOutSlow}
@@ -148,15 +151,15 @@ const Hero = ({ titles }: Props) => {
           </motion.h1>
         </motion.div>
 
-        <motion.svg
+        <svg
           className='fill-black will-change-transform max-md:absolute max-md:bottom-4 text-responsive-hero max-md:right-4 flex self-end'
           viewBox='0 0 24 24'
           height='1.15em'
           width='1.15em'
-          style={{ y: arrowY }}
+          // style={{ y: arrowY }}
         >
           <motion.path d='M18.707 12.707l-1.414-1.414L13 15.586V6h-2v9.586l-4.293-4.293-1.414 1.414L12 19.414z' />
-        </motion.svg>
+        </svg>
 
         <div className='flex absolute max-md:left-[15vw] bottom-[18%] lg:right-[6vw] lg:bottom-[45%] font-sans text-responsive-xs gap-1 text-black'>
           <div className='pt-1'>
