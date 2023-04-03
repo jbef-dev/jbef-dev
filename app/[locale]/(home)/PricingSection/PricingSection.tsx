@@ -1,9 +1,12 @@
 import { FlexContainer } from '@/ui/Containers';
 import { AOSText, AnimatedParagraph, Heading3 } from '@/ui/Typography';
 import { PricingTable } from './PricingTable';
-import { Dictionary } from '@/i18n/config';
+import { Dictionary, Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/get-dictionary';
 
-const PricingSection = ({ dict }: { dict: Dictionary }) => {
+const PricingSection = async ({ locale }: { locale: Locale }) => {
+  const dict = await getDictionary(locale);
+
   return (
     <FlexContainer flexCol className='max-w-screen-xl'>
       <div className='flex flex-col pb-12 lg:pb-20 w-full gap-y-6'>
@@ -32,7 +35,7 @@ const PricingSection = ({ dict }: { dict: Dictionary }) => {
               { name: 'Customer service', included: true },
               { name: 'SEO', included: true },
             ],
-            price: { amount: 'XXX€', frequency: '/mo' },
+            price: { amount: '150€', frequency: '/mo' },
           },
           {
             title: 'Standard + Blog',
@@ -43,7 +46,7 @@ const PricingSection = ({ dict }: { dict: Dictionary }) => {
               { name: 'SEO', included: true },
               { name: 'Analytics', included: true },
             ],
-            price: { amount: 'XXX€', frequency: '/mo' },
+            price: { amount: '250€', frequency: '/mo' },
           },
           {
             title: 'E-commerce',

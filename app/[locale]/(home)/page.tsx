@@ -2,7 +2,8 @@ import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 
 import { SeparatorMargin, SeparatorRounded } from '@/components/Separator';
-import Hero from './Hero/Hero';
+// import Hero from './Hero/Hero';
+const Hero = dynamic(() => import('./Hero/Hero'));
 const EvolveSection = dynamic(() =>
   import('./EvolveSection/EvolveSection').then(mod => mod.EvolveSection)
 );
@@ -10,7 +11,9 @@ const FeatureSection = dynamic(() => import('./FeatureSection/FeatureSection'));
 import { PageContainer, SectionContainer } from '@/ui/Containers';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
-const PricingSection = dynamic(() => import('./PricingSection/PricingSection'));
+// const PricingSection = dynamic(() =>
+//   import('./PricingSection/PricingSection').then(m => m)
+// );
 
 export default async function Home({
   params: { locale },
@@ -31,6 +34,7 @@ export default async function Home({
             dict['pages'].home.hero.titles.title4,
           ]}
         />
+
         <SeparatorMargin />
       </SectionContainer>
 
@@ -51,7 +55,7 @@ export default async function Home({
 
       <SectionContainer flexCol center pt={false} className='bg-white'>
         <SeparatorRounded position='top' className='bg-white' />
-        <PricingSection dict={dict} />
+        {/* <PricingSection locale={locale} /> */}
       </SectionContainer>
     </PageContainer>
   );
