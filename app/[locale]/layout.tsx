@@ -64,3 +64,5 @@ export async function generateMetadata(): Promise<Metadata> {
     themeColor: '#ffffff',
   };
 }
+
+export const runtime = 'edge';
