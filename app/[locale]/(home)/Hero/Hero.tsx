@@ -122,7 +122,7 @@ const Hero = ({ titles }: Props) => {
           <div className='flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center'>
             <div
               className='max-md:absolute max-md:right-2 max-md:bottom-[15%] rounded-full max-md:h-[1.2em] h-[0.65em] aspect-video overflow-hidden'
-              // style={{ translateY: img2Y }}
+              // style={{ y: img2Y }}
             >
               <Image
                 src={architecture}
