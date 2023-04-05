@@ -1,6 +1,4 @@
-import { AOSText } from '@/ui/Typography';
 import FeatureRow from './FeatureRow';
-import { AppearOnScroll } from '@/ui/Animated/AppearOnScroll';
 
 const FeatureSection = () => {
   return (
@@ -23,8 +21,12 @@ const FeatureSection = () => {
           />,
         ]}
         titles={[
-          <span className='font-medium'>Flexible</span>,
-          <span className='font-extralight'>payments</span>,
+          <span key={'title1'} className='font-medium'>
+            Flexible
+          </span>,
+          <span key={'title2'} className='font-extralight'>
+            payments
+          </span>,
         ]}
         paragraph='No up front payment, instead, we establish a relationship and pay monthly to include all work done on the website.'
         align='left'
@@ -47,8 +49,12 @@ const FeatureSection = () => {
           />,
         ]}
         titles={[
-          <span className='font-medium'>Developer</span>,
-          <span className='font-extralight'>on duty</span>,
+          <span key={'title1'} className='font-medium'>
+            Developer
+          </span>,
+          <span key={'title2'} className='font-extralight'>
+            on duty
+          </span>,
         ]}
         paragraph='Keep your website updated! Update to your website when needed, within 48h, as many times as you need. Its like having a web developer in your team on payroll.'
         align='right'
@@ -71,8 +77,8 @@ const FeatureSection = () => {
           />,
         ]}
         titles={[
-          <span className='font-medium'>Hand coded</span>,
-          <span className='font-extralight'>websites</span>,
+          <span key={'title1'} className='font-medium'>Hand coded</span>,
+          <span key={'title2'} className='font-extralight'>websites</span>,
         ]}
         paragraph='Forget about cookie-cutter websites, we hand code all our work, using the most modern technologies used by all major companies. We make billion-dollar company technologies accessible to everyone. From the largest layout to the smallest button, everything is custom coded and the performance benefits are obvious.'
         align='left'
