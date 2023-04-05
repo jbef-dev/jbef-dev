@@ -34,7 +34,7 @@ export default async function LocaleLayout({
       <body
         className={clsx(fontTitle.variable, fontSans.variable, 'font-sans')}
       >
-        {/* @ts-expect-error Server Component */}
+        {/* @ts-expect-error async Server Component */}
         <Header locale={params.locale} />
         {children}
         <Footer />

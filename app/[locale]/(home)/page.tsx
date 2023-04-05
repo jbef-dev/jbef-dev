@@ -11,6 +11,8 @@ const FeatureSection = dynamic(() => import('./FeatureSection/FeatureSection'));
 import { PageContainer, SectionContainer } from '@/ui/Containers';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
+import PricingSection from './PricingSection/PricingSection';
+import NewHero from './Hero/NewHero';
 // const PricingSection = dynamic(() =>
 //   import('./PricingSection/PricingSection').then(m => m)
 // );
@@ -26,7 +28,7 @@ export default async function Home({
   return (
     <PageContainer>
       <SectionContainer flexCol pt={false} px={false} gap={false}>
-        <Hero
+        <NewHero
           titles={[
             dict['pages'].home.hero.titles.title1,
             dict['pages'].home.hero.titles.title2,
@@ -34,6 +36,14 @@ export default async function Home({
             dict['pages'].home.hero.titles.title4,
           ]}
         />
+        {/* <Hero */}
+        {/*   titles={[ */}
+        {/*     dict['pages'].home.hero.titles.title1, */}
+        {/*     dict['pages'].home.hero.titles.title2, */}
+        {/*     dict['pages'].home.hero.titles.title3, */}
+        {/*     dict['pages'].home.hero.titles.title4, */}
+        {/*   ]} */}
+        {/* /> */}
 
         <SeparatorMargin />
       </SectionContainer>
@@ -55,7 +65,8 @@ export default async function Home({
 
       <SectionContainer flexCol center pt={false} className='bg-white'>
         <SeparatorRounded position='top' className='bg-white' />
-        {/* <PricingSection locale={locale} /> */}
+        {/* @ts-expect-error async Server Component */}
+        <PricingSection locale={locale} />
       </SectionContainer>
     </PageContainer>
   );

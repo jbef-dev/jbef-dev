@@ -1,20 +1,27 @@
 'use client';
 
 import { myAnimation } from '@/styles/customAnimations';
+import { AppearOnScroll } from '@/ui/Animated/AppearOnScroll';
 import { AOSText } from '@/ui/Typography';
-import { useScroll, useSpring, useTransform } from 'framer-motion';
+import clsx from 'clsx';
+import {
+  HTMLMotionProps,
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 import { ComponentPropsWithoutRef, useRef } from 'react';
 
-interface Props extends ComponentPropsWithoutRef<typeof AOSText> {
+interface Props extends HTMLMotionProps<'div'> {
   xStyle: number;
 }
 
-export const EvolveTitle = ({ xStyle, style, ...props }: Props) => {
+export const EvolveTitle = ({ xStyle, className, ...props }: Props) => {
   const titleRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: titleRef,
     offset: ['start end', 'end start'],
-    layoutEffect: false,
   });
   const springInput = useSpring(scrollYProgress, myAnimation.spring.default);
 
@@ -26,8 +33,13 @@ export const EvolveTitle = ({ xStyle, style, ...props }: Props) => {
   const spanXStyles = [spanX1, spanX2, spanX3, spanX4];
 
   return (
-    <AOSText ref={titleRef} style={{ x: spanXStyles[xStyle] }} {...props}>
-      {props.children}
-    </AOSText>
+    <motion.div
+      ref={titleRef}
+      className={clsx('overflow-hidden', className)}
+      style={{ x: spanXStyles[xStyle] }}
+      {...props}
+    >
+      <AppearOnScroll visibleRef={titleRef}>{props.children}</AppearOnScroll>
+    </motion.div>
   );
 };

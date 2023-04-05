@@ -79,6 +79,11 @@ const transition = {
     stiffness: values.stiffness.mid,
     damping: values.damping.mid,
   },
+  springNormal: {
+    type: 'spring',
+    stiffness: values.stiffness.high,
+    damping: values.damping.max,
+  },
   slow: {
     type: 'spring',
     duration: values.duration.slow,
@@ -196,6 +201,10 @@ const springs = {
   slow: {
     stiffness: 280,
     damping: 70,
+  },
+  normal: {
+    stiffness: values.stiffness.mid,
+    damping: values.damping.mid,
   },
   default: {
     stiffness: values.stiffness.high,

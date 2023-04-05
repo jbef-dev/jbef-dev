@@ -1,5 +1,10 @@
 import { myAnimation } from '@/styles/customAnimations';
-import { SpringOptions, useSpring } from 'framer-motion';
+import {
+  SpringOptions,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 import { useEffect, useLayoutEffect, useState } from 'react';
 
 const useArtificialScroll = (
@@ -18,7 +23,7 @@ const useArtificialScroll = (
   const targetWithinBounds = (newTarget: number) => {
     if (newTarget < 0) return 0;
     if (newTarget > document.body.scrollHeight)
-      return document.body.offsetHeight;
+      return document.body.scrollHeight;
     return newTarget;
   };
 

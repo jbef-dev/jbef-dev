@@ -3,6 +3,11 @@ import { AOSText, AnimatedParagraph, Heading3 } from '@/ui/Typography';
 import { PricingTable } from './PricingTable';
 import { Dictionary, Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
+import {
+  AppearOnScroll,
+  AppearOnScrollChild,
+} from '@/ui/Animated/AppearOnScroll';
+import { myAnimation } from '@/styles/customAnimations';
 
 const PricingSection = async ({ locale }: { locale: Locale }) => {
   const dict = await getDictionary(locale);
@@ -11,12 +16,20 @@ const PricingSection = async ({ locale }: { locale: Locale }) => {
     <FlexContainer flexCol className='max-w-screen-xl'>
       <div className='flex flex-col pb-12 lg:pb-20 w-full gap-y-6'>
         <Heading3 className='flex flex-col items-start'>
-          <AOSText className='font-medium'>
-            {dict.pages.home.pricing.title.title1}
-          </AOSText>
-          <AOSText className='font-extralight tracking-wider'>
-            {dict.pages.home.pricing.title.title2}
-          </AOSText>
+          <AppearOnScroll className='font-medium overflow-hidden' variants={{}}>
+            <AppearOnScrollChild>
+              {dict.pages.home.pricing.title.title1}
+            </AppearOnScrollChild>
+          </AppearOnScroll>
+
+          <AppearOnScroll
+            className='font-extralight overflow-hidden tracking-wider'
+            variants={{}}
+          >
+            <AppearOnScrollChild>
+              {dict.pages.home.pricing.title.title2}
+            </AppearOnScrollChild>
+          </AppearOnScroll>
         </Heading3>
         <AnimatedParagraph className='flex w-full font-extralight text-responsive-lg'>
           {dict.pages.home.pricing.subtitle}

@@ -3,6 +3,7 @@ import { EvolveTitle } from './EvolveTitle';
 import { StandOutIcons } from './StandOutIcons';
 import { FlexContainer } from '@/ui/Containers';
 import { Dictionary } from '@/i18n/config';
+import { AppearOnScroll } from '@/ui/Animated/AppearOnScroll';
 
 const EvolveSection = ({ dictionary }: { dictionary: Dictionary }) => {
   return (
@@ -19,7 +20,10 @@ const EvolveSection = ({ dictionary }: { dictionary: Dictionary }) => {
       <StandOutIcons />
 
       <Heading2 className='flex flex-col w-full max-w-screen-xl'>
-        <EvolveTitle className='self-end pr-[15%] font-extralight' xStyle={2}>
+        <EvolveTitle
+          className='self-end pr-[15%] flex font-extralight'
+          xStyle={2}
+        >
           {dictionary['pages'].home.evolve.titles.title3}
         </EvolveTitle>
         <EvolveTitle className='self-center pl-10 font-medium' xStyle={3}>

@@ -89,7 +89,7 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
         className='-mr-2 pr-1 bg-clip-text bg-gradient-to-br from-primary via-primary to-secondary text-transparent'
         ref={ref}
         animate={{
-          backgroundImage: ['#E7277B', '#F59A2C'],
+          // backgroundImage: ['#E7277B', '#F59A2C'],
           // backgroundImage: [
           //   `linear-gradient(${startRotation}deg, rgba(245,154,44,0.7) ${startLeftColor}%, rgba(231,39,123,1) ${startRightColor}%)`,
           //   `linear-gradient(${midRotation}deg, rgba(245,154,44,0.7) ${midLeftColor}%, rgba(231,39,123,1) ${midRightColor}%)`,

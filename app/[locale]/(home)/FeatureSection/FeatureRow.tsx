@@ -1,16 +1,24 @@
+'use client';
+
+import { myAnimation } from '@/styles/customAnimations';
+import {
+  AppearOnScroll,
+  AppearOnScrollChild,
+} from '@/ui/Animated/AppearOnScroll';
 import { FlexContainer } from '@/ui/Containers';
 import { AnimatedParagraph, Heading3 } from '@/ui/Typography';
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface Props {
   icons: ReactNode[];
-  title: ReactNode;
+  titles: ReactNode[];
   paragraph: string;
   align: 'left' | 'right';
 }
 
-const FeatureRow = ({ icons, title, paragraph, align }: Props) => {
+const FeatureRow = ({ icons, titles, paragraph, align }: Props) => {
   return (
     <FlexContainer flexCol>
       <FlexContainer
@@ -31,12 +39,25 @@ const FeatureRow = ({ icons, title, paragraph, align }: Props) => {
               </svg>
             ))}
           </div>
-          <div className='flex flex-col w-full'>{title}</div>
+          <div className='flex flex-col w-full'>
+            {titles.map((title, i) => (
+              <AppearOnScroll key={i} className='overflow-hidden' variants={{}}>
+                <AppearOnScrollChild>{title}</AppearOnScrollChild>
+              </AppearOnScroll>
+            ))}
+          </div>
         </Heading3>
 
-        <AnimatedParagraph className='flex text-neutral-300 w-full max-w-md lg:max-w-screen-sm font-light text-responsive-md'>
+        <AppearOnScroll
+          className='flex text-neutral-300 w-full max-w-md lg:max-w-screen-sm font-light text-responsive-md'
+          variants={myAnimation.variants.appearFromBottom}
+          transition={myAnimation.transition.easeOutSlow}
+        >
           {paragraph}
-        </AnimatedParagraph>
+        </AppearOnScroll>
+        {/* <AnimatedParagraph className='flex text-neutral-300 w-full max-w-md lg:max-w-screen-sm font-light text-responsive-md'> */}
+        {/*   {paragraph} */}
+        {/* </AnimatedParagraph> */}
       </FlexContainer>
     </FlexContainer>
   );
