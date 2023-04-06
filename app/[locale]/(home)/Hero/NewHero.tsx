@@ -8,6 +8,11 @@ import architecture from '@/public/assets/img/architecture_preview.webp';
 import colorful_animals from '@/public/assets/img/colorful_animals.png';
 import NewTitle from './NewTitle';
 import { myAnimation } from '@/styles/customAnimations';
+import {
+  AppearOnScroll,
+  AppearOnScrollChild,
+} from '@/ui/Animated/AppearOnScroll';
+import clsx from 'clsx';
 
 interface Props {
   titles: string[];
@@ -30,59 +35,67 @@ const Hero = ({ titles }: Props) => {
   const img2Scale = useTransform(springStiff, [0, 0.5, 1], [1, 1.2, 0.7]);
   const arrowY = useTransform(scrollYProgress, [0, 1], ['0rem', '-37rem']);
 
+  const newTitleClassName = clsx(
+    'overflow-hidden leading-none -mt-[0.13em] pb-[0.13em]'
+  );
+
   return (
-    <div
+    <motion.div
       ref={containerRef}
-      className='flex flex-col relative w-full text-responsive-hero justify-center bg-white'
+      className='relative flex-col max-w-screen-3xl font-title gap-14 lg:gap-32 font-medium flex items-center justify-center w-full'
+      initial='initial'
+      animate='animate'
+      variants={{
+        animate: {
+          transition: {
+            staggerChildren: 0.18,
+          },
+        },
+      }}
     >
-      <div className='relative h-[100svh] top-0 max-w-screen-3xl font-title flex items-center justify-center w-full'>
-        {/* <CircleSpring containerScroll={scrollYProgress} /> */}
+      {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 
-        <div className='flex items-center w-full justify-center'>
-          <motion.div
-            className='flex leading-none justify-center items-start px-2 flex-col text-black'
-            variants={{
-              animate: {
-                transition: {
-                  staggerChildren: 0.18,
-                },
+      <div className='flex text-responsive-hero items-center w-full justify-center'>
+        <motion.div
+          className='flex leading-none justify-center items-start px-2 flex-col text-black'
+          initial='initial'
+          animate='animate'
+          variants={{
+            animate: {
+              transition: {
+                staggerChildren: 0.21,
               },
-            }}
-            initial='initial'
-            animate='animate'
-          >
-            <div className='flex items-center'>
-              <NewTitle>{titles[0]}</NewTitle>
-            </div>
+            },
+          }}
+        >
+          <div className={newTitleClassName}>
+            <AppearOnScrollChild>{titles[0]}</AppearOnScrollChild>
+          </div>
 
-            <div className='flex items-center gap-[0.2em]'>
-              <NewTitle>
-                <motion.span
-                  className='text-transparent bg-clip-text'
-                  animate={{
-                    backgroundImage: [
-                      `linear-gradient(0deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 40%)`,
-                      `linear-gradient(70deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 20%)`,
-                      `linear-gradient(180deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 70%)`,
-                      `linear-gradient(250deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 25%)`,
-                      `linear-gradient(360deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 40%)`,
-                    ],
-                  }}
-                  transition={{
-                    repeat: Infinity,
-                    repeatType: 'loop',
-                    duration: 4.5,
-                    ease: 'easeInOut',
-                  }}
-                >
-                  {titles[1]}
-                </motion.span>
-              </NewTitle>
-
-              <div
-                className='max-md:absolute rounded-full overflow-hidden max-md:top-24 max-md:h-[1.2em] max-md:left-[12vw] h-[0.65em] aspect-video md:-mt-[0.15em] object-cover'
-                // style={{ y: videoY }}
+          <div className={clsx('flex relative', newTitleClassName)}>
+            <AppearOnScrollChild className='flex items-center gap-[0.2em] justify-center'>
+              <motion.span
+                className='text-transparent bg-clip-text'
+                animate={{
+                  backgroundImage: [
+                    `linear-gradient(0deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 40%)`,
+                    `linear-gradient(70deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 20%)`,
+                    `linear-gradient(180deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 70%)`,
+                    `linear-gradient(250deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 25%)`,
+                    `linear-gradient(360deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 40%)`,
+                  ],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  repeatType: 'loop',
+                  duration: 4.5,
+                  ease: 'easeInOut',
+                }}
               >
+                {titles[1]}
+              </motion.span>
+
+              <div className='rounded-full overflow-hidden h-[0.65em] aspect-video'>
                 <Image
                   src={colorful_animals}
                   className='object-cover'
@@ -90,58 +103,68 @@ const Hero = ({ titles }: Props) => {
                   alt='colorful animals'
                 />
               </div>
-            </div>
+            </AppearOnScrollChild>
+          </div>
 
-            <div className='flex gap-[0.2em] w-full items-center'>
-              <div className='max-md:absolute md:-mt-[0.2em] max-md:right-2 max-md:bottom-[15%] rounded-full max-md:h-[1.2em] h-[0.65em] aspect-video overflow-hidden'>
+          <div className={newTitleClassName}>
+            <AppearOnScrollChild className='flex gap-[0.2em] w-full items-center'>
+              <div className='rounded-full h-[0.65em] aspect-video overflow-hidden'>
                 <Image
                   src={architecture}
-                  className='object-cover w-full'
+                  className='object-cover object-center w-full'
                   priority
                   loading='eager'
                   alt='example work'
                 />
               </div>
 
-              <NewTitle>{titles[2]}</NewTitle>
-            </div>
+              <h1>{titles[2]}</h1>
+            </AppearOnScrollChild>
+          </div>
 
-            <div>
-              <NewTitle>{titles[3]}</NewTitle>
-            </div>
-          </motion.div>
-        </div>
+          <div className={newTitleClassName}>
+            <AppearOnScrollChild asChild>
+              <h1>{titles[3]}</h1>
+            </AppearOnScrollChild>
+          </div>
+        </motion.div>
+      </div>
 
-        <svg
-          className='fill-black will-change-transform max-md:absolute max-md:bottom-4 text-responsive-hero max-md:right-4 flex self-end'
-          viewBox='0 0 24 24'
-          height='1.15em'
-          width='1.15em'
-          // style={{ y: arrowY }}
-        >
-          <motion.path d='M18.707 12.707l-1.414-1.414L13 15.586V6h-2v9.586l-4.293-4.293-1.414 1.414L12 19.414z' />
-        </svg>
+      {/* <svg */}
+      {/*   className='fill-black will-change-transform text-responsive-hero flex self-end' */}
+      {/*   viewBox='0 0 24 24' */}
+      {/*   height='1.15em' */}
+      {/*   width='1.15em' */}
+      {/* > */}
+      {/*   <motion.path d='M18.707 12.707l-1.414-1.414L13 15.586V6h-2v9.586l-4.293-4.293-1.414 1.414L12 19.414z' /> */}
+      {/* </svg> */}
 
-        <div className='flex absolute max-md:left-[15vw] bottom-[18%] lg:right-[6vw] lg:bottom-[45%] font-sans text-responsive-xs gap-1 text-black'>
-          <div className='pt-1'>
-            <svg
-              viewBox='0 0 24 24'
-              stroke='currentColor'
-              className='fill-black w-3 h-3'
-            >
+      <div className='flex font-sans font-light self-start overflow-hidden text-responsive-md gap-2 text-black'>
+        <AppearOnScroll className='overflow-hidden' asChild variants={{}}>
+          <svg
+            className='fill-neutral-800 overflow-hidden mt-1 w-[1em] h-[1em]'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+          >
+            <AppearOnScrollChild asChild>
               <path
                 strokeLinecap='round'
                 strokeLinejoin='round'
                 d='M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z'
               />
-            </svg>
-          </div>
-          <p>
-            Custom websites —<br /> down to earth service
-          </p>
-        </div>
+            </AppearOnScrollChild>
+          </svg>
+        </AppearOnScroll>
+
+        <AppearOnScroll className='overflow-hidden' variants={{}}>
+          <AppearOnScrollChild asChild>
+            <p>
+              Custom websites —<br /> down to earth service
+            </p>
+          </AppearOnScrollChild>
+        </AppearOnScroll>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

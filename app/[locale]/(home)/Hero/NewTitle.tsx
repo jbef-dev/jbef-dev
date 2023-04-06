@@ -16,13 +16,7 @@ const NewTitle = ({
       )}
       {...props}
     >
-      <motion.h1
-        className='flex'
-        variants={myAnimation.variants.fromBelow}
-        transition={myAnimation.transition.normal}
-      >
-        {children}
-      </motion.h1>
+      {children}
     </div>
   );
 };
