@@ -122,9 +122,9 @@ const variants = {
     exit: { opacity: 0, y: '-10%' },
   },
   appearFromBottom: {
-    initial: { opacity: 0, y: '10%' },
+    initial: { opacity: 0, y: '15%' },
     animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: '10%' },
+    exit: { opacity: 0, y: '-15%' },
   },
   enterBottomExitTop: {
     initial: { opacity: 0, translateY: '10%' },
@@ -134,7 +134,7 @@ const variants = {
   fromBelow: {
     initial: { y: '120%' },
     animate: { y: 0 },
-    exit: { y: '120%' },
+    exit: { y: '-120%' },
   },
   appearMenu: {
     initial: { opacity: 0, y: '-10%', scale: 0.95 },
