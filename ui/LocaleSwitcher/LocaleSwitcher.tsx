@@ -49,7 +49,7 @@ export const LocaleSwitcher = ({
   return (
     <button
       className={clsx(
-        'group relative flex items-center py-1 px-2 justify-center font-title',
+        'group relative flex items-center py-1 justify-center font-title',
         // open ? 'bg-black/50 backdrop-blur-lg' : '',
         className
       )}
