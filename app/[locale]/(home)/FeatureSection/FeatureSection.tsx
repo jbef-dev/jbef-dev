@@ -7,34 +7,6 @@ const FeatureSection = () => {
         icons={[
           <path
             key={1}
-            className='stroke-emerald-700'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            d='M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
-          />,
-          <path
-            key={2}
-            className='stroke-yellow-700'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            d='M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
-          />,
-        ]}
-        titles={[
-          <span key={'title1'} className='font-medium'>
-            Flexible
-          </span>,
-          <span key={'title2'} className='font-extralight'>
-            payments
-          </span>,
-        ]}
-        paragraph='No up front payment, instead, we establish a relationship and pay monthly to include all work done on the website.'
-        align='left'
-      />
-      <FeatureRow
-        icons={[
-          <path
-            key={1}
             className='stroke-blue-600'
             strokeLinecap='round'
             strokeLinejoin='round'
@@ -57,7 +29,7 @@ const FeatureSection = () => {
           </span>,
         ]}
         paragraph='Keep your website updated! Update to your website when needed, within 48h, as many times as you need. Its like having a web developer in your team on payroll.'
-        align='right'
+        align='left'
       />
       <FeatureRow
         icons={[
@@ -77,10 +49,42 @@ const FeatureSection = () => {
           />,
         ]}
         titles={[
-          <span key={'title1'} className='font-medium'>Hand coded</span>,
-          <span key={'title2'} className='font-extralight'>websites</span>,
+          <span key={'title1'} className='font-medium'>
+            Hand coded
+          </span>,
+          <span key={'title2'} className='font-extralight'>
+            websites
+          </span>,
         ]}
         paragraph='Forget about cookie-cutter websites, we hand code all our work, using the most modern technologies used by all major companies. We make billion-dollar company technologies accessible to everyone. From the largest layout to the smallest button, everything is custom coded and the performance benefits are obvious.'
+        align='right'
+      />
+      <FeatureRow
+        icons={[
+          <path
+            key={1}
+            className='stroke-emerald-700'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            d='M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+          />,
+          <path
+            key={2}
+            className='stroke-yellow-700'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            d='M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+          />,
+        ]}
+        titles={[
+          <span key={'title1'} className='font-medium'>
+            Flexible
+          </span>,
+          <span key={'title2'} className='font-extralight'>
+            payments
+          </span>,
+        ]}
+        paragraph='I believe in a long lasting business relationship between me and my clients. That&rsquo;s why I offer a lower barrier to entry pricing strategy, charging less up-front and providing more value each month via maintenance, updates and constant improvements to each project!'
         align='left'
       />
     </>
