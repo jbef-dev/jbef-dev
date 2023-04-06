@@ -19,7 +19,7 @@ const AppearOnScroll = forwardRef<
     {
       asChild = false,
       visibleRef,
-      amount = 0.25,
+      amount = 0.65,
       children,
       variants,
       transition,
