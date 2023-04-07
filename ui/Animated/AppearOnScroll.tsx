@@ -21,14 +21,15 @@ const AppearOnScroll = forwardRef<
       visibleRef,
       amount = 0.65,
       children,
-      variants,
-      transition,
+      variants = myAnimation.variants.fromBelow,
+      transition = myAnimation.transition.default,
       ...props
     },
-    ref
+    forwardedRef
   ) => {
-    const containerRef = useForwardedRef(ref);
-    const isVisible = useInView(visibleRef || containerRef, {
+    const ref = useForwardedRef(forwardedRef);
+
+    const isVisible = useInView(visibleRef || ref, {
       once: true,
       amount: amount,
     });
@@ -39,13 +40,11 @@ const AppearOnScroll = forwardRef<
 
     return (
       <MotionComp
-        ref={containerRef}
+        ref={ref}
         initial='initial'
         animate={isVisible ? 'animate' : 'initial'}
-        variants={variants || myAnimation.variants.fromBelow}
-        transition={
-          transition || { type: 'spring', ...myAnimation.spring.default }
-        }
+        variants={variants}
+        transition={transition}
         {...props}
       >
         {children}
@@ -64,7 +63,7 @@ const AppearOnScrollChild = forwardRef<
     {
       asChild,
       variants = myAnimation.variants.fromBelow,
-      transition = myAnimation.transition.normal,
+      transition = myAnimation.transition.default,
       children,
       ...props
     },
