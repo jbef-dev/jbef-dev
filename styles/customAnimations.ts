@@ -27,8 +27,9 @@ const values = {
   stiffness: {
     low: 180,
     mid: 250,
-    high: 380,
-    max: 550,
+    default: 400,
+    high: 650,
+    max: 900,
   },
   damping: {
     min: 20,
@@ -42,69 +43,6 @@ const values = {
 interface CustomTransitions {
   [k: string]: Transition;
 }
-
-const transition = {
-  fastest: {
-    type: 'spring',
-    duration: values.duration.fastest,
-    bounce: values.bounce.none,
-  },
-  easeInOut: {
-    type: 'keyframes',
-    ease: 'easeInOut',
-    duration: values.duration.normal,
-  },
-  easeOut: {
-    type: 'keyframes',
-    ease: 'easeInOut',
-    duration: values.duration.verySlow,
-  },
-  easeOutSlow: {
-    type: 'keyframes',
-    ease: 'easeInOut',
-    duration: values.duration.slowest,
-  },
-  veryFast: {
-    type: 'spring',
-    duration: values.duration.veryFast,
-    bounce: values.bounce.low,
-  },
-  fast: {
-    type: 'spring',
-    duration: values.duration.fast,
-    bounce: values.bounce.low,
-  },
-  normal: {
-    type: 'spring',
-    stiffness: values.stiffness.mid,
-    damping: values.damping.mid,
-  },
-  springNormal: {
-    type: 'spring',
-    stiffness: values.stiffness.high,
-    damping: values.damping.max,
-  },
-  slow: {
-    type: 'spring',
-    duration: values.duration.slow,
-    bounce: values.bounce.mid,
-  },
-  modalInOut: {
-    type: 'spring',
-    duration: values.duration.verySlow,
-    bounce: values.bounce.low,
-  },
-  appearMenu: {
-    type: 'keyframes',
-    ease: 'easeInOut',
-    duration: values.duration.normal,
-  },
-  menuClose: {
-    type: 'spring',
-    duration: values.duration.slow,
-    bounce: values.bounce.none,
-  },
-} as const satisfies CustomTransitions;
 
 interface CustomVariants {
   [k: string]: Variants;
@@ -203,18 +141,82 @@ const springs = {
     damping: 70,
   },
   normal: {
+    stiffness: values.stiffness.default,
+    damping: values.damping.mid,
+  },
+  default: {
+    stiffness: values.stiffness.default,
+    bounce: values.bounce.none,
+    damping: values.damping.max,
+  },
+  fast: {
+    stiffness: 900,
+    bounce: values.bounce.none,
+    damping: values.damping.max,
+  },
+} as const satisfies CustomSprings;
+
+const transition = {
+  fastest: {
+    type: 'spring',
+    duration: values.duration.fastest,
+    bounce: values.bounce.none,
+  },
+  easeInOut: {
+    type: 'keyframes',
+    ease: 'easeInOut',
+    duration: values.duration.normal,
+  },
+  easeOut: {
+    type: 'keyframes',
+    ease: 'easeInOut',
+    duration: values.duration.verySlow,
+  },
+  easeOutSlow: {
+    type: 'keyframes',
+    ease: 'easeInOut',
+    duration: values.duration.slowest,
+  },
+  veryFast: {
+    type: 'spring',
+    duration: values.duration.veryFast,
+    bounce: values.bounce.low,
+  },
+  fast: {
+    type: 'spring',
+    duration: values.duration.fast,
+    bounce: values.bounce.low,
+  },
+  normal: {
+    type: 'spring',
     stiffness: values.stiffness.mid,
     damping: values.damping.mid,
   },
   default: {
-    stiffness: values.stiffness.high,
-    damping: values.damping.max,
+    type: 'spring',
+    ...springs.default,
   },
-  fast: {
-    stiffness: 1200,
-    damping: values.damping.max,
+  slow: {
+    type: 'spring',
+    duration: values.duration.slow,
+    bounce: values.bounce.mid,
   },
-} as const satisfies CustomSprings;
+  modalInOut: {
+    type: 'spring',
+    duration: values.duration.verySlow,
+    bounce: values.bounce.low,
+  },
+  appearMenu: {
+    type: 'keyframes',
+    ease: 'easeInOut',
+    duration: values.duration.normal,
+  },
+  menuClose: {
+    type: 'spring',
+    duration: values.duration.slow,
+    bounce: values.bounce.none,
+  },
+} as const satisfies CustomTransitions;
 
 interface CustomAnimations {
   values: CustomValues;

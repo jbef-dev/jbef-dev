@@ -12,7 +12,7 @@ export const StandOutIcons = () => {
     offset: ['start end', 'end start'],
   });
   const springInput = useSpring(scrollYProgress, myAnimation.spring.default);
-  const circlesX = useTransform(springInput, [0, 1], ['10%', '-10%']);
+  const circlesX = useTransform(springInput, [0, 1], ['8%', '-8%']);
 
   return (
     <div ref={containerRef} className='w-full overflow-hidden'>

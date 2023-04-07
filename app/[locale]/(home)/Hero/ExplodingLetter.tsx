@@ -50,7 +50,7 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
 
     const springInput = useSpring(scrollYProgress, myAnimation.spring.default);
 
-    const animationStart = 0.3;
+    const animationStart = 0;
     const animationEnd = 1;
 
     const y = useTransform(

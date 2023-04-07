@@ -3,7 +3,6 @@ import { EvolveTitle } from './EvolveTitle';
 import { StandOutIcons } from './StandOutIcons';
 import { FlexContainer } from '@/ui/Containers';
 import { Dictionary } from '@/i18n/config';
-import { AppearOnScroll } from '@/ui/Animated/AppearOnScroll';
 
 const EvolveSection = ({ dictionary }: { dictionary: Dictionary }) => {
   return (

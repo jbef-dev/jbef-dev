@@ -29,7 +29,11 @@ export default async function LocaleLayout({
   // }
 
   return (
-    <html lang={params.locale} dir='ltr' className='scrollbar-hide'>
+    <html
+      lang={params.locale}
+      dir='ltr'
+      className='scrollbar-hide overscroll-none'
+    >
       <head />
       <body
         className={clsx(fontTitle.variable, fontSans.variable, 'font-sans')}

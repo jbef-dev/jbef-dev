@@ -12,6 +12,7 @@ import {
   AppearOnScrollChild,
 } from '@/ui/Animated/AppearOnScroll';
 import clsx from 'clsx';
+import useArtificialScroll from '@/hooks/useArtificialScroll';
 
 interface Props {
   titles: string[];
@@ -26,10 +27,12 @@ const Hero = ({ titles }: Props) => {
 
   const springProgress = useSpring(scrollYProgress, myAnimation.spring.fast);
 
-  const x1 = useTransform(scrollYProgress, [0, 1], ['0rem', '18rem']);
-  const x2 = useTransform(scrollYProgress, [0, 1], ['0rem', '-12rem']);
+  const xLtr = useTransform(springProgress, [0, 1], ['0%', '13%']);
+  const xRtl = useTransform(springProgress, [0, 1], ['0%', '-18%']);
+  const xQuote = useTransform(springProgress, [0, 1], ['0%', '-30%']);
+
   // const x3 = useTransform(springProgress, [0, 1], ['0rem', '6rem']);
-  const scaleOutstanding = useTransform(springProgress, [0, 1], [1, 1.4]);
+  const scaleOutstanding = useTransform(springProgress, [0, 1], [1, 1.3]);
   const yTitles = useTransform(springProgress, [0, 1], ['0%', '-60%']);
 
   // const videoY = useTransform(scrollYProgress, [0, 1], ['0rem', '-9rem']);
@@ -56,31 +59,47 @@ const Hero = ({ titles }: Props) => {
     >
       {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 
-      <div className='flex fixed h-[100svh] top-0 left-0 w-full text-responsive-hero items-center justify-center'>
-        <motion.div
-          className='flex leading-none justify-center items-start px-2 flex-col text-black'
-          initial='initial'
-          animate='animate'
-          variants={{
-            animate: {
-              transition: {
-                staggerChildren: 0.21,
-              },
+      <motion.div
+        className='flex fixed h-[100svh] top-0 left-0 w-full text-responsive-hero items-center justify-center'
+        initial='initial'
+        animate='animate'
+        variants={{
+          animate: {
+            transition: {
+              staggerChildren: 0.21,
             },
-          }}
-          style={{ y: yTitles }}
-        >
-          <motion.div className={newTitleClassName} style={{ x: x1 }}>
-            <AppearOnScrollChild>{titles[0]}</AppearOnScrollChild>
+          },
+        }}
+        // style={{ y: yTitles }}
+      >
+        <div className='flex leading-none justify-center items-start px-2 flex-col text-black'>
+          <motion.div
+            className={clsx('overflow-hidden', newTitleClassName)}
+            style={{ x: xRtl }}
+          >
+            <motion.h1
+              variants={myAnimation.variants.fromBelow}
+              transition={myAnimation.transition.default}
+            >
+              {titles[0]}
+            </motion.h1>
           </motion.div>
 
           <motion.div
-            className={clsx('flex relative origin-left', newTitleClassName)}
+            className={clsx(
+              'flex relative overflow-hidden origin-[30%_50%]',
+              newTitleClassName
+            )}
             style={{ scale: scaleOutstanding }}
           >
-            <AppearOnScrollChild className='flex items-center gap-[0.2em] justify-center'>
+            <motion.div
+              className='flex items-center gap-[0.2em] justify-center'
+              variants={myAnimation.variants.fromBelow}
+              transition={myAnimation.transition.default}
+            >
               <motion.span
                 className='text-transparent bg-clip-text bg-gradient-to-br from-primary via-primary to-secondary'
+                // className='text-transparent bg-clip-text'
                 // animate={{
                 //   backgroundImage: [
                 //     `linear-gradient(0deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 40%)`,
@@ -108,11 +127,15 @@ const Hero = ({ titles }: Props) => {
                   alt='colorful animals'
                 />
               </div>
-            </AppearOnScrollChild>
+            </motion.div>
           </motion.div>
 
-          <motion.div className={newTitleClassName} style={{ x: x2 }}>
-            <AppearOnScrollChild className='flex gap-[0.2em] w-full items-center'>
+          <motion.div className={newTitleClassName} style={{ x: xRtl }}>
+            <motion.div
+              className='flex gap-[0.2em] w-full items-center'
+              variants={myAnimation.variants.fromBelow}
+              transition={myAnimation.transition.default}
+            >
               <div className='rounded-full h-[0.65em] aspect-video overflow-hidden'>
                 <Image
                   src={architecture}
@@ -122,18 +145,50 @@ const Hero = ({ titles }: Props) => {
                   alt='example work'
                 />
               </div>
-
               <h1>{titles[2]}</h1>
-            </AppearOnScrollChild>
+            </motion.div>
           </motion.div>
 
-          <motion.div className={newTitleClassName} style={{ x: x1 }}>
-            <AppearOnScrollChild asChild>
-              <h1>{titles[3]}</h1>
-            </AppearOnScrollChild>
+          <motion.div className={newTitleClassName} style={{ x: xLtr }}>
+            <motion.h1
+              variants={myAnimation.variants.fromBelow}
+              transition={myAnimation.transition.default}
+            >
+              {titles[3]}
+            </motion.h1>
           </motion.div>
+        </div>
+
+        <motion.div
+          className='flex fixed top-[75svh] font-sans font-medium overflow-hidden text-responsive-md left-[10vw] gap-2 text-black'
+          style={{
+            x: xQuote,
+          }}
+        >
+          <div className='overflow-hidden h-min'>
+            <motion.svg
+              className='h-[1.2em] aspect-square mt-[0.22em]'
+              viewBox='0 0 200 200'
+              xmlns='http://www.w3.org/2000/svg'
+              variants={myAnimation.variants.fromBelow}
+              transition={myAnimation.transition.default}
+            >
+              <path
+                className='fill-black'
+                d='M100 0C103.395 53.7596 146.24 96.6052 200 100C146.24 103.395 103.395 146.24 100 200C96.6052 146.24 53.7596 103.395 0 100C53.7596 96.6052 96.6052 53.7596 100 0Z'
+              />
+            </motion.svg>
+          </div>
+
+          <motion.p
+            className='whitespace-nowrap'
+            variants={myAnimation.variants.fromBelow}
+            transition={myAnimation.transition.default}
+          >
+            Custom websites —<br /> down to earth service
+          </motion.p>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* <svg */}
       {/*   className='fill-black will-change-transform text-responsive-hero flex self-end' */}
@@ -143,29 +198,6 @@ const Hero = ({ titles }: Props) => {
       {/* > */}
       {/*   <motion.path d='M18.707 12.707l-1.414-1.414L13 15.586V6h-2v9.586l-4.293-4.293-1.414 1.414L12 19.414z' /> */}
       {/* </svg> */}
-
-      <div className='flex font-sans font-medium self-start overflow-hidden text-responsive-md gap-2 text-black'>
-        <AppearOnScroll className='overflow-hidden' asChild variants={{}}>
-          <svg
-            className='h-[1.2em] aspect-square mt-[0.22em]'
-            viewBox='0 0 200 200'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              className='fill-black'
-              d='M100 0C103.395 53.7596 146.24 96.6052 200 100C146.24 103.395 103.395 146.24 100 200C96.6052 146.24 53.7596 103.395 0 100C53.7596 96.6052 96.6052 53.7596 100 0Z'
-            />
-          </svg>
-        </AppearOnScroll>
-
-        <AppearOnScroll className='overflow-hidden' variants={{}}>
-          <AppearOnScrollChild asChild>
-            <p className='whitespace-nowrap'>
-              Custom websites —<br /> down to earth service
-            </p>
-          </AppearOnScrollChild>
-        </AppearOnScroll>
-      </div>
     </div>
   );
 };

@@ -41,8 +41,18 @@ const FeatureRow = ({ icons, titles, paragraph, align }: Props) => {
           </div>
           <div className='flex flex-col w-full'>
             {titles.map((title, i) => (
-              <AppearOnScroll key={i} className='overflow-hidden' variants={{}}>
-                <AppearOnScrollChild>{title}</AppearOnScrollChild>
+              <AppearOnScroll
+                key={i}
+                className='overflow-hidden'
+                transition={{}}
+                variants={{}}
+              >
+                <motion.div
+                  variants={myAnimation.variants.fromBelow}
+                  transition={myAnimation.transition.default}
+                >
+                  {title}
+                </motion.div>
               </AppearOnScroll>
             ))}
           </div>

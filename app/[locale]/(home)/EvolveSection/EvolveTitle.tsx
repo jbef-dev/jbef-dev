@@ -1,17 +1,16 @@
 'use client';
 
 import { myAnimation } from '@/styles/customAnimations';
-import { AppearOnScroll } from '@/ui/Animated/AppearOnScroll';
-import { AOSText } from '@/ui/Typography';
 import clsx from 'clsx';
 import {
   HTMLMotionProps,
   motion,
+  useInView,
   useScroll,
   useSpring,
   useTransform,
 } from 'framer-motion';
-import { ComponentPropsWithoutRef, useRef } from 'react';
+import { useRef } from 'react';
 
 interface Props extends HTMLMotionProps<'div'> {
   xStyle: number;
@@ -19,6 +18,9 @@ interface Props extends HTMLMotionProps<'div'> {
 
 export const EvolveTitle = ({ xStyle, className, ...props }: Props) => {
   const titleRef = useRef<HTMLDivElement>(null);
+
+  const isVisible = useInView(titleRef, { amount: 0.5, once: true });
+
   const { scrollYProgress } = useScroll({
     target: titleRef,
     offset: ['start end', 'end start'],
@@ -36,10 +38,17 @@ export const EvolveTitle = ({ xStyle, className, ...props }: Props) => {
     <motion.div
       ref={titleRef}
       className={clsx('overflow-hidden', className)}
+      initial='initial'
+      animate={isVisible ? 'animate' : 'initial'}
       style={{ x: spanXStyles[xStyle] }}
       {...props}
     >
-      <AppearOnScroll visibleRef={titleRef}>{props.children}</AppearOnScroll>
+      <motion.div
+        variants={myAnimation.variants.fromBelow}
+        transition={myAnimation.transition.default}
+      >
+        {props.children}
+      </motion.div>
     </motion.div>
   );
 };

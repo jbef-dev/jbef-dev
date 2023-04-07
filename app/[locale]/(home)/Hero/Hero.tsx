@@ -42,10 +42,10 @@ const Hero = ({ titles }: Props) => {
   const xLTR = useTransform(springStiff, [headingStart, 1], ['0em', '2.5em']);
   const xRTL = useTransform(springStiff, [headingStart, 1], ['0em', '-2.5em']);
 
-  const videoY = useTransform(scrollYProgress, [0, 1], ['0rem', '-9rem']);
+  const videoY = useTransform(springStiff, [0, 1], ['0rem', '-9rem']);
   // const img1Y = useTransform(springStiff, [0, 1], ['0rem', '-30rem']);
-  const img2Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-53rem']);
-  const arrowY = useTransform(scrollYProgress, [0, 1], ['0rem', '-37rem']);
+  const img2Y = useTransform(springStiff, [0, 1], ['0rem', '-53rem']);
+  const arrowY = useTransform(springStiff, [0, 1], ['0rem', '-37rem']);
 
   return (
     <div
@@ -55,18 +55,7 @@ const Hero = ({ titles }: Props) => {
       <div className='fixed h-[100svh] top-0 max-w-screen-3xl font-title flex items-center justify-center w-full bg-white'>
         {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 
-        <motion.div
-          className='flex leading-none text-responsive-hero justify-center items-start w-full px-2 flex-col text-black'
-          variants={{
-            animate: {
-              transition: {
-                staggerChildren: 0.18,
-              },
-            },
-          }}
-          initial='initial'
-          animate='animate'
-        >
+        <motion.div className='flex leading-none text-responsive-hero justify-center items-start w-full px-2 flex-col text-black'>
           <div className='flex items-center gap-[0.2em] pl-[0.9em]'>
             {/* <motion.div */}
             {/*   className='max-md:fixed max-md:right-[48vw] rounded-full max-md:top-4 max-md:h-[1.2em] h-[0.65em] aspect-square overflow-hidden' */}
@@ -82,22 +71,13 @@ const Hero = ({ titles }: Props) => {
             {/*   /> */}
             {/* </motion.div> */}
 
-            <motion.h1
-              className='flex'
-              variants={myAnimation.variants.appear3d}
-              transition={myAnimation.transition.easeOutSlow}
-              style={{ x: xLTR }}
-            >
+            <motion.h1 className='flex' style={{ x: xLTR }}>
               {titles[0]}
             </motion.h1>
           </div>
 
           <div className='flex items-center pl-[0.5em] md:pl-[0.5em] gap-[0.2em]'>
-            <motion.h1
-              className='flex tracking-[0.02em]'
-              variants={myAnimation.variants.appear3d}
-              transition={myAnimation.transition.easeOutSlow}
-            >
+            <motion.h1 className='flex tracking-[0.02em]'>
               {titles[1].split('').map((letter, i) => (
                 <ExplodingLetter
                   key={letter + i}
@@ -106,9 +86,9 @@ const Hero = ({ titles }: Props) => {
                 />
               ))}
             </motion.h1>
-            <div
+            <motion.div
               className='max-md:absolute rounded-full overflow-hidden max-md:top-24 max-md:h-[1.2em] max-md:left-[12vw] h-[0.65em] aspect-video object-cover'
-              // style={{ y: videoY }}
+              style={{ y: videoY }}
             >
               <Image
                 src={colorful_animals}
@@ -116,13 +96,13 @@ const Hero = ({ titles }: Props) => {
                 priority
                 alt='colorful animals'
               />
-            </div>
+            </motion.div>
           </div>
 
           <div className='flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center'>
-            <div
+            <motion.div
               className='max-md:absolute max-md:right-2 max-md:bottom-[15%] rounded-full max-md:h-[1.2em] h-[0.65em] aspect-video overflow-hidden'
-              // style={{ y: img2Y }}
+              style={{ y: img2Y }}
             >
               <Image
                 src={architecture}
@@ -131,35 +111,27 @@ const Hero = ({ titles }: Props) => {
                 loading='eager'
                 alt='example work'
               />
-            </div>
-            <motion.h1
-              variants={myAnimation.variants.appear3d}
-              transition={myAnimation.transition.easeOutSlow}
-              style={{ x: xRTL }}
-            >
-              {titles[2]}
-            </motion.h1>
+            </motion.div>
+            <motion.h1 style={{ x: xRTL }}>{titles[2]}</motion.h1>
           </div>
 
           <motion.h1
             className='flex w-full max-lg:justify-center lg:pl-[0.5em]'
-            variants={myAnimation.variants.appear3d}
-            transition={myAnimation.transition.easeOutSlow}
             style={{ x: xRTL }}
           >
             {titles[3]}
           </motion.h1>
         </motion.div>
 
-        <svg
+        <motion.svg
           className='fill-black will-change-transform max-md:absolute max-md:bottom-4 text-responsive-hero max-md:right-4 flex self-end'
           viewBox='0 0 24 24'
           height='1.15em'
           width='1.15em'
-          // style={{ y: arrowY }}
+          style={{ y: arrowY }}
         >
-          <motion.path d='M18.707 12.707l-1.414-1.414L13 15.586V6h-2v9.586l-4.293-4.293-1.414 1.414L12 19.414z' />
-        </svg>
+          <path d='M18.707 12.707l-1.414-1.414L13 15.586V6h-2v9.586l-4.293-4.293-1.414 1.414L12 19.414z' />
+        </motion.svg>
 
         <div className='flex absolute max-md:left-[15vw] bottom-[18%] lg:right-[6vw] lg:bottom-[45%] font-sans text-responsive-xs gap-1 text-black'>
           <div className='pt-1'>
