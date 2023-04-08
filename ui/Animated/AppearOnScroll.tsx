@@ -1,18 +1,18 @@
 'use client';
 
-import { RefObject, forwardRef } from 'react';
-import { HTMLMotionProps, motion, useInView } from 'framer-motion';
+import * as React from 'react';
+import { HTMLMotionProps, motion } from 'framer-motion';
 import { myAnimation } from '@/styles/customAnimations';
-import useForwardedRef from '@/hooks/useForwardedRef';
 
 import { Slot } from '@/ui/Slot';
 
-const AppearOnScroll = forwardRef<
+const AppearOnScroll = React.forwardRef<
   HTMLDivElement,
   HTMLMotionProps<'div'> & {
     asChild?: boolean;
-    visibleRef?: RefObject<any>;
+    visibleRef?: React.RefObject<any>;
     amount?: number;
+    once?: boolean;
   }
 >(
   (
@@ -20,6 +20,7 @@ const AppearOnScroll = forwardRef<
       asChild = false,
       visibleRef,
       amount = 0.65,
+      once = true,
       children,
       variants = myAnimation.variants.fromBelow,
       transition = myAnimation.transition.default,
@@ -27,24 +28,18 @@ const AppearOnScroll = forwardRef<
     },
     forwardedRef
   ) => {
-    const ref = useForwardedRef(forwardedRef);
-
-    const isVisible = useInView(visibleRef || ref, {
-      once: true,
-      amount: amount,
-    });
-
     const Comp = asChild ? Slot : 'div';
 
     const MotionComp = motion(Comp);
 
     return (
       <MotionComp
-        ref={ref}
+        ref={forwardedRef}
         initial='initial'
-        animate={isVisible ? 'animate' : 'initial'}
+        whileInView='animate'
         variants={variants}
         transition={transition}
+        viewport={{ root: visibleRef, once: once, amount: amount }}
         {...props}
       >
         {children}
@@ -53,7 +48,7 @@ const AppearOnScroll = forwardRef<
   }
 );
 
-const AppearOnScrollChild = forwardRef<
+const AppearOnScrollChild = React.forwardRef<
   HTMLDivElement,
   HTMLMotionProps<'div'> & {
     asChild?: boolean;
@@ -69,15 +64,13 @@ const AppearOnScrollChild = forwardRef<
     },
     forwardedRef
   ) => {
-    const ref = useForwardedRef(forwardedRef);
-
     const Comp = asChild ? Slot : 'div';
 
     const MotionComponent = motion(Comp);
 
     return (
       <MotionComponent
-        ref={ref}
+        ref={forwardedRef}
         variants={variants}
         transition={transition}
         {...props}

@@ -1,7 +1,15 @@
 'use client';
 
 import * as React from 'react';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import {
+  motion,
+  useAnimationControls,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+  useWillChange,
+} from 'framer-motion';
 import Image from 'next/image';
 
 import architecture from '@/public/assets/img/architecture_preview.webp';
@@ -13,6 +21,7 @@ import {
 } from '@/ui/Animated/AppearOnScroll';
 import clsx from 'clsx';
 import useArtificialScroll from '@/hooks/useArtificialScroll';
+// import useArtificialScroll from '@/hooks/useArtificialScroll';
 
 interface Props {
   titles: string[];
@@ -25,6 +34,8 @@ const Hero = ({ titles }: Props) => {
     offset: ['start start', 'end start'],
   });
 
+  const controls = useAnimationControls();
+
   const springProgress = useSpring(scrollYProgress, myAnimation.spring.fast);
 
   const xLtr = useTransform(springProgress, [0, 1], ['0%', '13%']);
@@ -33,11 +44,25 @@ const Hero = ({ titles }: Props) => {
 
   // const x3 = useTransform(springProgress, [0, 1], ['0rem', '6rem']);
   const scaleOutstanding = useTransform(springProgress, [0, 1], [1, 1.3]);
-  const yTitles = useTransform(springProgress, [0, 1], ['0%', '-60%']);
+  // const yTitles = useTransform(springProgress, [0, 1], ['0%', '-60%']);
 
-  // const videoY = useTransform(scrollYProgress, [0, 1], ['0rem', '-9rem']);
+  // const willChange = useWillChange();
+  // console.log(willChange);
+
+  // useArtificialScroll()
+
+  // const yGood = useMotionValue('0%');
+  //
+  // React.useEffect(() => {
+  //   yTitles.on('change', y => {
+  //     setTimeout(() => yGood.set(y, false), 20);
+  //     console.log(y);
+  //   });
+  // }, [yTitles]);
+
+  // const videoY = useTransform(springProgress, [0, 1], ['0rem', '-9rem']);
   // const img1Y = useTransform(springStiff, [0, 1], ['0rem', '-30rem']);
-  // const img2Y = useTransform(scrollYProgress, [0, 1], ['0rem', '-53rem']);
+  // const img2Y = useTransform(springProgress, [0, 1], ['0rem', '-53rem']);
   // const img2Y = useTransform(springProgress, [0, 1], ['0vh', '40vh']);
   // const img2X = useTransform(springProgress, [0, 1], ['0vw', '-53vw']);
   // const img2Scale = useTransform(springProgress, [0, 0.5, 1], [1, 1.2, 0.7]);
@@ -45,7 +70,7 @@ const Hero = ({ titles }: Props) => {
 
   // React.useEffect(() => {
   //   springProgress.on('change', s => console.log('spring'));
-  //   // scrollYProgress.on('change', s => console.log('normal'));
+  //   // springProgress.on('change', s => console.log('normal'));
   // });
 
   const newTitleClassName = clsx(
@@ -57,27 +82,30 @@ const Hero = ({ titles }: Props) => {
       ref={containerRef}
       className='relative h-[200svh] flex-col max-w-screen-3xl font-title gap-14 lg:gap-32 font-medium flex items-center justify-center w-full'
     >
-      {/* <CircleSpring containerScroll={scrollYProgress} /> */}
+      {/* <CircleSpring containerScroll={springProgress} /> */}
 
       <motion.div
         className='flex fixed h-[100svh] top-0 left-0 w-full text-responsive-hero items-center justify-center'
         initial='initial'
         animate='animate'
-        variants={{
-          animate: {
-            transition: {
-              staggerChildren: 0.21,
-            },
-          },
-        }}
-        // style={{ y: yTitles }}
+        // variants={{
+        //   animate: {
+        //     transition: {
+        //       staggerChildren: 0.21,
+        //     },
+        //   },
+        // }}
+        transition={{ staggerChildren: 0.21 }}
+        // style={{ translateY: yTitles }}
       >
         <div className='flex leading-none justify-center items-start px-2 flex-col text-black'>
           <motion.div
+            key={titles[0] + 'container'}
             className={clsx('overflow-hidden', newTitleClassName)}
-            style={{ x: xRtl }}
+            style={{ translateX: xRtl }}
           >
             <motion.h1
+              key={titles[0] + 'title'}
               variants={myAnimation.variants.fromBelow}
               transition={myAnimation.transition.default}
             >
@@ -86,6 +114,7 @@ const Hero = ({ titles }: Props) => {
           </motion.div>
 
           <motion.div
+            key={titles[1]}
             className={clsx(
               'flex relative overflow-hidden origin-[30%_50%]',
               newTitleClassName
@@ -93,6 +122,7 @@ const Hero = ({ titles }: Props) => {
             style={{ scale: scaleOutstanding }}
           >
             <motion.div
+              key={titles[0] + 'title'}
               className='flex items-center gap-[0.2em] justify-center'
               variants={myAnimation.variants.fromBelow}
               transition={myAnimation.transition.default}
@@ -130,8 +160,13 @@ const Hero = ({ titles }: Props) => {
             </motion.div>
           </motion.div>
 
-          <motion.div className={newTitleClassName} style={{ x: xRtl }}>
+          <motion.div
+            key={titles[2]}
+            className={newTitleClassName}
+            style={{ translateX: xRtl }}
+          >
             <motion.div
+              key={titles[2] + 'title'}
               className='flex gap-[0.2em] w-full items-center'
               variants={myAnimation.variants.fromBelow}
               transition={myAnimation.transition.default}
@@ -149,8 +184,13 @@ const Hero = ({ titles }: Props) => {
             </motion.div>
           </motion.div>
 
-          <motion.div className={newTitleClassName} style={{ x: xLtr }}>
+          <motion.div
+            key={titles[3]}
+            className={newTitleClassName}
+            style={{ translateX: xLtr }}
+          >
             <motion.h1
+              key={titles[3] + 'title'}
               variants={myAnimation.variants.fromBelow}
               transition={myAnimation.transition.default}
             >
@@ -161,9 +201,7 @@ const Hero = ({ titles }: Props) => {
 
         <motion.div
           className='flex fixed top-[75svh] font-sans font-medium overflow-hidden text-responsive-md left-[10vw] gap-2 text-black'
-          style={{
-            x: xQuote,
-          }}
+          style={{ translateX: xQuote }}
         >
           <div className='overflow-hidden h-min'>
             <motion.svg

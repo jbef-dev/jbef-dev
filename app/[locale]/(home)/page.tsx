@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 
 import { SeparatorMargin, SeparatorRounded } from '@/components/Separator';
 // import Hero from './Hero/Hero';
-const Hero = dynamic(() => import('./Hero/Hero'));
+// const Hero = dynamic(() => import('./Hero/Hero'));
 const EvolveSection = dynamic(() =>
   import('./EvolveSection/EvolveSection').then(mod => mod.EvolveSection)
 );

@@ -1,5 +1,5 @@
 import { FlexContainer } from '@/ui/Containers';
-import { AOSText, AnimatedParagraph, Heading3 } from '@/ui/Typography';
+import { AnimatedParagraph, Heading3 } from '@/ui/Typography';
 import { PricingTable } from './PricingTable';
 import { Dictionary, Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';

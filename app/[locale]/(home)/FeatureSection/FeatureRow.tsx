@@ -1,5 +1,3 @@
-'use client';
-
 import { myAnimation } from '@/styles/customAnimations';
 import {
   AppearOnScroll,
@@ -8,7 +6,6 @@ import {
 import { FlexContainer } from '@/ui/Containers';
 import { AnimatedParagraph, Heading3 } from '@/ui/Typography';
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface Props {
@@ -43,16 +40,11 @@ const FeatureRow = ({ icons, titles, paragraph, align }: Props) => {
             {titles.map((title, i) => (
               <AppearOnScroll
                 key={i}
-                className='overflow-hidden'
-                transition={{}}
                 variants={{}}
+                transition={{}}
+                className='overflow-hidden'
               >
-                <motion.div
-                  variants={myAnimation.variants.fromBelow}
-                  transition={myAnimation.transition.default}
-                >
-                  {title}
-                </motion.div>
+                <AppearOnScrollChild>{title}</AppearOnScrollChild>
               </AppearOnScroll>
             ))}
           </div>

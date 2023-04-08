@@ -130,7 +130,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const [isHover, setIsHover] = useState(false);
 
-    const ref = useForwardedRef(forwardedRef);
+    // const ref = useForwardedRef(forwardedRef);
 
     const toggleHover = () => {
       setIsHover(h => !h);
@@ -140,7 +140,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <motion.button
-        ref={ref}
+        ref={forwardedRef}
         className={clsx(
           'relative rounded-full overflow-hidden touch-none select-none cursor-pointer',
           flavors[flavor],
