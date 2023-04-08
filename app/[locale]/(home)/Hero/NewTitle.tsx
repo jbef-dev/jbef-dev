@@ -17,4 +17,6 @@ const NewTitle = React.forwardRef<HTMLHeadingElement, HTMLMotionProps<'h1'>>(
   }
 );
 
+NewTitle.displayName = 'NewTitle';
+
 export default NewTitle;
