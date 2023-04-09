@@ -82,7 +82,7 @@ const Hero = ({ titles }: Props) => {
   return (
     <div
       ref={containerRef}
-      className='relative h-[120svh] flex-col font-title gap-14 lg:gap-32 font-medium flex items-center justify-start w-full'
+      className='relative min-h-[100svh] flex-col font-title gap-14 lg:gap-32 font-medium flex items-center justify-start w-full'
     >
       <motion.div
         className='flex h-[100svh] flex-col w-full text-responsive-hero items-center justify-center'
