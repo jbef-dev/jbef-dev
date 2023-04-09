@@ -69,6 +69,16 @@ const variants = {
     animate: { opacity: 1, translateY: 0 },
     exit: { opacity: 0, translateY: '-10%' },
   },
+  zoomIn: {
+    initial: { scale: 0.85 },
+    animate: { scale: 1 },
+    exit: { scale: 1.15 },
+  },
+  zoomOut: {
+    initial: { scale: 1.3 },
+    animate: { scale: 1 },
+    exit: { scale: 0.75 },
+  },
   fromBelow: {
     initial: { y: '120%' },
     animate: { y: 0 },

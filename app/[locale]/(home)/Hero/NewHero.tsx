@@ -13,7 +13,7 @@ import {
 import Image from 'next/image';
 
 import architecture from '@/public/assets/img/architecture_preview.webp';
-import colorful_animals from '@/public/assets/img/colorful_animals.png';
+import sea_placeholder from '@/public/assets/img/sea.webp';
 import { myAnimation } from '@/styles/customAnimations';
 import {
   AppearOnScroll,
@@ -23,6 +23,7 @@ import clsx from 'clsx';
 import useArtificialScroll from '@/hooks/useArtificialScroll';
 import { CircleSpring } from './CircleSpring';
 import { TextBanner } from '../TextBanner/TextBanner';
+import { FlexContainer } from '@/ui/Containers';
 // import useArtificialScroll from '@/hooks/useArtificialScroll';
 
 interface Props {
@@ -46,7 +47,8 @@ const Hero = ({ titles }: Props) => {
 
   // const x3 = useTransform(springProgress, [0, 1], ['0rem', '6rem']);
   const scaleOutstanding = useTransform(springProgress, [0, 1], [1, 1.3]);
-  // const yTitles = useTransform(springProgress, [0, 1], ['0%', '-60%']);
+  const yTitles = useTransform(springProgress, [0, 1], ['0%', '-60%']);
+  const yImage = useTransform(springProgress, [0, 1], ['0%', '15%']);
 
   // const willChange = useWillChange();
   // console.log(willChange);
@@ -80,148 +82,57 @@ const Hero = ({ titles }: Props) => {
   );
 
   return (
-    <div
+    <motion.div
       ref={containerRef}
-      className='relative min-h-[100svh] flex-col font-title gap-14 lg:gap-32 font-medium flex items-center justify-start w-full'
+      className='relative flex flex-col w-full h-full items-center justify-center min-h-[100svh] font-title gap-[10svh]'
+      initial='initial'
+      animate='animate'
+      transition={{ staggerChildren: 0.21 }}
     >
       <motion.div
-        className='flex h-[100svh] flex-col w-full text-responsive-hero items-center justify-center'
-        initial='initial'
-        animate='animate'
-        transition={{ staggerChildren: 0.21 }}
+        variants={{}}
+        className='absolute inset-0 m-auto max-w-full max-h-[55svh] md:max-h-[70svh] z-10 overflow-hidden aspect-[14_/_21] rounded-2xl'
+        style={{ y: yImage }}
       >
-        <div className='flex relative leading-none justify-center items-start px-2 flex-col text-black'>
-          <motion.div className={clsx('overflow-hidden', newTitleClassName)}>
-            <AppearOnScrollChild
-              variants={myAnimation.variants.fromBelow}
-              transition={myAnimation.transition.default}
-            >
-              {titles[0]}
-            </AppearOnScrollChild>
-          </motion.div>
-
-          <motion.div
-            className={clsx(
-              'flex relative overflow-hidden origin-[30%_50%]',
-              newTitleClassName
-            )}
-            // style={{ scale: scaleOutstanding }}
-          >
-            <AppearOnScrollChild className='flex items-center gap-[0.2em] justify-center'>
-              <motion.span
-                // className='text-transparent bg-clip-text bg-gradient-to-br from-primary via-primary to-secondary'
-                className='text-transparent bg-clip-text'
-                animate={{
-                  backgroundImage: [
-                    `linear-gradient(0deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 40%)`,
-                    `linear-gradient(70deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 20%)`,
-                    `linear-gradient(180deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 70%)`,
-                    `linear-gradient(250deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 25%)`,
-                    `linear-gradient(360deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 40%)`,
-                  ],
-                  // backgroundImage: [
-                  //   `linear-gradient(0deg, rgba(245,154,44,1) 0%, rgba(231,39,123,1) 0%)`,
-                  //   `linear-gradient(10deg, rgba(245,154,44,1) 0%, rgba(231,39,123,1) 50%)`,
-                  //   `linear-gradient(30deg, rgba(245,154,44,1) 0%, rgba(231,39,123,1) 100%)`,
-                  //   `linear-gradient(30deg, rgba(245,154,44,1) 50%, rgba(231,39,123,1) 100%)`,
-                  //   `linear-gradient(30deg, rgba(245,154,44,1) 100%, rgba(231,39,123,1) 100%)`,
-                  // ],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  repeatType: 'reverse',
-                  duration: 3.5,
-                  ease: 'easeInOut',
-                }}
-              >
-                {titles[1]}
-              </motion.span>
-
-              <div className='rounded-full overflow-hidden h-[0.65em] aspect-video'>
-                <Image
-                  src={colorful_animals}
-                  className='object-cover'
-                  priority
-                  alt='colorful animals'
-                />
-              </div>
-            </AppearOnScrollChild>
-          </motion.div>
-
-          <motion.div
-            className={newTitleClassName}
-            // style={{ translateX: xRtl }}
-          >
-            <AppearOnScrollChild className='flex gap-[0.2em] w-full items-center'>
-              <div className='rounded-full h-[0.65em] aspect-video overflow-hidden'>
-                <Image
-                  src={architecture}
-                  className='object-cover object-center w-full'
-                  priority
-                  loading='eager'
-                  alt='example work'
-                />
-              </div>
-              <h1>{titles[2]}</h1>
-            </AppearOnScrollChild>
-          </motion.div>
-
-          <motion.div className={newTitleClassName}>
-            <AppearOnScrollChild>{titles[3]}</AppearOnScrollChild>
-          </motion.div>
-
-          <motion.div
-            className='flex absolute font-normal top-full translate-y-12 left-0 overflow-hidden text-responsive-md gap-2 text-black'
-            // style={{ translateX: xQuote }}
-          >
-            <div className='overflow-hidden h-min'>
-              <AppearOnScrollChild asChild>
-                <svg
-                  className='h-[0.75em] aspect-square mt-[0.22em]'
-                  viewBox='0 0 200 200'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    className='fill-black'
-                    d='M100 0C103.395 53.7596 146.24 96.6052 200 100C146.24 103.395 103.395 146.24 100 200C96.6052 146.24 53.7596 103.395 0 100C53.7596 96.6052 96.6052 53.7596 100 0Z'
-                  />
-                </svg>
-              </AppearOnScrollChild>
-            </div>
-
-            <AppearOnScrollChild asChild>
-              <p className='whitespace-nowrap'>
-                Custom websites —<br /> down to earth service
-              </p>
-            </AppearOnScrollChild>
-          </motion.div>
-        </div>
+        <AppearOnScrollChild asChild variants={myAnimation.variants.zoomIn}>
+          <Image
+            src={sea_placeholder}
+            alt='primary image'
+            className='object-cover rounded-2xl h-full'
+          />
+        </AppearOnScrollChild>
       </motion.div>
 
-      {/* <AppearOnScroll */}
-      {/*   className='absolute flex leading-none overflow-hidden bottom-8 right-8 font-light' */}
-      {/*   variants={{}} */}
-      {/*   transition={{ delayChildren: 3, staggerChildren: 0.1 }} */}
-      {/*   style={{ */}
-      {/*     opacity: scrollIndicatorOpacity, */}
-      {/*   }} */}
-      {/* > */}
-      {/*   {'SCROLL'.split('').map((letter, i) => ( */}
-      {/*     <AppearOnScrollChild */}
-      {/*       key={letter + i} */}
-      {/*       transition={{ */}
-      {/*         repeat: Infinity, */}
-      {/*         repeatType: 'loop', */}
-      {/*         repeatDelay: 3, */}
-      {/*         ...myAnimation.transition.default, */}
-      {/*       }} */}
-      {/*     > */}
-      {/*       {letter} */}
-      {/*     </AppearOnScrollChild> */}
-      {/*   ))} */}
-      {/* </AppearOnScroll> */}
+      <motion.div
+        className={clsx('z-0 overflow-hidden w-full')}
+        variants={{}}
+        style={{ y: yTitles }}
+      >
+        <AppearOnScrollChild asChild>
+          <TextBanner
+            direction='rtl'
+            className='whitespace-nowrap text-responsive-hero'
+          >
+            <h1 className='font-medium'>Design & develop &#8212;&nbsp;</h1>
+          </TextBanner>
+        </AppearOnScrollChild>
+      </motion.div>
 
-    </div>
+      <motion.div
+        className='z-10 overflow-hidden w-full'
+        variants={{}}
+        style={{ y: yTitles }}
+      >
+        <AppearOnScrollChild asChild>
+          <TextBanner
+            direction='ltr'
+            className='whitespace-nowrap text-responsive-hero'
+          >
+            <h1 className='font-extralight'>Bespoke websites &#8212;&nbsp;</h1>
+          </TextBanner>
+        </AppearOnScrollChild>
+      </motion.div>
+    </motion.div>
   );
 };
 

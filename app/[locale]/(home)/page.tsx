@@ -31,7 +31,7 @@ export default async function Home({
 
   return (
     <PageContainer>
-      <SectionContainer flexCol px={false} py={false}>
+      <SectionContainer py={false} center>
         <Hero
           titles={[
             dict['pages'].home.hero.titles.title1,
@@ -41,8 +41,6 @@ export default async function Home({
           ]}
         />
       </SectionContainer>
-
-      <SeparatorMargin />
 
       {/* <SectionContainer flexCol> */}
       {/*   <div> */}
@@ -76,24 +74,16 @@ export default async function Home({
       {/*   <SeparatorMargin /> */}
       {/* </SectionContainer> */}
 
-      <SectionContainer
-        flexCol
-        center
-        pt={false}
-        overflow
-        className='bg-black text-white'
-      >
-        <SeparatorRounded position='top' className='bg-black' />
-        <EvolveSection dictionary={dict} />
-      </SectionContainer>
-
-      <SectionContainer flexCol className='bg-black text-white'>
-        <FeatureSection />
-        <SeparatorMargin />
-      </SectionContainer>
+      {/* <SectionContainer flexCol center overflow className='bg-black text-white'> */}
+      {/*   <EvolveSection dictionary={dict} /> */}
+      {/* </SectionContainer> */}
+      {/**/}
+      {/* <SectionContainer flexCol> */}
+      {/*   <FeatureSection /> */}
+      {/*   <SeparatorMargin /> */}
+      {/* </SectionContainer> */}
 
       <SectionContainer flexCol overflow pt={false} className='bg-white'>
-        <SeparatorRounded position='top' className='bg-white' />
         {/* @ts-expect-error async Server Component */}
         <PricingSection locale={locale} />
       </SectionContainer>

@@ -25,7 +25,7 @@ const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
     const {
       center = true,
       gap = true,
-      px = true,
+      px = false,
       pr = true,
       pl = true,
       py = true,
@@ -54,7 +54,8 @@ const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
           {
             'pr-5 lg:pr-12': pr && px,
             'pl-5 lg:pl-12': pl && px,
-            'pt-16 lg:pt-32 first:pt-28 lg:first:pt-36': pt && py,
+            // 'pt-16 lg:pt-32 first:pt-28 lg:first:pt-36': pt && py,
+            'pt-16 lg:pt-32': pt && py,
             'pb-16 lg:pb-32': pb && py,
             'mt-12 lg:mt-24': mt || my,
             'mb-12 lg:mb-24': mb || my,
