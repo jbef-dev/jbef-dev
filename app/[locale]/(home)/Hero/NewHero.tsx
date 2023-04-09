@@ -21,6 +21,8 @@ import {
 } from '@/ui/Animated/AppearOnScroll';
 import clsx from 'clsx';
 import useArtificialScroll from '@/hooks/useArtificialScroll';
+import { CircleSpring } from './CircleSpring';
+import { TextBanner } from '../TextBanner/TextBanner';
 // import useArtificialScroll from '@/hooks/useArtificialScroll';
 
 interface Props {
@@ -34,9 +36,9 @@ const Hero = ({ titles }: Props) => {
     offset: ['start start', 'end start'],
   });
 
-  const controls = useAnimationControls();
-
   const springProgress = useSpring(scrollYProgress, myAnimation.spring.fast);
+
+  const scrollIndicatorOpacity = useTransform(springProgress, [0, 0.2], [1, 0]);
 
   const xLtr = useTransform(springProgress, [0, 1], ['0%', '13%']);
   const xRtl = useTransform(springProgress, [0, 1], ['0%', '-18%']);
@@ -61,7 +63,7 @@ const Hero = ({ titles }: Props) => {
   // }, [yTitles]);
 
   // const videoY = useTransform(springProgress, [0, 1], ['0rem', '-9rem']);
-  // const img1Y = useTransform(springStiff, [0, 1], ['0rem', '-30rem']);
+  const img1Y = useTransform(springProgress, [0, 1], ['0%', '-30%']);
   // const img2Y = useTransform(springProgress, [0, 1], ['0rem', '-53rem']);
   // const img2Y = useTransform(springProgress, [0, 1], ['0vh', '40vh']);
   // const img2X = useTransform(springProgress, [0, 1], ['0vw', '-53vw']);
@@ -74,77 +76,63 @@ const Hero = ({ titles }: Props) => {
   // });
 
   const newTitleClassName = clsx(
-    'overflow-hidden leading-none -mt-[0.13em] pb-[0.13em]'
+    'overflow-hidden leading-none -mt-[0.23em] pb-[0.1em]'
   );
 
   return (
     <div
       ref={containerRef}
-      className='relative h-[200svh] flex-col max-w-screen-3xl font-title gap-14 lg:gap-32 font-medium flex items-center justify-center w-full'
+      className='relative h-[120svh] flex-col font-title gap-14 lg:gap-32 font-medium flex items-center justify-start w-full'
     >
-      {/* <CircleSpring containerScroll={springProgress} /> */}
-
       <motion.div
-        className='flex fixed h-[100svh] top-0 left-0 w-full text-responsive-hero items-center justify-center'
+        className='flex h-[100svh] flex-col w-full text-responsive-hero items-center justify-center'
         initial='initial'
         animate='animate'
-        // variants={{
-        //   animate: {
-        //     transition: {
-        //       staggerChildren: 0.21,
-        //     },
-        //   },
-        // }}
         transition={{ staggerChildren: 0.21 }}
-        // style={{ translateY: yTitles }}
       >
-        <div className='flex leading-none justify-center items-start px-2 flex-col text-black'>
-          <motion.div
-            key={titles[0] + 'container'}
-            className={clsx('overflow-hidden', newTitleClassName)}
-            style={{ translateX: xRtl }}
-          >
-            <motion.h1
-              key={titles[0] + 'title'}
+        <div className='flex relative leading-none justify-center items-start px-2 flex-col text-black'>
+          <motion.div className={clsx('overflow-hidden', newTitleClassName)}>
+            <AppearOnScrollChild
               variants={myAnimation.variants.fromBelow}
               transition={myAnimation.transition.default}
             >
               {titles[0]}
-            </motion.h1>
+            </AppearOnScrollChild>
           </motion.div>
 
           <motion.div
-            key={titles[1]}
             className={clsx(
               'flex relative overflow-hidden origin-[30%_50%]',
               newTitleClassName
             )}
-            style={{ scale: scaleOutstanding }}
+            // style={{ scale: scaleOutstanding }}
           >
-            <motion.div
-              key={titles[0] + 'title'}
-              className='flex items-center gap-[0.2em] justify-center'
-              variants={myAnimation.variants.fromBelow}
-              transition={myAnimation.transition.default}
-            >
+            <AppearOnScrollChild className='flex items-center gap-[0.2em] justify-center'>
               <motion.span
-                className='text-transparent bg-clip-text bg-gradient-to-br from-primary via-primary to-secondary'
-                // className='text-transparent bg-clip-text'
-                // animate={{
-                //   backgroundImage: [
-                //     `linear-gradient(0deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 40%)`,
-                //     `linear-gradient(70deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 20%)`,
-                //     `linear-gradient(180deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 70%)`,
-                //     `linear-gradient(250deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 25%)`,
-                //     `linear-gradient(360deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 40%)`,
-                //   ],
-                // }}
-                // transition={{
-                //   repeat: Infinity,
-                //   repeatType: 'loop',
-                //   duration: 4.5,
-                //   ease: 'easeInOut',
-                // }}
+                // className='text-transparent bg-clip-text bg-gradient-to-br from-primary via-primary to-secondary'
+                className='text-transparent bg-clip-text'
+                animate={{
+                  backgroundImage: [
+                    `linear-gradient(0deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 40%)`,
+                    `linear-gradient(70deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 20%)`,
+                    `linear-gradient(180deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 70%)`,
+                    `linear-gradient(250deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 25%)`,
+                    `linear-gradient(360deg, rgba(245,154,44,0.7) 5%, rgba(231,39,123,1) 40%)`,
+                  ],
+                  // backgroundImage: [
+                  //   `linear-gradient(0deg, rgba(245,154,44,1) 0%, rgba(231,39,123,1) 0%)`,
+                  //   `linear-gradient(10deg, rgba(245,154,44,1) 0%, rgba(231,39,123,1) 50%)`,
+                  //   `linear-gradient(30deg, rgba(245,154,44,1) 0%, rgba(231,39,123,1) 100%)`,
+                  //   `linear-gradient(30deg, rgba(245,154,44,1) 50%, rgba(231,39,123,1) 100%)`,
+                  //   `linear-gradient(30deg, rgba(245,154,44,1) 100%, rgba(231,39,123,1) 100%)`,
+                  // ],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  repeatType: 'reverse',
+                  duration: 3.5,
+                  ease: 'easeInOut',
+                }}
               >
                 {titles[1]}
               </motion.span>
@@ -157,20 +145,14 @@ const Hero = ({ titles }: Props) => {
                   alt='colorful animals'
                 />
               </div>
-            </motion.div>
+            </AppearOnScrollChild>
           </motion.div>
 
           <motion.div
-            key={titles[2]}
             className={newTitleClassName}
-            style={{ translateX: xRtl }}
+            // style={{ translateX: xRtl }}
           >
-            <motion.div
-              key={titles[2] + 'title'}
-              className='flex gap-[0.2em] w-full items-center'
-              variants={myAnimation.variants.fromBelow}
-              transition={myAnimation.transition.default}
-            >
+            <AppearOnScrollChild className='flex gap-[0.2em] w-full items-center'>
               <div className='rounded-full h-[0.65em] aspect-video overflow-hidden'>
                 <Image
                   src={architecture}
@@ -181,63 +163,66 @@ const Hero = ({ titles }: Props) => {
                 />
               </div>
               <h1>{titles[2]}</h1>
-            </motion.div>
+            </AppearOnScrollChild>
+          </motion.div>
+
+          <motion.div className={newTitleClassName}>
+            <AppearOnScrollChild>{titles[3]}</AppearOnScrollChild>
           </motion.div>
 
           <motion.div
-            key={titles[3]}
-            className={newTitleClassName}
-            style={{ translateX: xLtr }}
+            className='flex absolute font-normal top-full translate-y-12 left-0 overflow-hidden text-responsive-md gap-2 text-black'
+            // style={{ translateX: xQuote }}
           >
-            <motion.h1
-              key={titles[3] + 'title'}
-              variants={myAnimation.variants.fromBelow}
-              transition={myAnimation.transition.default}
-            >
-              {titles[3]}
-            </motion.h1>
+            <div className='overflow-hidden h-min'>
+              <AppearOnScrollChild asChild>
+                <svg
+                  className='h-[0.75em] aspect-square mt-[0.22em]'
+                  viewBox='0 0 200 200'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    className='fill-black'
+                    d='M100 0C103.395 53.7596 146.24 96.6052 200 100C146.24 103.395 103.395 146.24 100 200C96.6052 146.24 53.7596 103.395 0 100C53.7596 96.6052 96.6052 53.7596 100 0Z'
+                  />
+                </svg>
+              </AppearOnScrollChild>
+            </div>
+
+            <AppearOnScrollChild asChild>
+              <p className='whitespace-nowrap'>
+                Custom websites —<br /> down to earth service
+              </p>
+            </AppearOnScrollChild>
           </motion.div>
         </div>
-
-        <motion.div
-          className='flex fixed top-[75svh] font-sans font-medium overflow-hidden text-responsive-md left-[10vw] gap-2 text-black'
-          style={{ translateX: xQuote }}
-        >
-          <div className='overflow-hidden h-min'>
-            <motion.svg
-              className='h-[1.2em] aspect-square mt-[0.22em]'
-              viewBox='0 0 200 200'
-              xmlns='http://www.w3.org/2000/svg'
-              variants={myAnimation.variants.fromBelow}
-              transition={myAnimation.transition.default}
-            >
-              <path
-                className='fill-black'
-                d='M100 0C103.395 53.7596 146.24 96.6052 200 100C146.24 103.395 103.395 146.24 100 200C96.6052 146.24 53.7596 103.395 0 100C53.7596 96.6052 96.6052 53.7596 100 0Z'
-              />
-            </motion.svg>
-          </div>
-
-          <motion.p
-            className='whitespace-nowrap'
-            variants={myAnimation.variants.fromBelow}
-            transition={myAnimation.transition.default}
-          >
-            Custom websites —<br /> down to earth service
-          </motion.p>
-        </motion.div>
       </motion.div>
 
-      {/* <svg */}
-      {/*   className='fill-black will-change-transform text-responsive-hero flex self-end' */}
-      {/*   viewBox='0 0 24 24' */}
-      {/*   height='1.15em' */}
-      {/*   width='1.15em' */}
+      {/* <AppearOnScroll */}
+      {/*   className='absolute flex leading-none overflow-hidden bottom-8 right-8 font-light' */}
+      {/*   variants={{}} */}
+      {/*   transition={{ delayChildren: 3, staggerChildren: 0.1 }} */}
+      {/*   style={{ */}
+      {/*     opacity: scrollIndicatorOpacity, */}
+      {/*   }} */}
       {/* > */}
-      {/*   <motion.path d='M18.707 12.707l-1.414-1.414L13 15.586V6h-2v9.586l-4.293-4.293-1.414 1.414L12 19.414z' /> */}
-      {/* </svg> */}
+      {/*   {'SCROLL'.split('').map((letter, i) => ( */}
+      {/*     <AppearOnScrollChild */}
+      {/*       key={letter + i} */}
+      {/*       transition={{ */}
+      {/*         repeat: Infinity, */}
+      {/*         repeatType: 'loop', */}
+      {/*         repeatDelay: 3, */}
+      {/*         ...myAnimation.transition.default, */}
+      {/*       }} */}
+      {/*     > */}
+      {/*       {letter} */}
+      {/*     </AppearOnScrollChild> */}
+      {/*   ))} */}
+      {/* </AppearOnScroll> */}
+
     </div>
   );
 };
 
-export default Hero;
+export { Hero };

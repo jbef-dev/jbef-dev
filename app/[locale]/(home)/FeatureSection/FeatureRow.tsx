@@ -40,6 +40,7 @@ const FeatureRow = ({ icons, titles, paragraph, align }: Props) => {
             {titles.map((title, i) => (
               <AppearOnScroll
                 key={i}
+                amount={0.85}
                 variants={{}}
                 transition={{}}
                 className='overflow-hidden'
@@ -51,15 +52,13 @@ const FeatureRow = ({ icons, titles, paragraph, align }: Props) => {
         </Heading3>
 
         <AppearOnScroll
+          amount={0.35}
           className='flex text-neutral-300 w-full max-w-md lg:max-w-screen-sm font-light text-responsive-md'
           variants={myAnimation.variants.appearFromBottom}
           transition={myAnimation.transition.easeOutSlow}
         >
           {paragraph}
         </AppearOnScroll>
-        {/* <AnimatedParagraph className='flex text-neutral-300 w-full max-w-md lg:max-w-screen-sm font-light text-responsive-md'> */}
-        {/*   {paragraph} */}
-        {/* </AnimatedParagraph> */}
       </FlexContainer>
     </FlexContainer>
   );

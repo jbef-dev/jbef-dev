@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
+import Image from 'next/image';
 
 import { SeparatorMargin, SeparatorRounded } from '@/components/Separator';
 // import Hero from './Hero/Hero';
@@ -12,10 +13,13 @@ import { PageContainer, SectionContainer } from '@/ui/Containers';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
 import PricingSection from './PricingSection/PricingSection';
-import NewHero from './Hero/NewHero';
+import { Hero } from './Hero/NewHero';
+import { TextBanner } from './TextBanner/TextBanner';
 // const PricingSection = dynamic(() =>
 //   import('./PricingSection/PricingSection').then(m => m)
 // );
+
+import colorful_animals from '@/public/assets/img/colorful_animals.png';
 
 export default async function Home({
   params: { locale },
@@ -27,18 +31,8 @@ export default async function Home({
 
   return (
     <PageContainer>
-      <SectionContainer
-        flexCol
-        gap={false}
-        // style={{
-        //   backgroundImage: 'radial-gradient(#c0c0c0 1px, transparent 0)',
-        //   backgroundOrigin: 'content-box',
-        //   backgroundSize: '40px 40px',
-        //   backgroundPosition: '-19px -19px',
-        // }}
-      >
-        <NewHero
-          // title={dict['pages'].home.hero.title}
+      <SectionContainer flexCol px={false} py={false}>
+        <Hero
           titles={[
             dict['pages'].home.hero.titles.title1,
             dict['pages'].home.hero.titles.title2,
@@ -46,15 +40,9 @@ export default async function Home({
             dict['pages'].home.hero.titles.title4,
           ]}
         />
-        {/* <Hero */}
-        {/*   titles={[ */}
-        {/*     dict['pages'].home.hero.titles.title1, */}
-        {/*     dict['pages'].home.hero.titles.title2, */}
-        {/*     dict['pages'].home.hero.titles.title3, */}
-        {/*     dict['pages'].home.hero.titles.title4, */}
-        {/*   ]} */}
-        {/* /> */}
       </SectionContainer>
+
+      <SeparatorMargin />
 
       {/* <SectionContainer flexCol> */}
       {/*   <div> */}
@@ -92,6 +80,7 @@ export default async function Home({
         flexCol
         center
         pt={false}
+        overflow
         className='bg-black text-white'
       >
         <SeparatorRounded position='top' className='bg-black' />
@@ -103,7 +92,7 @@ export default async function Home({
         <SeparatorMargin />
       </SectionContainer>
 
-      <SectionContainer flexCol center pt={false} className='bg-white'>
+      <SectionContainer flexCol overflow pt={false} className='bg-white'>
         <SeparatorRounded position='top' className='bg-white' />
         {/* @ts-expect-error async Server Component */}
         <PricingSection locale={locale} />

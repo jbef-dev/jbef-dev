@@ -23,8 +23,8 @@ const SeparatorRounded = ({
   });
 
   const springInput = useSpring(containerProgress, myAnimation.spring.default);
-  const containerScaleY = useTransform(springInput, [0, 1], [1, 1.8]);
-  const circleScaleX = useTransform(springInput, [0, 1], [1.2, 2.1]);
+  const containerScaleY = useTransform(springInput, [0, 1], [1, 2.4]);
+  const circleScaleX = useTransform(springInput, [0, 1], [1.2, 2.3]);
 
   return (
     <motion.div

@@ -17,7 +17,7 @@ interface SectionContainerProps extends ComponentPropsWithoutRef<'section'> {
   maxW?: boolean;
   flex?: boolean;
   flexCol?: boolean;
-  altRef?: RefObject<HTMLDivElement>;
+  overflow?: boolean;
 }
 
 const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
@@ -38,6 +38,7 @@ const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
       wFull = true,
       flex = true,
       flexCol = false,
+      overflow = false,
       className,
       children,
       ...rest
@@ -49,7 +50,7 @@ const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
         className={clsx([
           'relative',
           flex ? 'flex' : 'block',
-          flexCol ? 'flex-col' : 'flex-row',
+          flexCol ? 'flex-col' : null,
           {
             'pr-5 lg:pr-12': pr && px,
             'pl-5 lg:pl-12': pl && px,
@@ -59,6 +60,7 @@ const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
             'mb-12 lg:mb-24': mb || my,
             'gap-y-24 lg:gap-y-40': gap,
             'max-w-screen-xl': maxW,
+            'overflow-hidden': !overflow,
             'justify-center items-center': center,
             'w-full': wFull,
           },
