@@ -31,6 +31,7 @@
     "@types/negotiator": "^0.6.1",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
+    "prettier-plugin-tailwindcss": "^0.2.7",
     "tailwindcss": "^3.3.1"
   }
 }
