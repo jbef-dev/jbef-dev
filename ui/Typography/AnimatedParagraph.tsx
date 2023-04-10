@@ -2,8 +2,8 @@
 
 import { useRef } from 'react';
 import { HTMLMotionProps, motion, useInView } from 'framer-motion';
-import { myAnimation } from '@/styles/customAnimations';
 import clsx from 'clsx';
+import { customTransitions, customValues, customVariants } from '../animation';
 
 interface Props extends HTMLMotionProps<'p'> {
   children: string;
@@ -21,7 +21,7 @@ const AnimatedParagraph = ({ children, className, ...props }: Props) => {
       initial='initial'
       animate={isVisible ? 'animate' : 'initial'}
       transition={{
-        delay: myAnimation.values.duration.fastest,
+        delay: customValues.duration.fastest,
         staggerChildren: 0.02,
         staggerDirection: 1,
       }}
@@ -30,10 +30,8 @@ const AnimatedParagraph = ({ children, className, ...props }: Props) => {
         <motion.span key={i} className='flex overflow-hidden'>
           <motion.span
             className='flex'
-            variants={myAnimation.variants.fromBelow}
-            transition={{
-              ...myAnimation.transition.easeOut,
-            }}
+            variants={customVariants.fromBelow}
+            transition={customTransitions.easeOut}
           >
             {k}&nbsp;
           </motion.span>

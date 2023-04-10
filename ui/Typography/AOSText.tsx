@@ -2,9 +2,9 @@
 
 import { forwardRef } from 'react';
 import { HTMLMotionProps, motion, useInView } from 'framer-motion';
-import { myAnimation } from '@/styles/customAnimations';
 import clsx from 'clsx';
 import useForwardedRef from '@/hooks/useForwardedRef';
+import { customTransitions, customVariants } from '../animation';
 
 const AOSText = forwardRef<HTMLDivElement, HTMLMotionProps<'div'>>(
   ({ children, className, ...props }, ref) => {
@@ -17,8 +17,8 @@ const AOSText = forwardRef<HTMLDivElement, HTMLMotionProps<'div'>>(
         className={clsx('flex', className)}
         initial='initial'
         animate={isVisible ? 'animate' : 'initial'}
-        variants={myAnimation.variants.appear3d}
-        transition={myAnimation.transition.easeOutSlow}
+        variants={customVariants.appear3d}
+        transition={customTransitions.easeOutSlow}
         {...props}
       >
         {children}

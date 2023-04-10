@@ -5,12 +5,12 @@ import { Locale } from '@/i18n/config';
 import { motion, Variants } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
 import { useLocaleSwitcher } from './useLocaleSwitcher';
-import { myAnimation } from '@/styles/customAnimations';
 import { IoTriangle } from 'react-icons/io5';
 import clsx from 'clsx';
 import { useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { customValues, customTransitions } from '@/ui/animation';
 
 interface Props {
   locale: Locale;
@@ -32,10 +32,10 @@ export const LocaleOptions = ({ locale, otherLocales }: Props) => {
       height: 'auto',
       y: '100%',
       transition: {
-        delayChildren: myAnimation.values.duration.fastest,
+        delayChildren: customValues.duration.fastest,
         // staggerChildren: 0.1,
         // staggerDirection: 1,
-        ...myAnimation.transition.easeOut,
+        ...customTransitions.easeOut,
       },
     },
     closed: {
@@ -43,10 +43,7 @@ export const LocaleOptions = ({ locale, otherLocales }: Props) => {
       height: 0,
       y: 0,
       transition: {
-        // staggerChildren: 0.1,
-        // staggerDirection: -1,
-        // delay: myAnimation.values.duration.normal,
-        ...myAnimation.transition.easeOut,
+        ...customTransitions.easeOut,
       },
     },
   };
@@ -55,19 +52,19 @@ export const LocaleOptions = ({ locale, otherLocales }: Props) => {
     open: {
       y: 0,
       opacity: 1,
-      transition: { ...myAnimation.transition.normal },
+      transition: { ...customTransitions.normal },
     },
     closed: {
       y: '-50%',
       opacity: 0,
-      transition: { ...myAnimation.transition.normal },
+      transition: { ...customTransitions.normal },
     },
   };
 
   return (
     <>
       <div
-        className='grid place-items-center grid-cols-3 gap-1.5 py-1 text-white'
+        className='grid grid-cols-3 place-items-center gap-1.5 py-1 text-white'
         ref={ref}
         onClick={() => toggleOpen()}
       >
@@ -80,7 +77,7 @@ export const LocaleOptions = ({ locale, otherLocales }: Props) => {
         {locale.toUpperCase()} <MdOutlineTranslate />
       </div>
       <motion.div
-        className='absolute bottom-0 gap-1 -z-10 flex w-full flex-col overflow-hidden items-center justify-center'
+        className='absolute bottom-0 -z-10 flex w-full flex-col items-center justify-center gap-1 overflow-hidden'
         initial='closed'
         animate={open ? 'open' : 'closed'}
         variants={dropdownVariants}

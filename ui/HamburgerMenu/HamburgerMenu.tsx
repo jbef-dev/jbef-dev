@@ -2,7 +2,6 @@
 
 import clsx from 'clsx';
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
-import { myAnimation } from '@/styles/customAnimations';
 import {
   createContext,
   forwardRef,
@@ -11,6 +10,7 @@ import {
   useState,
 } from 'react';
 import Link from 'next/link';
+import { customTransitions, customValues, customVariants } from '@/ui/animation';
 
 interface HamburgerMenuCtxI {
   open: boolean;
@@ -70,7 +70,7 @@ const HamburgerMenuButton = ({
   return (
     <button
       className={clsx(
-        'flex items-center h-min group overflow-hidden text-white justify-center gap-x-2',
+        'group flex h-min items-center justify-center gap-x-2 overflow-hidden text-white',
         className
       )}
       onClick={() => setOpen(o => !o)}
@@ -90,8 +90,7 @@ const HamburgerMenuButton = ({
             animate='animate'
             exit='exit'
             whileHover='hover'
-            variants={myAnimation.variants.fromBelow}
-            // transition={myAnimation.transition.normal}
+            variants={customVariants.fromBelow}
             transition={{ stiffness: 250, damping: 100 }}
           >
             <motion.div
@@ -113,7 +112,7 @@ const HamburgerMenuButton = ({
             initial={isRendered ? 'initial' : 'false'}
             animate='animate'
             exit='exit'
-            variants={myAnimation.variants.fromBelow}
+            variants={customVariants.fromBelow}
             transition={{ stiffness: 250, damping: 100 }}
           >
             <div className='relative flex flex-col transition duration-500 group-target:-translate-y-full group-hover:-translate-y-full group-active:-translate-y-full'>
@@ -140,7 +139,7 @@ const HamburgerMenuContent = forwardRef<HTMLElement, HTMLMotionProps<'nav'>>(
         transition={{
           type: 'keyframes',
           ease: 'easeInOut',
-          duration: myAnimation.values.duration.verySlow,
+          duration: customValues.duration.verySlow,
         }}
         style={{
           transform: 'translate3d(0px, 0px, 0px)',
@@ -168,7 +167,7 @@ const HamburgerMenuNavigation = forwardRef<
           transition: {
             delayChildren: 0.3,
             staggerChildren: 0.1,
-            ...myAnimation.transition.easeOut,
+            ...customTransitions.easeOut,
           },
         },
         initial: {
@@ -177,7 +176,7 @@ const HamburgerMenuNavigation = forwardRef<
             when: 'afterChildren',
             staggerDirection: -1,
             staggerChildren: 0.1,
-            ...myAnimation.transition.normal,
+            ...customTransitions.normal,
           },
         },
       }}
@@ -204,7 +203,7 @@ const HamburgerMenuSubNavigation = forwardRef<
             animate: {
               transition: {
                 staggerChildren: 0.1,
-                ...myAnimation.transition.easeOut,
+                ...customTransitions.easeOut,
               },
             },
             initial: {
@@ -213,7 +212,7 @@ const HamburgerMenuSubNavigation = forwardRef<
                 when: 'afterChildren',
                 staggerDirection: -1,
                 staggerChildren: 0.1,
-                ...myAnimation.transition.normal,
+                ...customTransitions.normal,
               },
             },
           }}
@@ -230,8 +229,8 @@ const HamburgerMenuNavItem = forwardRef<HTMLDivElement, HTMLMotionProps<'div'>>(
   ({ children, ...props }, ref) => (
     <motion.div
       ref={ref}
-      variants={myAnimation.variants.appearFromTop}
-      transition={myAnimation.transition.easeOut}
+      variants={customVariants.appearFromTop}
+      transition={customTransitions.easeOut}
       {...props}
     >
       {children}
@@ -274,7 +273,7 @@ const HamburgerMenuNavTrigger = forwardRef<
               initial: { rotate: '0deg' },
               animate: { rotate: '180deg' },
             }}
-            transition={myAnimation.transition.easeInOut}
+            transition={customTransitions.easeInOut}
           >
             <motion.path
               strokeLinecap='round'
@@ -296,8 +295,8 @@ const HamburgerMenuNavLink = forwardRef<
   return (
     <motion.div
       ref={ref}
-      variants={myAnimation.variants.appearFromTop}
-      transition={myAnimation.transition.easeOut}
+      variants={customVariants.appearFromTop}
+      transition={customTransitions.easeOut}
     >
       <Link
         onClick={() => {

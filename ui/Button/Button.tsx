@@ -2,15 +2,8 @@
 
 import { forwardRef, ReactNode, useState } from 'react';
 import clsx, { ClassValue } from 'clsx';
-import {
-  AnimatePresence,
-  HTMLMotionProps,
-  motion,
-  useAnimation,
-  Variants,
-} from 'framer-motion';
-import { myAnimation } from '@/styles/customAnimations';
-import useForwardedRef from '@/hooks/useForwardedRef';
+import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
+import { customTransitions } from '@/ui/animation';
 
 type ButtonFlavors =
   | 'basic'
@@ -142,7 +135,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <motion.button
         ref={forwardedRef}
         className={clsx(
-          'relative rounded-full overflow-hidden touch-none select-none cursor-pointer',
+          'relative cursor-pointer touch-none select-none overflow-hidden rounded-full',
           flavors[flavor],
           size[buttonSize],
           mode[colorMode],
@@ -170,13 +163,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         <AnimatePresence mode='wait'>
           {isHover ? (
             <motion.div
-              className='absolute overflow-hidden rounded-full flex items-center justify-center w-full z-10 h-full top-0 left-0'
+              className='absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center overflow-hidden rounded-full'
               initial='initial'
               animate='animate'
               exit='exit'
             >
               <motion.div
-                className='w-full h-[300%] bg-primary rounded-[300%]'
+                className='h-[300%] w-full rounded-[300%] bg-primary'
                 variants={{
                   initial: {
                     y: '100%',
@@ -211,7 +204,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
         {flavor == 'gradientOutline' ? (
           <motion.div
-            className='absolute z-0 rounded-full inset-0.5 bg-white'
+            className='absolute inset-0.5 z-0 rounded-full bg-white'
             variants={{
               hover: {
                 left: '3px',
@@ -220,15 +213,15 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 right: '3px',
               },
             }}
-            transition={myAnimation.transition.easeInOut}
+            transition={customTransitions.easeInOut}
           ></motion.div>
         ) : null}
-        <motion.div className='relative flex gap-x-4 items-center leading-none justify-center z-20 w-full h-full'>
+        <motion.div className='relative z-20 flex h-full w-full items-center justify-center gap-x-4 leading-none'>
           <>
             {children}
             {icon !== false ? (
               <motion.div
-                className='flex relative z-20 items-center justify-center'
+                className='relative z-20 flex items-center justify-center'
                 variants={{
                   active: {
                     translateX: '0.25rem',
@@ -237,7 +230,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                     translateX: '0.25rem',
                   },
                 }}
-                transition={myAnimation.transition.easeInOut}
+                transition={customTransitions.easeInOut}
               >
                 {isLoading ? (
                   <LoadingSpinner />

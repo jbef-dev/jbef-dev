@@ -7,10 +7,10 @@ import { ComponentPropsWithoutRef, useRef, useState } from 'react';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
-import { myAnimation } from '@/styles/customAnimations';
 import { IoTriangle } from 'react-icons/io5';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { customTransitions, customVariants } from '../animation';
 // import { getUnlocalizedPath } from '@/i18n/getUnlocalizedPath';
 
 interface LocaleSwitcherProps extends ComponentPropsWithoutRef<'button'> {
@@ -87,8 +87,8 @@ export const LocaleSwitcher = ({
             animate={open ? 'animate' : 'initial'}
             exit='initial'
             // variants={dropdownVariants}
-            variants={myAnimation.variants.appearMenu}
-            transition={myAnimation.transition.appearMenu}
+            variants={customVariants.appearMenu}
+            transition={customTransitions.appearMenu}
           >
             {otherLocales.map(locale => (
               <Link

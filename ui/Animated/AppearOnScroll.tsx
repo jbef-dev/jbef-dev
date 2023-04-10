@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { HTMLMotionProps, motion } from 'framer-motion';
-import { myAnimation } from '@/styles/customAnimations';
+import { customTransitions, customVariants } from '@/ui/animation';
 
 import { Slot } from '@/ui/Slot';
 
@@ -22,8 +22,8 @@ const AppearOnScroll = React.forwardRef<
       amount = 0.65,
       once = true,
       children,
-      variants = myAnimation.variants.fromBelow,
-      transition = myAnimation.transition.default,
+      variants = customVariants.fromBelow,
+      transition = customTransitions.default,
       ...props
     },
     forwardedRef
@@ -57,8 +57,8 @@ const AppearOnScrollChild = React.forwardRef<
   (
     {
       asChild,
-      variants = myAnimation.variants.fromBelow,
-      transition = myAnimation.transition.default,
+      variants = customVariants.fromBelow,
+      transition = customTransitions.default,
       children,
       ...props
     },
