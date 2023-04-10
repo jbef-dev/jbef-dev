@@ -12,8 +12,8 @@ const esMessages: Dictionary = {
       pagetitle: 'Dentista en Torrevieja',
       hero: {
         titles: {
-          title1: 'Diseño',
-          title2: 'A medida',
+          title1: 'Diseño y desarrollo —',
+          title2: 'Webs a medida —',
           title3: 'Creando',
           title4: 'Experiencias',
         },

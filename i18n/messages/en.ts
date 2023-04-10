@@ -11,8 +11,8 @@ const enMessages = {
       title1: 'Web Designer / Programmer',
       hero: {
         titles: {
-          title1: 'Building',
-          title2: 'Custom',
+          title1: 'Design & develop —',
+          title2: '— Bespoke websites',
           title3: 'Online',
           title4: 'Experiences',
         },
