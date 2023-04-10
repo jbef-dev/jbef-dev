@@ -1,4 +1,4 @@
-import { myAnimation } from '@/styles/customAnimations';
+import { customSprings, customTransitions } from '@/ui/animation';
 import { motion, MotionValue, useSpring, useTransform } from 'framer-motion';
 
 interface CircleSpringProps {
@@ -6,7 +6,7 @@ interface CircleSpringProps {
 }
 
 export const CircleSpring = ({ containerScroll }: CircleSpringProps) => {
-  const spring = myAnimation.spring.default;
+  const spring = customSprings.default;
   const springInput = useSpring(containerScroll, spring);
 
   const circleStart = 0.1;
@@ -54,8 +54,8 @@ export const CircleSpring = ({ containerScroll }: CircleSpringProps) => {
         repeat: Infinity,
         repeatType: 'mirror',
         duration: 6,
-        ease: myAnimation.transition.easeOutSlow.ease,
-        type: myAnimation.transition.easeOutSlow.type,
+        ease: customTransitions.easeOutSlow.ease,
+        type: customTransitions.easeOutSlow.type,
       }}
       style={{
         y: y,

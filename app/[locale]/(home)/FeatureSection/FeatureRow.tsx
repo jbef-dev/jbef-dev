@@ -1,10 +1,10 @@
-import { myAnimation } from '@/styles/customAnimations';
 import {
   AppearOnScroll,
   AppearOnScrollChild,
 } from '@/ui/Animated/AppearOnScroll';
 import { FlexContainer } from '@/ui/Containers';
 import { AnimatedParagraph, Heading3 } from '@/ui/Typography';
+import { customTransitions, customVariants } from '@/ui/animation';
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 
@@ -30,13 +30,13 @@ const FeatureRow = ({ icons, titles, paragraph, align }: Props) => {
                 key={i}
                 viewBox='0 0 24 24'
                 strokeWidth={1.5}
-                className='w-6 lg:w-14 aspect-square'
+                className='aspect-square w-6 lg:w-14'
               >
                 {icon}
               </svg>
             ))}
           </div>
-          <div className='flex flex-col w-full'>
+          <div className='flex w-full flex-col'>
             {titles.map((title, i) => (
               <AppearOnScroll
                 key={i}
@@ -53,9 +53,9 @@ const FeatureRow = ({ icons, titles, paragraph, align }: Props) => {
 
         <AppearOnScroll
           amount={0.35}
-          className='flex text-neutral-300 w-full max-w-md lg:max-w-screen-sm font-light text-responsive-md'
-          variants={myAnimation.variants.appearFromBottom}
-          transition={myAnimation.transition.easeOutSlow}
+          className='flex w-full max-w-md text-responsive-md font-light text-neutral-300 lg:max-w-screen-sm'
+          variants={customVariants.appearFromBottom}
+          transition={customTransitions.easeOutSlow}
         >
           {paragraph}
         </AppearOnScroll>

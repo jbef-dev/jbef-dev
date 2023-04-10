@@ -1,6 +1,6 @@
 'use client';
 
-import { myAnimation } from '@/styles/customAnimations';
+import { customSprings } from '@/ui/animation';
 import clsx from 'clsx';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
@@ -11,14 +11,14 @@ export const StandOutIcons = () => {
     target: containerRef,
     offset: ['start end', 'end start'],
   });
-  const springInput = useSpring(scrollYProgress, myAnimation.spring.default);
+  const springInput = useSpring(scrollYProgress, customSprings.default);
   const circlesX = useTransform(springInput, [0, 1], ['8%', '-8%']);
 
   return (
     <div ref={containerRef} className='w-full overflow-hidden'>
-      <div className='flex relative items-center justify-center'>
+      <div className='relative flex items-center justify-center'>
         <motion.div
-          className='w-full text-responsive-2xl min-w-max flex gap-2'
+          className='flex w-full min-w-max gap-2 text-responsive-2xl'
           style={{ x: circlesX }}
         >
           {[...new Array(8)].map((_, i) => (
@@ -27,8 +27,8 @@ export const StandOutIcons = () => {
               viewBox='0 0 24 24'
               strokeWidth='1.5'
               className={clsx(
-                'w-[1.6em] aspect-square',
-                i === 4 ? 'fill-accent-main scale-[1.2]' : 'fill-neutral-600'
+                'aspect-square w-[1.6em]',
+                i === 4 ? 'scale-[1.2] fill-primary' : 'fill-neutral-400'
               )}
             >
               <path
@@ -40,8 +40,8 @@ export const StandOutIcons = () => {
           ))}
         </motion.div>
 
-        <div className='absolute left-0 top-0 h-full w-[20%] bg-gradient-to-r from-black to-transparent'></div>
-        <div className='absolute right-0 top-0 h-full w-[20%] bg-gradient-to-l from-black to-transparent'></div>
+        <div className='absolute left-0 top-0 h-full w-[20%] bg-gradient-to-r from-white to-transparent'></div>
+        <div className='absolute right-0 top-0 h-full w-[20%] bg-gradient-to-l from-white to-transparent'></div>
       </div>
     </div>
   );

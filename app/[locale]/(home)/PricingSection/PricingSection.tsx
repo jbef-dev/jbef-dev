@@ -1,37 +1,37 @@
 import { FlexContainer } from '@/ui/Containers';
 import { AnimatedParagraph, Heading3 } from '@/ui/Typography';
 import { PricingTable } from './PricingTable';
-import { Dictionary, Locale } from '@/i18n/config';
+import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
 import {
   AppearOnScroll,
   AppearOnScrollChild,
 } from '@/ui/Animated/AppearOnScroll';
-import { myAnimation } from '@/styles/customAnimations';
 
 const PricingSection = async ({ locale }: { locale: Locale }) => {
   const dict = await getDictionary(locale);
 
   return (
     <FlexContainer flexCol className='max-w-screen-xl'>
-      <div className='flex flex-col pb-12 lg:pb-20 w-full gap-y-6'>
-        <Heading3 className='flex flex-col items-start'>
-          <AppearOnScroll className='font-medium overflow-hidden' variants={{}}>
-            <AppearOnScrollChild>
-              {dict.pages.home.pricing.title.title1}
+      <div className='flex w-full flex-col gap-y-6 pb-12 lg:pb-20'>
+        <div className='flex flex-col'>
+          <AppearOnScroll className='overflow-hidden font-medium' variants={{}}>
+            <AppearOnScrollChild asChild>
+              <Heading3>{dict.pages.home.pricing.title.title1}</Heading3>
             </AppearOnScrollChild>
           </AppearOnScroll>
 
           <AppearOnScroll
-            className='font-extralight overflow-hidden tracking-wider'
+            className='overflow-hidden font-extralight'
             variants={{}}
           >
-            <AppearOnScrollChild>
-              {dict.pages.home.pricing.title.title2}
+            <AppearOnScrollChild asChild>
+              <Heading3>{dict.pages.home.pricing.title.title2}</Heading3>
             </AppearOnScrollChild>
           </AppearOnScroll>
-        </Heading3>
-        <AnimatedParagraph className='flex w-full font-extralight text-responsive-lg'>
+        </div>
+
+        <AnimatedParagraph className='flex w-full text-responsive-lg font-extralight'>
           {dict.pages.home.pricing.subtitle}
         </AnimatedParagraph>
       </div>

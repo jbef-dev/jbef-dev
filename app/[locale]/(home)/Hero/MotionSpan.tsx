@@ -1,4 +1,4 @@
-import { myAnimation } from '@/styles/customAnimations';
+import { customTransitions, customVariants } from '@/ui/animation';
 import clsx from 'clsx';
 import { HTMLMotionProps, motion } from 'framer-motion';
 import { forwardRef, ReactNode } from 'react';
@@ -11,8 +11,8 @@ const MotionSpan = forwardRef<
     <motion.div
       ref={ref}
       className={clsx('flex', className)}
-      variants={myAnimation.variants.appear3d}
-      transition={myAnimation.transition.easeOutSlow}
+      variants={customVariants.appear3d}
+      transition={customTransitions.easeOutSlow}
       {...props}
     >
       {children}

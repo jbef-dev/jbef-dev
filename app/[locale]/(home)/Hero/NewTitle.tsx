@@ -1,4 +1,4 @@
-import { myAnimation } from '@/styles/customAnimations';
+import { customTransitions, customVariants } from '@/ui/animation';
 import { HTMLMotionProps, motion } from 'framer-motion';
 import * as React from 'react';
 
@@ -7,8 +7,8 @@ const NewTitle = React.forwardRef<HTMLHeadingElement, HTMLMotionProps<'h1'>>(
     return (
       <motion.h1
         ref={forwardedRef}
-        variants={myAnimation.variants.appearFromBottom}
-        transition={myAnimation.transition.default}
+        variants={customVariants.appearFromBottom}
+        transition={customTransitions.default}
         {...props}
       >
         {children}

@@ -1,4 +1,4 @@
-import { myAnimation } from '@/styles/customAnimations';
+import { customSprings } from '@/ui/animation';
 import {
   HTMLMotionProps,
   motion,
@@ -48,7 +48,7 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
       rotate: ['0deg', `${rotateMax}deg`],
     };
 
-    const springInput = useSpring(scrollYProgress, myAnimation.spring.default);
+    const springInput = useSpring(scrollYProgress, customSprings.default);
 
     const animationStart = 0;
     const animationEnd = 1;

@@ -1,6 +1,6 @@
 'use client';
 
-import { myAnimation } from '@/styles/customAnimations';
+import { customSprings, customTransitions, customVariants } from '@/ui/animation';
 import clsx from 'clsx';
 import {
   HTMLMotionProps,
@@ -25,7 +25,7 @@ export const EvolveTitle = ({ xStyle, className, ...props }: Props) => {
     target: titleRef,
     offset: ['start end', 'end start'],
   });
-  const springInput = useSpring(scrollYProgress, myAnimation.spring.default);
+  const springInput = useSpring(scrollYProgress, customSprings.default);
 
   const spanX1 = useTransform(springInput, [0, 1], ['0em', '0.85em']);
   const spanX2 = useTransform(springInput, [0, 1], ['0em', '-0.4em']);
@@ -44,8 +44,8 @@ export const EvolveTitle = ({ xStyle, className, ...props }: Props) => {
       {...props}
     >
       <motion.div
-        variants={myAnimation.variants.fromBelow}
-        transition={myAnimation.transition.default}
+        variants={customVariants.fromBelow}
+        transition={customTransitions.default}
       >
         {props.children}
       </motion.div>

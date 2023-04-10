@@ -1,159 +1,109 @@
 'use client';
 
-import {
-  motion,
-  motionValue,
-  useScroll,
-  useSpring,
-  useTransform,
-  useWillChange,
-} from 'framer-motion';
+import * as React from 'react';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { ExplodingLetter } from './ExplodingLetter';
 
-import architecture from '@/public/assets/img/architecture_preview.webp';
-import colorful_animals from '@/public/assets/img/colorful_animals.png';
-import { myAnimation } from '@/styles/customAnimations';
-import useArtificialScroll from '@/hooks/useArtificialScroll';
+import sea_placeholder from '@/public/assets/img/sea.webp';
+import { AppearOnScrollChild } from '@/ui/Animated/AppearOnScroll';
+import clsx from 'clsx';
+
+import { Banner } from '@/ui/Animated';
+import { customSprings, customVariants } from '@/ui/animation';
+// import useArtificialScroll from '@/hooks/useArtificialScroll';
 
 interface Props {
   titles: string[];
 }
 
 const Hero = ({ titles }: Props) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
   });
 
-  const willChange = useWillChange();
+  const springProgress = useSpring(scrollYProgress, customSprings.fast);
 
-  // const springInput = useSpring(scrollYProgress, myAnimation.spring.default);
+  const scrollIndicatorOpacity = useTransform(springProgress, [0, 0.2], [1, 0]);
 
-  const springStiff = useSpring(scrollYProgress, {
-    ...myAnimation.spring.fast,
-    // stiffness: 1200,
-    // damping: 200,
-  });
+  const xLtr = useTransform(springProgress, [0, 1], ['0%', '13%']);
+  const xRtl = useTransform(springProgress, [0, 1], ['0%', '-18%']);
+  const xQuote = useTransform(springProgress, [0, 1], ['0%', '-30%']);
 
-  const headingStart = 0;
-  const xLTR = useTransform(springStiff, [headingStart, 1], ['0em', '2.5em']);
-  const xRTL = useTransform(springStiff, [headingStart, 1], ['0em', '-2.5em']);
+  // const x3 = useTransform(springProgress, [0, 1], ['0rem', '6rem']);
+  const scaleOutstanding = useTransform(springProgress, [0, 1], [1, 1.3]);
+  const yTitles = useTransform(springProgress, [0, 1], ['0%', '-60%']);
+  const yImage = useTransform(springProgress, [0, 1], ['0%', '15%']);
 
-  const videoY = useTransform(springStiff, [0, 1], ['0rem', '-9rem']);
-  // const img1Y = useTransform(springStiff, [0, 1], ['0rem', '-30rem']);
-  const img2Y = useTransform(springStiff, [0, 1], ['0rem', '-53rem']);
-  const arrowY = useTransform(springStiff, [0, 1], ['0rem', '-37rem']);
+  const newTitleClassName = clsx(
+    'overflow-hidden leading-none -mt-[0.23em] pb-[0.1em]'
+  );
 
   return (
-    <div
+    <motion.div
       ref={containerRef}
-      className='flex relative w-full h-[200svh] justify-center'
+      className='relative flex h-full min-h-[100svh] w-full flex-col items-center justify-center gap-[10svh] font-title'
+      initial='initial'
+      animate='animate'
+      transition={{ staggerChildren: 0.21 }}
     >
-      <div className='fixed h-[100svh] top-0 max-w-screen-3xl font-title flex items-center justify-center w-full bg-white'>
-        {/* <CircleSpring containerScroll={scrollYProgress} /> */}
+      <motion.div
+        variants={{}}
+        className='absolute inset-0 z-10 m-auto aspect-[14/21] max-h-[55svh] max-w-full overflow-hidden rounded-2xl md:max-h-[70svh]'
+        style={{ y: yImage }}
+      >
+        <AppearOnScrollChild asChild variants={customVariants.zoomIn}>
+          <Image
+            src={sea_placeholder}
+            alt='primary image'
+            className='h-full rounded-2xl object-cover'
+          />
+        </AppearOnScrollChild>
+      </motion.div>
 
-        <motion.div className='flex leading-none text-responsive-hero justify-center items-start w-full px-2 flex-col text-black'>
-          <div className='flex items-center gap-[0.2em] pl-[0.9em]'>
-            {/* <motion.div */}
-            {/*   className='max-md:fixed max-md:right-[48vw] rounded-full max-md:top-4 max-md:h-[1.2em] h-[0.65em] aspect-square overflow-hidden' */}
-            {/*   whileHover={{ scale: 1.4 }} */}
-            {/*   style={{ y: img1Y }} */}
-            {/* > */}
-            {/*   <Image */}
-            {/*     src={colorful_animals} */}
-            {/*     className='object-cover' */}
-            {/*     priority */}
-            {/*     loading='eager' */}
-            {/*     alt='example work' */}
-            {/*   /> */}
-            {/* </motion.div> */}
-
-            <motion.h1 className='flex' style={{ x: xLTR }}>
-              {titles[0]}
-            </motion.h1>
-          </div>
-
-          <div className='flex items-center pl-[0.5em] md:pl-[0.5em] gap-[0.2em]'>
-            <motion.h1 className='flex tracking-[0.02em]'>
-              {titles[1].split('').map((letter, i) => (
-                <ExplodingLetter
-                  key={letter + i}
-                  containerRef={containerRef}
-                  letter={letter}
-                />
-              ))}
-            </motion.h1>
-            <motion.div
-              className='max-md:absolute rounded-full overflow-hidden max-md:top-24 max-md:h-[1.2em] max-md:left-[12vw] h-[0.65em] aspect-video object-cover'
-              style={{ y: videoY }}
-            >
-              <Image
-                src={colorful_animals}
-                className='object-cover'
-                priority
-                alt='colorful animals'
-              />
-            </motion.div>
-          </div>
-
-          <div className='flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center'>
-            <motion.div
-              className='max-md:absolute max-md:right-2 max-md:bottom-[15%] rounded-full max-md:h-[1.2em] h-[0.65em] aspect-video overflow-hidden'
-              style={{ y: img2Y }}
-            >
-              <Image
-                src={architecture}
-                className='object-cover w-full'
-                priority
-                loading='eager'
-                alt='example work'
-              />
-            </motion.div>
-            <motion.h1 style={{ x: xRTL }}>{titles[2]}</motion.h1>
-          </div>
-
-          <motion.h1
-            className='flex w-full max-lg:justify-center lg:pl-[0.5em]'
-            style={{ x: xRTL }}
+      <motion.div
+        className={clsx('z-0 w-full overflow-hidden')}
+        variants={{}}
+        style={{ y: yTitles }}
+      >
+        <AppearOnScrollChild asChild>
+          <Banner
+            direction='rtl'
+            className='whitespace-nowrap text-responsive-5xl'
           >
-            {titles[3]}
-          </motion.h1>
-        </motion.div>
+            <h1 className='font-medium'>Design & develop &#8212;&nbsp;</h1>
+          </Banner>
+        </AppearOnScrollChild>
+      </motion.div>
 
-        <motion.svg
-          className='fill-black will-change-transform max-md:absolute max-md:bottom-4 text-responsive-hero max-md:right-4 flex self-end'
-          viewBox='0 0 24 24'
-          height='1.15em'
-          width='1.15em'
-          style={{ y: arrowY }}
-        >
-          <path d='M18.707 12.707l-1.414-1.414L13 15.586V6h-2v9.586l-4.293-4.293-1.414 1.414L12 19.414z' />
-        </motion.svg>
+      <motion.div
+        className='z-10 w-full overflow-hidden'
+        variants={{}}
+        style={{ y: yTitles }}
+      >
+        <AppearOnScrollChild asChild>
+          <Banner
+            direction='ltr'
+            className='whitespace-nowrap text-responsive-5xl'
+          >
+            <h1 className='font-extralight'>Bespoke websites &#8212;&nbsp;</h1>
+          </Banner>
+        </AppearOnScrollChild>
+      </motion.div>
 
-        <div className='flex absolute max-md:left-[15vw] bottom-[18%] lg:right-[6vw] lg:bottom-[45%] font-sans text-responsive-xs gap-1 text-black'>
-          <div className='pt-1'>
-            <svg
-              viewBox='0 0 24 24'
-              stroke='currentColor'
-              className='fill-black w-3 h-3'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z'
-              />
-            </svg>
-          </div>
-          <p>
-            Custom websites —<br /> down to earth service
-          </p>
-        </div>
+      <div className='absolute bottom-0 mx-auto flex w-full max-w-screen-2xl items-center justify-between px-4 py-2 text-responsive-sm lg:px-8'>
+        <span>
+          Web designer <br /> & developer
+        </span>
+        <span>
+          ALC, SPAIN
+          <br />
+          UTC+2
+        </span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-export default Hero;
+export { Hero };

@@ -7,9 +7,9 @@ import { useRef } from 'react';
 import architecture from '@/public/assets/img/architecture_preview.webp';
 import colorful_animals from '@/public/assets/img/colorful_animals_preview.webp';
 
-import { myAnimation } from '@/styles/customAnimations';
 import { ExplodingLetter } from './ExplodingLetter';
 import { MotionSpan } from './MotionSpan';
+import { customSprings, customTransitions } from '@/ui/animation';
 
 const HeroTitles = ({ titles }: { titles: string[] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -18,9 +18,9 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
     offset: ['start start', 'end -200vh'],
   });
 
-  const springDefault = useSpring(scrollYProgress, myAnimation.spring.default);
+  const springDefault = useSpring(scrollYProgress, customSprings.default);
 
-  const springStiff = useSpring(scrollYProgress, myAnimation.spring.fast);
+  const springStiff = useSpring(scrollYProgress, customSprings.fast);
 
   const startAnimate = 0.1;
   const xLTR = useTransform(springDefault, [startAnimate, 1], ['0%', '40%']);
@@ -32,12 +32,12 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
   const arrowY = useTransform(scrollYProgress, [0, 1], ['0rem', '-25rem']);
 
   return (
-    <div ref={containerRef} className='flex w-full h-[250lvh] justify-center'>
-      <div className='fixed h-[100svh] top-0 max-w-screen-3xl font-title flex items-center justify-center w-full bg-white'>
+    <div ref={containerRef} className='flex h-[250lvh] w-full justify-center'>
+      <div className='fixed top-0 flex h-[100svh] w-full max-w-screen-3xl items-center justify-center bg-white font-title'>
         {/* <CircleSpring containerScroll={scrollYProgress} /> */}
 
         <motion.div
-          className='flex leading-none text-responsive-hero justify-center items-start w-full px-2 flex-col text-white'
+          className='flex w-full flex-col items-start justify-center px-2 text-responsive-5xl leading-none text-white'
           variants={{
             initial: {},
             animate: {
@@ -72,7 +72,7 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
             </MotionSpan>
           </div>
 
-          <div className='flex items-center pl-[0.5em] md:pl-[0.5em] gap-[0.2em]'>
+          <div className='flex items-center gap-[0.2em] pl-[0.5em] md:pl-[0.5em]'>
             <MotionSpan className='tracking-[0.02em]'>
               {titles[1].split('').map((letter, i) => (
                 <ExplodingLetter
@@ -83,9 +83,9 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
               ))}
             </MotionSpan>
             <motion.div
-              className='max-md:absolute rounded-full overflow-hidden max-md:-bottom-5 max-md:h-[1.2em] max-md:left-[9vw] h-[0.65em] aspect-video object-cover'
+              className='aspect-video h-[0.65em] overflow-hidden rounded-full object-cover max-md:absolute max-md:-bottom-5 max-md:left-[9vw] max-md:h-[1.2em]'
               whileHover={{ scale: 1.4 }}
-              transition={myAnimation.transition.easeInOut}
+              transition={customTransitions.easeInOut}
               style={{ y: videoY }}
             >
               {/* <video */}
@@ -98,9 +98,9 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
             </motion.div>
           </div>
 
-          <div className='flex pl-[1.8em] md:pl-[0.3em] gap-[0.2em] items-center'>
+          <div className='flex items-center gap-[0.2em] pl-[1.8em] md:pl-[0.3em]'>
             <motion.div
-              className='max-md:absolute max-md:right-0 max-md:bottom-[15%] rounded-full max-md:h-[1.2em] h-[0.65em] aspect-video overflow-hidden'
+              className='aspect-video h-[0.65em] overflow-hidden rounded-full max-md:absolute max-md:bottom-[15%] max-md:right-0 max-md:h-[1.2em]'
               style={{ y: img2Y }}
             >
               <Image
@@ -117,14 +117,14 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
           </div>
 
           <MotionSpan
-            className='flex w-full max-lg:justify-center lg:pl-[0.5em] mix-blend-difference'
+            className='flex w-full mix-blend-difference max-lg:justify-center lg:pl-[0.5em]'
             style={{ x: xRTL }}
           >
             <h1>{titles[3]}</h1>
           </MotionSpan>
         </motion.div>
 
-        <motion.div className='max-md:absolute max-md:bottom-4 text-responsive-hero max-md:right-4 self-end'>
+        <motion.div className='self-end text-responsive-5xl max-md:absolute max-md:bottom-4 max-md:right-4'>
           <motion.svg
             // className='h-[clamp(3.5rem,_13vw,_11.5rem)] aspect-square'
             viewBox='0 0 24 24'
