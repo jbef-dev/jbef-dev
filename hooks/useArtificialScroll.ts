@@ -1,10 +1,5 @@
-import { myAnimation } from '@/styles/customAnimations';
-import {
-  SpringOptions,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from 'framer-motion';
+import { customSprings } from '@/ui/animation';
+import { SpringOptions, useSpring } from 'framer-motion';
 import { useEffect, useLayoutEffect, useState } from 'react';
 
 const useArtificialScroll = (
@@ -13,7 +8,7 @@ const useArtificialScroll = (
 ) => {
   // *************************************** SMOOTH SCROLL *****************************
 
-  const springFiltered = springOptions || myAnimation.spring.fast;
+  const springFiltered = springOptions || customSprings.fast;
   const moveDelayFiltered = moveDelay || 20;
 
   // const [touchStartY, setTouchStartY] = useState<number>(0);
