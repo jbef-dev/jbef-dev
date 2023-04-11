@@ -1,22 +1,22 @@
 import clsx from 'clsx';
 import * as React from 'react';
 
-const Heading5 = React.forwardRef<
+const Heading6 = React.forwardRef<
   HTMLHeadingElement,
-  React.ComponentPropsWithoutRef<'h5'>
+  React.ComponentPropsWithoutRef<'h6'>
 >(({ className, children, ...props }, forwardedRef) => {
   return (
-    <h5
+    <h6
       ref={forwardedRef}
       className={clsx(
-        'font-title text-responsive-2xl leading-tight',
+        'font-title text-responsive-xl leading-tight',
         className
       )}
       {...props}
     >
       {children}
-    </h5>
+    </h6>
   );
 });
 
-export default Heading5;
+export default Heading6;
