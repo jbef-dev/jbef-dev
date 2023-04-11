@@ -38,7 +38,7 @@ const Header = async ({ locale }: { locale: Locale }) => {
     <header>
       <HamburgerMenu>
         {/* <div className='fixed z-50 lg:z-30 top-0 flex items-center justify-between pl-5 pr-0 lg:px-5 h-16 left-0 w-full right-0'> */}
-        <div className='fixed left-0 right-0 top-0 z-50 flex h-24 w-full items-center justify-between px-8 mix-blend-difference'>
+        <div className='fixed left-0 right-0 top-0 z-50 flex h-24 w-full items-center justify-between px-8 font-light mix-blend-difference'>
           <Link className='z-50 flex' href='/'>
             <Logo />
           </Link>
