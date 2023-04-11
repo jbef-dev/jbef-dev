@@ -10,7 +10,7 @@ const Heading1 = forwardRef<HTMLHeadingElement, Heading1Props>(
       <h1
         ref={forwardedRef}
         className={clsx(
-          'font-title text-responsive-5xl leading-tight',
+          'font-title text-responsive-6xl leading-tight',
           className
         )}
         {...rest}

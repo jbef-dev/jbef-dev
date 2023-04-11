@@ -9,7 +9,7 @@ const Heading3 = React.forwardRef<
     <h3
       ref={forwardedRef}
       className={clsx(
-        'font-title text-responsive-3xl leading-tight',
+        'font-title text-responsive-4xl leading-tight',
         className
       )}
       {...props}
