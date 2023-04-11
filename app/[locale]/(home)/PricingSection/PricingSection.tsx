@@ -1,5 +1,5 @@
 import { FlexContainer } from '@/ui/Containers';
-import { AnimatedParagraph, Heading3 } from '@/ui/Typography';
+import { Heading3 } from '@/ui/Typography';
 import { PricingTable } from './PricingTable';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
@@ -12,7 +12,7 @@ const PricingSection = async ({ locale }: { locale: Locale }) => {
   const dict = await getDictionary(locale);
 
   return (
-    <FlexContainer flexCol className='max-w-screen-xl'>
+    <FlexContainer flexCol px py className='max-w-screen-xl'>
       <div className='flex w-full flex-col gap-y-6 pb-12 lg:pb-20'>
         <div className='flex flex-col'>
           <AppearOnScroll className='overflow-hidden font-medium' variants={{}}>
@@ -31,9 +31,13 @@ const PricingSection = async ({ locale }: { locale: Locale }) => {
           </AppearOnScroll>
         </div>
 
-        <AnimatedParagraph className='flex w-full text-responsive-lg font-extralight'>
-          {dict.pages.home.pricing.subtitle}
-        </AnimatedParagraph>
+        <AppearOnScroll variants={{}} className='overflow-hidden'>
+          <AppearOnScrollChild asChild>
+            <p className='flex w-full text-responsive-lg font-extralight leading-tight'>
+              {dict.pages.home.pricing.subtitle}
+            </p>
+          </AppearOnScrollChild>
+        </AppearOnScroll>
       </div>
 
       <PricingTable

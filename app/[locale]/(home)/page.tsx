@@ -27,7 +27,7 @@ export default async function Home({
 
   return (
     <PageContainer>
-      <SectionContainer py={false} center>
+      <SectionContainer pt={false} center>
         <Hero
           titles={[
             dict['pages'].home.hero.titles.title1,
@@ -53,7 +53,7 @@ export default async function Home({
         />
       </SectionContainer>
 
-      <SectionContainer flexCol overflow className='bg-white'>
+      <SectionContainer flexCol>
         {/* @ts-expect-error async Server Component */}
         <PricingSection locale={locale} />
       </SectionContainer>
