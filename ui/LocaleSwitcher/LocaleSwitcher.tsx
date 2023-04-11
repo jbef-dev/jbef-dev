@@ -8,7 +8,7 @@ import useOutsideClick from '@/hooks/useOutsideClick';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { customTransitions, customVariants } from '../animation';
+import { customTransitions, customVariants } from '@/ui/animation';
 import { FaChevronUp } from 'react-icons/fa';
 
 interface LocaleSwitcherProps extends ComponentPropsWithoutRef<'button'> {
