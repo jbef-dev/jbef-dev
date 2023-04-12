@@ -56,7 +56,7 @@ const AppearOnScrollChild = React.forwardRef<
 >(
   (
     {
-      asChild,
+      asChild = false,
       variants = customVariants.fromBelow,
       transition = customTransitions.default,
       children,
