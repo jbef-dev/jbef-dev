@@ -7,22 +7,22 @@ interface CustomVariants {
 const customVariants = {
   appearFromLeft: {
     initial: { opacity: 0, x: '-2rem' },
-    animate: { opacity: 1, x: 0 },
+    animate: { opacity: 1, x: '0rem' },
     exit: { opacity: 0, x: '2rem' },
   },
   appearFromTop: {
     initial: { opacity: 0, y: '-10%' },
-    animate: { opacity: 1, y: 0 },
+    animate: { opacity: 1, y: '0%' },
     exit: { opacity: 0, y: '-10%' },
   },
   appearFromBottom: {
     initial: { opacity: 0, y: '15%' },
-    animate: { opacity: 1, y: 0 },
+    animate: { opacity: 1, y: '0%' },
     exit: { opacity: 0, y: '-15%' },
   },
   enterBottomExitTop: {
     initial: { opacity: 0, translateY: '10%' },
-    animate: { opacity: 1, translateY: 0 },
+    animate: { opacity: 1, translateY: '0%' },
     exit: { opacity: 0, translateY: '-10%' },
   },
   zoomIn: {
@@ -37,12 +37,12 @@ const customVariants = {
   },
   fromBelow: {
     initial: { y: '120%' },
-    animate: { y: 0 },
+    animate: { y: '0%' },
     exit: { y: '-120%' },
   },
   appearMenu: {
     initial: { opacity: 0, y: '-10%', scale: 0.95 },
-    animate: { opacity: 1, y: 0, scale: 1 },
+    animate: { opacity: 1, y: '0%', scale: 1 },
     exit: { opacity: 0, y: '-10%', scale: 0.95 },
   },
   appear3d: {
