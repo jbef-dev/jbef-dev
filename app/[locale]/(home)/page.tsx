@@ -1,21 +1,21 @@
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 
-// import Hero from './Hero/Hero';
-// const Hero = dynamic(() => import('./Hero/Hero'));
 const EvolveSection = dynamic(() =>
-  import('./EvolveSection/EvolveSection').then(mod => mod.EvolveSection)
+  import('@/components/EvolveSection/EvolveSection').then(
+    mod => mod.EvolveSection
+  )
 );
-const FeatureSection = dynamic(() => import('./FeatureSection/FeatureSection'));
+const FeatureSection = dynamic(
+  () => import('@/components/FeatureSection/FeatureSection')
+);
 import { PageContainer, SectionContainer } from '@/ui/Containers';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
-import PricingSection from './PricingSection/PricingSection';
-import { Hero } from './Hero/NewHero';
-import FeaturedProject from './FeaturedProject/FeaturedProject';
-// const PricingSection = dynamic(() =>
-//   import('./PricingSection/PricingSection').then(m => m)
-// );
+import PricingSection from '@/components/PricingSection/PricingSection';
+import { Hero } from '@/components/Hero/NewHero';
+import FeaturedProject from '@/components/FeaturedProject/FeaturedProject';
+import MottoParagraph from '@/components/MottoParagraph/MottoParagraph';
 
 export default async function Home({
   params: { locale },
@@ -23,17 +23,20 @@ export default async function Home({
   params: { locale: Locale };
 }) {
   const dict = await getDictionary(locale);
-  // const t = useTranslations('pages.home');
 
   return (
     <PageContainer>
-      <SectionContainer pt={false} center>
+      <SectionContainer py={false} mb center>
         <Hero
           titles={[
             dict['pages'].home.hero.titles.title1,
             dict['pages'].home.hero.titles.title2,
           ]}
         />
+      </SectionContainer>
+
+      <SectionContainer overflow flexCol>
+        <MottoParagraph />
       </SectionContainer>
 
       <SectionContainer flexCol>

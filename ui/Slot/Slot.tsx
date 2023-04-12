@@ -6,17 +6,17 @@ interface SlotProps {
   children?: React.ReactNode; // Only one child allowed.
 }
 
-export const Slot = React.forwardRef<HTMLElement, SlotProps>(
-  (props, forwardedRef) => {
-    const { children, ...slotProps } = props;
+const Slot = React.forwardRef<HTMLElement, SlotProps>((props, forwardedRef) => {
+  const { children, ...slotProps } = props;
 
-    if (!React.isValidElement(children)) {
-      return null;
-    }
-
-    return React.cloneElement(children, {
-      ...mergeReactProps(slotProps, children.props),
-      ref: combinedRef([forwardedRef, (children as any).ref]),
-    } as any);
+  if (!React.isValidElement(children)) {
+    return null;
   }
-);
+
+  return React.cloneElement(children, {
+    ...mergeReactProps(slotProps, children.props),
+    ref: combinedRef([forwardedRef, (children as any).ref]),
+  } as any);
+});
+
+export { Slot };

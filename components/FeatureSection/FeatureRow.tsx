@@ -3,7 +3,7 @@ import {
   AppearOnScrollChild,
 } from '@/ui/Animated/AppearOnScroll';
 import { FlexContainer } from '@/ui/Containers';
-import { AnimatedParagraph, Heading3 } from '@/ui/Typography';
+import { Heading3 } from '@/ui/Typography';
 import { customTransitions, customVariants } from '@/ui/animation';
 import clsx from 'clsx';
 import { ReactNode } from 'react';

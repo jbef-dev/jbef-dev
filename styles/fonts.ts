@@ -9,20 +9,8 @@ export const fontSans = Inter({
 
 export const fontTitle = Poppins({
   subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
   variable: '--font-title',
   // style: 'normal',
   display: 'swap',
 });
-
-// export const fontLogo = Jost({
-//   subsets: ['latin'],
-//   variable: '--font-logo',
-//   display: 'swap',
-// });
-
-// export const fontSpecial = localFont({
-//   src: '../public/fonts/MESHED-VF.ttf',
-//   variable: '--font-special',
-//   display: 'swap',
-// });

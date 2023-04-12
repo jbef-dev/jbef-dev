@@ -1,14 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import {
-  AnimateSharedLayout,
-  LayoutGroup,
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
 import sea_placeholder from '@/public/assets/img/sea.webp';
@@ -42,7 +35,7 @@ const Hero = ({ titles }: { titles: string[] }) => {
       transition={{ staggerChildren: 0.21 }}
     >
       <motion.div
-        className='absolute inset-0 z-10 m-auto aspect-[14_/_21] max-h-[55svh] max-w-full overflow-hidden rounded-2xl md:max-h-[70svh]'
+        className='absolute inset-0 z-10 m-auto aspect-[14_/_21] max-h-[55svh] max-w-[90vw] overflow-hidden rounded-2xl md:max-h-[70svh]'
         style={{ y: yImage }}
       >
         <AppearOnScrollChild asChild variants={customVariants.zoomIn}>

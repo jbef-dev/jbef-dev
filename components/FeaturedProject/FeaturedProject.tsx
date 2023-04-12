@@ -32,7 +32,6 @@ const FeaturedProject = ({
 
   const springProgress = useSpring(scrollYProgress, customSprings.default);
 
-  // const imgX = useTransform(springProgress, [0, 1], ['30%', '-30%']);
   const imgY = useTransform(springProgress, [0, 1], ['20%', '-20%']);
   const imgRotate = useTransform(springProgress, [0, 1], ['-10deg', '10deg']);
 
@@ -40,8 +39,8 @@ const FeaturedProject = ({
   const titleScale = useTransform(springProgress, [0, 0.35, 1], [1.8, 1, 1]);
 
   return (
-    <div ref={containerRef} className='flex w-full flex-col'>
-      <div className='relative grid h-[75svh] w-full'>
+    <div ref={containerRef} className='flex w-full max-w-screen-3xl flex-col'>
+      <div className='relative grid h-[75svh] w-full tracking-tight'>
         <motion.div
           className='z-10 flex items-center justify-center text-black [grid-area:1/1]'
           style={{ y: titleY, scale: titleScale }}
@@ -56,12 +55,11 @@ const FeaturedProject = ({
         <motion.div
           className='z-10 flex  items-center justify-center [grid-area:1/1]'
           style={{
-            // x: imgX,
             y: imgY,
             rotate: imgRotate,
           }}
         >
-          <div className='relative aspect-[14/21] max-h-[50svh] max-w-[60vw] overflow-hidden'>
+          <div className='relative aspect-[14/21] max-h-[50svh] max-w-[90vw] overflow-hidden md:max-h-[65svh]'>
             <Image
               src={sea_placeholder}
               alt='primary image'
