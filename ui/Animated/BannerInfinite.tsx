@@ -55,4 +55,4 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
 
 Banner.displayName = 'Banner';
 
-export { Banner as Banner };
+export { Banner };

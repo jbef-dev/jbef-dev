@@ -53,4 +53,4 @@ const StaggerText = React.forwardRef<HTMLSpanElement, Props>(
   }
 );
 
-export default StaggerText;
+export { StaggerText };
