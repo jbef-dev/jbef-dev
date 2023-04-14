@@ -4,13 +4,13 @@ import { forwardRef, HTMLAttributes, PropsWithChildren } from 'react';
 interface Heading1Props extends HTMLAttributes<HTMLHeadingElement> {}
 
 const Heading1 = forwardRef<HTMLHeadingElement, Heading1Props>(
-  (props: PropsWithChildren<Heading1Props>, ref) => {
+  (props: PropsWithChildren<Heading1Props>, forwardedRef) => {
     const { className, children, ...rest } = props;
     return (
       <h1
-        ref={ref}
+        ref={forwardedRef}
         className={clsx(
-          'text-responsive-3xl leading-tight font-title',
+          'font-title text-responsive-6xl leading-tight',
           className
         )}
         {...rest}

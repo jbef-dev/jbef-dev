@@ -12,7 +12,7 @@ import {
   useContext,
   useState,
 } from 'react';
-import { myAnimation } from '@/styles/customAnimations';
+import { customValues, customVariants } from '../animation';
 
 interface NavigationCtxI {
   value: string;
@@ -86,7 +86,7 @@ const NavigationMenuTrigger = forwardRef<
   <NavigationMenuPrimitive.Trigger
     ref={ref}
     className={clsx(
-      'inline-flex gap-x-1 group z-10',
+      'group z-10 inline-flex gap-x-1',
       navigationItemStyles,
       className
     )}
@@ -113,7 +113,7 @@ const NavigationMenuContent = forwardRef<
         <NavigationMenuPrimitive.Content
           ref={ref}
           className={clsx(
-            'absolute top-full self-center z-0 w-max mt-2 bg-black/50 backdrop-blur-lg rounded-lg py-2 px-3',
+            'absolute top-full z-0 mt-2 w-max self-center rounded-lg bg-black/50 px-3 py-2 backdrop-blur-lg',
             className
           )}
           asChild
@@ -123,11 +123,11 @@ const NavigationMenuContent = forwardRef<
             initial='initial'
             animate='animate'
             exit='exit'
-            variants={myAnimation.variants.appearFromTop}
+            variants={customVariants.appearFromTop}
             transition={{
               type: 'keyframes',
               ease: 'easeOut',
-              duration: myAnimation.values.duration.slow,
+              duration: customValues.duration.slow,
             }}
           >
             {children}
@@ -166,7 +166,7 @@ const NavigationMenuIndicator = forwardRef<
   <NavigationMenuPrimitive.Indicator
     ref={ref}
     className={clsx(
-      'top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=visible]:fade-in data-[state=hidden]:fade-out',
+      'data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=visible]:fade-in data-[state=hidden]:fade-out top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden',
       className
     )}
     {...props}

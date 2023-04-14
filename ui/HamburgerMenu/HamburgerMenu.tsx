@@ -2,8 +2,6 @@
 
 import clsx from 'clsx';
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
-import { myAnimation } from '@/styles/customAnimations';
-import { Link } from 'next-intl';
 import {
   createContext,
   forwardRef,
@@ -11,6 +9,8 @@ import {
   useEffect,
   useState,
 } from 'react';
+import Link from 'next/link';
+import { customTransitions, customValues, customVariants } from '@/ui/animation';
 
 interface HamburgerMenuCtxI {
   open: boolean;
@@ -47,32 +47,81 @@ const HamburgerMenu = ({ children }: HamburgerMenuProps) => {
 
 const HamburgerMenuButton = ({
   className,
-  children,
+  openText,
+  closedText,
   ...props
-}: React.ComponentPropsWithoutRef<'button'>) => {
+}: React.ComponentPropsWithoutRef<'button'> & {
+  openText: string;
+  closedText: string;
+}) => {
   const { open, setOpen } = useHamburgerMenuCtx();
-  const pathBase = clsx('h-0.5 w-7 bg-white transition-all duration-500');
-  const pathClosed = clsx('scale-x-100 rotate-0 translate-y-0');
-  const pathOpen = [
-    clsx('-rotate-45 scale-x-75 translate-y-[3px]'),
-    clsx('rotate-45 scale-x-75 -translate-y-[3px]'),
-  ];
+  const [isRendered, setIsRendered] = useState(false);
+  // const pathBase = clsx('h-0.5 w-7 bg-white transition-all duration-500');
+  // const pathClosed = clsx('scale-x-100 rotate-0 translate-y-0');
+  // const pathOpen = [
+  //   clsx('-rotate-45 scale-x-75 translate-y-[3px]'),
+  //   clsx('rotate-45 scale-x-75 -translate-y-[3px]'),
+  // ];
+
+  useEffect(() => {
+    setIsRendered(true);
+  }, []);
+
   return (
     <button
-      className={clsx('flex items-center justify-center gap-x-2', className)}
+      className={clsx(
+        'group flex h-min items-center justify-center gap-x-2 overflow-hidden text-white',
+        className
+      )}
       onClick={() => setOpen(o => !o)}
       {...props}
     >
-      <div className='flex w-7 flex-col items-center justify-center gap-1'>
-        <div className={clsx(pathBase, open ? pathOpen[0] : pathClosed)}></div>
-        <div className={clsx(pathBase, open ? pathOpen[1] : pathClosed)}></div>
-      </div>
-      <div className='overflow-hidden'>
-        <div className='relative text-white flex flex-col transition duration-500 group-target:-translate-y-full group-hover:-translate-y-full group-active:-translate-y-full'>
-          <div>{children}</div>
-          <div className='absolute top-full'>{children}</div>
-        </div>
-      </div>
+      {/* <div className='flex w-7 flex-col items-center justify-center gap-1'> */}
+      {/*   <div className={clsx(pathBase, open ? pathOpen[0] : pathClosed)}></div> */}
+      {/*   <div className={clsx(pathBase, open ? pathOpen[1] : pathClosed)}></div> */}
+      {/* </div> */}
+
+      <AnimatePresence mode='wait'>
+        {open ? (
+          <motion.div
+            key={'open'}
+            className='overflow-hidden'
+            initial={isRendered ? 'initial' : 'false'}
+            animate='animate'
+            exit='exit'
+            whileHover='hover'
+            variants={customVariants.fromBelow}
+            transition={{ stiffness: 250, damping: 100 }}
+          >
+            <motion.div
+              className='relative flex flex-col transition duration-500 group-target:-translate-y-full group-hover:-translate-y-full group-active:-translate-y-full'
+              variants={{
+                hover: {
+                  y: '-100%',
+                },
+              }}
+            >
+              <span>{openText}</span>
+              <span className='absolute top-full'>{openText}</span>
+            </motion.div>
+          </motion.div>
+        ) : (
+          <motion.div
+            key={'closed'}
+            className='overflow-hidden'
+            initial={isRendered ? 'initial' : 'false'}
+            animate='animate'
+            exit='exit'
+            variants={customVariants.fromBelow}
+            transition={{ stiffness: 250, damping: 100 }}
+          >
+            <div className='relative flex flex-col transition duration-500 group-target:-translate-y-full group-hover:-translate-y-full group-active:-translate-y-full'>
+              <span>{closedText}</span>
+              <span className='absolute top-full'>{closedText}</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </button>
   );
 };
@@ -81,26 +130,24 @@ const HamburgerMenuContent = forwardRef<HTMLElement, HTMLMotionProps<'nav'>>(
   ({ className, children, ...props }, ref) => {
     const { open } = useHamburgerMenuCtx();
     return (
-      <AnimatePresence>
-        <motion.nav
-          ref={ref}
-          className={clsx(className)}
-          initial='initial'
-          variants={{ initial: { y: '-100%' }, animate: { y: 0 } }}
-          animate={open ? 'animate' : 'initial '}
-          transition={{
-            type: 'keyframes',
-            ease: 'easeInOut',
-            duration: myAnimation.values.duration.verySlow,
-          }}
-          style={{
-            transform: 'translate3d(0px, 0px, 0px)',
-          }}
-          {...props}
-        >
-          {children}
-        </motion.nav>
-      </AnimatePresence>
+      <motion.nav
+        ref={ref}
+        className={clsx(className)}
+        initial='initial'
+        variants={{ initial: { y: '-100%' }, animate: { y: 0 } }}
+        animate={open ? 'animate' : 'initial '}
+        transition={{
+          type: 'keyframes',
+          ease: 'easeInOut',
+          duration: customValues.duration.verySlow,
+        }}
+        style={{
+          transform: 'translate3d(0px, 0px, 0px)',
+        }}
+        {...props}
+      >
+        {children}
+      </motion.nav>
     );
   }
 );
@@ -120,7 +167,7 @@ const HamburgerMenuNavigation = forwardRef<
           transition: {
             delayChildren: 0.3,
             staggerChildren: 0.1,
-            ...myAnimation.transition.easeOut,
+            ...customTransitions.easeOut,
           },
         },
         initial: {
@@ -129,7 +176,7 @@ const HamburgerMenuNavigation = forwardRef<
             when: 'afterChildren',
             staggerDirection: -1,
             staggerChildren: 0.1,
-            ...myAnimation.transition.normal,
+            ...customTransitions.normal,
           },
         },
       }}
@@ -156,7 +203,7 @@ const HamburgerMenuSubNavigation = forwardRef<
             animate: {
               transition: {
                 staggerChildren: 0.1,
-                ...myAnimation.transition.easeOut,
+                ...customTransitions.easeOut,
               },
             },
             initial: {
@@ -165,7 +212,7 @@ const HamburgerMenuSubNavigation = forwardRef<
                 when: 'afterChildren',
                 staggerDirection: -1,
                 staggerChildren: 0.1,
-                ...myAnimation.transition.normal,
+                ...customTransitions.normal,
               },
             },
           }}
@@ -182,8 +229,8 @@ const HamburgerMenuNavItem = forwardRef<HTMLDivElement, HTMLMotionProps<'div'>>(
   ({ children, ...props }, ref) => (
     <motion.div
       ref={ref}
-      variants={myAnimation.variants.appearFromTop}
-      transition={myAnimation.transition.easeOut}
+      variants={customVariants.appearFromTop}
+      transition={customTransitions.easeOut}
       {...props}
     >
       {children}
@@ -226,7 +273,7 @@ const HamburgerMenuNavTrigger = forwardRef<
               initial: { rotate: '0deg' },
               animate: { rotate: '180deg' },
             }}
-            transition={myAnimation.transition.easeInOut}
+            transition={customTransitions.easeInOut}
           >
             <motion.path
               strokeLinecap='round'
@@ -248,8 +295,8 @@ const HamburgerMenuNavLink = forwardRef<
   return (
     <motion.div
       ref={ref}
-      variants={myAnimation.variants.appearFromTop}
-      transition={myAnimation.transition.easeOut}
+      variants={customVariants.appearFromTop}
+      transition={customTransitions.easeOut}
     >
       <Link
         onClick={() => {

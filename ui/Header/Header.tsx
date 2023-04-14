@@ -1,4 +1,3 @@
-import { Link, useLocale } from 'next-intl';
 import { LocaleSwitcher } from '@/ui/LocaleSwitcher/LocaleSwitcher';
 import {
   HamburgerMenu,
@@ -8,51 +7,66 @@ import {
   HamburgerMenuNavItem,
   HamburgerMenuNavLink,
 } from '@/ui/HamburgerMenu/HamburgerMenu';
-import { NAVBAR_LINKS } from '@/config/constants/pageContent';
 import { Logo } from '@/components/Logo/Logo';
+import { Locale } from '@/i18n/config';
+import Link from 'next/link';
+import { getDictionary } from '@/i18n/get-dictionary';
 
-const Header = async () => {
-  const locale = useLocale();
-  const navLinks = await NAVBAR_LINKS();
+const Header = async ({ locale }: { locale: Locale }) => {
+  const dict = await getDictionary(locale);
+
+  const navLinks = [
+    {
+      label: dict.ui.navbar.home,
+      url: '/',
+    },
+    {
+      label: dict.ui.navbar.portfolio,
+      url: '/portfolio',
+    },
+    {
+      label: dict.ui.navbar.about,
+      url: '/about',
+    },
+    {
+      label: dict.ui.navbar.contact,
+      url: '/contact',
+    },
+  ];
 
   return (
     <header>
       <HamburgerMenu>
-        {/* <div className='fixed z-50 lg:z-30 top-0 flex items-center justify-between pl-5 pr-0 lg:px-5 h-16 left-0 w-full right-0'> */}
-        <div className='fixed z-50 top-0 flex mix-blend-difference items-center justify-between pl-5 pr-0 lg:px-5 h-16 left-0 w-full right-0'>
-          <Link className='flex z-50' href='/'>
+        <div className='fixed left-0 right-0 top-0 z-50 flex h-20 w-full items-center justify-between px-8 font-light mix-blend-difference'>
+          <Link className='z-50 flex' href='/'>
             <Logo />
           </Link>
 
-          <div className='flex z-50 justify-end h-full px-2 items-center'>
-            <div className='flex text-responsive-sm leading-none'>
-              <LocaleSwitcher currentLocale={locale} className='text-white' />
-              <div className='h-5 w-[1px] self-center bg-white'></div>
-              <HamburgerMenuButton className='group px-4 py-2 z-50'>
-                MENU
-              </HamburgerMenuButton>
-            </div>
+          <div className='flex items-center text-responsive-sm leading-none'>
+            <LocaleSwitcher currentLocale={locale} className='text-white' />
+            <div className='mx-5 h-3 w-[1px] self-center bg-white'></div>
+            <HamburgerMenuButton openText='CLOSE' closedText='MENU' />
           </div>
         </div>
 
-        <HamburgerMenuContent className='fixed top-0 z-40 left-0 w-full h-full flex justify-center items-start scrollbar-hide overflow-y-scroll px-4 lg:px-12 bg-white font-title'>
-          <div className='flex flex-col w-full gap-y-20 h-full pt-24 pb-8'>
-            <HamburgerMenuNavigation className='flex items-start justify-center h-full flex-col gap-8'>
+        <HamburgerMenuContent className='scrollbar-hide fixed left-0 top-0 z-40 flex h-full w-full items-start justify-center overflow-y-scroll bg-white px-4 font-title lg:px-12'>
+          <div className='flex h-full w-full flex-col gap-y-20 pb-8 pt-24'>
+            <HamburgerMenuNavigation className='flex h-full flex-col items-start justify-center gap-8'>
               {navLinks.map((link, i) => (
                 <HamburgerMenuNavItem
                   key={link.label}
-                  className='flex flex-col group gap-4   relative w-fit text-responsive-2xl leading-none tracking-wide hover:text-accent-main'
+                  className='group relative flex w-fit   flex-col gap-4 text-responsive-2xl leading-none tracking-wide hover:text-accent-main'
                 >
                   <HamburgerMenuNavLink
                     className='flex gap-x-2'
                     href={link.url}
                   >
-                    <span className='text-responsive-xs pt-[2.5%] self-start transition-colors duration-500'>
+                    <span className='self-start pt-[2.5%] text-responsive-xs transition-colors duration-500'>
                       0{i + 1}.
                     </span>
                     <div className='flex flex-col gap-4'>
                       <div className='overflow-hidden'>
-                        <div className='flex flex-col relative group-hover:-translate-y-full transition-all duration-500'>
+                        <div className='relative flex flex-col transition-all duration-500 group-hover:-translate-y-full'>
                           <span>{link.label}</span>
                           <span className='absolute top-full'>
                             {link.label}

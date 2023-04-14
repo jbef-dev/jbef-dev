@@ -1,21 +1,22 @@
 import clsx from 'clsx';
-import { HTMLAttributes, PropsWithChildren } from 'react';
+import * as React from 'react';
 
-interface Heading2Props extends HTMLAttributes<HTMLHeadingElement> {}
-
-const Heading2 = (props: PropsWithChildren<Heading2Props>) => {
-  const { className, children, ...rest } = props;
+const Heading2 = React.forwardRef<
+  HTMLHeadingElement,
+  React.ComponentPropsWithoutRef<'h2'>
+>(({ className, children, ...props }, forwardedRef) => {
   return (
     <h2
+      ref={forwardedRef}
       className={clsx(
-        'text-responsive-2xl leading-[1.1] font-title',
+        'font-title text-responsive-5xl leading-[1.1]',
         className
       )}
-      {...rest}
+      {...props}
     >
       {children}
     </h2>
   );
-};
+});
 
 export default Heading2;

@@ -26,7 +26,7 @@ const PageContainer = (props: PropsWithChildren<PageContainerProps>) => {
   return (
     <main
       className={clsx(
-        'block overflow-hidden',
+        'block',
         { 'mt-28 lg:mt-36': mt },
         { 'mb-32': mb },
         (py || pb || pt) && {

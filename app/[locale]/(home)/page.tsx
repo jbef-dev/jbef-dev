@@ -1,61 +1,77 @@
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
 
-import { SeparatorMargin, SeparatorRounded } from '@/components/Separator';
-import Hero from './Hero/Hero';
 const EvolveSection = dynamic(() =>
-  import('./EvolveSection/EvolveSection').then(mod => mod.EvolveSection)
+  import('@/components/EvolveSection/EvolveSection').then(
+    mod => mod.EvolveSection
+  )
 );
-const FeatureSection = dynamic(() => import('./FeatureSection/FeatureSection'));
+const FeatureSection = dynamic(
+  () => import('@/components/FeatureSection/FeatureSection')
+);
 import { PageContainer, SectionContainer } from '@/ui/Containers';
-const PricingSection = dynamic(() => import('./PricingSection/PricingSection'));
+import { Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/get-dictionary';
+import PricingSection from '@/components/PricingSection/PricingSection';
+import { Hero } from '@/components/Hero/NewHero';
+import FeaturedProject from '@/components/FeaturedProject/FeaturedProject';
+import MottoParagraph from '@/components/MottoParagraph/MottoParagraph';
 
-export default function Home() {
-  const t = useTranslations('pages.home');
+export default async function Home({
+  params: { locale },
+}: {
+  params: { locale: Locale };
+}) {
+  const dict = await getDictionary(locale);
 
   return (
-    <PageContainer mt={false} mb={false}>
-      <SectionContainer flexCol center pt={false} px={false} gap={false}>
+    <PageContainer>
+      <SectionContainer py={false} mb center>
         <Hero
           titles={[
-            t('hero.titles.title1'),
-            t('hero.titles.title2'),
-            t('hero.titles.title3'),
-            t('hero.titles.title4'),
+            dict['pages'].home.hero.titles.title1,
+            dict['pages'].home.hero.titles.title2,
           ]}
         />
-        <SeparatorMargin />
       </SectionContainer>
 
-      <SectionContainer
-        flexCol
-        center
-        pt={false}
-        className='bg-black text-white'
-      >
-        <SeparatorRounded position='top' className='bg-black' />
-        <EvolveSection />
+      <SectionContainer overflow flexCol>
+        <MottoParagraph />
       </SectionContainer>
 
-      <SectionContainer flexCol className='bg-black text-white'>
-        <FeatureSection />
-        <SeparatorMargin />
+      <SectionContainer flexCol>
+        <FeaturedProject
+          title={['CNG Lawyers']}
+          videoURl='url'
+          clientName='CNG Lawyers'
+          workDesc='Website redesign'
+          year={2022}
+        />
+        <FeaturedProject
+          title={['Guido Audisio', 'Dental Clinic']}
+          videoURl='url'
+          clientName='Guido Audisio Dental Clinic'
+          workDesc='Website redesign'
+          year={2022}
+        />
       </SectionContainer>
 
-      <SectionContainer flexCol center pt={false} className='bg-white'>
-        <SeparatorRounded position='top' className='bg-white' />
-        <PricingSection />
+      <SectionContainer flexCol>
+        {/* @ts-expect-error async Server Component */}
+        <PricingSection locale={locale} />
       </SectionContainer>
     </PageContainer>
   );
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('pages.home.SEO');
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const dict = await getDictionary(locale);
   return {
-    title: t('title'),
-    description: t('description'),
+    title: dict['pages'].home.SEO.title,
+    description: dict['pages'].home.SEO.description,
   };
 }

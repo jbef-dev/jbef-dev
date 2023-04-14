@@ -10,14 +10,6 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-};
-
-const withNextIntl = require('next-intl/plugin')('./i18n/config.tsx');
-
-module.exports = withNextIntl({
-  // i18nConfig: './i18n/config.tsx',
-  ...nextConfig,
-
   async headers() {
     return [
       {
@@ -45,4 +37,6 @@ module.exports = withNextIntl({
       },
     ];
   },
-});
+};
+
+module.exports = nextConfig;

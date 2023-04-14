@@ -3,7 +3,7 @@ import { SiGooglemaps, SiWhatsapp } from 'react-icons/si';
 import { IoMail } from 'react-icons/io5';
 import { MdPhone } from 'react-icons/md';
 
-import { getTranslations } from 'next-intl/server';
+// import { getTranslations } from 'next-intl/server';
 
 interface BusinessInfo {
   [key: string]: string;
@@ -22,28 +22,28 @@ export interface NavbarLink {
   url: string;
 }
 
-export const NAVBAR_LINKS = async (): Promise<NavbarLink[]> => {
-  const t = await getTranslations('ui.navbar');
-
-  return [
-    {
-      label: t('home'),
-      url: '/',
-    },
-    {
-      label: t('portfolio'),
-      url: '/work',
-    },
-    {
-      label: t('about'),
-      url: '/about',
-    },
-    {
-      label: t('contact'),
-      url: '/contact',
-    },
-  ];
-};
+// export const NAVBAR_LINKS = async (): Promise<NavbarLink[]> => {
+//   const t = await getTranslations('ui.navbar');
+//
+//   return [
+//     {
+//       label: t('home'),
+//       url: '/',
+//     },
+//     {
+//       label: t('portfolio'),
+//       url: '/work',
+//     },
+//     {
+//       label: t('about'),
+//       url: '/about',
+//     },
+//     {
+//       label: t('contact'),
+//       url: '/contact',
+//     },
+//   ];
+// };
 
 interface Social {
   name: string;

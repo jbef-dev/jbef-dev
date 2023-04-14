@@ -2,10 +2,10 @@
 
 import { HTMLMotionProps } from 'framer-motion';
 
-import { myAnimation } from '@/styles/customAnimations';
 import clsx from 'clsx';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { customSprings } from '@/ui/animation';
 
 export interface SeparatorProps extends HTMLMotionProps<'div'> {
   position: 'top' | 'bottom';
@@ -22,9 +22,9 @@ const SeparatorRounded = ({
     offset: ['start end', 'end start'],
   });
 
-  const springInput = useSpring(containerProgress, myAnimation.spring.default);
-  const containerScaleY = useTransform(springInput, [0, 1], [1, 1.8]);
-  const circleScaleX = useTransform(springInput, [0, 1], [1.2, 2.1]);
+  const springInput = useSpring(containerProgress, customSprings.default);
+  const containerScaleY = useTransform(springInput, [0, 1], [1, 2.4]);
+  const circleScaleX = useTransform(springInput, [0, 1], [1.2, 2.3]);
 
   return (
     <motion.div

@@ -17,7 +17,7 @@ interface SectionContainerProps extends ComponentPropsWithoutRef<'section'> {
   maxW?: boolean;
   flex?: boolean;
   flexCol?: boolean;
-  altRef?: RefObject<HTMLDivElement>;
+  overflow?: boolean;
 }
 
 const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
@@ -25,7 +25,7 @@ const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
     const {
       center = true,
       gap = true,
-      px = true,
+      px = false,
       pr = true,
       pl = true,
       py = true,
@@ -38,6 +38,7 @@ const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
       wFull = true,
       flex = true,
       flexCol = false,
+      overflow = false,
       className,
       children,
       ...rest
@@ -49,17 +50,19 @@ const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
         className={clsx([
           'relative',
           flex ? 'flex' : 'block',
-          flexCol ? 'flex-col' : 'flex-row',
+          flexCol ? 'flex-col' : null,
           {
             'pr-5 lg:pr-12': pr && px,
             'pl-5 lg:pl-12': pl && px,
-            'pt-24 lg:pt-32 first:pt-28 lg:first:pt-36': pt && py,
-            'pb-24 lg:pb-32': pb && py,
-            'mt-12 lg:mt-24': mt || my,
-            'mb-12 lg:mb-24': mb || my,
-            'gap-y-24 lg:gap-y-40': gap,
+            // 'pt-16 lg:pt-32 first:pt-28 lg:first:pt-36': pt && py,
+            'pt-20 lg:pt-40': pt && py,
+            'pb-20 lg:pb-40': pb && py,
+            'mt-20 lg:mt-40': mt || my,
+            'mb-20 lg:mb-40': mb || my,
+            'gap-y-28 lg:gap-y-52': gap,
             'max-w-screen-xl': maxW,
-            'justify-center items-center': center,
+            'overflow-hidden': !overflow,
+            'items-center justify-center': center,
             'w-full': wFull,
           },
           className,

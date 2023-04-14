@@ -1,6 +1,6 @@
-import { I18nMessages } from '@/i18n/config';
+import { Dictionary } from '@/i18n/config';
 
-const esMessages: I18nMessages = {
+const esMessages: Dictionary = {
   pages: {
     // Pages
     home: {
@@ -12,8 +12,8 @@ const esMessages: I18nMessages = {
       pagetitle: 'Dentista en Torrevieja',
       hero: {
         titles: {
-          title1: 'Diseño',
-          title2: 'A medida',
+          title1: 'Diseño y desarrollo —',
+          title2: 'Webs a medida —',
           title3: 'Creando',
           title4: 'Experiencias',
         },

@@ -1,10 +1,10 @@
-import { LayoutGroup, motion, Variants } from 'framer-motion'
-import { PropsWithChildren } from 'react'
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-import { useCarouselFixed } from './useFixedCarousel'
-import { CarouselProps } from '../Carousel'
-import clsx from 'clsx'
-import {myAnimation} from '@/styles/customAnimations'
+import { LayoutGroup, motion, Variants } from 'framer-motion';
+import { PropsWithChildren } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useCarouselFixed } from './useFixedCarousel';
+import { CarouselProps } from '../Carousel';
+import clsx from 'clsx';
+import { customTransitions, customValues } from '@/ui/animation';
 
 interface CarouselFixedVariantProps<T>
   extends Omit<CarouselProps<T>, 'variant'> {}
@@ -22,7 +22,7 @@ export const FixedCarousel = <T extends Record<string, any>>(
     children,
     autoScroll,
     ...rest
-  } = props
+  } = props;
 
   const {
     elementSizeCss,
@@ -39,16 +39,16 @@ export const FixedCarousel = <T extends Record<string, any>>(
     maxwidth: maxwidth,
     autoScroll: autoScroll,
     onElementClick: onElementClick,
-  })
+  });
 
   const containerVariants: Variants = {
     rest: { y: 0 },
     hover: { y: '-3%' },
-  }
+  };
 
   // ////////////////////////////////////////////////////////////////////
   // CHECKING THE LENGTH OF THE CHILDREN TO BE THE SAME AS ITEMS PASSED
-  if (items.length !== children.length) return null
+  if (items.length !== children.length) return null;
   // ////////////////////////////////////////////////////////////////////
 
   return (
@@ -58,19 +58,19 @@ export const FixedCarousel = <T extends Record<string, any>>(
         {...rest}
       >
         <button
-          className='absolute top-0 left-5 bottom-0 z-10 my-auto h-min rounded bg-purple-400 p-2 text-lg transition-all hover:-translate-x-1 hover:scale-125'
+          className='absolute bottom-0 left-5 top-0 z-10 my-auto h-min rounded bg-purple-400 p-2 text-lg transition-all hover:-translate-x-1 hover:scale-125'
           onClick={() => {
-            handleNavClick('left')
-            setCounter(undefined)
+            handleNavClick('left');
+            setCounter(undefined);
           }}
         >
           <FaChevronLeft />
         </button>
         <button
-          className='absolute top-0 right-5 bottom-0 z-10 my-auto h-min rounded bg-purple-400 p-2 text-lg transition-all hover:translate-x-1 hover:scale-125'
+          className='absolute bottom-0 right-5 top-0 z-10 my-auto h-min rounded bg-purple-400 p-2 text-lg transition-all hover:translate-x-1 hover:scale-125'
           onClick={() => {
-            handleNavClick('right')
-            setCounter(undefined)
+            handleNavClick('right');
+            setCounter(undefined);
           }}
         >
           <FaChevronRight />
@@ -78,7 +78,7 @@ export const FixedCarousel = <T extends Record<string, any>>(
         <LayoutGroup id='carousel'>
           <motion.div
             className={clsx([
-              'relative flex cursor-grab pt-5 pb-5',
+              'relative flex cursor-grab pb-5 pt-5',
               { 'gap-2': !elementGap },
             ])}
             style={{
@@ -87,11 +87,11 @@ export const FixedCarousel = <T extends Record<string, any>>(
             drag='x'
             dragSnapToOrigin
             dragTransition={{
-              bounceStiffness: myAnimation.values.stiffness.max,
-              bounceDamping: myAnimation.values.damping.max,
+              bounceStiffness: customValues.stiffness.max,
+              bounceDamping: customValues.damping.max,
             }}
             onDrag={handleDrag}
-            transition={myAnimation.transition.fast}
+            transition={customTransitions.fast}
             onDragEnd={(_, info) => handleDragEnd(info)}
           >
             {items &&
@@ -109,7 +109,7 @@ export const FixedCarousel = <T extends Record<string, any>>(
                     } *(${elementSizeCss} + ${elementGap}))`,
                     scale: position === index ? 1 : 0.85,
                   }}
-                  transition={myAnimation.transition.normal}
+                  transition={customTransitions.normal}
                   variants={containerVariants}
                   whileTap='hover'
                   whileHover='hover'
@@ -125,5 +125,5 @@ export const FixedCarousel = <T extends Record<string, any>>(
         </LayoutGroup>
       </div>
     </>
-  )
-}
+  );
+};
