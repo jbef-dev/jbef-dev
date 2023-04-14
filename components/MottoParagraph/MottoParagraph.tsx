@@ -2,7 +2,6 @@
 
 import MotionComponent from '@/ui/Animated/MotionComponent';
 import { FlexContainer } from '@/ui/Containers';
-import { Heading6 } from '@/ui/Typography';
 import { customSprings } from '@/ui/animation';
 import { useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
@@ -22,10 +21,10 @@ const MottoParagraph = () => {
   return (
     <FlexContainer flexCol px ref={containerRef}>
       <MotionComponent asChild style={{ y: textY }}>
-        <Heading6 className='font-extralight'>
-          Bringing worldwide high-end web design and code to everyone without the
-          pretentiousness.
-        </Heading6>
+        <span className='font-title text-responsive-xl font-extralight leading-tight lg:max-w-[75%]'>
+          Bringing worldwide high-end web design and code to everyone without
+          the pretentiousness.
+        </span>
       </MotionComponent>
     </FlexContainer>
   );

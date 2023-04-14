@@ -6,7 +6,6 @@ import Image from 'next/image';
 import sea_placeholder from '@/public/assets/img/sea.webp';
 import * as React from 'react';
 import { customSprings } from '@/ui/animation';
-import { Heading3 } from '@/ui/Typography';
 
 interface FeaturedProjectProps {
   title: string[];
@@ -47,7 +46,28 @@ const FeaturedProject = ({
         >
           <motion.span className='flex flex-col items-center whitespace-pre'>
             {title.map(t => (
-              <Heading3 key={t}>{t}</Heading3>
+              <span
+                className='font-title text-responsive-5xl leading-[1.1] tracking-tighter'
+                key={t}
+              >
+                {t}
+              </span>
+            ))}
+          </motion.span>
+        </motion.div>
+
+        <motion.div
+          className='z-20 flex items-center justify-center text-white mix-blend-soft-light [grid-area:1/1]'
+          style={{ y: titleY, scale: titleScale }}
+        >
+          <motion.span className='flex flex-col items-center whitespace-pre'>
+            {title.map(t => (
+              <span
+                className='font-title text-responsive-5xl leading-[1.1] tracking-tighter'
+                key={t}
+              >
+                {t}
+              </span>
             ))}
           </motion.span>
         </motion.div>
@@ -59,7 +79,7 @@ const FeaturedProject = ({
             rotate: imgRotate,
           }}
         >
-          <div className='relative aspect-[14/21] max-h-[50svh] max-w-[90vw] overflow-hidden md:max-h-[65svh]'>
+          <div className='relative aspect-[14/21] max-h-[45svh] max-w-[90vw] overflow-hidden md:max-h-[65svh]'>
             <Image
               src={sea_placeholder}
               alt='primary image'
@@ -67,17 +87,6 @@ const FeaturedProject = ({
             />
             <div className='grayscale/30 absolute inset-0 rounded-2xl bg-black/30'></div>
           </div>
-        </motion.div>
-
-        <motion.div
-          className='z-20 flex items-center justify-center text-white mix-blend-soft-light [grid-area:1/1]'
-          style={{ y: titleY, scale: titleScale }}
-        >
-          <motion.span className='flex flex-col items-center whitespace-pre'>
-            {title.map(t => (
-              <Heading3 key={t}>{t}</Heading3>
-            ))}
-          </motion.span>
         </motion.div>
       </div>
 

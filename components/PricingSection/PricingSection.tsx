@@ -2,10 +2,8 @@ import { FlexContainer } from '@/ui/Containers';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
 import { AppearOnScroll, AppearOnScrollChild } from '@/ui/Animated';
-import Heading4 from '@/ui/Typography/Heading4';
 import { FaCheck } from 'react-icons/fa';
 import { Button } from '@/ui/Button/Button';
-import { Heading6 } from '@/ui/Typography';
 
 const PricingSection = async ({ locale }: { locale: Locale }) => {
   const dict = await getDictionary(locale);
@@ -48,10 +46,10 @@ const PricingSection = async ({ locale }: { locale: Locale }) => {
   return (
     <FlexContainer flexCol px py className='max-w-screen-xl'>
       <div className='flex w-full flex-col gap-y-6 pb-12 lg:pb-20'>
-        <div className='flex flex-col'>
+        <h3 className='flex flex-col text-responsive-2xl leading-tight'>
           <AppearOnScroll className='overflow-hidden font-medium' variants={{}}>
             <AppearOnScrollChild asChild>
-              <Heading4>{dict.pages.home.pricing.title.title1}</Heading4>
+              <span>{dict.pages.home.pricing.title.title1}</span>
             </AppearOnScrollChild>
           </AppearOnScroll>
 
@@ -60,10 +58,10 @@ const PricingSection = async ({ locale }: { locale: Locale }) => {
             variants={{}}
           >
             <AppearOnScrollChild asChild>
-              <Heading4>{dict.pages.home.pricing.title.title2}</Heading4>
+              <span>{dict.pages.home.pricing.title.title2}</span>
             </AppearOnScrollChild>
           </AppearOnScroll>
-        </div>
+        </h3>
 
         <AppearOnScroll variants={{}} className='overflow-hidden'>
           <AppearOnScrollChild asChild>
@@ -77,9 +75,9 @@ const PricingSection = async ({ locale }: { locale: Locale }) => {
       <ul className='border-1 flex w-full max-w-screen-xl flex-col divide-y divide-black border-b border-t border-black'>
         {pricingStrategy.map(({ title, features, price }, i) => (
           <li key={title + i} className='flex flex-col gap-y-4 py-10'>
-            <Heading6 className='text-responsive-lg font-medium'>
+            <span className='font-title text-responsive-xl font-medium'>
               {title}
-            </Heading6>
+            </span>
 
             <div className='flex justify-center gap-x-4'>
               <ul className='grid w-full justify-between gap-2 text-responsive-md font-light lg:grid-cols-2'>
