@@ -47,6 +47,8 @@ export default async function LocaleLayout({
   );
 }
 
+// export const dynamic = 'force-dynamic';
+
 export async function generateMetadata(): Promise<Metadata> {
   return {
     icons: {
@@ -69,3 +71,5 @@ export async function generateMetadata(): Promise<Metadata> {
     themeColor: '#ffffff',
   };
 }
+
+export const runtime = 'edge';

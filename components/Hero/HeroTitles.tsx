@@ -64,10 +64,7 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
             {/*   /> */}
             {/* </motion.div> */}
 
-            <MotionSpan
-              className='flex mix-blend-difference'
-              style={{ x: xLTR }}
-            >
+            <MotionSpan className='flex' style={{ x: xLTR }}>
               <h1>{titles[0]}</h1>
             </MotionSpan>
           </div>
@@ -111,7 +108,7 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
                 alt='example work'
               />
             </motion.div>
-            <MotionSpan className='mix-blend-difference' style={{ x: xRTL }}>
+            <MotionSpan style={{ x: xRTL }}>
               <h1>{titles[2]}</h1>
             </MotionSpan>
           </div>
@@ -128,7 +125,7 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
           <motion.svg
             // className='h-[clamp(3.5rem,_13vw,_11.5rem)] aspect-square'
             viewBox='0 0 24 24'
-            fill='currentColor'
+            className='fill-black'
             height='1.15em'
             width='1.15em'
             style={{ y: arrowY }}
