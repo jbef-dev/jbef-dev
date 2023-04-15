@@ -10,7 +10,11 @@ import {
   useState,
 } from 'react';
 import Link from 'next/link';
-import { customTransitions, customValues, customVariants } from '@/ui/animation';
+import {
+  customTransitions,
+  customValues,
+  customVariants,
+} from '@/ui/animation';
 
 interface HamburgerMenuCtxI {
   open: boolean;
@@ -56,12 +60,6 @@ const HamburgerMenuButton = ({
 }) => {
   const { open, setOpen } = useHamburgerMenuCtx();
   const [isRendered, setIsRendered] = useState(false);
-  // const pathBase = clsx('h-0.5 w-7 bg-white transition-all duration-500');
-  // const pathClosed = clsx('scale-x-100 rotate-0 translate-y-0');
-  // const pathOpen = [
-  //   clsx('-rotate-45 scale-x-75 translate-y-[3px]'),
-  //   clsx('rotate-45 scale-x-75 -translate-y-[3px]'),
-  // ];
 
   useEffect(() => {
     setIsRendered(true);
@@ -76,30 +74,22 @@ const HamburgerMenuButton = ({
       onClick={() => setOpen(o => !o)}
       {...props}
     >
-      {/* <div className='flex w-7 flex-col items-center justify-center gap-1'> */}
-      {/*   <div className={clsx(pathBase, open ? pathOpen[0] : pathClosed)}></div> */}
-      {/*   <div className={clsx(pathBase, open ? pathOpen[1] : pathClosed)}></div> */}
-      {/* </div> */}
-
       <AnimatePresence mode='wait'>
         {open ? (
           <motion.div
-            key={'open'}
+            key='open'
             className='overflow-hidden'
-            initial={isRendered ? 'initial' : 'false'}
+            initial={isRendered ? 'initial' : false}
             animate='animate'
             exit='exit'
             whileHover='hover'
             variants={customVariants.fromBelow}
-            transition={{ stiffness: 250, damping: 100 }}
+            transition={customTransitions.stiff}
           >
             <motion.div
-              className='relative flex flex-col transition duration-500 group-target:-translate-y-full group-hover:-translate-y-full group-active:-translate-y-full'
-              variants={{
-                hover: {
-                  y: '-100%',
-                },
-              }}
+              className='relative flex flex-col'
+              variants={{ hover: customVariants.fromBelow.exit }}
+              transition={customTransitions.stiff}
             >
               <span>{openText}</span>
               <span className='absolute top-full'>{openText}</span>
@@ -107,18 +97,23 @@ const HamburgerMenuButton = ({
           </motion.div>
         ) : (
           <motion.div
-            key={'closed'}
+            key='closed'
             className='overflow-hidden'
-            initial={isRendered ? 'initial' : 'false'}
+            initial={isRendered ? 'initial' : false}
             animate='animate'
             exit='exit'
+            whileHover='hover'
             variants={customVariants.fromBelow}
-            transition={{ stiffness: 250, damping: 100 }}
+            transition={customTransitions.stiff}
           >
-            <div className='relative flex flex-col transition duration-500 group-target:-translate-y-full group-hover:-translate-y-full group-active:-translate-y-full'>
+            <motion.div
+              className='relative flex flex-col'
+              variants={{ hover: customVariants.fromBelow.exit }}
+              transition={customTransitions.stiff}
+            >
               <span>{closedText}</span>
               <span className='absolute top-full'>{closedText}</span>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
