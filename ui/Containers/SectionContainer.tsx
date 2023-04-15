@@ -59,7 +59,7 @@ const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
             'pb-20 lg:pb-40': pb && py,
             'mt-20 lg:mt-40': mt || my,
             'mb-20 lg:mb-40': mb || my,
-            'gap-y-28 lg:gap-y-52': gap,
+            'gap-y-24 lg:gap-y-56': gap,
             'max-w-screen-xl': maxW,
             'overflow-hidden': !overflow,
             'items-center justify-center': center,
