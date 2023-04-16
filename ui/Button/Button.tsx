@@ -3,7 +3,7 @@
 import { forwardRef, ReactNode, useState } from 'react';
 import clsx, { ClassValue } from 'clsx';
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
-import { customTransitions } from '@/ui/animation';
+import { customTransitions, customVariants } from '@/ui/animation';
 
 type ButtonFlavors =
   | 'basic'
@@ -163,39 +163,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         <AnimatePresence mode='wait'>
           {isHover ? (
             <motion.div
-              className='absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center overflow-hidden rounded-full'
+              className='absolute inset-0 z-10 flex items-center justify-center overflow-hidden rounded-full'
               initial='initial'
               animate='animate'
               exit='exit'
             >
               <motion.div
-                className='h-[300%] w-full rounded-[300%] bg-primary'
-                variants={{
-                  initial: {
-                    y: '100%',
-                    transition: {
-                      type: 'keyframes',
-                      duration: 0.45,
-                      ease: 'easeInOut',
-                    },
-                  },
-                  animate: {
-                    y: '0%',
-                    transition: {
-                      type: 'keyframes',
-                      duration: 0.45,
-                      ease: 'easeInOut',
-                    },
-                  },
-                  exit: {
-                    y: '-100%',
-                    transition: {
-                      // delay: 0.5,
-                      type: 'keyframes',
-                      duration: 0.45,
-                      ease: 'easeInOut',
-                    },
-                  },
+                className='h-[200%] w-full rounded-[400%] bg-primary'
+                variants={customVariants.fromBottom}
+                transition={{
+                  type: 'spring',
+                  stiffness: 280,
+                  damping: 40,
+                  bounce: 0,
                 }}
               ></motion.div>
             </motion.div>
