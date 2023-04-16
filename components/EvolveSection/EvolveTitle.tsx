@@ -44,7 +44,7 @@ export const EvolveTitle = ({ xStyle, className, ...props }: Props) => {
       {...props}
     >
       <motion.div
-        variants={customVariants.fromBelow}
+        variants={customVariants.fromBottom}
         transition={customTransitions.default}
       >
         {props.children}

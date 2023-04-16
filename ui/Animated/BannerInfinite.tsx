@@ -10,7 +10,7 @@ interface BannerProps extends React.ComponentPropsWithoutRef<'div'> {
   direction?: 'ltr' | 'rtl';
 }
 
-const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
+const BannerInfinite = React.forwardRef<HTMLDivElement, BannerProps>(
   (
     {
       className,
@@ -52,7 +52,6 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
     );
   }
 );
+BannerInfinite.displayName = 'BannerInfinite';
 
-Banner.displayName = 'Banner';
-
-export { Banner };
+export { BannerInfinite };

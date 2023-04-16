@@ -17,23 +17,23 @@ interface CustomSprings {
 }
 
 const customSprings = {
-  slow: {
-    stiffness: 280,
-    damping: 70,
+  loose: {
+    stiffness: 250,
+    damping: 100,
   },
   normal: {
     stiffness: customValues.stiffness.default,
     damping: customValues.damping.mid,
   },
   default: {
-    stiffness: customValues.stiffness.default,
-    bounce: customValues.bounce.none,
-    damping: customValues.damping.max,
+    stiffness: 400,
+    bounce: 0,
+    damping: 100,
   },
-  fast: {
-    stiffness: 900,
-    bounce: customValues.bounce.none,
-    damping: customValues.damping.max,
+  stiff: {
+    stiffness: 600,
+    bounce: 0,
+    damping: 75,
   },
 } as const satisfies CustomSprings;
 

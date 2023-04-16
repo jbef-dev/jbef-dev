@@ -10,7 +10,7 @@ const Heading1 = forwardRef<HTMLHeadingElement, Heading1Props>(
       <h1
         ref={forwardedRef}
         className={clsx(
-          'font-title text-responsive-6xl leading-tight',
+          'pb-[0.12em] font-title text-responsive-6xl leading-none',
           className
         )}
         {...rest}
@@ -21,4 +21,4 @@ const Heading1 = forwardRef<HTMLHeadingElement, Heading1Props>(
   }
 );
 
-export default Heading1;
+export { Heading1 };

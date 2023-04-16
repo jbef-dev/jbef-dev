@@ -13,7 +13,7 @@ import { PageContainer, SectionContainer } from '@/ui/Containers';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
 import PricingSection from '@/components/PricingSection/PricingSection';
-import { Hero } from '@/components/Hero/NewHero';
+import { Hero } from '@/components/Hero/Hero';
 import FeaturedProject from '@/components/FeaturedProject/FeaturedProject';
 import MottoParagraph from '@/components/MottoParagraph/MottoParagraph';
 
@@ -26,7 +26,7 @@ export default async function Home({
 
   return (
     <PageContainer>
-      <SectionContainer py={false} mb center>
+      <SectionContainer pt={false} center>
         <Hero
           titles={[
             dict['pages'].home.hero.titles.title1,
@@ -35,7 +35,7 @@ export default async function Home({
         />
       </SectionContainer>
 
-      <SectionContainer overflow flexCol>
+      <SectionContainer overflow flexCol py={false}>
         <MottoParagraph />
       </SectionContainer>
 

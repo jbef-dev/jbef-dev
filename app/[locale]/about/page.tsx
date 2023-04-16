@@ -4,12 +4,12 @@ import {
   PageContainer,
   SectionContainer,
 } from '@/ui/Containers';
-import { Heading1, Heading3 } from '@/ui/Typography';
+import { Heading, Heading3 } from '@/ui/Typography';
 import { Metadata } from 'next';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
 
-export default async function Contact({
+export default async function About({
   params: { locale },
 }: {
   params: { locale: Locale };
@@ -17,20 +17,25 @@ export default async function Contact({
   return (
     <PageContainer mt={false} mb={false}>
       <SectionContainer flex pb={false} center>
-        <Heading1 className='text-center'>Let&apos;s get in touch</Heading1>
+        <Heading as='h1' className='text-center text-responsive-4xl'>
+          Let&apos;s get in touch
+        </Heading>
       </SectionContainer>
 
       <SeparatorMargin className='bg-white' />
 
       <SectionContainer flex flexCol pt={false} className='bg-black text-white'>
         <SeparatorRounded position='top' className='bg-black' />
-        <FlexContainer className='font-medium' flexCol grow>
-          <Heading3>jorge@jbef.dev</Heading3>
-          <Heading3>+34 606 516 718</Heading3>
-        </FlexContainer>
+
+        <h2>
+          <FlexContainer className='font-medium' flexCol grow>
+            <Heading as='span'>jorge@jbef.dev</Heading>
+            <Heading as='span'>+34 606 516 718</Heading>
+          </FlexContainer>
+        </h2>
 
         <FlexContainer flexCol>
-          <h4 className='text-responsive-lg font-title font-light sm:text-center'>
+          <h4 className='font-title text-responsive-lg font-light sm:text-center'>
             Book a free online meeting to discuss your project
           </h4>
         </FlexContainer>

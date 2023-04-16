@@ -41,7 +41,7 @@ const StaggerText = React.forwardRef<HTMLSpanElement, Props>(
           <motion.span key={i} className='flex overflow-hidden'>
             <motion.span
               className='flex'
-              variants={customVariants.fromBelow}
+              variants={customVariants.fromBottom}
               transition={customTransitions.easeOut}
             >
               {k}&nbsp;

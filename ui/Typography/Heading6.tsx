@@ -8,10 +8,7 @@ const Heading6 = React.forwardRef<
   return (
     <h6
       ref={forwardedRef}
-      className={clsx(
-        'font-title text-responsive-xl leading-tight',
-        className
-      )}
+      className={clsx('font-title text-responsive-xl leading-tight', className)}
       {...props}
     >
       {children}
@@ -19,4 +16,4 @@ const Heading6 = React.forwardRef<
   );
 });
 
-export default Heading6;
+export { Heading6 };

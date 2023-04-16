@@ -8,7 +8,7 @@ const useArtificialScroll = (
 ) => {
   // *************************************** SMOOTH SCROLL *****************************
 
-  const springFiltered = springOptions || customSprings.fast;
+  const springFiltered = springOptions || customSprings.stiff;
   const moveDelayFiltered = moveDelay || 20;
 
   // const [touchStartY, setTouchStartY] = useState<number>(0);

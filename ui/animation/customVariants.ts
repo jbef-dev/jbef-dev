@@ -35,10 +35,20 @@ const customVariants = {
     animate: { scale: 1 },
     exit: { scale: 0.75 },
   },
-  fromBelow: {
-    initial: { y: '120%' },
+  fromLeft: {
+    initial: { x: '-100%' },
+    animate: { x: '0%' },
+    exit: { x: '100%' },
+  },
+  fromTop: {
+    initial: { y: '-100%' },
     animate: { y: '0%' },
-    exit: { y: '-120%' },
+    exit: { y: '100%' },
+  },
+  fromBottom: {
+    initial: { y: '100%' },
+    animate: { y: '0%' },
+    exit: { y: '-100%' },
   },
   appearMenu: {
     initial: { opacity: 0, y: '-10%', scale: 0.95 },

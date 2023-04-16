@@ -1,3 +1,3 @@
-export * from './AppearOnScroll';
-export * from './BannerInfinite';
-export * from './StaggerText';
+export { AppearOnScroll, AppearOnScrollChild } from './AppearOnScroll';
+export { BannerInfinite } from './BannerInfinite';
+export { StaggerText } from './StaggerText';

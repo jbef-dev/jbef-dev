@@ -23,7 +23,7 @@ const AppearOnScroll = React.forwardRef<
       amount = 0.65,
       once = true,
       children,
-      variants = customVariants.fromBelow,
+      variants = customVariants.fromBottom,
       transition = customTransitions.default,
       ...props
     },
@@ -48,6 +48,7 @@ const AppearOnScroll = React.forwardRef<
     );
   }
 );
+// AppearOnScroll.displayName = 'AppearOnScroll';
 
 const AppearOnScrollChild = React.forwardRef<
   HTMLDivElement,
@@ -58,7 +59,7 @@ const AppearOnScrollChild = React.forwardRef<
   (
     {
       asChild = false,
-      variants = customVariants.fromBelow,
+      variants = customVariants.fromBottom,
       transition = customTransitions.default,
       children,
       ...props
@@ -78,5 +79,6 @@ const AppearOnScrollChild = React.forwardRef<
     );
   }
 );
+// AppearOnScrollChild.displayName = 'AppearOnScrollChild';
 
 export { AppearOnScroll, AppearOnScrollChild };

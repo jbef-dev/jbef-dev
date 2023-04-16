@@ -1,12 +1,13 @@
 import clsx from 'clsx';
-import { Header } from '@/ui/Header/Header';
+import { Header } from '@/components/Navbar/Navbar';
 
 import { fontSans, fontTitle } from '@/styles/fonts';
 import '@/styles/globals.css';
 // import { useLocale } from 'next-intl';
 import { i18n, Locale } from '@/i18n/config';
 import { Metadata } from 'next';
-import { Footer } from '@/ui/Footer/Footer';
+import { Footer } from '@/components/Footer/Footer';
+import { PageTransition } from '@/ui/PageTransition/PageTransition';
 
 export async function generateStaticParams() {
   return i18n.locales.map(locale => ({ locale: locale }));
@@ -43,6 +44,7 @@ export default async function LocaleLayout({
         {children}
         <Footer />
       </body>
+      {/* <PageTransition /> */}
     </html>
   );
 }

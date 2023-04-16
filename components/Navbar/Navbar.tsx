@@ -3,7 +3,6 @@ import {
   HamburgerMenu,
   HamburgerMenuButton,
   HamburgerMenuContent,
-  HamburgerMenuNavigation,
   HamburgerMenuNavItem,
   HamburgerMenuNavLink,
 } from '@/ui/HamburgerMenu/HamburgerMenu';
@@ -35,7 +34,7 @@ const Header = async ({ locale }: { locale: Locale }) => {
   ];
 
   return (
-    <header>
+    <nav>
       <HamburgerMenu>
         <div className='fixed left-0 right-0 top-0 z-50 flex h-20 w-full items-center justify-between px-8 font-light mix-blend-difference'>
           <Link className='z-50 flex' href='/'>
@@ -45,17 +44,21 @@ const Header = async ({ locale }: { locale: Locale }) => {
           <div className='flex items-center text-responsive-sm leading-none'>
             <LocaleSwitcher currentLocale={locale} className='text-white' />
             <div className='mx-5 h-3 w-[1px] self-center bg-white'></div>
-            <HamburgerMenuButton openText='CLOSE' closedText='MENU' />
+            <HamburgerMenuButton
+              className='text-white'
+              openText='CLOSE'
+              closedText='MENU'
+            />
           </div>
         </div>
 
-        <HamburgerMenuContent className='scrollbar-hide fixed left-0 top-0 z-40 flex h-full w-full items-start justify-center overflow-y-scroll bg-white px-4 font-title lg:px-12'>
+        <HamburgerMenuContent className='scrollbar-hide fixed inset-0 z-40 flex items-start justify-center overflow-y-scroll bg-black px-4 font-title text-white lg:px-12'>
           <div className='flex h-full w-full flex-col gap-y-20 pb-8 pt-24'>
-            <HamburgerMenuNavigation className='flex h-full flex-col items-start justify-center gap-8'>
+            <div className='flex h-full flex-col items-start justify-center gap-8'>
               {navLinks.map((link, i) => (
                 <HamburgerMenuNavItem
                   key={link.label}
-                  className='group relative flex w-fit   flex-col gap-4 text-responsive-2xl leading-none tracking-wide hover:text-accent-main'
+                  className='group relative flex w-fit flex-col gap-4 overflow-hidden text-responsive-2xl leading-none tracking-wide hover:text-accent-main'
                 >
                   <HamburgerMenuNavLink
                     className='flex gap-x-2'
@@ -77,7 +80,7 @@ const Header = async ({ locale }: { locale: Locale }) => {
                   </HamburgerMenuNavLink>
                 </HamburgerMenuNavItem>
               ))}
-            </HamburgerMenuNavigation>
+            </div>
             {/* <div className='flex text-xl w-full text-black items-evenly gap-x-14 lg:gap-x-20 justify-center'> */}
             {/*   {SOCIALS.map(social => ( */}
             {/*     <Link */}
@@ -93,7 +96,7 @@ const Header = async ({ locale }: { locale: Locale }) => {
           </div>
         </HamburgerMenuContent>
       </HamburgerMenu>
-    </header>
+    </nav>
   );
 };
 

@@ -68,7 +68,7 @@ const HamburgerMenuButton = ({
   return (
     <button
       className={clsx(
-        'group flex h-min items-center justify-center gap-x-2 overflow-hidden text-white',
+        'group flex h-min items-center justify-center gap-x-2 overflow-hidden',
         className
       )}
       onClick={() => setOpen(o => !o)}
@@ -83,12 +83,12 @@ const HamburgerMenuButton = ({
             animate='animate'
             exit='exit'
             whileHover='hover'
-            variants={customVariants.fromBelow}
+            variants={customVariants.fromBottom}
             transition={customTransitions.stiff}
           >
             <motion.div
               className='relative flex flex-col'
-              variants={{ hover: customVariants.fromBelow.exit }}
+              variants={{ hover: customVariants.fromBottom.exit }}
               transition={customTransitions.stiff}
             >
               <span>{openText}</span>
@@ -103,12 +103,12 @@ const HamburgerMenuButton = ({
             animate='animate'
             exit='exit'
             whileHover='hover'
-            variants={customVariants.fromBelow}
+            variants={customVariants.fromBottom}
             transition={customTransitions.stiff}
           >
             <motion.div
               className='relative flex flex-col'
-              variants={{ hover: customVariants.fromBelow.exit }}
+              variants={{ hover: customVariants.fromBottom.exit }}
               transition={customTransitions.stiff}
             >
               <span>{closedText}</span>
@@ -128,16 +128,26 @@ const HamburgerMenuContent = forwardRef<HTMLElement, HTMLMotionProps<'nav'>>(
       <motion.nav
         ref={ref}
         className={clsx(className)}
-        initial='initial'
-        variants={{ initial: { y: '-100%' }, animate: { y: 0 } }}
-        animate={open ? 'animate' : 'initial '}
-        transition={{
-          type: 'keyframes',
-          ease: 'easeInOut',
-          duration: customValues.duration.verySlow,
-        }}
-        style={{
-          transform: 'translate3d(0px, 0px, 0px)',
+        initial={false}
+        animate={open ? 'animate' : 'initial'}
+        variants={{
+          initial: {
+            ...customVariants.fromTop.initial,
+            transition: {
+              delay: 0.5, // WARNING artificially delaying the delay for better visual effect
+              staggerDirection: -1,
+              staggerChildren: 0.18,
+              ...customTransitions.easeOutSlow,
+            },
+          },
+          animate: {
+            ...customVariants.fromTop.animate,
+            transition: {
+              delayChildren: 0.4,
+              staggerChildren: 0.18,
+              ...customTransitions.easeOutSlow,
+            },
+          },
         }}
         {...props}
       >
@@ -147,40 +157,40 @@ const HamburgerMenuContent = forwardRef<HTMLElement, HTMLMotionProps<'nav'>>(
   }
 );
 
-const HamburgerMenuNavigation = forwardRef<
-  HTMLDivElement,
-  HTMLMotionProps<'nav'>
->(({ children, ...props }, ref) => {
-  const { open } = useHamburgerMenuCtx();
-  return (
-    <motion.div
-      ref={ref}
-      initial='initial'
-      animate={open ? 'animate' : 'initial'}
-      variants={{
-        animate: {
-          transition: {
-            delayChildren: 0.3,
-            staggerChildren: 0.1,
-            ...customTransitions.easeOut,
-          },
-        },
-        initial: {
-          transition: {
-            delay: 1,
-            when: 'afterChildren',
-            staggerDirection: -1,
-            staggerChildren: 0.1,
-            ...customTransitions.normal,
-          },
-        },
-      }}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-});
+// const HamburgerMenuNavigation = forwardRef<
+//   HTMLDivElement,
+//   HTMLMotionProps<'nav'>
+// >(({ children, ...props }, ref) => {
+//   const { open } = useHamburgerMenuCtx();
+//   return (
+//     <motion.div
+//       ref={ref}
+//       initial='initial'
+//       animate={open ? 'animate' : 'initial'}
+//       variants={{
+//         animate: {
+//           transition: {
+//             delayChildren: 0.3,
+//             staggerChildren: 0.1,
+//             ...customTransitions.easeOut,
+//           },
+//         },
+//         initial: {
+//           transition: {
+//             delay: 1,
+//             when: 'afterChildren',
+//             staggerDirection: -1,
+//             staggerChildren: 0.1,
+//             ...customTransitions.normal,
+//           },
+//         },
+//       }}
+//       {...props}
+//     >
+//       {children}
+//     </motion.div>
+//   );
+// });
 
 const HamburgerMenuSubNavigation = forwardRef<
   HTMLDivElement,
@@ -224,8 +234,8 @@ const HamburgerMenuNavItem = forwardRef<HTMLDivElement, HTMLMotionProps<'div'>>(
   ({ children, ...props }, ref) => (
     <motion.div
       ref={ref}
-      variants={customVariants.appearFromTop}
-      transition={customTransitions.easeOut}
+      // variants={customVariants.appearFromTop}
+      // transition={customTransitions.easeOut}
       {...props}
     >
       {children}
@@ -290,7 +300,7 @@ const HamburgerMenuNavLink = forwardRef<
   return (
     <motion.div
       ref={ref}
-      variants={customVariants.appearFromTop}
+      variants={customVariants.fromBottom}
       transition={customTransitions.easeOut}
     >
       <Link
@@ -310,7 +320,7 @@ export {
   HamburgerMenu,
   HamburgerMenuContent,
   HamburgerMenuButton,
-  HamburgerMenuNavigation,
+  // HamburgerMenuNavigation,
   HamburgerMenuSubNavigation,
   HamburgerMenuNavItem,
   HamburgerMenuNavTrigger,

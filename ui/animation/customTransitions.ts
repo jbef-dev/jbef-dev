@@ -46,6 +46,14 @@ const customTransitions = {
     type: 'spring',
     ...customSprings.default,
   },
+  stiff: {
+    type: 'spring',
+    ...customSprings.stiff,
+  },
+  loose: {
+    type: 'spring',
+    ...customSprings.loose,
+  },
   slow: {
     type: 'spring',
     duration: customValues.duration.slow,

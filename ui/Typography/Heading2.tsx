@@ -19,4 +19,4 @@ const Heading2 = React.forwardRef<
   );
 });
 
-export default Heading2;
+export { Heading2 };

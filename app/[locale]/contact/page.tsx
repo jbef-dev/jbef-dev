@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
 
-import { SeparatorMargin, SeparatorRounded } from '@/components/Separator';
 import {
   FlexContainer,
   PageContainer,
@@ -9,6 +8,8 @@ import {
 import { Metadata } from 'next';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
+import { Heading } from '@/ui/Typography';
+import { Button } from '@/ui/Button/Button';
 
 const CalendarWidget = dynamic(
   () => import('@/components/CalendarWidget/CalendarWidget')
@@ -20,34 +21,33 @@ export default async function Contact({
   params: { locale: Locale };
 }) {
   return (
-    <PageContainer mt mb={false}>
-      <SectionContainer flex flexCol pb={false} center>
-        <h1 className='text-center font-title text-responsive-4xl font-medium'>
-          Get in touch
-        </h1>
-        <SeparatorMargin />
+    <PageContainer mb={false}>
+      <SectionContainer flex flexCol center>
+        <Heading
+          as='h1'
+          className='text-center text-responsive-5xl font-medium'
+        >
+          Let&apos;s get in touch
+        </Heading>
       </SectionContainer>
 
-      <SectionContainer flex flexCol pt={false} className='bg-black text-white'>
-        <SeparatorRounded position='top' className='bg-black' />
-        <FlexContainer className='font-medium' center flexCol grow>
-          {/* <Heading1>jorge@jb1</Heading1> */}
-          {/* <Heading2>jorge@jb2</Heading2> */}
-          {/* <Heading3>jorge@jb3</Heading3> */}
-          {/* <Heading4>jorge@jb4</Heading4> */}
-          {/* <Heading5>jorge@jb5</Heading5> */}
-          {/* <Heading6>jorge@jb6</Heading6> */}
-          {/* <span className='text-responsive-lg'>jorge@jb</span> */}
-          {/* <span className='text-responsive-md'>jorge@jb</span> */}
-          {/* <span className='text-responsive-sm'>jorge@jb</span> */}
-          {/* <span className='text-responsive-xs'>jorge@jb</span> */}
-          <h2 className='font-title text-responsive-2xl font-medium'>
-            jorge@jbef.dev
-          </h2>
-          <h2 className='font-title text-responsive-2xl font-medium'>
-            +34 606 516 718
-          </h2>
-        </FlexContainer>
+      <SectionContainer flex flexCol pt={false}>
+        <h2 className='text-responsive-2xl font-medium'>
+          <FlexContainer className='font-medium' center flexCol grow>
+            {/* <Heading1>jorge@jb1</Heading1> */}
+            {/* <Heading2>jorge@jb2</Heading2> */}
+            {/* <Heading3>jorge@jb3</Heading3> */}
+            {/* <Heading4>jorge@jb4</Heading4> */}
+            {/* <Heading5>jorge@jb5</Heading5> */}
+            {/* <Heading6>jorge@jb6</Heading6> */}
+            {/* <span className='text-responsive-lg'>jorge@jb</span> */}
+            {/* <span className='text-responsive-md'>jorge@jb</span> */}
+            {/* <span className='text-responsive-sm'>jorge@jb</span> */}
+            {/* <span className='text-responsive-xs'>jorge@jb</span> */}
+            <Heading as='span'>jorge@jbef.dev</Heading>
+            <Heading as='span'>+34 606 516 718</Heading>
+          </FlexContainer>
+        </h2>
 
         <FlexContainer flexCol>
           <h4 className='font-title text-responsive-lg font-light sm:text-center'>

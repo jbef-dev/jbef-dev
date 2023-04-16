@@ -19,7 +19,8 @@ const PricingSection = async ({ locale }: { locale: Locale }) => {
         { name: 'Customer service', included: true },
         { name: 'SEO', included: true },
       ],
-      price: { amount: '150€', frequency: '/mo' },
+      // price: { amount: '150€', frequency: '/mo' },
+      price: { amount: 'xxx$', frequency: '/xx' },
     },
     {
       title: 'Standard + Blog',
@@ -30,7 +31,8 @@ const PricingSection = async ({ locale }: { locale: Locale }) => {
         { name: 'SEO', included: true },
         { name: 'Analytics', included: true },
       ],
-      price: { amount: '250€', frequency: '/mo' },
+      // price: { amount: '250€', frequency: '/mo' },
+      price: { amount: 'xxx$' },
     },
     {
       title: 'E-commerce',

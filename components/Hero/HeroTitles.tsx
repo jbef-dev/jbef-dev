@@ -20,7 +20,7 @@ const HeroTitles = ({ titles }: { titles: string[] }) => {
 
   const springDefault = useSpring(scrollYProgress, customSprings.default);
 
-  const springStiff = useSpring(scrollYProgress, customSprings.fast);
+  const springStiff = useSpring(scrollYProgress, customSprings.stiff);
 
   const startAnimate = 0.1;
   const xLTR = useTransform(springDefault, [startAnimate, 1], ['0%', '40%']);
