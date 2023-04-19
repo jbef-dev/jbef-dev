@@ -5,14 +5,14 @@ import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
 import laguna_rosa from '@/public/assets/img/sea-torrevieja.webp';
-import { AppearOnScrollChild, BannerInfinite } from '@/ui/Animated';
-import clsx from 'clsx';
 import {
-  customSprings,
-  customTransitions,
-  customVariants,
-} from '@/ui/animation';
+  AppearOnScrollChild,
+  BannerInfinite,
+  StaggerText,
+} from '@/ui/Animated';
+import { customSprings, customTransitions } from '@/ui/animation';
 import { Heading } from '@/ui/Typography';
+import Balancer from 'react-wrap-balancer';
 
 const Hero = ({ titles }: { titles: string[] }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -24,26 +24,27 @@ const Hero = ({ titles }: { titles: string[] }) => {
   const springProgress = useSpring(scrollYProgress, customSprings.stiff);
 
   const yTitles = useTransform(springProgress, [0, 1], ['0%', '-150%']);
-  const yImage = useTransform(springProgress, [0, 1], ['0%', '20%']);
+
+  const yImage = useTransform(springProgress, [0, 1], ['0%', '25%']);
   const rotateXImage = useTransform(springProgress, [0, 1], ['0deg', '20deg']);
-  const rotateYImage = useTransform(springProgress, [0, 1], ['0deg', '160deg']);
+  const rotateYImage = useTransform(springProgress, [0, 1], ['0deg', '190deg']);
   const rotateZImage = useTransform(springProgress, [0, 1], ['0deg', '5deg']);
 
+  const yH2 = useTransform(springProgress, [0, 1], ['0%', '150%']);
+  const scaleH2 = useTransform(springProgress, [0, 1], [1, 1.15]);
+
   return (
-    <motion.h1
+    <motion.div
       ref={containerRef}
       className='relative flex min-h-[100svh] w-full flex-col items-center justify-center gap-[10svh]'
       initial='initial'
       animate='animate'
       transition={{ staggerChildren: 0.21 }}
     >
-      <motion.div
-        className={clsx('z-0 w-full overflow-hidden')}
-        style={{ y: yTitles }}
-      >
+      <motion.div className='z-0 w-full overflow-hidden' style={{ y: yTitles }}>
         <AppearOnScrollChild asChild className='z-0 w-full overflow-hidden'>
           <BannerInfinite className='whitespace-nowrap' direction='ltr'>
-            <Heading as='span' className='text-responsive-6xl font-medium'>
+            <Heading as='h1' className='text-responsive-6xl font-medium'>
               {titles[0]}&nbsp;
             </Heading>
           </BannerInfinite>
@@ -97,55 +98,36 @@ const Hero = ({ titles }: { titles: string[] }) => {
       >
         <AppearOnScrollChild asChild>
           <BannerInfinite className='whitespace-nowrap' direction='rtl'>
-            <Heading as='span' className='text-responsive-6xl font-extralight'>
+            <Heading as='h1' className='text-responsive-6xl font-extralight'>
               &nbsp;{titles[1]}
             </Heading>
           </BannerInfinite>
         </AppearOnScrollChild>
       </motion.div>
 
-      <Time />
-    </motion.h1>
-  );
-};
-
-const Time = () => {
-  const [time, setTime] = React.useState<string | undefined>(undefined);
-
-  React.useEffect(() => {
-    const timeOpts: Intl.DateTimeFormatOptions = {
-      timeZone: 'Europe/Madrid',
-      hour: 'numeric',
-      minute: 'numeric',
-    };
-    const formatter = new Intl.DateTimeFormat('default', timeOpts);
-    setTime(formatter.format(new Date()));
-  }, []);
-
-  return (
-    <motion.div
-      layout
-      className='absolute bottom-0 mx-auto flex w-full max-w-screen-3xl items-center justify-between px-4 py-2 text-responsive-sm font-light uppercase lg:px-8 lg:py-8'
-    >
-      <span>
-        Web designer <br /> & developer
-      </span>
-      <span className='flex flex-col text-right'>
-        <span>ALC, SPAIN</span>
-        <span className='flex self-end overflow-hidden'>
-          {time ? (
-            <motion.span
-              initial='initial'
-              animate='animate'
-              variants={customVariants.fromBottom}
-              transition={{ delay: 0.75, ...customTransitions.default }}
+      <motion.div
+        className='absolute bottom-0 mx-auto mb-6 flex items-center px-4 text-responsive-md font-light uppercase lg:mb-8'
+        style={{
+          y: yH2,
+          scale: scaleH2,
+        }}
+      >
+        <Heading as='h2'>
+          <Balancer>
+            <StaggerText
+              className='justify-center'
+              transition={{
+                delayChildren: 0.6,
+                staggerChildren: 0.09,
+                staggerDirection: 1,
+              }}
             >
-              {time}
-            </motion.span>
-          ) : null}
-          &nbsp;— UTC+2
-        </span>
-      </span>
+              Bringing high-end web design and development to businesses
+              worldwide.
+            </StaggerText>
+          </Balancer>
+        </Heading>
+      </motion.div>
     </motion.div>
   );
 };
