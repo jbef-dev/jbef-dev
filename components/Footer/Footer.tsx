@@ -3,15 +3,21 @@ import { Button } from '@/ui/Button/Button';
 import { FlexContainer } from '@/ui/Containers';
 
 export const Footer = () => {
+  const time = new Intl.DateTimeFormat('default', {
+    timeZone: 'Europe/Madrid',
+    hour: 'numeric',
+    minute: 'numeric',
+  }).format(new Date());
+
   return (
-    <footer className='flex flex-col relative w-full bg-black items-center gap-y-16 justify-center py-10'>
+    <footer className='relative flex w-full flex-col items-center justify-center gap-y-16 bg-black py-10'>
       <FlexContainer flexCol center px>
-        <div className='text-white flex flex-col items-center gap-y-6'>
+        <div className='flex flex-col items-center gap-y-6 text-white'>
           <Heading3 className='flex items-center gap-x-2'>
             {/* <Logo /> */}
             Get in touch
           </Heading3>
-          <div className='flex max-lg:flex-col items-center gap-4 justify-around'>
+          <div className='flex items-center justify-around gap-4 max-lg:flex-col'>
             <a href='mailto:jorge@jbef.dev' target='_blank'>
               <Button buttonSize='lg' flavor='outlined' colorMode='light'>
                 jorge@jbef.dev
@@ -25,7 +31,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className='flex max-lg:flex-col-reverse max-w-screen-2xl w-full text-white justify-between'>
+        <div className='flex w-full max-w-screen-2xl justify-between text-white max-lg:flex-col-reverse'>
           <div className='flex gap-x-10'>
             <div className='flex flex-col gap-y-2'>
               <span className='text-neutral-500'>Design and development</span>
@@ -35,11 +41,12 @@ export const Footer = () => {
             </div>
             <div className='flex flex-col gap-y-2'>
               <span className='text-neutral-500'>Local time</span>
-              <span>13:00 PM GMT+1</span>
+              {/* <span>13:00 PM GMT+1</span> */}
+              <span>{time} — UTC+2</span>
             </div>
           </div>
 
-          <div className='h-[1px] lg:hidden my-6 bg-neutral-600 w-full'></div>
+          <div className='my-6 h-[1px] w-full bg-neutral-600 lg:hidden'></div>
 
           <div className='flex flex-col gap-y-2'>
             <span className='text-neutral-500'>Socials</span>
