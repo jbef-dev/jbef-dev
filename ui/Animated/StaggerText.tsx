@@ -9,6 +9,7 @@ interface Props extends HTMLMotionProps<'span'> {
   amount?: number;
   once?: boolean;
   stagger?: number;
+  defaultAnimate?: boolean;
   children: string;
 }
 
@@ -17,36 +18,49 @@ const StaggerText = React.forwardRef<HTMLSpanElement, Props>(
     {
       children,
       className,
+      defaultAnimate = true,
       amount = 0.5,
       once = true,
       stagger = 0.06,
+      initial = 'initial',
+      animate,
+      whileInView = 'animate',
+      transition = {
+        staggerChildren: stagger,
+        staggerDirection: 1,
+      },
       ...props
     },
     forwardedRef
   ) => {
+    const customMotionProps = defaultAnimate
+      ? {
+          initial: initial,
+          animate: animate,
+          whileInView: whileInView,
+        }
+      : null;
+
     return (
       <motion.span
         ref={forwardedRef}
         className={clsx('flex flex-wrap', className)}
-        initial='initial'
-        whileInView='animate'
-        transition={{
-          staggerChildren: stagger,
-          staggerDirection: 1,
-        }}
+        {...customMotionProps}
+        transition={transition}
         viewport={{ once: once, amount: amount }}
         {...props}
       >
         {children.split(' ').map((k, i) => (
-          <motion.span key={i} className='flex overflow-hidden'>
+          <div key={i} className='flex overflow-hidden'>
             <motion.span
               className='flex'
               variants={customVariants.fromBottom}
-              transition={customTransitions.easeOut}
+              // variants={customVariants.appear3d}
+              transition={customTransitions.default}
             >
               {k}&nbsp;
             </motion.span>
-          </motion.span>
+          </div>
         ))}
       </motion.span>
     );
