@@ -12,6 +12,7 @@ const FeatureSection = dynamic(
 import { PageContainer, SectionContainer } from '@/ui/Containers';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
+
 import PricingSection from '@/components/PricingSection/PricingSection';
 import { Hero } from '@/components/Hero/Hero';
 import FeaturedProject from '@/components/FeaturedProject/FeaturedProject';
@@ -35,7 +36,7 @@ export default async function Home({
         />
       </SectionContainer>
 
-      <SectionContainer overflow flexCol py={false}>
+      <SectionContainer overflow my flexCol>
         <MottoParagraph />
       </SectionContainer>
 

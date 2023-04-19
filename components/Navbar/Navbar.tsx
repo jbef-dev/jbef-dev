@@ -36,7 +36,7 @@ const Header = async ({ locale }: { locale: Locale }) => {
   return (
     <nav>
       <HamburgerMenu>
-        <div className='fixed left-0 right-0 top-0 z-50 flex h-20 w-full items-center justify-between px-8 font-light mix-blend-difference'>
+        <div className='fixed left-0 right-0 top-0 z-50 flex h-20 w-full items-center justify-between px-8 font-light mix-blend-difference lg:h-24 lg:px-12'>
           <Link className='z-50 flex' href='/'>
             <Logo />
           </Link>

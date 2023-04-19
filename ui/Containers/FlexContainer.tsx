@@ -3,7 +3,8 @@ import clsx from 'clsx';
 
 interface FlexContainerProps extends HTMLAttributes<HTMLDivElement> {
   center?: boolean;
-  gap?: boolean;
+  // gap?: boolean;
+  gap?: 'sm' | 'md' | 'lg' | false;
   grow?: boolean;
   px?: boolean;
   pr?: boolean;
@@ -21,7 +22,7 @@ const FlexContainer = forwardRef<HTMLDivElement, FlexContainerProps>(
   (props: FlexContainerProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       center = false,
-      gap = true,
+      gap = 'md',
       px = false,
       pr = false,
       pl = false,
@@ -47,7 +48,10 @@ const FlexContainer = forwardRef<HTMLDivElement, FlexContainerProps>(
             'pl-5 lg:pl-12': pl || px,
             'pt-12 lg:pt-20': pt || py,
             'pb-12 lg:pb-20': pb || py,
-            'gap-8 lg:gap-12': gap,
+            'gap-8 lg:gap-10': gap === 'sm',
+            'gap-10 lg:gap-20': gap === 'md',
+            'gap-14 lg:gap-28': gap === 'lg',
+
             'max-w-screen-2xl': maxW,
             'items-center justify-center': center,
             'w-full': grow,
