@@ -45,7 +45,8 @@ export default async function Home({
           title={['CNG Lawyers']}
           videoURl='url'
           clientName='CNG Lawyers'
-          workDesc='Website redesign'
+          workDesc='Website redesign / SEO'
+          workResult='25% more clients than previous year'
           year={2022}
         />
         <FeaturedProject
@@ -53,6 +54,7 @@ export default async function Home({
           videoURl='url'
           clientName='Guido Audisio Dental Clinic'
           workDesc='Website redesign'
+          workResult='Reduced bounce rate by 30% & new visitors from +10 countries'
           year={2022}
         />
       </SectionContainer>
