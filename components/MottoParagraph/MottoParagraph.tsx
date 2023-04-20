@@ -1,16 +1,19 @@
 'use client';
 
 import MotionComponent from '@/ui/Animated/MotionComponent';
-import { FlexContainer } from '@/ui/Containers';
 import { customSprings } from '@/ui/animation';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { AmazonLogo } from './AmazonLogo';
 import { CNGLawyers } from './CNGLawyersLogo';
 import { GuidoAudisioLogo } from './GuidoAudisioLogo';
-import { Heading } from '@/ui/Typography';
 import Balancer from 'react-wrap-balancer';
-import { StaggerText } from '@/ui/Animated';
+import {
+  AppearOnScroll,
+  AppearOnScrollChild,
+  BannerInfinite,
+  StaggerText,
+} from '@/ui/Animated';
 
 const MottoParagraph = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,9 +25,13 @@ const MottoParagraph = () => {
 
   const springProgress = useSpring(scrollYProgress, customSprings.default);
 
-  const textY = useTransform(springProgress, [0, 1], ['0%', '45%']);
+  const textY = useTransform(springProgress, [0, 1], ['-10svh', '50svh']);
 
-  const logoOpacity = useTransform(springProgress, [0.1, 0.4, 1], [0, 1, 0.8]);
+  const logoOpacity = useTransform(
+    springProgress,
+    [0.1, 0.4, 1],
+    [0, 0.6, 0.3]
+  );
   const logoScale = useTransform(springProgress, [0, 0.4, 1], [0.3, 1, 0.75]);
 
   const y1 = useTransform(springProgress, [0, 1], ['45svh', '15svh']);
@@ -45,59 +52,85 @@ const MottoParagraph = () => {
   return (
     <MotionComponent
       asChild
-      className='flex w-full items-center justify-center'
+      className='flex w-full flex-col items-center justify-center'
       style={{ y: textY }}
     >
-      <div ref={containerRef} className='grid w-full'>
+      {/* <div ref={containerRef} className='grid w-full'> */}
+      {/*   <h3 className='mx-auto w-full max-w-[90%] text-responsive-xl font-light leading-tight [grid-area:1/1]'> */}
+      {/*     <Balancer> */}
+      {/*       <StaggerText> */}
+      {/*         Worked with companies ranging from local pioneering businesses to */}
+      {/*         multi billion-dollar corporations */}
+      {/*       </StaggerText> */}
+      {/*     </Balancer> */}
+      {/*   </h3> */}
+      {/* <div className='bottom-0 flex items-center justify-around opacity-70 [grid-area:1/1]'> */}
+      {/*   <motion.div */}
+      {/*     style={{ */}
+      {/*       y: y1, */}
+      {/*       rotateX: rotateX1, */}
+      {/*       rotateY: rotateY1, */}
+      {/*       rotateZ: rotateZ1, */}
+      {/*       opacity: logoOpacity, */}
+      {/*       scale: logoScale, */}
+      {/*     }} */}
+      {/*   > */}
+      {/*     <CNGLawyers className='h-12 lg:h-16' /> */}
+      {/*   </motion.div> */}
+      {/**/}
+      {/*   <motion.div */}
+      {/*     style={{ */}
+      {/*       y: y2, */}
+      {/*       rotateX: rotateX2, */}
+      {/*       rotateY: rotateY2, */}
+      {/*       rotateZ: rotateZ2, */}
+      {/*       opacity: logoOpacity, */}
+      {/*       scale: logoScale, */}
+      {/*     }} */}
+      {/*   > */}
+      {/*     <AmazonLogo className='h-9 lg:h-12' /> */}
+      {/*   </motion.div> */}
+      {/**/}
+      {/*   <motion.div */}
+      {/*     style={{ */}
+      {/*       y: y3, */}
+      {/*       rotateX: rotateX3, */}
+      {/*       rotateY: rotateY3, */}
+      {/*       rotateZ: rotateZ3, */}
+      {/*       opacity: logoOpacity, */}
+      {/*       scale: logoScale, */}
+      {/*     }} */}
+      {/*   > */}
+      {/*     <GuidoAudisioLogo className='h-14 lg:h-20' /> */}
+      {/*   </motion.div> */}
+      {/* </div> */}
+      {/* </div> */}
+
+      <div className='flex flex-col gap-y-20 md:gap-y-32'>
         <h3 className='mx-auto w-full max-w-[90%] text-responsive-xl font-light leading-tight [grid-area:1/1]'>
           <Balancer>
-            <StaggerText>
+            <StaggerText amount={0.75}>
               Worked with companies ranging from local pioneering businesses to
               multi billion-dollar corporations
             </StaggerText>
           </Balancer>
         </h3>
 
-        <div className='bottom-0 flex items-center justify-around opacity-70 [grid-area:1/1]'>
-          <motion.div
-            style={{
-              y: y1,
-              rotateX: rotateX1,
-              rotateY: rotateY1,
-              rotateZ: rotateZ1,
-              opacity: logoOpacity,
-              scale: logoScale,
-            }}
-          >
-            <CNGLawyers className='h-12 lg:h-16' />
-          </motion.div>
-
-          <motion.div
-            style={{
-              y: y2,
-              rotateX: rotateX2,
-              rotateY: rotateY2,
-              rotateZ: rotateZ2,
-              opacity: logoOpacity,
-              scale: logoScale,
-            }}
-          >
-            <AmazonLogo className='h-9 lg:h-12' />
-          </motion.div>
-
-          <motion.div
-            style={{
-              y: y3,
-              rotateX: rotateX3,
-              rotateY: rotateY3,
-              rotateZ: rotateZ3,
-              opacity: logoOpacity,
-              scale: logoScale,
-            }}
-          >
-            <GuidoAudisioLogo className='h-14 lg:h-20' />
-          </motion.div>
-        </div>
+        <AppearOnScroll asChild variants={{}}>
+          <div className='relative w-full max-w-screen-sm overflow-hidden'>
+            <AppearOnScrollChild asChild>
+              <BannerInfinite duration={12} repeat={3}>
+                <div className='ml-10 flex gap-x-10 opacity-75 md:ml-20 md:gap-x-20'>
+                  <AmazonLogo className='h-12 lg:h-16' />
+                  <CNGLawyers className='h-12 lg:h-16' />
+                  <GuidoAudisioLogo className='h-12 lg:h-16' />
+                </div>
+              </BannerInfinite>
+            </AppearOnScrollChild>
+            {/* <div className='absolute inset-0 bg-gradient-to-r from-white via-white/0 to-white'></div> */}
+            <div className='absolute inset-0 border-l border-r border-neutral-300'></div>
+          </div>
+        </AppearOnScroll>
       </div>
     </MotionComponent>
   );
