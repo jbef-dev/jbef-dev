@@ -22,7 +22,7 @@ const PageContainer = ({
   ...props
 }: PropsWithChildren<PageContainerProps>) => {
   return (
-    <main className='bg-black p-2 lg:p-4 overflow-hidden'>
+    <main className='overflow-hidden bg-black p-2 lg:p-4'>
       {/* <div */}
       {/*   className='fixed inset-0 z-10 h-20 bg-red-400' */}
       {/*   style={{ backgroundClip: '#clip' }} */}

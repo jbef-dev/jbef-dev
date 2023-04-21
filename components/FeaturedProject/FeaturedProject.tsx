@@ -35,18 +35,18 @@ const FeaturedProject = ({
   const springY = useSpring(scrollYProgress, customSprings.default);
 
   const imgY = useTransform(springY, [0, 1], ['20%', '-20%']);
-  const rotateXImage = useTransform(springY, [0, 1], ['0deg', '20deg']);
+  const rotateXImage = useTransform(springY, [0, 1], ['0deg', '10deg']);
   const rotateYImage = useTransform(springY, [0, 1], ['-105deg', '105deg']);
-  const rotateZImage = useTransform(springY, [0, 1], ['0deg', '5deg']);
+  const rotateZImage = useTransform(springY, [0, 1], ['-2deg', '3deg']);
 
-  const imgY2 = useTransform(springY, [0, 1], ['90%', '-10%']);
-  const imgX2 = useTransform(springY, [0, 1], ['70%', '-50%']);
+  const imgY2 = useTransform(springY, [0, 1], ['130%', '60%']);
+  const imgX2 = useTransform(springY, [0, 1], ['-50%', '-290%']);
   const rotateXImage2 = useTransform(springY, [0, 1], ['10deg', '-10deg']);
   const rotateYImage2 = useTransform(springY, [0, 1], ['215deg', '-225deg']);
   const rotateZImage2 = useTransform(springY, [0, 1], ['5deg', '-30deg']);
 
-  const imgY3 = useTransform(springY, [0, 1], ['10%', '-130%']);
-  const imgX3 = useTransform(springY, [0, 1], ['-40%', '80%']);
+  const imgY3 = useTransform(springY, [0, 1], ['-60%', '-130%']);
+  const imgX3 = useTransform(springY, [0, 1], ['50%', '290%']);
   const rotateXImage3 = useTransform(springY, [0, 1], ['10deg', '-10deg']);
   const rotateYImage3 = useTransform(springY, [0, 1], ['-275deg', '265deg']);
   const rotateZImage3 = useTransform(springY, [0, 1], ['-5deg', '35deg']);
@@ -61,7 +61,7 @@ const FeaturedProject = ({
         className='relative grid h-[65svh] w-full tracking-tight lg:h-[80svh]'
       >
         <motion.div
-          className='z-10 flex items-center justify-center text-black [grid-area:1/1]'
+          className='z-0 flex items-center justify-center text-black [grid-area:1/1]'
           style={{ y: titleY, scale: titleScale }}
         >
           <motion.span className='flex flex-col items-center whitespace-pre'>
@@ -78,7 +78,7 @@ const FeaturedProject = ({
         </motion.div>
 
         <motion.div
-          className='z-20 flex items-center justify-center text-white mix-blend-soft-light [grid-area:1/1]'
+          className='z-10 flex items-center justify-center text-white mix-blend-soft-light [grid-area:1/1]'
           style={{ y: titleY, scale: titleScale }}
         >
           <motion.span className='flex flex-col items-center whitespace-pre'>
@@ -94,15 +94,16 @@ const FeaturedProject = ({
           </motion.span>
         </motion.div>
 
-        <motion.div className='z-10 flex items-center justify-center [grid-area:1/1]'>
+        <motion.div className='z-0 flex items-center justify-center [grid-area:1/1]'>
           <motion.div
-            className='absolute left-20 aspect-[14/21] max-h-[25svh] max-w-[30vw] rounded-2xl shadow-2xl shadow-neutral-500 max-md:invisible'
+            className='absolute aspect-[14/21] max-h-[25svh] max-w-[20vw] rounded-2xl shadow-2xl shadow-neutral-500'
             style={{
               y: imgY2,
               x: imgX2,
               rotateX: rotateXImage2,
               rotateY: rotateYImage2,
               rotateZ: rotateZImage2,
+              translateZ: -500,
             }}
           >
             <Image
@@ -114,7 +115,7 @@ const FeaturedProject = ({
           </motion.div>
 
           <motion.div
-            className='relative aspect-[14/21] max-h-[45svh] max-w-[90vw] rounded-2xl shadow-2xl shadow-neutral-500 md:max-h-[65svh]'
+            className='relative z-10 aspect-[14/21] max-h-[65svh] max-w-[52vw] rounded-2xl shadow-2xl shadow-neutral-500'
             style={{
               y: imgY,
               rotateX: rotateXImage,
@@ -131,13 +132,14 @@ const FeaturedProject = ({
           </motion.div>
 
           <motion.div
-            className='absolute right-20 aspect-[14/21] max-h-[25svh] max-w-[30vw] rounded-2xl shadow-2xl shadow-neutral-500 max-md:invisible'
+            className='absolute z-0 aspect-[14/21] max-h-[25svh] max-w-[20vw] rounded-2xl shadow-2xl shadow-neutral-500'
             style={{
               y: imgY3,
               x: imgX3,
               rotateX: rotateXImage3,
               rotateY: rotateYImage3,
               rotateZ: rotateZImage3,
+              translateZ: -500,
             }}
           >
             <Image
