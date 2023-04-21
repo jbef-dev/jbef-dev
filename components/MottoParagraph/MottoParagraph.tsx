@@ -2,7 +2,7 @@
 
 import MotionComponent from '@/ui/Animated/MotionComponent';
 import { customSprings } from '@/ui/animation';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { AmazonLogo } from './AmazonLogo';
 import { CNGLawyers } from './CNGLawyersLogo';
@@ -107,9 +107,9 @@ const MottoParagraph = () => {
       {/* </div> */}
 
       <div className='flex flex-col gap-y-20 md:gap-y-32'>
-        <h3 className='mx-auto w-full max-w-[90%] text-responsive-xl font-light leading-tight [grid-area:1/1]'>
-          <Balancer>
-            <StaggerText amount={0.75}>
+        <h3 className='mx-auto w-full flex justify-center text-responsive-xl font-light leading-tight [grid-area:1/1]'>
+          <Balancer >
+            <StaggerText amount={0.75} className='flex items-center justify-center'>
               Worked with companies ranging from local pioneering businesses to
               multi billion-dollar corporations
             </StaggerText>
