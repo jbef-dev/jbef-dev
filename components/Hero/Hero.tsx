@@ -83,21 +83,14 @@ const Hero = ({ titles }: { titles: string[] }) => {
           rotateZ: rotateZImage,
         }}
       >
-        <img
+        <Image
           className='h-full rounded-2xl object-cover'
-          src='/assets/img/sea-torrevieja.webp'
+          src={laguna_rosa}
+          // src='/assets/img/sea-torrevieja.webp'
           loading='eager'
+          priority
           alt='primary image'
         />
-
-        {/* <Image */}
-        {/*   className='h-full rounded-2xl object-cover' */}
-        {/*   src={laguna_rosa} */}
-        {/*   // src='/assets/img/sea-torrevieja.webp' */}
-        {/*   loading='eager' */}
-        {/*   priority */}
-        {/*   alt='primary image' */}
-        {/* /> */}
       </AppearOnScrollChild>
 
       <motion.div
