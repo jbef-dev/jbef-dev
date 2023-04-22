@@ -30,7 +30,7 @@ export default async function About({
         <h2>
           <FlexContainer className='font-medium' flexCol grow>
             <Heading as='span'>jorge@jbef.dev</Heading>
-            <Heading as='span'>+34 606 516 718</Heading>
+            <Heading as='span'>+34 xxx xxx xxx</Heading>
           </FlexContainer>
         </h2>
 

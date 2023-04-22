@@ -45,7 +45,7 @@ export default async function Contact({
             {/* <span className='text-responsive-sm'>jorge@jb</span> */}
             {/* <span className='text-responsive-xs'>jorge@jb</span> */}
             <Heading as='span'>jorge@jbef.dev</Heading>
-            <Heading as='span'>+34 606 516 718</Heading>
+            <Heading as='span'>+34 XXX XXX XXX</Heading>
           </FlexContainer>
         </h2>
 

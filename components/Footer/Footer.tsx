@@ -23,9 +23,9 @@ export const Footer = () => {
                 jorge@jbef.dev
               </Button>
             </a>
-            <a href='tel:+34606516718' target='_blank'>
+            <a href='tel:+34xxxxxxxxx' target='_blank'>
               <Button buttonSize='lg' flavor='outlined' colorMode='light'>
-                +34 606 516 718
+                +34 xxx xxx xxx
               </Button>
             </a>
           </div>
