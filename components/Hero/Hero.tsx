@@ -53,7 +53,7 @@ const Hero = ({ titles }: { titles: string[] }) => {
 
       <AppearOnScrollChild
         asChild
-        className='absolute inset-0 z-10 m-auto aspect-[14_/_21] h-full max-h-[55svh] w-auto max-w-[90vw] select-none rounded-2xl shadow-2xl shadow-neutral-500 md:max-h-[70svh]'
+        className='absolute inset-0 z-10 m-auto aspect-[14/21] h-full max-h-[55svh] w-auto max-w-[90vw] select-none rounded-2xl shadow-2xl shadow-neutral-500 md:max-h-[70svh]'
         // variants={customVariants.zoomIn}
         variants={{
           initial: {
@@ -83,13 +83,21 @@ const Hero = ({ titles }: { titles: string[] }) => {
           rotateZ: rotateZImage,
         }}
       >
-        <Image
+        <img
           className='h-full rounded-2xl object-cover'
-          src={laguna_rosa}
+          src='/assets/img/sea-torrevieja.webp'
           loading='eager'
-          priority
           alt='primary image'
         />
+
+        {/* <Image */}
+        {/*   className='h-full rounded-2xl object-cover' */}
+        {/*   src={laguna_rosa} */}
+        {/*   // src='/assets/img/sea-torrevieja.webp' */}
+        {/*   loading='eager' */}
+        {/*   priority */}
+        {/*   alt='primary image' */}
+        {/* /> */}
       </AppearOnScrollChild>
 
       <motion.div
