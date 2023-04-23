@@ -22,7 +22,6 @@ interface ButtonProps extends HTMLMotionProps<'button'> {
   buttonSize?: ButtonSizes;
   glow?: boolean;
   colorMode?: ButtonColorModes;
-  children: string;
 }
 
 const flavors: {
