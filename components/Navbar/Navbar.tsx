@@ -36,7 +36,10 @@ const Header = async ({ locale }: { locale: Locale }) => {
   return (
     <nav>
       <HamburgerMenu>
-        <div className='fixed left-0 right-0 top-0 z-50 flex h-20 w-full items-center justify-between px-8 font-light mix-blend-difference lg:h-24 lg:px-12'>
+        <div
+          // className='fixed left-0 right-0 top-0 z-50 flex h-20 w-full items-center justify-between px-8 font-light mix-blend-exclusion lg:h-24 lg:px-12'
+          className='fixed left-0 right-0 top-0 z-50 flex h-20 w-full items-center justify-between px-6 font-light mix-blend-exclusion lg:px-10'
+        >
           <Link className='z-50 flex' href='/'>
             <Logo />
           </Link>
@@ -45,7 +48,7 @@ const Header = async ({ locale }: { locale: Locale }) => {
             <LocaleSwitcher currentLocale={locale} className='text-white' />
             <div className='mx-5 h-3 w-[1px] self-center bg-white'></div>
             <HamburgerMenuButton
-              className='text-white'
+              className='font-medium tracking-wide text-white'
               openText='CLOSE'
               closedText='MENU'
             />

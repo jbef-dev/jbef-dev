@@ -2,7 +2,7 @@
 
 import MotionComponent from '@/ui/Animated/MotionComponent';
 import { customSprings } from '@/ui/animation';
-import { useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { AmazonLogo } from './AmazonLogo';
 import { CNGLawyers } from './CNGLawyersLogo';
@@ -26,13 +26,14 @@ const MottoParagraph = () => {
   const springProgress = useSpring(scrollYProgress, customSprings.default);
 
   const textY = useTransform(springProgress, [0, 1], ['-10svh', '50svh']);
+  // const textY = useTransform(springProgress, [0, 1], ['-5svh', '5svh']);
 
   const logoOpacity = useTransform(
     springProgress,
-    [0.1, 0.4, 1],
-    [0, 0.6, 0.3]
+    [0.1, 0.4, 0.8, 1],
+    [0, 0.8, 0.8, 0]
   );
-  const logoScale = useTransform(springProgress, [0, 0.4, 1], [0.3, 1, 0.75]);
+  // const logoScale = useTransform(springProgress, [0, 0.5, 1], [0.85, 1, 0.75]);
 
   const y1 = useTransform(springProgress, [0, 1], ['45svh', '15svh']);
   const rotateX1 = useTransform(springProgress, [0, 1], ['-20deg', '20deg']);
@@ -64,54 +65,58 @@ const MottoParagraph = () => {
       {/*       </StaggerText> */}
       {/*     </Balancer> */}
       {/*   </h3> */}
-      {/* <div className='bottom-0 flex items-center justify-around opacity-70 [grid-area:1/1]'> */}
-      {/*   <motion.div */}
-      {/*     style={{ */}
-      {/*       y: y1, */}
-      {/*       rotateX: rotateX1, */}
-      {/*       rotateY: rotateY1, */}
-      {/*       rotateZ: rotateZ1, */}
-      {/*       opacity: logoOpacity, */}
-      {/*       scale: logoScale, */}
-      {/*     }} */}
-      {/*   > */}
-      {/*     <CNGLawyers className='h-12 lg:h-16' /> */}
-      {/*   </motion.div> */}
+      {/*   <div className='bottom-0 flex items-center justify-around opacity-70 [grid-area:1/1]'> */}
+      {/*     <motion.div */}
+      {/*       style={{ */}
+      {/*         y: y1, */}
+      {/*         rotateX: rotateX1, */}
+      {/*         rotateY: rotateY1, */}
+      {/*         rotateZ: rotateZ1, */}
+      {/*         opacity: logoOpacity, */}
+      {/*         // scale: logoScale, */}
+      {/*       }} */}
+      {/*     > */}
+      {/*       <CNGLawyers className='h-12 lg:h-16' /> */}
+      {/*     </motion.div> */}
       {/**/}
-      {/*   <motion.div */}
-      {/*     style={{ */}
-      {/*       y: y2, */}
-      {/*       rotateX: rotateX2, */}
-      {/*       rotateY: rotateY2, */}
-      {/*       rotateZ: rotateZ2, */}
-      {/*       opacity: logoOpacity, */}
-      {/*       scale: logoScale, */}
-      {/*     }} */}
-      {/*   > */}
-      {/*     <AmazonLogo className='h-9 lg:h-12' /> */}
-      {/*   </motion.div> */}
+      {/*     <motion.div */}
+      {/*       style={{ */}
+      {/*         y: y2, */}
+      {/*         rotateX: rotateX2, */}
+      {/*         rotateY: rotateY2, */}
+      {/*         rotateZ: rotateZ2, */}
+      {/*         opacity: logoOpacity, */}
+      {/*         // scale: logoScale, */}
+      {/*       }} */}
+      {/*     > */}
+      {/*       <AmazonLogo className='h-9 lg:h-12' /> */}
+      {/*     </motion.div> */}
       {/**/}
-      {/*   <motion.div */}
-      {/*     style={{ */}
-      {/*       y: y3, */}
-      {/*       rotateX: rotateX3, */}
-      {/*       rotateY: rotateY3, */}
-      {/*       rotateZ: rotateZ3, */}
-      {/*       opacity: logoOpacity, */}
-      {/*       scale: logoScale, */}
-      {/*     }} */}
-      {/*   > */}
-      {/*     <GuidoAudisioLogo className='h-14 lg:h-20' /> */}
-      {/*   </motion.div> */}
-      {/* </div> */}
+      {/*     <motion.div */}
+      {/*       className='rounded-full bg-green-400 p-4 shadow-2xl shadow-neutral-500' */}
+      {/*       style={{ */}
+      {/*         y: y3, */}
+      {/*         rotateX: rotateX3, */}
+      {/*         rotateY: rotateY3, */}
+      {/*         rotateZ: rotateZ3, */}
+      {/*         opacity: logoOpacity, */}
+      {/*         // scale: logoScale, */}
+      {/*       }} */}
+      {/*     > */}
+      {/*       <GuidoAudisioLogo className='h-14 lg:h-20' /> */}
+      {/*     </motion.div> */}
+      {/*   </div> */}
       {/* </div> */}
 
       <div className='flex flex-col gap-y-20 md:gap-y-32'>
-        <h3 className='mx-auto w-full flex justify-center text-responsive-xl font-light leading-tight [grid-area:1/1]'>
-          <Balancer >
-            <StaggerText amount={0.75} className='flex items-center justify-center'>
+        <h3 className='mx-auto flex w-full justify-center text-responsive-xl font-light leading-tight [grid-area:1/1]'>
+          <Balancer>
+            <StaggerText
+              amount={0.75}
+              className='flex items-center justify-center'
+            >
               Worked with companies ranging from local pioneering businesses to
-              multi billion-dollar corporations
+              world-renowned corporations
             </StaggerText>
           </Balancer>
         </h3>
@@ -127,7 +132,6 @@ const MottoParagraph = () => {
                 </div>
               </BannerInfinite>
             </AppearOnScrollChild>
-            {/* <div className='absolute inset-0 bg-gradient-to-r from-white via-white/0 to-white'></div> */}
             <div className='absolute inset-0 border-l border-r border-neutral-300'></div>
           </div>
         </AppearOnScroll>

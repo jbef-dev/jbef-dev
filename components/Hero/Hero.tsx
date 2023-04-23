@@ -25,7 +25,7 @@ const Hero = ({ titles }: { titles: string[] }) => {
 
   const yTitles = useTransform(springProgress, [0, 1], ['0%', '-150%']);
 
-  const yImage = useTransform(springProgress, [0, 1], ['0%', '25%']);
+  const yImage = useTransform(springProgress, [0, 1], ['0%', '30%']);
   const rotateXImage = useTransform(springProgress, [0, 1], ['0deg', '20deg']);
   const rotateYImage = useTransform(springProgress, [0, 1], ['0deg', '190deg']);
   const rotateZImage = useTransform(springProgress, [0, 1], ['0deg', '5deg']);
@@ -42,9 +42,15 @@ const Hero = ({ titles }: { titles: string[] }) => {
       transition={{ staggerChildren: 0.21 }}
     >
       <motion.div className='z-0 w-full overflow-hidden' style={{ y: yTitles }}>
-        <AppearOnScrollChild asChild className='z-0 w-full overflow-hidden'>
+        <AppearOnScrollChild asChild className='w-full overflow-hidden'>
           <BannerInfinite className='whitespace-nowrap' direction='ltr'>
             <Heading as='h1' className='text-responsive-6xl font-medium'>
+              {titles[0]}&nbsp;
+            </Heading>
+            <Heading
+              as='h1'
+              className='absolute inset-0 z-20 text-responsive-6xl font-medium text-white mix-blend-soft-light'
+            >
               {titles[0]}&nbsp;
             </Heading>
           </BannerInfinite>
@@ -53,8 +59,7 @@ const Hero = ({ titles }: { titles: string[] }) => {
 
       <AppearOnScrollChild
         asChild
-        className='absolute inset-0 z-10 m-auto aspect-[14/21] h-full max-h-[55svh] w-auto max-w-[90vw] select-none rounded-2xl shadow-2xl shadow-neutral-500 md:max-h-[70svh]'
-        // variants={customVariants.zoomIn}
+        className='absolute inset-0 z-10 m-auto aspect-[10/16] h-full max-h-[60svh] w-auto max-w-[90vw] select-none rounded-full shadow-2xl shadow-neutral-500 md:max-h-[80svh]'
         variants={{
           initial: {
             scale: 0.75,
@@ -77,14 +82,14 @@ const Hero = ({ titles }: { titles: string[] }) => {
         }}
         transition={customTransitions.loose}
         style={{
-          y: yImage,
+          translateY: yImage,
           rotateX: rotateXImage,
           rotateY: rotateYImage,
           rotateZ: rotateZImage,
         }}
       >
         <Image
-          className='h-full rounded-2xl object-cover'
+          className='h-full object-cover'
           src={laguna_rosa}
           // src='/assets/img/sea-torrevieja.webp'
           loading='eager'

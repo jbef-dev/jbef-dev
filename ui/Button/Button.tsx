@@ -22,12 +22,13 @@ interface ButtonProps extends HTMLMotionProps<'button'> {
   buttonSize?: ButtonSizes;
   glow?: boolean;
   colorMode?: ButtonColorModes;
+  children: string;
 }
 
 const flavors: {
   [k in ButtonFlavors]: ClassValue | undefined;
 } = {
-  basic: clsx('bg-accent-main rounded-sm hover:bg-accent-main'),
+  basic: undefined,
 
   gradientOutline: clsx(
     'bg-gradient-to-r from-primary to-secondary text-black'
@@ -35,7 +36,7 @@ const flavors: {
   transparent: clsx('bg-transparent'),
   glass: clsx('backdrop-blur-lg bg-grayscale-800/40'),
   square: undefined,
-  outlined: clsx('ring-2 ring-inset'),
+  outlined: clsx('ring-1 ring-inset'),
 };
 
 const size: { [s in ButtonSizes]: ClassValue } = {

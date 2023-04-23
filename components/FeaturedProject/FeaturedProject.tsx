@@ -53,12 +53,13 @@ const FeaturedProject = ({
 
   const titleY = useTransform(springY, [0, 1], ['-10%', '10%']);
   const titleScale = useTransform(springY, [0, 0.35, 1], [1.6, 1, 1]);
+  const pillScale = useTransform(springY, [0, 0.35, 1], [0.85, 1, 1]);
 
   return (
     <article className='flex w-full max-w-screen-3xl flex-col'>
       <div
         ref={containerRef}
-        className='relative grid h-[65svh] w-full tracking-tight lg:h-[80svh]'
+        className='relative grid min-h-[65svh] w-full tracking-tight lg:min-h-[80svh]'
       >
         <motion.div
           className='z-0 flex items-center justify-center text-black [grid-area:1/1]'
@@ -96,58 +97,61 @@ const FeaturedProject = ({
 
         <motion.div className='z-0 flex items-center justify-center [grid-area:1/1]'>
           <motion.div
-            className='absolute aspect-[14/21] max-h-[25svh] max-w-[20vw] rounded-2xl shadow-2xl shadow-neutral-500'
+            className='absolute aspect-[10/16] max-h-[25svh] max-w-[20vw] overflow-hidden rounded-full shadow-2xl shadow-neutral-500'
             style={{
               y: imgY2,
               x: imgX2,
               rotateX: rotateXImage2,
               rotateY: rotateYImage2,
               rotateZ: rotateZImage2,
+              scale: pillScale,
               translateZ: -500,
             }}
           >
             <Image
               src={sea_placeholder}
               alt='primary image'
-              className='h-full rounded-2xl object-cover'
+              className='h-full object-cover'
             />
-            <div className='grayscale/30 absolute inset-0 rounded-2xl bg-black/30'></div>
+            <div className='grayscale/30 absolute inset-0 rounded-full bg-black/30' />
           </motion.div>
 
           <motion.div
-            className='relative z-10 aspect-[14/21] max-h-[65svh] max-w-[52vw] rounded-2xl shadow-2xl shadow-neutral-500'
+            className='relative z-10 aspect-[10/16] max-h-[70svh] max-w-[58vw] overflow-hidden rounded-full shadow-2xl shadow-neutral-500'
             style={{
               y: imgY,
               rotateX: rotateXImage,
               rotateY: rotateYImage,
               rotateZ: rotateZImage,
+              scale: pillScale,
             }}
           >
             <Image
               src={sea_placeholder}
               alt='primary image'
-              className='h-full rounded-2xl object-cover'
+              className='h-full object-cover'
             />
-            <div className='grayscale/30 absolute inset-0 rounded-2xl bg-black/30'></div>
+            <div className='grayscale/30 absolute inset-0 rounded-full bg-black/30' />
           </motion.div>
 
           <motion.div
-            className='absolute z-0 aspect-[14/21] max-h-[25svh] max-w-[20vw] rounded-2xl shadow-2xl shadow-neutral-500'
+            className='absolute z-0 aspect-[10/16] max-h-[25svh] max-w-[20vw] overflow-hidden rounded-full shadow-2xl shadow-neutral-500'
             style={{
               y: imgY3,
               x: imgX3,
               rotateX: rotateXImage3,
               rotateY: rotateYImage3,
               rotateZ: rotateZImage3,
+              scale: pillScale,
               translateZ: -500,
             }}
           >
             <Image
               src={sea_placeholder}
               alt='primary image'
-              className='h-full rounded-2xl object-cover'
+              className='h-full object-cover'
             />
-            <div className='grayscale/30 absolute inset-0 rounded-2xl bg-black/30'></div>
+            <div className='grayscale/30 absolute inset-0 rounded-full bg-black/30' />
           </motion.div>
         </motion.div>
       </div>
