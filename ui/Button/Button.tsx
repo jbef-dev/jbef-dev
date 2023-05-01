@@ -135,7 +135,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <motion.button
         ref={forwardedRef}
         className={clsx(
-          'relative cursor-pointer touch-none select-none overflow-hidden rounded-full',
+          'relative cursor-pointer touch-none select-none overflow-hidden rounded-[20%]',
           flavors[flavor],
           size[buttonSize],
           mode[colorMode],
@@ -163,18 +163,18 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         <AnimatePresence mode='wait'>
           {isHover ? (
             <motion.div
-              className='absolute inset-0 z-10 flex items-center justify-center overflow-hidden rounded-full'
+              className='absolute inset-0 z-10 flex items-center justify-center overflow-hidden rounded-2xl'
               initial='initial'
               animate='animate'
               exit='exit'
             >
               <motion.div
-                className='h-[200%] w-full rounded-[400%] bg-primary'
+                className='h-[300%] w-[150%] rounded-[400%] bg-primary'
                 variants={customVariants.fromBottom}
                 transition={{
                   type: 'spring',
                   stiffness: 280,
-                  damping: 40,
+                  damping: 45,
                   bounce: 0,
                 }}
               ></motion.div>
@@ -184,7 +184,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
         {flavor == 'gradientOutline' ? (
           <motion.div
-            className='absolute inset-0.5 z-0 rounded-full bg-white'
+            className='absolute inset-0.5 z-0 rounded-2xl bg-white'
             variants={{
               hover: {
                 left: '3px',

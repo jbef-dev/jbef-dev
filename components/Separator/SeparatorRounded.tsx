@@ -30,7 +30,7 @@ const SeparatorRounded = ({
     <motion.div
       ref={containerRef}
       className={clsx([
-        'absolute overflow-hidden left-0 flex items-center justify-center w-full h-[clamp(5rem,10vw,18rem)]',
+        'absolute left-0 flex h-[clamp(5rem,10vw,18rem)] w-full items-center justify-center overflow-hidden',
         position === 'top' ? 'bottom-[99.9%]' : 'top-full',
       ])}
       style={{
@@ -40,7 +40,7 @@ const SeparatorRounded = ({
     >
       <motion.div
         className={clsx([
-          'absolute w-full h-[200%]',
+          'absolute h-[200%] w-full',
           position === 'top' ? 'top-0' : 'bottom-0',
           className,
         ])}

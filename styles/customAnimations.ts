@@ -36,7 +36,7 @@ const values = {
     low: 35,
     mid: 60,
     high: 85,
-    max: 100,
+    max: 120,
   },
 } as const satisfies CustomValues;
 

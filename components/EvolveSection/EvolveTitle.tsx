@@ -1,6 +1,10 @@
 'use client';
 
-import { customSprings, customTransitions, customVariants } from '@/ui/animation';
+import {
+  customSprings,
+  customTransitions,
+  customVariants,
+} from '@/ui/animation';
 import clsx from 'clsx';
 import {
   HTMLMotionProps,

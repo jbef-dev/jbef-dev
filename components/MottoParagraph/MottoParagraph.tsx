@@ -25,8 +25,8 @@ const MottoParagraph = () => {
 
   const springProgress = useSpring(scrollYProgress, customSprings.default);
 
-  const textY = useTransform(springProgress, [0, 1], ['-10svh', '50svh']);
-  // const textY = useTransform(springProgress, [0, 1], ['-5svh', '5svh']);
+  // const textY = useTransform(springProgress, [0, 1], ['-10svh', '50svh']);
+  const textY = useTransform(springProgress, [0, 1], ['-5svh', '5svh']);
 
   const logoOpacity = useTransform(
     springProgress,
@@ -52,6 +52,7 @@ const MottoParagraph = () => {
 
   return (
     <MotionComponent
+      ref={containerRef}
       asChild
       className='flex w-full flex-col items-center justify-center'
       style={{ y: textY }}
@@ -115,7 +116,7 @@ const MottoParagraph = () => {
               amount={0.75}
               className='flex items-center justify-center'
             >
-              Worked with companies ranging from local pioneering businesses to
+              Working with companies ranging from local pioneering businesses to
               world-renowned corporations
             </StaggerText>
           </Balancer>

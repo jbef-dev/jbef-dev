@@ -18,7 +18,6 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
   ({ containerRef, letter, ...rest }, ref) => {
     const { scrollYProgress } = useScroll({
       target: containerRef,
-      layoutEffect: false,
       offset: ['start start', 'end start'],
     });
 
@@ -86,16 +85,18 @@ const ExplodingLetter = forwardRef<HTMLSpanElement, TitleLetterProps>(
 
     return (
       <motion.span
-        className='-mr-2 pr-1 bg-clip-text bg-gradient-to-br from-primary via-primary to-secondary text-transparent'
+        className='-mr-2 bg-gradient-to-br from-primary via-primary to-secondary bg-clip-text pr-1 text-transparent'
         ref={ref}
-        animate={{
-          // backgroundImage: ['#E7277B', '#F59A2C'],
-          // backgroundImage: [
-          //   `linear-gradient(${startRotation}deg, rgba(245,154,44,0.7) ${startLeftColor}%, rgba(231,39,123,1) ${startRightColor}%)`,
-          //   `linear-gradient(${midRotation}deg, rgba(245,154,44,0.7) ${midLeftColor}%, rgba(231,39,123,1) ${midRightColor}%)`,
-          //   `linear-gradient(${endRotation}deg, rgba(245,154,44,0.7) ${endLeftColor}%, rgba(231,39,123,1) ${endRightColor}%)`,
-          // ],
-        }}
+        animate={
+          {
+            // backgroundImage: ['#E7277B', '#F59A2C'],
+            // backgroundImage: [
+            //   `linear-gradient(${startRotation}deg, rgba(245,154,44,0.7) ${startLeftColor}%, rgba(231,39,123,1) ${startRightColor}%)`,
+            //   `linear-gradient(${midRotation}deg, rgba(245,154,44,0.7) ${midLeftColor}%, rgba(231,39,123,1) ${midRightColor}%)`,
+            //   `linear-gradient(${endRotation}deg, rgba(245,154,44,0.7) ${endLeftColor}%, rgba(231,39,123,1) ${endRightColor}%)`,
+            // ],
+          }
+        }
         transition={{
           repeat: Infinity,
           repeatType: 'reverse',

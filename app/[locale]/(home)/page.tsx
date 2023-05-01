@@ -17,6 +17,7 @@ import PricingSection from '@/components/PricingSection/PricingSection';
 import { Hero } from '@/components/Hero/Hero';
 import FeaturedProject from '@/components/FeaturedProject/FeaturedProject';
 import MottoParagraph from '@/components/MottoParagraph/MottoParagraph';
+import { CenterFluid } from '@/components/CenterFluid/CenterFluid';
 
 export default async function Home({
   params: { locale },
@@ -27,6 +28,8 @@ export default async function Home({
 
   return (
     <PageContainer>
+      <CenterFluid />
+
       <SectionContainer pt={false} center>
         <Hero
           titles={[

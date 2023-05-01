@@ -1,11 +1,21 @@
 'use client';
 
 import * as React from 'react';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import {
+  animate,
+  motion,
+  useAnimate,
+  useAnimation,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 import Image from 'next/image';
 
 import laguna_rosa from '@/public/assets/img/sea-torrevieja.webp';
 import {
+  AppearOnScroll,
   AppearOnScrollChild,
   BannerInfinite,
   StaggerText,
@@ -33,6 +43,24 @@ const Hero = ({ titles }: { titles: string[] }) => {
   const yH2 = useTransform(springProgress, [0, 1], ['0%', '150%']);
   const scaleH2 = useTransform(springProgress, [0, 1], [1, 1.15]);
 
+  const fluidRadius = useMotionValue('50% 50% 50% 50% / 50% 50% 50% 50%');
+
+  animate(
+    fluidRadius,
+    [
+      '68% 32% 55% 45% / 43% 34% 66% 57%',
+      '35% 65% 51% 49% / 38% 60% 40% 62%',
+      '48% 52% 69% 31% / 73% 51% 65% 27%',
+      '40% 60% 25% 75% / 54% 70% 30% 46%',
+    ],
+    {
+      repeat: Infinity,
+      repeatType: 'reverse',
+      ease: 'easeInOut',
+      duration: 8,
+    }
+  );
+
   return (
     <motion.div
       ref={containerRef}
@@ -41,8 +69,8 @@ const Hero = ({ titles }: { titles: string[] }) => {
       animate='animate'
       transition={{ staggerChildren: 0.21 }}
     >
-      <motion.div className='z-0 w-full overflow-hidden' style={{ y: yTitles }}>
-        <AppearOnScrollChild asChild className='w-full overflow-hidden'>
+      <motion.div className='w-full' style={{ y: yTitles }}>
+        <AppearOnScroll asChild className='w-full overflow-hidden'>
           <BannerInfinite className='whitespace-nowrap' direction='ltr'>
             <Heading as='h1' className='text-responsive-6xl font-medium'>
               {titles[0]}&nbsp;
@@ -54,49 +82,53 @@ const Hero = ({ titles }: { titles: string[] }) => {
               {titles[0]}&nbsp;
             </Heading>
           </BannerInfinite>
-        </AppearOnScrollChild>
+        </AppearOnScroll>
       </motion.div>
 
-      <AppearOnScrollChild
-        asChild
-        className='absolute inset-0 z-10 m-auto aspect-[10/16] h-full max-h-[60svh] w-auto max-w-[90vw] select-none rounded-full shadow-2xl shadow-neutral-500 md:max-h-[80svh]'
-        variants={{
-          initial: {
-            scale: 0.75,
-            rotateX: '12deg',
-            rotateY: '90deg',
-            rotateZ: '10deg',
-          },
-          animate: {
-            scale: 1,
-            rotateX: '0deg',
-            rotateY: '0deg',
-            rotateZ: '0deg',
-          },
-          exit: {
-            scale: 1.15,
-            rotateX: '0deg',
-            rotateY: '0deg',
-            rotateZ: '0deg',
-          },
-        }}
-        transition={customTransitions.loose}
-        style={{
-          translateY: yImage,
-          rotateX: rotateXImage,
-          rotateY: rotateYImage,
-          rotateZ: rotateZImage,
-        }}
-      >
-        <Image
-          className='h-full object-cover'
-          src={laguna_rosa}
-          // src='/assets/img/sea-torrevieja.webp'
-          loading='eager'
-          priority
-          alt='primary image'
-        />
-      </AppearOnScrollChild>
+      {/* <AppearOnScrollChild */}
+      {/*   asChild */}
+      {/*   className='absolute inset-0 z-10 m-auto aspect-square h-full max-h-[60svh] w-auto max-w-[80vw] select-none shadow-2xl shadow-neutral-500 md:max-h-[75svh]' */}
+      {/*   variants={{ */}
+      {/*     initial: { */}
+      {/*       scale: 0.75, */}
+      {/*       rotateX: '12deg', */}
+      {/*       rotateY: '90deg', */}
+      {/*       rotateZ: '10deg', */}
+      {/*     }, */}
+      {/*     animate: { */}
+      {/*       scale: 1, */}
+      {/*       rotateX: '0deg', */}
+      {/*       rotateY: '0deg', */}
+      {/*       rotateZ: '0deg', */}
+      {/*     }, */}
+      {/*     exit: { */}
+      {/*       scale: 1.15, */}
+      {/*       rotateX: '0deg', */}
+      {/*       rotateY: '0deg', */}
+      {/*       rotateZ: '0deg', */}
+      {/*     }, */}
+      {/*   }} */}
+      {/*   transition={customTransitions.loose} */}
+      {/*   style={{ */}
+      {/*     translateY: yImage, */}
+      {/*     rotateX: rotateXImage, */}
+      {/*     rotateY: rotateYImage, */}
+      {/*     rotateZ: rotateZImage, */}
+      {/*     borderRadius: fluidRadius, */}
+      {/*     // borderRadius: 'var(--radius-xl)', */}
+      {/*     // borderRadius: '17.544%', */}
+      {/*     // clipPath: `polygon(${squircleCSS})`, */}
+      {/*   }} */}
+      {/* > */}
+      {/*   <Image */}
+      {/*     className='h-full object-cover' */}
+      {/*     src={laguna_rosa} */}
+      {/*     // src='/assets/img/sea-torrevieja.webp' */}
+      {/*     loading='eager' */}
+      {/*     priority */}
+      {/*     alt='primary image' */}
+      {/*   /> */}
+      {/* </AppearOnScrollChild> */}
 
       <motion.div
         className='z-10 w-full overflow-hidden'

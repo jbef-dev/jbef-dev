@@ -23,7 +23,8 @@ const AppearOnScroll = React.forwardRef<
       amount = 0.65,
       once = true,
       children,
-      variants = customVariants.fromBottom,
+      // variants = customVariants.fromBottom,
+      variants = customVariants.appearFromBottom,
       transition = customTransitions.default,
       ...props
     },
@@ -59,7 +60,8 @@ const AppearOnScrollChild = React.forwardRef<
   (
     {
       asChild = false,
-      variants = customVariants.fromBottom,
+      // variants = customVariants.fromBottom,
+      variants = customVariants.appearFromBottom,
       transition = customTransitions.default,
       children,
       ...props

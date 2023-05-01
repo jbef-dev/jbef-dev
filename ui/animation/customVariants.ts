@@ -16,9 +16,9 @@ const customVariants = {
     exit: { opacity: 0, y: '-10%' },
   },
   appearFromBottom: {
-    initial: { opacity: 0, y: '15%' },
+    initial: { opacity: 0, y: '20%' },
     animate: { opacity: 1, y: '0%' },
-    exit: { opacity: 0, y: '-15%' },
+    exit: { opacity: 0, y: '-20%' },
   },
   enterBottomExitTop: {
     initial: { opacity: 0, translateY: '10%' },

@@ -1,0 +1,206 @@
+'use client';
+
+import Image, { ImageProps } from 'next/image';
+import { AppearOnScrollChild } from '@/ui/Animated';
+import { customTransitions } from '@/ui/animation';
+
+import laguna_rosa from '@/public/assets/img/sea-torrevieja.webp';
+import {
+  useMotionValue,
+  animate,
+  useSpring,
+  useTransform,
+  useVelocity,
+  useScroll,
+  cubicBezier,
+} from 'framer-motion';
+import * as React from 'react';
+
+interface CenterFluidProps {
+  content: ImageProps['src'] | false;
+}
+
+const CenterFluid = ({}: CenterFluidProps) => {
+  const fluidRadius = useMotionValue('50% 50% 50% 50% / 50% 50% 50% 50%');
+  // const fluidScaleX = useMotionValue(1);
+
+  const { scrollY } = useScroll();
+
+  const scrollSmooth = useSpring(scrollY, {
+    stiffness: 220,
+    bounce: 0,
+    damping: 35,
+  });
+
+  const scrollYVelocity = useVelocity(scrollSmooth);
+
+  /**
+   * Smooth x with useSpring. This isn't always neccessary but we're using
+   * a drag gesture to change x and user input can be noisey.
+   */
+  const scrollYSmooth = useSpring(scrollY, {
+    stiffness: 250,
+    bounce: 0,
+    damping: 130,
+  });
+
+  const scrollVelocity = useVelocity(scrollYSmooth);
+
+  const [isScroll, setIsScroll] = React.useState<'up' | 'down' | false>(false);
+
+  // Fisher–Yates shuffle - https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+  const shuffle = (array: string[]) => {
+    let currentIndex = array.length,
+      randomIndex;
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+    return array;
+  };
+
+  React.useEffect(() => {
+    animate(
+      fluidRadius,
+      [
+        '50% 50% 50% 50% / 50% 50% 50% 50%',
+        ...[
+          '30% 70% 70% 30% / 34% 30% 70% 66%',
+          '47% 53% 76% 24% / 67% 47% 53% 33%',
+          '50% 50% 26% 74% / 58% 65% 35% 42%',
+          '71% 29% 46% 54% / 49% 28% 72% 51%',
+          '28% 72% 56% 44% / 33% 45% 55% 67%',
+          '100% 52% 100% 44% / 96% 76% 78% 51%',
+        ],
+      ],
+      {
+        repeat: Infinity,
+        repeatType: 'reverse',
+        // ease: 'easeInOut',
+        ease: cubicBezier(0.55, 0.15, 0.45, 0.85),
+        duration: 8,
+      }
+    );
+  }, []);
+
+  // React.useEffect(() => {
+  //   console.log(isScroll);
+  //
+  //   if (isScroll === false) {
+  //     // animate(fluidScaleX, 1, { ease: 'easeInOut', duration: 0.8 });
+  //     animate(fluidRadius, '50% 50% 50% 50% / 50% 50% 50% 50%', {
+  //       ease: 'easeIn',
+  //       duration: 0.2,
+  //     }).then(() =>
+  //       animate(
+  //         fluidRadius,
+  //         [
+  //           '50% 50% 50% 50% / 50% 50% 50% 50%',
+  //           ...shuffle([
+  //             '35% 65% 51% 49% / 38% 60% 40% 62%',
+  //             '48% 52% 69% 31% / 73% 51% 65% 27%',
+  //             '40% 60% 25% 75% / 54% 70% 30% 46%',
+  //             '38% 72% 39% 81% / 63% 61% 45% 37%',
+  //             '100% 52% 100% 44% / 96% 76% 78% 51%',
+  //           ]),
+  //         ],
+  //         {
+  //           repeat: Infinity,
+  //           repeatType: 'reverse',
+  //           ease: 'easeInOut',
+  //           duration: 8,
+  //         }
+  //       )
+  //     );
+  //   } else if (isScroll === 'down') {
+  //     // animate(fluidScaleX, 0.7, { ease: 'easeInOut', duration: 0.65 });
+  //     animate(fluidRadius, '47% 53% 45% 55% / 71% 69% 31% 29%', {
+  //       duration: 0.5,
+  //     });
+  //   } else if (isScroll === 'up') {
+  //     // animate(fluidScaleX, 0.7, { ease: 'easeInOut', duration: 0.3 });
+  //     animate(fluidRadius, '53% 47% 52% 48% / 34% 33% 67% 66%', {
+  //       duration: 0.5,
+  //     });
+  //   }
+  // }, [isScroll]);
+
+  React.useEffect(() => {
+    scrollYVelocity.on('change', velocity => {
+      if (isScroll !== false) return;
+      velocity > 100
+        ? setIsScroll('down')
+        : velocity < -100
+        ? setIsScroll('up')
+        : setIsScroll(false);
+    });
+  }, []);
+
+  const fluidScaleX = useTransform(
+    scrollVelocity,
+    [-2450, 0, 2450],
+    [0.6, 1, 0.6],
+    { clamp: true }
+  );
+
+  const y = useTransform(
+    scrollVelocity,
+    [-250, 0, 250],
+    ['10%', '0%', '-10%'],
+    { clamp: false }
+  );
+
+  return (
+    <AppearOnScrollChild
+      asChild
+      className='fixed inset-0 z-10 m-auto aspect-square h-full max-h-[60svh] w-auto max-w-[80vw] select-none shadow-2xl shadow-neutral-500 md:max-h-[75svh]'
+      variants={{
+        initial: {
+          // scale: 0.75,
+          rotateX: '12deg',
+          rotateY: '90deg',
+          rotateZ: '10deg',
+        },
+        animate: {
+          // scale: 1,
+          rotateX: '0deg',
+          rotateY: '0deg',
+          rotateZ: '0deg',
+        },
+        exit: {
+          // scale: 1.15,
+          rotateX: '0deg',
+          rotateY: '0deg',
+          rotateZ: '0deg',
+        },
+      }}
+      transition={customTransitions.loose}
+      style={{
+        y: y,
+        scaleX: fluidScaleX,
+        borderRadius: fluidRadius,
+        // borderRadius: 'var(--radius-xl)',
+        // borderRadius: '17.544%',
+        // clipPath: `polygon(${squircleCSS})`,
+      }}
+    >
+      <Image
+        className='h-full object-cover'
+        src={laguna_rosa}
+        // src='/assets/img/sea-torrevieja.webp'
+        loading='eager'
+        priority
+        alt='primary image'
+      />
+    </AppearOnScrollChild>
+  );
+};
+
+export { CenterFluid };
