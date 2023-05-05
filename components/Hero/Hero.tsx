@@ -4,25 +4,22 @@ import * as React from 'react';
 import {
   animate,
   motion,
-  useAnimate,
-  useAnimation,
+  useInView,
   useMotionValue,
   useScroll,
   useSpring,
   useTransform,
 } from 'framer-motion';
-import Image from 'next/image';
 
-import laguna_rosa from '@/public/assets/img/sea-torrevieja.webp';
+import { BannerInfinite, StaggerText } from '@/ui/Animated';
 import {
-  AppearOnScroll,
-  AppearOnScrollChild,
-  BannerInfinite,
-  StaggerText,
-} from '@/ui/Animated';
-import { customSprings, customTransitions } from '@/ui/animation';
+  customSprings,
+  customTransitions,
+  customVariants,
+} from '@/ui/animation';
 import { Heading } from '@/ui/Typography';
 import Balancer from 'react-wrap-balancer';
+import { useCenterFluidCtx } from '../CenterFluid/CenterFluidCtx';
 
 const Hero = ({ titles }: { titles: string[] }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -35,15 +32,25 @@ const Hero = ({ titles }: { titles: string[] }) => {
 
   const yTitles = useTransform(springProgress, [0, 1], ['0%', '-150%']);
 
-  const yImage = useTransform(springProgress, [0, 1], ['0%', '30%']);
-  const rotateXImage = useTransform(springProgress, [0, 1], ['0deg', '20deg']);
-  const rotateYImage = useTransform(springProgress, [0, 1], ['0deg', '190deg']);
-  const rotateZImage = useTransform(springProgress, [0, 1], ['0deg', '5deg']);
+  // const yImage = useTransform(springProgress, [0, 1], ['0%', '30%']);
+  // const rotateXImage = useTransform(springProgress, [0, 1], ['0deg', '20deg']);
+  // const rotateYImage = useTransform(springProgress, [0, 1], ['0deg', '190deg']);
+  // const rotateZImage = useTransform(springProgress, [0, 1], ['0deg', '5deg']);
 
   const yH2 = useTransform(springProgress, [0, 1], ['0%', '150%']);
   const scaleH2 = useTransform(springProgress, [0, 1], [1, 1.15]);
 
   const fluidRadius = useMotionValue('50% 50% 50% 50% / 50% 50% 50% 50%');
+
+  const { setActiveTexture } = useCenterFluidCtx();
+
+  const isVisible = useInView(containerRef, { once: false, amount: 0.5 });
+
+  React.useEffect(() => {
+    if (isVisible) setActiveTexture('me');
+  }, [isVisible, setActiveTexture]);
+
+  // const bannerRef = React.useRef(null);
 
   animate(
     fluidRadius,
@@ -70,7 +77,11 @@ const Hero = ({ titles }: { titles: string[] }) => {
       transition={{ staggerChildren: 0.21 }}
     >
       <motion.div className='w-full' style={{ y: yTitles }}>
-        <AppearOnScroll asChild className='w-full overflow-hidden'>
+        <motion.div
+          variants={customVariants.appearFromBottom}
+          transition={customTransitions.default}
+          className='w-full overflow-hidden'
+        >
           <BannerInfinite className='whitespace-nowrap' direction='ltr'>
             <Heading as='h1' className='text-responsive-6xl font-medium'>
               {titles[0]}&nbsp;
@@ -82,65 +93,23 @@ const Hero = ({ titles }: { titles: string[] }) => {
               {titles[0]}&nbsp;
             </Heading>
           </BannerInfinite>
-        </AppearOnScroll>
+        </motion.div>
       </motion.div>
-
-      {/* <AppearOnScrollChild */}
-      {/*   asChild */}
-      {/*   className='absolute inset-0 z-10 m-auto aspect-square h-full max-h-[60svh] w-auto max-w-[80vw] select-none shadow-2xl shadow-neutral-500 md:max-h-[75svh]' */}
-      {/*   variants={{ */}
-      {/*     initial: { */}
-      {/*       scale: 0.75, */}
-      {/*       rotateX: '12deg', */}
-      {/*       rotateY: '90deg', */}
-      {/*       rotateZ: '10deg', */}
-      {/*     }, */}
-      {/*     animate: { */}
-      {/*       scale: 1, */}
-      {/*       rotateX: '0deg', */}
-      {/*       rotateY: '0deg', */}
-      {/*       rotateZ: '0deg', */}
-      {/*     }, */}
-      {/*     exit: { */}
-      {/*       scale: 1.15, */}
-      {/*       rotateX: '0deg', */}
-      {/*       rotateY: '0deg', */}
-      {/*       rotateZ: '0deg', */}
-      {/*     }, */}
-      {/*   }} */}
-      {/*   transition={customTransitions.loose} */}
-      {/*   style={{ */}
-      {/*     translateY: yImage, */}
-      {/*     rotateX: rotateXImage, */}
-      {/*     rotateY: rotateYImage, */}
-      {/*     rotateZ: rotateZImage, */}
-      {/*     borderRadius: fluidRadius, */}
-      {/*     // borderRadius: 'var(--radius-xl)', */}
-      {/*     // borderRadius: '17.544%', */}
-      {/*     // clipPath: `polygon(${squircleCSS})`, */}
-      {/*   }} */}
-      {/* > */}
-      {/*   <Image */}
-      {/*     className='h-full object-cover' */}
-      {/*     src={laguna_rosa} */}
-      {/*     // src='/assets/img/sea-torrevieja.webp' */}
-      {/*     loading='eager' */}
-      {/*     priority */}
-      {/*     alt='primary image' */}
-      {/*   /> */}
-      {/* </AppearOnScrollChild> */}
 
       <motion.div
         className='z-10 w-full overflow-hidden'
         style={{ y: yTitles }}
       >
-        <AppearOnScrollChild asChild>
+        <motion.div
+          variants={customVariants.appearFromBottom}
+          transition={customTransitions.default}
+        >
           <BannerInfinite className='whitespace-nowrap' direction='rtl'>
             <Heading as='h1' className='text-responsive-6xl font-extralight'>
               &nbsp;{titles[1]}
             </Heading>
           </BannerInfinite>
-        </AppearOnScrollChild>
+        </motion.div>
       </motion.div>
 
       <motion.div

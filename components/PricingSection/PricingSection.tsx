@@ -4,6 +4,7 @@ import { getDictionary } from '@/i18n/get-dictionary';
 import { AppearOnScroll, AppearOnScrollChild } from '@/ui/Animated';
 import { FaCheck } from 'react-icons/fa';
 import { Button } from '@/ui/Button/Button';
+import { useEffect } from 'react';
 
 const PricingSection = async ({ locale }: { locale: Locale }) => {
   const dict = await getDictionary(locale);

@@ -19,7 +19,7 @@ const AppearOnScroll = React.forwardRef<
   (
     {
       asChild = false,
-      visibleRef,
+      visibleRef = undefined,
       amount = 0.65,
       once = true,
       children,
@@ -49,7 +49,7 @@ const AppearOnScroll = React.forwardRef<
     );
   }
 );
-// AppearOnScroll.displayName = 'AppearOnScroll';
+AppearOnScroll.displayName = 'AppearOnScroll';
 
 const AppearOnScrollChild = React.forwardRef<
   HTMLDivElement,
@@ -81,6 +81,6 @@ const AppearOnScrollChild = React.forwardRef<
     );
   }
 );
-// AppearOnScrollChild.displayName = 'AppearOnScrollChild';
+AppearOnScrollChild.displayName = 'AppearOnScrollChild';
 
 export { AppearOnScroll, AppearOnScrollChild };

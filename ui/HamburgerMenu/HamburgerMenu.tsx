@@ -10,11 +10,7 @@ import {
   useState,
 } from 'react';
 import Link from 'next/link';
-import {
-  customTransitions,
-  customValues,
-  customVariants,
-} from '@/ui/animation';
+import { customTransitions, customVariants } from '@/ui/animation';
 
 interface HamburgerMenuCtxI {
   open: boolean;

@@ -4,17 +4,20 @@ import {
   ValueAnimationTransition,
   animate,
   motion,
+  useInView,
   useMotionValue,
   useScroll,
   useSpring,
   useTransform,
 } from 'framer-motion';
-import Image from 'next/image';
 
-import sea_placeholder from '@/public/assets/img/sea.webp';
 import * as React from 'react';
 import { customSprings } from '@/ui/animation';
 import { Heading } from '@/ui/Typography';
+import {
+  CenterFluidTexture,
+  useCenterFluidCtx,
+} from '@/components/CenterFluid/CenterFluidCtx';
 
 interface FeaturedProjectProps {
   title: string[];
@@ -23,6 +26,7 @@ interface FeaturedProjectProps {
   workDesc: string;
   workResult: string;
   year: number;
+  fluidTextureName: CenterFluidTexture;
 }
 
 const FeaturedProject = ({
@@ -32,8 +36,17 @@ const FeaturedProject = ({
   workDesc,
   workResult,
   year,
+  fluidTextureName,
 }: FeaturedProjectProps) => {
   const containerRef = React.useRef(null);
+
+  const { setActiveTexture } = useCenterFluidCtx();
+
+  const isVisible = useInView(containerRef, { once: false, amount: 0.5 });
+
+  React.useEffect(() => {
+    if (isVisible) setActiveTexture(fluidTextureName);
+  }, [isVisible]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -113,7 +126,7 @@ const FeaturedProject = ({
     <article className='flex w-full max-w-screen-3xl flex-col'>
       <div
         ref={containerRef}
-        className='relative grid min-h-[65svh] w-full tracking-tight lg:min-h-[80svh]'
+        className='relative grid min-h-[65svh] w-full lg:min-h-[80svh]'
       >
         <motion.div
           className='z-0 flex items-center justify-center text-black [grid-area:1/1]'
@@ -121,11 +134,7 @@ const FeaturedProject = ({
         >
           <motion.span className='flex flex-col items-center whitespace-pre'>
             {title.map(t => (
-              <Heading
-                as='span'
-                className='text-responsive-5xl tracking-tighter'
-                key={t}
-              >
+              <Heading as='span' className='text-responsive-5xl' key={t}>
                 {t}
               </Heading>
             ))}
@@ -138,11 +147,7 @@ const FeaturedProject = ({
         >
           <motion.span className='flex flex-col items-center whitespace-pre'>
             {title.map(t => (
-              <Heading
-                as='span'
-                className='text-responsive-5xl tracking-tighter'
-                key={t}
-              >
+              <Heading as='span' className='text-responsive-5xl' key={t}>
                 {t}
               </Heading>
             ))}

@@ -1,6 +1,6 @@
-const glsl = (x:TemplateStringsArray) => x
+// const glsl = (x:TemplateStringsArray) => x
 
-const vertexShader = glsl`
+const vertexShader = `
 uniform float u_intensity;
 uniform float u_time;
 

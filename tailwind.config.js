@@ -24,6 +24,7 @@ module.exports = {
         title: ['var(--font-title)', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
+        // Clamps -> min viewport: 375px / max viewport: 1536px
         'responsive-xs': 'clamp(0.7rem, 0.5929rem + 0.2679vw, 0.9rem)',
         'responsive-sm': 'clamp(0.85rem, 0.8154rem + 0.1538vw, 1rem)',
         'responsive-md': 'clamp(1.05rem, 0.9808rem + 0.3077vw, 1.35rem)',
@@ -38,7 +39,7 @@ module.exports = {
         // 'responsive-4xl': 'clamp(3.3rem, 1.4769rem + 8.1026vw, 10rem)',
         'responsive-4xl': 'clamp(3rem, 1.6385rem + 6.0513vw, 8.9rem)',
         // 'responsive-5xl': 'clamp(3.85rem, 1.8538rem + 8.8718vw, 11.2rem)',
-        'responsive-5xl': 'clamp(3.32rem, 1.64rem + 7.4667vw, 10.6rem)',
+        'responsive-5xl': 'clamp(3.7rem, 1.4713rem + 9.509vw, 10.6rem)',
         // 'responsive-6xl': 'clamp(4.5rem, 2.3077rem + 9.7436vw, 12.5rem)',
         'responsive-6xl': 'clamp(4.5rem, 2.6538rem + 8.2051vw, 12.5rem)',
       },

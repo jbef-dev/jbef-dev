@@ -21,5 +21,6 @@ const MotionComponent = React.forwardRef<HTMLDivElement, MotionComponentProps>(
     );
   }
 );
+MotionComponent.displayName = 'MotionComponent';
 
 export default MotionComponent;
