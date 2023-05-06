@@ -32,15 +32,8 @@ const Hero = ({ titles }: { titles: string[] }) => {
 
   const yTitles = useTransform(springProgress, [0, 1], ['0%', '-150%']);
 
-  // const yImage = useTransform(springProgress, [0, 1], ['0%', '30%']);
-  // const rotateXImage = useTransform(springProgress, [0, 1], ['0deg', '20deg']);
-  // const rotateYImage = useTransform(springProgress, [0, 1], ['0deg', '190deg']);
-  // const rotateZImage = useTransform(springProgress, [0, 1], ['0deg', '5deg']);
-
   const yH2 = useTransform(springProgress, [0, 1], ['0%', '150%']);
   const scaleH2 = useTransform(springProgress, [0, 1], [1, 1.15]);
-
-  const fluidRadius = useMotionValue('50% 50% 50% 50% / 50% 50% 50% 50%');
 
   const { setActiveTexture } = useCenterFluidCtx();
 
@@ -49,24 +42,6 @@ const Hero = ({ titles }: { titles: string[] }) => {
   React.useEffect(() => {
     if (isVisible) setActiveTexture('me');
   }, [isVisible, setActiveTexture]);
-
-  // const bannerRef = React.useRef(null);
-
-  animate(
-    fluidRadius,
-    [
-      '68% 32% 55% 45% / 43% 34% 66% 57%',
-      '35% 65% 51% 49% / 38% 60% 40% 62%',
-      '48% 52% 69% 31% / 73% 51% 65% 27%',
-      '40% 60% 25% 75% / 54% 70% 30% 46%',
-    ],
-    {
-      repeat: Infinity,
-      repeatType: 'reverse',
-      ease: 'easeInOut',
-      duration: 8,
-    }
-  );
 
   return (
     <motion.div

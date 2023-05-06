@@ -3,11 +3,7 @@
 import { Canvas } from '@react-three/fiber';
 import { Blob } from './Blob';
 import * as React from 'react';
-import {
-  Environment,
-  OrbitControls,
-  // PerspectiveCamera,
-} from '@react-three/drei';
+import { Environment, OrbitControls } from '@react-three/drei';
 
 const CenterFluid = () => {
   return (
@@ -15,16 +11,11 @@ const CenterFluid = () => {
       <Canvas shadows='soft'>
         {/* <OrbitControls /> */}
         {/* <ambientLight intensity={1} /> */}
-        {/* <hemisphereLight  groundColor={'white'} intensity={0.9}  /> */}
         {/* <ambientLight intensity={0.25} /> */}
-        {/* <Environment files='/assets/img/empty_warehouse_01_1k.hdr' /> */}
         <Environment files='/assets/img/photo_studio_01_1k.hdr' />
-        {/* <Environment files='/assets/img/studio_small_09_1k_compressed.hdr' /> */}
-        {/* <PerspectiveCamera position={[0, 0, 10]} makeDefault /> */}
 
         <React.Suspense fallback={null}>
           <Blob />
-          {/* <Bubble /> */}
         </React.Suspense>
 
         {/* <spotLight intensity={0.5} receiveShadow castShadow position={[-20, 40, 10]} /> */}
@@ -40,5 +31,3 @@ const CenterFluid = () => {
 };
 
 export { CenterFluid };
-
-// xyz=ρsinϕcosθ=ρsinϕsinθ=ρcosϕ.(1)

@@ -1,11 +1,8 @@
 'use client';
 
 import {
-  ValueAnimationTransition,
-  animate,
   motion,
   useInView,
-  useMotionValue,
   useScroll,
   useSpring,
   useTransform,
@@ -55,72 +52,8 @@ const FeaturedProject = ({
 
   const springY = useSpring(scrollYProgress, customSprings.default);
 
-  const imgY = useTransform(springY, [0, 1], ['20%', '-20%']);
-  const rotateXImage = useTransform(springY, [0, 1], ['0deg', '10deg']);
-  const rotateYImage = useTransform(springY, [0, 1], ['-105deg', '105deg']);
-  const rotateZImage = useTransform(springY, [0, 1], ['-2deg', '3deg']);
-
-  const imgY2 = useTransform(springY, [0, 1], ['130%', '60%']);
-  const imgX2 = useTransform(springY, [0, 1], ['-30%', '-230%']);
-  const rotateXImage2 = useTransform(springY, [0, 1], ['10deg', '-10deg']);
-  const rotateYImage2 = useTransform(springY, [0, 1], ['215deg', '-225deg']);
-  const rotateZImage2 = useTransform(springY, [0, 1], ['5deg', '-30deg']);
-
-  const imgY3 = useTransform(springY, [0, 1], ['-60%', '-130%']);
-  const imgX3 = useTransform(springY, [0, 1], ['30%', '230%']);
-  const rotateXImage3 = useTransform(springY, [0, 1], ['10deg', '-10deg']);
-  const rotateYImage3 = useTransform(springY, [0, 1], ['-275deg', '265deg']);
-  const rotateZImage3 = useTransform(springY, [0, 1], ['-5deg', '35deg']);
-
   const titleY = useTransform(springY, [0, 1], ['-10%', '10%']);
   const titleScale = useTransform(springY, [0, 0.35, 1], [1.6, 1, 1]);
-  const pillScale = useTransform(springY, [0, 0.35, 1], [0.85, 1, 1]);
-
-  const fluidRadius1 = useMotionValue('50% 50% 50% 50% / 50% 50% 50% 50%');
-  const fluidRadius2 = useMotionValue('50% 50% 50% 50% / 50% 50% 50% 50%');
-  const fluidRadius3 = useMotionValue('50% 50% 50% 50% / 50% 50% 50% 50%');
-
-  const fluidOpts: ValueAnimationTransition = {
-    repeat: Infinity,
-    repeatType: 'reverse',
-    ease: 'easeInOut',
-    duration: 8,
-  };
-
-  animate(
-    fluidRadius1,
-    [
-      '68% 32% 55% 45% / 43% 34% 66% 57%',
-      '35% 65% 51% 49% / 38% 60% 40% 62%',
-      '48% 52% 69% 31% / 73% 51% 65% 27%',
-      '40% 60% 25% 75% / 54% 70% 30% 46%',
-    ],
-    fluidOpts
-  );
-
-  animate(
-    fluidRadius2,
-    [
-      '48% 52% 69% 31% / 73% 51% 65% 27%',
-      '35% 65% 51% 49% / 38% 60% 40% 62%',
-      '68% 32% 55% 45% / 43% 34% 66% 57%',
-      '40% 60% 25% 75% / 54% 70% 30% 46%',
-      '68% 32% 55% 45% / 43% 34% 66% 57%',
-    ],
-    fluidOpts
-  );
-  animate(
-    fluidRadius3,
-    [
-      '35% 65% 51% 49% / 38% 60% 40% 62%',
-      '40% 60% 25% 75% / 54% 70% 30% 46%',
-      '48% 52% 69% 31% / 73% 51% 65% 27%',
-      '68% 32% 55% 45% / 43% 34% 66% 57%',
-      '40% 60% 25% 75% / 54% 70% 30% 46%',
-      '35% 65% 51% 49% / 38% 60% 40% 62%',
-    ],
-    fluidOpts
-  );
 
   return (
     <article className='flex w-full max-w-screen-3xl flex-col'>
