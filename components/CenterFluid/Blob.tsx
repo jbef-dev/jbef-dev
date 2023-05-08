@@ -33,8 +33,8 @@ const Blob = () => {
   });
 
   const scrollVelocity = useVelocity(scrollYSmooth);
-  const scaleThreshold = viewportAspectRatio < 1 ? 1500 : 4000;
-  const scrollThreshold = viewportAspectRatio < 1 ? 800 : 3500;
+  const scaleThreshold = viewportAspectRatio > 1 ? 1500 : 4000;
+  const scrollThreshold = viewportAspectRatio > 1 ? 2000 : 3500;
 
   const y = useTransform(
     scrollVelocity,
