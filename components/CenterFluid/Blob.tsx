@@ -22,6 +22,7 @@ import { CenterFluidTexture, useCenterFluidCtx } from './CenterFluidCtx';
 const Blob = () => {
   const { height, width } = useThree(state => state.viewport);
   const viewportSmallestSide = Math.min(width, height);
+  const viewportAspectRatio = width / height;
 
   const { scrollY } = useScroll();
 
@@ -32,23 +33,30 @@ const Blob = () => {
   });
 
   const scrollVelocity = useVelocity(scrollYSmooth);
+  const scaleThreshold = viewportAspectRatio < 1 ? 1500 : 4000;
+  const scrollThreshold = viewportAspectRatio < 1 ? 800 : 3500;
 
-  const y = useTransform(scrollVelocity, [-1500, 0, 1500], [-2.5, 0, 2.5], {
-    clamp: false,
-  });
+  const y = useTransform(
+    scrollVelocity,
+    [-scrollThreshold, 0, scrollThreshold],
+    [-2, 0, 2],
+    {
+      clamp: false,
+    }
+  );
 
   const circleScaleX = useTransform(
     scrollVelocity,
-    [-1500, 0, 1500],
-    [0.65, 1, 0.65],
+    [-scaleThreshold, 0, scaleThreshold],
+    [0.75, 1, 0.75],
     {
       clamp: false,
     }
   );
   const sphereScaleX = useTransform(
     scrollVelocity,
-    [-1500, 0, 1500],
-    [0.75, 1, 0.75],
+    [-scaleThreshold, 0, scaleThreshold],
+    [0.85, 1, 0.85],
     {
       clamp: false,
     }
@@ -56,16 +64,16 @@ const Blob = () => {
 
   const sphereScaleY = useTransform(
     scrollVelocity,
-    [-1500, 0, 1500],
-    [0.9, 1, 0.9],
+    [-scaleThreshold, 0, scaleThreshold],
+    [0.95, 1, 0.95],
     {
       clamp: false,
     }
   );
   const circleScaleY = useTransform(
     scrollVelocity,
-    [-1500, 0, 1500],
-    [0.85, 1, 0.85],
+    [-scaleThreshold, 0, scaleThreshold],
+    [0.89, 1, 0.89],
     {
       clamp: false,
     }
