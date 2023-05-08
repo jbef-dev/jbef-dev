@@ -37,7 +37,7 @@ const Hero = ({ titles }: { titles: string[] }) => {
 
   const { setActiveTexture } = useCenterFluidCtx();
 
-  const isVisible = useInView(containerRef, { once: false, amount: 0.5 });
+  const isVisible = useInView(containerRef, { once: false, amount: 0.75 });
 
   React.useEffect(() => {
     if (isVisible) setActiveTexture('me');

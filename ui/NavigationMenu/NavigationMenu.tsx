@@ -148,7 +148,7 @@ const NavigationMenuViewport = forwardRef<
   <div className={clsx('absolute left-0 top-full flex justify-center')}>
     <NavigationMenuPrimitive.Viewport
       className={clsx(
-        'origin-top-center relative mt-1.5 w-full overflow-hidden rounded-md border border-neutral-200 bg-white shadow-lg dark:border-neutral-700 dark:bg-neutral-800',
+        'origin-top-center relative mt-1.5 w-full overflow-hidden rounded-md border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-800',
         className
       )}
       ref={ref}
@@ -171,7 +171,7 @@ const NavigationMenuIndicator = forwardRef<
     )}
     {...props}
   >
-    <div className='relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-white/80 shadow-md dark:bg-black/50' />
+    <div className='relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-white/80 dark:bg-black/50' />
   </NavigationMenuPrimitive.Indicator>
 ));
 NavigationMenuIndicator.displayName =

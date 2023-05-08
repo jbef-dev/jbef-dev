@@ -97,7 +97,7 @@ export const FixedCarousel = <T extends Record<string, any>>(
             {items &&
               children.map((child, index) => (
                 <motion.div
-                  className='group relative flex h-full cursor-pointer overflow-hidden rounded shadow '
+                  className='group relative flex h-full cursor-pointer overflow-hidden rounded'
                   style={{
                     width: elementSizeCss,
                   }}

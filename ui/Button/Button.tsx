@@ -29,13 +29,14 @@ const flavors: {
 } = {
   basic: undefined,
 
-  gradientOutline: clsx(
-    'bg-gradient-to-r from-primary to-secondary text-black'
-  ),
+  gradientOutline:
+    clsx(),
+  // 'bg-gradient-to-r from-primary to-secondary text-black'
   transparent: clsx('bg-transparent'),
   glass: clsx('backdrop-blur-lg bg-grayscale-800/40'),
   square: undefined,
-  outlined: clsx('ring-1 ring-inset'),
+  // outlined: clsx('ring-1 ring-inset'),
+  outlined: clsx('border border-1'),
 };
 
 const size: { [s in ButtonSizes]: ClassValue } = {
@@ -46,7 +47,7 @@ const size: { [s in ButtonSizes]: ClassValue } = {
 
 const mode: { [m in ButtonColorModes]: ClassValue } = {
   light: clsx('text-white ring-neutral-400 fill-white'),
-  dark: clsx('text-black ring-neutral-600 fill-black'),
+  dark: clsx('text-black ring-neutral-600 border-black fill-black'),
 };
 
 const DefaultIcon = () => {

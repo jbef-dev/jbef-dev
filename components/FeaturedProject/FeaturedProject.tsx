@@ -18,7 +18,6 @@ import {
 
 interface FeaturedProjectProps {
   title: string[];
-  videoURl: string;
   clientName: string;
   workDesc: string;
   workResult: string;
@@ -28,7 +27,6 @@ interface FeaturedProjectProps {
 
 const FeaturedProject = ({
   title,
-  videoURl,
   clientName,
   workDesc,
   workResult,
@@ -39,11 +37,11 @@ const FeaturedProject = ({
 
   const { setActiveTexture } = useCenterFluidCtx();
 
-  const isVisible = useInView(containerRef, { once: false, amount: 0.5 });
+  const isVisible = useInView(containerRef, { once: false, amount: 0.75 });
 
   React.useEffect(() => {
     if (isVisible) setActiveTexture(fluidTextureName);
-  }, [isVisible]);
+  }, [isVisible, fluidTextureName, setActiveTexture]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,

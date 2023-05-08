@@ -3,16 +3,27 @@
 import { Canvas } from '@react-three/fiber';
 import { Blob } from './Blob';
 import * as React from 'react';
-import { Environment, OrbitControls } from '@react-three/drei';
+import { Environment, OrbitControls, Stats } from '@react-three/drei';
 
 const CenterFluid = () => {
   return (
     <div className='fixed inset-0 z-10 grid h-screen select-none'>
-      <Canvas shadows='soft'>
+      <Canvas
+        gl={{
+          powerPreference: 'low-power',
+          antialias: true,
+          precision: 'mediump',
+        }}
+      >
+        {/* <Stats showPanel={2} /> */}
+
         {/* <OrbitControls /> */}
         {/* <ambientLight intensity={1} /> */}
         {/* <ambientLight intensity={0.25} /> */}
-        <Environment files='/assets/img/photo_studio_01_1k.hdr' />
+        <Environment
+          // resolution={0.1}
+          files='/assets/img/photo_studio_01_1k.hdr'
+        />
 
         <React.Suspense fallback={null}>
           <Blob />

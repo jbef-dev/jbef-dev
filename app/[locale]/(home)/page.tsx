@@ -49,7 +49,6 @@ export default async function Home({
           <FeaturedProject
             title={['CNG Lawyers']}
             fluidTextureName='cnglawyers'
-            videoURl='url'
             clientName='CNG Lawyers'
             workDesc='Website redesign / SEO'
             workResult='25% more clients than previous year'
@@ -58,7 +57,6 @@ export default async function Home({
           <FeaturedProject
             title={['Guido Audisio', 'Dental Clinic']}
             fluidTextureName='guidoaudisio'
-            videoURl='url'
             clientName='Guido Audisio Dental Clinic'
             workDesc='Website redesign'
             workResult='Reduced bounce rate by 30% & new visitors from +10 countries'
