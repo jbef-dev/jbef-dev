@@ -17,7 +17,6 @@ import { motion } from 'framer-motion-3d';
 import { CenterFluidTexture, useCenterFluidCtx } from './CenterFluidCtx';
 
 import { makeNoise4D } from './simplex';
-import { Displace, LayerMaterial } from 'lamina';
 
 const Blob = () => {
   const { height, width } = useThree(state => state.viewport);
