@@ -22,7 +22,7 @@ const CenterFluid = () => {
         {/* <ambientLight intensity={0.25} /> */}
         <Environment
           // resolution={0.1}
-          files='/assets/img/photo_studio_01_1k.hdr'
+          files='/assets/img/threejs/photo_studio_01_1k_compressed.hdr'
         />
 
         <React.Suspense fallback={null}>

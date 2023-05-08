@@ -17,6 +17,7 @@ import { motion } from 'framer-motion-3d';
 import { CenterFluidTexture, useCenterFluidCtx } from './CenterFluidCtx';
 
 import { makeNoise4D } from './simplex';
+import { Displace, LayerMaterial } from 'lamina';
 
 const Blob = () => {
   const { height, width } = useThree(state => state.viewport);
@@ -124,9 +125,9 @@ const Blob = () => {
     React.useState<CenterFluidTexture>('me');
 
   const imgTexture = useLoader(THREE.TextureLoader, [
-    '/assets/img/prueba_perfil_bw.png',
-    '/assets/img/sea.webp',
-    '/assets/img/sea-torrevieja.webp',
+    '/assets/img/threejs/prueba_perfil_bw.png',
+    '/assets/img/threejs/sea.webp',
+    '/assets/img/threejs/sea-torrevieja.webp',
   ]);
 
   const textures: {
