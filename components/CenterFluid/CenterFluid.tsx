@@ -3,9 +3,11 @@
 import { Canvas } from '@react-three/fiber';
 import { Blob } from './Blob';
 import * as React from 'react';
-import { Environment, OrbitControls, Stats } from '@react-three/drei';
+import { Environment, Loader, PerformanceMonitor } from '@react-three/drei';
 
 const CenterFluid = () => {
+  const [dpr, setDpr] = React.useState<number>(2);
+
   return (
     <div className='fixed inset-0 z-10 grid h-screen select-none'>
       <Canvas
@@ -14,16 +16,21 @@ const CenterFluid = () => {
           antialias: true,
           precision: 'mediump',
         }}
+        dpr={dpr}
+        // dpr={gpu.tier === 0 || gpu.isMobile ? 1.8 : 2} // THIS IMPROVES PERFORMANCE
+        // dpr={[1, 1.75]} // THIS IMPROVES PERFORMANCE
       >
-        {/* <Stats showPanel={2} /> */}
+        <PerformanceMonitor
+          factor={1}
+          onChange={({ factor }) => setDpr(Math.round(0.5 + 1.5 * factor))}
+        />
+        {/* <Stats showPanel={0} /> */}
 
         {/* <OrbitControls /> */}
         {/* <ambientLight intensity={1} /> */}
         {/* <ambientLight intensity={0.25} /> */}
-        <Environment
-          // resolution={0.1}
-          files='/assets/img/threejs/photo_studio_01_1k_compressed.hdr'
-        />
+        <Environment files='/assets/img/threejs/photo_studio_01_1k_compressed.hdr' />
+        {/* <AdaptiveDpr pixelated /> */}
 
         <React.Suspense fallback={null}>
           <Blob />
@@ -37,6 +44,7 @@ const CenterFluid = () => {
         {/* <pointLight intensity={1} color='white' position={[-60, -10, 70]} /> */}
         {/* <directionalLight intensity={0.2} position={[-40, 40, 15]} /> */}
       </Canvas>
+      <Loader />
     </div>
   );
 };

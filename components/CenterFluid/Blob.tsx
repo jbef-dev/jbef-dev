@@ -16,7 +16,8 @@ import {
 import { motion } from 'framer-motion-3d';
 import { CenterFluidTexture, useCenterFluidCtx } from './CenterFluidCtx';
 
-import { makeNoise4D } from './simplex';
+// import { makeNoise4D } from './simplex';
+// import { simplex3 } from './perlin';
 
 const Blob = () => {
   const { height, width } = useThree(state => state.viewport);
@@ -72,11 +73,9 @@ const Blob = () => {
 
   // CIRCLE IS DEFINED FROM HERE ONWARDS
   // *************************************************************
-  const imgRef = React.useRef<THREE.Mesh>(null);
-
   const circleMeshRef = React.useRef<THREE.Mesh>(null);
   const circleMaterialRef = React.useRef<THREE.MeshBasicMaterial>(null);
-  const circleSize = Math.min(Math.max(viewportSmallestSide / 2.8, 1.7), 2.5);
+  const circleSize = Math.min(Math.max(viewportSmallestSide / 2.8, 1.4), 2.4);
 
   // SPHERE IS DEFINED FROM HERE ONWARDS
   // *************************************************************
@@ -86,24 +85,25 @@ const Blob = () => {
   // const sphereGeometryRef = React.useRef<THREE.SphereGeometry>(null);
   // const sphereGeometryRef = React.useRef<THREE.SphereGeometry>(null);
 
-  // const sphereSize = Math.min(Math.max(viewportSmallestSide / 2.8, 1.7), 2.5);
-  const sphereSize = circleSize;
+  const sphereSize = Math.min(Math.max(viewportSmallestSide / 2.8, 1.6), 2.5);
+  // const sphereSize = circleSize;
 
   const initialDistort = 0.28;
-  const initialThickness = 5;
+  const initialThickness = 8;
   const initialColor = '#000000';
+  const initialRotationSpeed = 0.01;
 
   const sphereDistort = useMotionValue(initialDistort);
   const sphereThickness = useMotionValue(initialThickness);
   const sphereColor = useMotionValue(initialColor);
-  const sphereRotationSpeed = useMotionValue(0);
+  const sphereRotationSpeed = useMotionValue(initialRotationSpeed);
 
   // MEMOIZING THE NOISE MAKES SO THAT WHEN UPDATING STATE THE NOISE IS PRESERVED AND THERE IS NO JUMP IN THE SPHERE NOISE APPLICATION
-  const noise = React.useMemo(() => makeNoise4D(Date.now()), []);
-  const initialSimplexScale = 0.06;
-  const initialSimplexSpeed = 0.2;
-  const simplexScale = useMotionValue(initialSimplexScale);
-  const simplexSpeed = useMotionValue(initialSimplexSpeed);
+  // const noise = React.useMemo(() => makeNoise4D(Date.now()), []);
+  // const initialSimplexScale = 0.06;
+  // const initialSimplexSpeed = 0.2;
+  // const simplexScale = useMotionValue(initialSimplexScale);
+  // const simplexSpeed = useMotionValue(initialSimplexSpeed);
 
   const sphere_clone = React.useMemo(
     () => new THREE.SphereGeometry(sphereSize, 128, 128),
@@ -157,13 +157,13 @@ const Blob = () => {
         duration: transitionDuration,
       });
       animate(sphereColor, '#ffffff', { duration: transitionDuration });
-      animate(sphereRotationSpeed, 0, {
+      animate(sphereRotationSpeed, initialRotationSpeed, {
         duration: transitionDuration,
         ease: 'easeInOut',
       });
-      animate(simplexScale, initialSimplexScale, {
-        duration: transitionDuration,
-      });
+      // animate(simplexScale, initialSimplexScale, {
+      //   duration: transitionDuration,
+      // });
     } else if (currentTexture !== activeTexture) {
       animate(sphereDistort, 0.45, { duration: transitionDuration });
       animate(sphereThickness, 10, { duration: transitionDuration });
@@ -172,7 +172,7 @@ const Blob = () => {
         duration: transitionDuration,
         ease: 'easeInOut',
       });
-      animate(simplexScale, 0.15, { duration: transitionDuration });
+      // animate(simplexScale, 0.15, { duration: transitionDuration });
     }
   }, [activeTexture, currentTexture]);
 
@@ -211,24 +211,25 @@ const Blob = () => {
         // const z = pos.getZ(i);
 
         const ix = original_pos.getX(i);
-        const iy = original_pos.getY(i);
+        // const iy = original_pos.getY(i);
         const iz = original_pos.getZ(i);
 
-        const p = new THREE.Vector3(ix, iy, iz);
-        const setNoise = noise(ix, iy, iz, time * simplexSpeed.get());
-        const v3 = new THREE.Vector3()
-          .copy(p)
-          .addScaledVector(p, setNoise * simplexScale.get());
+        // const p = new THREE.Vector3(ix, iy, iz);
+        // const setNoise = noise(ix, iy, iz, time * simplexSpeed.get());
+        // const setNoise = simplex3(ix, iy, iz);
+        // const v3 = new THREE.Vector3()
+        //   .copy(p)
+        //   .addScaledVector(p, setNoise * simplexScale.get());
 
-        // const waveX1 = 0.1 * Math.sin(ix + time * 2);
-        // // const waveY1 = 0.1 * Math.cos(iy * 2 + time * 2);
-        // const waveZ1 = 0.1 * Math.cos(iz + time * 2);
+        const waveX1 = 0.23 * Math.sin(ix + time * 1.5);
+        const waveZ2 = 0.1 * Math.cos(ix + time * 1.5);
+        // const waveY1 = 0.15 * Math.cos(iy * 2 + time * 2) + 0.1;
+        // const waveZ1 = 0.2 * Math.sin(iz + time * 2) + 0.1;
 
-        pos.setXYZ(i, v3.x, v3.y, v3.z);
+        // pos.setXYZ(i, v3.x, v3.y, v3.z);
         // pos.setXYZ(i, ix, iy, iz);
-        // pos.setZ(i, iz + waveZ1 + waveX1);
+        pos.setZ(i, iz + waveX1 + waveZ2);
       }
-
       geometry.computeVertexNormals();
       pos.needsUpdate = true;
     }
@@ -289,7 +290,9 @@ const Blob = () => {
             //   }}
             toneMapped={false}
             transmission={1}
-            samples={3}
+            // samples={3} // WARNING Performance tuning
+            // precision={'lowp'} // WARNING Performance tuning
+            // depthWrite={false} // WARNING Performance tuning
             chromaticAberration={0}
             specularColor='#ffffff'
             temporalDistortion={0}
