@@ -39,7 +39,7 @@ const Blob = () => {
   const circleScaleX = useTransform(
     scrollVelocity,
     [-1500, 0, 1500],
-    [0.68, 1, 0.68],
+    [0.65, 1, 0.65],
     {
       clamp: false,
     }
@@ -64,7 +64,7 @@ const Blob = () => {
   const circleScaleY = useTransform(
     scrollVelocity,
     [-1500, 0, 1500],
-    [0.87, 1, 0.87],
+    [0.85, 1, 0.85],
     {
       clamp: false,
     }

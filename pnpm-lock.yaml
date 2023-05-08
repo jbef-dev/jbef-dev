@@ -25,6 +25,9 @@ dependencies:
   '@types/react-dom':
     specifier: 18.2.4
     version: 18.2.4
+  '@vercel/analytics':
+    specifier: ^1.0.1
+    version: 1.0.1
   clsx:
     specifier: ^1.2.1
     version: 1.2.1
@@ -852,6 +855,10 @@ packages:
     dependencies:
       '@use-gesture/core': 10.2.26
       react: 18.2.0
+    dev: false
+
+  /@vercel/analytics@1.0.1:
+    resolution: {integrity: sha512-Ux0c9qUfkcPqng3vrR0GTrlQdqNJ2JREn/2ydrVuKwM3RtMfF2mWX31Ijqo1opSjNAq6rK76PwtANw6kl6TAow==}
     dev: false
 
   /@webgpu/glslang@0.0.15:
