@@ -33,8 +33,8 @@ const Blob = () => {
   });
 
   const scrollVelocity = useVelocity(scrollYSmooth);
-  const scaleThreshold = viewportAspectRatio > 1 ? 1500 : 1500;
-  const scrollThreshold = viewportAspectRatio > 1 ? 2000 : 2000;
+  const scaleThreshold = viewportAspectRatio > 1 ? 1500 : 1100;
+  const scrollThreshold = viewportAspectRatio > 1 ? 2000 : 1700;
 
   const y = useTransform(
     scrollVelocity,
@@ -238,7 +238,8 @@ const Blob = () => {
         // pos.setXYZ(i, ix, iy, iz);
         pos.setZ(i, iz + waveX1 + waveZ2);
       }
-      geometry.computeVertexNormals();
+      // geometry.computeVertexNormals(); // THIS IS HEAVY ON PERFORMANCE
+      // geometry.computeTangents(); // THIS IS HEAVY ON PERFORMANCE
       pos.needsUpdate = true;
     }
   });
@@ -258,6 +259,7 @@ const Blob = () => {
         <mesh ref={circleMeshRef}>
           <circleGeometry args={[circleSize, 40]} />
           <meshBasicMaterial
+            precision={'lowp'}
             ref={circleMaterialRef}
             map={textures[currentTexture]}
           />
@@ -298,10 +300,10 @@ const Blob = () => {
             //   }}
             toneMapped={false}
             transmission={1}
-            // samples={3} // WARNING Performance tuning
-            // precision={'lowp'} // WARNING Performance tuning
-            // depthWrite={false} // WARNING Performance tuning
-            chromaticAberration={0}
+            samples={3} // WARNING Performance tuning
+            precision={'lowp'} // WARNING Performance tuning
+            depthWrite={false} // WARNING Performance tuning
+            chromaticAberration={0.008}
             specularColor='#ffffff'
             temporalDistortion={0}
             distortion={0}

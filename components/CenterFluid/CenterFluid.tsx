@@ -3,7 +3,12 @@
 import { Canvas } from '@react-three/fiber';
 import { Blob } from './Blob';
 import * as React from 'react';
-import { Environment, Loader, PerformanceMonitor } from '@react-three/drei';
+import {
+  Environment,
+  Lightformer,
+  Loader,
+  PerformanceMonitor,
+} from '@react-three/drei';
 
 const CenterFluid = () => {
   const [dpr, setDpr] = React.useState<number>(2);
@@ -13,8 +18,8 @@ const CenterFluid = () => {
       <Canvas
         gl={{
           powerPreference: 'low-power',
-          antialias: true,
-          precision: 'mediump',
+          antialias: false,
+          // precision: 'mediump',
         }}
         dpr={dpr}
         // dpr={gpu.tier === 0 || gpu.isMobile ? 1.8 : 2} // THIS IMPROVES PERFORMANCE
@@ -30,6 +35,12 @@ const CenterFluid = () => {
         {/* <ambientLight intensity={1} /> */}
         {/* <ambientLight intensity={0.25} /> */}
         <Environment files='/assets/img/threejs/photo_studio_01_1k_compressed.hdr' />
+        {/* <Lightformer */}
+        {/*   intensity={1} */}
+        {/*   rotation={[0, Math.PI, 0]} */}
+        {/*   position={[0, 1, -20]} */}
+        {/*   scale={[3, 1, 1]} */}
+        {/* /> */}
         {/* <AdaptiveDpr pixelated /> */}
 
         <React.Suspense fallback={null}>
