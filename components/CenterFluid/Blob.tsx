@@ -208,7 +208,8 @@ const Blob = () => {
       sphereMeshRef.current.scale.x = sphereScaleX.get();
       sphereMeshRef.current.scale.y = sphereScaleY.get();
       sphereMeshRef.current.position.y = y.get();
-      sphereMeshRef.current.rotation.x -= sphereRotationSpeed.get();
+      sphereMeshRef.current.rotation.x += sphereRotationSpeed.get();
+      sphereMeshRef.current.rotation.z += sphereRotationSpeed.get();
 
       const geometry = sphereMeshRef.current.geometry;
       const pos = geometry.getAttribute('position') as THREE.BufferAttribute;
@@ -236,6 +237,7 @@ const Blob = () => {
 
         // pos.setXYZ(i, v3.x, v3.y, v3.z);
         // pos.setXYZ(i, ix, iy, iz);
+        // pos.setZ(i, iz + waveX1 + waveZ2);
         pos.setZ(i, iz + waveX1 + waveZ2);
       }
       // geometry.computeVertexNormals(); // THIS IS HEAVY ON PERFORMANCE
@@ -301,7 +303,7 @@ const Blob = () => {
             toneMapped={false}
             transmission={1}
             samples={3} // WARNING Performance tuning
-            precision={'lowp'} // WARNING Performance tuning
+            // precision='lowp' // WARNING Performance tuning
             depthWrite={false} // WARNING Performance tuning
             chromaticAberration={0.008}
             specularColor='#ffffff'

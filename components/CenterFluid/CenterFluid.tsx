@@ -5,9 +5,9 @@ import { Blob } from './Blob';
 import * as React from 'react';
 import {
   Environment,
-  Lightformer,
   Loader,
   PerformanceMonitor,
+  Stats,
 } from '@react-three/drei';
 
 const CenterFluid = () => {
@@ -19,7 +19,7 @@ const CenterFluid = () => {
         gl={{
           powerPreference: 'low-power',
           antialias: false,
-          // precision: 'mediump',
+          precision: 'lowp',
         }}
         dpr={dpr}
         // dpr={gpu.tier === 0 || gpu.isMobile ? 1.8 : 2} // THIS IMPROVES PERFORMANCE
@@ -29,18 +29,15 @@ const CenterFluid = () => {
           factor={1}
           onChange={({ factor }) => setDpr(Math.round(0.5 + 1.5 * factor))}
         />
-        {/* <Stats showPanel={0} /> */}
+        <Stats showPanel={0} />
 
         {/* <OrbitControls /> */}
         {/* <ambientLight intensity={1} /> */}
         {/* <ambientLight intensity={0.25} /> */}
-        <Environment files='/assets/img/threejs/photo_studio_01_1k_compressed.hdr' />
-        {/* <Lightformer */}
-        {/*   intensity={1} */}
-        {/*   rotation={[0, Math.PI, 0]} */}
-        {/*   position={[0, 1, -20]} */}
-        {/*   scale={[3, 1, 1]} */}
-        {/* /> */}
+        <Environment
+          resolution={512}
+          files='/assets/img/threejs/photo_studio_01_1k_compressed.hdr'
+        />
         {/* <AdaptiveDpr pixelated /> */}
 
         <React.Suspense fallback={null}>
