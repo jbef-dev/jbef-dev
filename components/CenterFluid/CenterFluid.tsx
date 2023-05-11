@@ -6,27 +6,31 @@ import * as React from 'react';
 import {
   Environment,
   Loader,
+  OrbitControls,
   PerformanceMonitor,
   Stats,
+  useDetectGPU,
 } from '@react-three/drei';
 
 const CenterFluid = () => {
+  const gpu = useDetectGPU();
   const [dpr, setDpr] = React.useState<number>(2);
 
   return (
     <div className='fixed inset-0 z-10 grid h-screen select-none'>
       <Canvas
         gl={{
-          powerPreference: 'low-power',
           antialias: false,
+          // depth: false,
           precision: 'lowp',
+          // stencil: false,
         }}
         dpr={dpr}
-        // dpr={gpu.tier === 0 || gpu.isMobile ? 1.8 : 2} // THIS IMPROVES PERFORMANCE
+        // dpr={gpu.tier === 0 || gpu.isMobile ? 1.3 : dpr} // THIS IMPROVES PERFORMANCE
         // dpr={[1, 1.75]} // THIS IMPROVES PERFORMANCE
       >
         <PerformanceMonitor
-          factor={1}
+          factor={0.5}
           onChange={({ factor }) => setDpr(Math.round(0.5 + 1.5 * factor))}
         />
         <Stats showPanel={0} />

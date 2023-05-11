@@ -3,7 +3,11 @@
 import { useFrame, useLoader, useThree } from '@react-three/fiber';
 import * as React from 'react';
 import * as THREE from 'three';
-import { Float, MeshTransmissionMaterial } from '@react-three/drei';
+import {
+  Float,
+  MeshTransmissionMaterial,
+  useDetectGPU,
+} from '@react-three/drei';
 
 import {
   animate,
@@ -23,6 +27,8 @@ const Blob = () => {
   const { height, width } = useThree(state => state.viewport);
   const viewportSmallestSide = Math.min(width, height);
   const viewportAspectRatio = width / height;
+
+  const gpu = useDetectGPU();
 
   const { scrollY } = useScroll();
 
@@ -56,7 +62,7 @@ const Blob = () => {
   const sphereScaleX = useTransform(
     scrollVelocity,
     [-scaleThreshold, 0, scaleThreshold],
-    [0.85, 1, 0.85],
+    [0.8, 1, 0.8],
     {
       clamp: false,
     }
@@ -82,24 +88,26 @@ const Blob = () => {
   // CIRCLE IS DEFINED FROM HERE ONWARDS
   // *************************************************************
   const circleMeshRef = React.useRef<THREE.Mesh>(null);
-  const circleMaterialRef = React.useRef<THREE.MeshBasicMaterial>(null);
-  const circleSize = Math.min(Math.max(viewportSmallestSide / 2.8, 1.4), 2.4);
+  const circleMaterialRef = React.useRef<THREE.MeshPhysicalMaterial>(null);
+  const circleSize = Math.min(Math.max(viewportSmallestSide / 2.9, 1.3), 2.1);
 
   // SPHERE IS DEFINED FROM HERE ONWARDS
   // *************************************************************
   const sphereMeshRef = React.useRef<THREE.Mesh>(null);
   const sphereMaterialRef =
-    React.useRef<(typeof MeshTransmissionMaterial)['defaultProps']>(null);
+    // React.useRef<(typeof MeshTransmissionMaterial)['defaultProps']>(null);
+    React.useRef<THREE.MeshPhysicalMaterial>(null);
   // const sphereGeometryRef = React.useRef<THREE.SphereGeometry>(null);
   // const sphereGeometryRef = React.useRef<THREE.SphereGeometry>(null);
 
-  const sphereSize = Math.min(Math.max(viewportSmallestSide / 2.8, 1.6), 2.5);
+  const sphereSize = Math.min(Math.max(viewportSmallestSide / 2.7, 1.6), 2.4);
   // const sphereSize = circleSize;
 
   const initialDistort = 0.28;
-  const initialThickness = 8;
+  const initialThickness = sphereSize * 12;
   const initialColor = '#000000';
-  const initialRotationSpeed = 0.01;
+  // const initialRotationSpeed = 0.01;
+  const initialRotationSpeed = 0;
 
   const sphereDistort = useMotionValue(initialDistort);
   const sphereThickness = useMotionValue(initialThickness);
@@ -209,7 +217,7 @@ const Blob = () => {
       sphereMeshRef.current.scale.y = sphereScaleY.get();
       sphereMeshRef.current.position.y = y.get();
       sphereMeshRef.current.rotation.x += sphereRotationSpeed.get();
-      sphereMeshRef.current.rotation.z += sphereRotationSpeed.get();
+      // sphereMeshRef.current.rotation.z += sphereRotationSpeed.get();
 
       const geometry = sphereMeshRef.current.geometry;
       const pos = geometry.getAttribute('position') as THREE.BufferAttribute;
@@ -225,13 +233,13 @@ const Blob = () => {
 
         // const p = new THREE.Vector3(ix, iy, iz);
         // const setNoise = noise(ix, iy, iz, time * simplexSpeed.get());
-        // const setNoise = simplex3(ix, iy, iz);
+        // // const setNoise = simplex3(ix, iy, iz);
         // const v3 = new THREE.Vector3()
         //   .copy(p)
         //   .addScaledVector(p, setNoise * simplexScale.get());
 
-        const waveX1 = 0.23 * Math.sin(ix + time * 1.5);
-        const waveZ2 = 0.1 * Math.cos(ix + time * 1.5);
+        const waveX1 = 0.2 * Math.sin(ix + time * 2.3);
+        const waveZ2 = 0.1 * Math.cos(ix + time * 4);
         // const waveY1 = 0.15 * Math.cos(iy * 2 + time * 2) + 0.1;
         // const waveZ1 = 0.2 * Math.sin(iz + time * 2) + 0.1;
 
@@ -240,7 +248,7 @@ const Blob = () => {
         // pos.setZ(i, iz + waveX1 + waveZ2);
         pos.setZ(i, iz + waveX1 + waveZ2);
       }
-      // geometry.computeVertexNormals(); // THIS IS HEAVY ON PERFORMANCE
+      geometry.computeVertexNormals(); // THIS IS HEAVY ON PERFORMANCE
       // geometry.computeTangents(); // THIS IS HEAVY ON PERFORMANCE
       pos.needsUpdate = true;
     }
@@ -260,8 +268,8 @@ const Blob = () => {
       >
         <mesh ref={circleMeshRef}>
           <circleGeometry args={[circleSize, 40]} />
-          <meshBasicMaterial
-            precision={'lowp'}
+          <meshPhysicalMaterial
+            precision={'highp'}
             ref={circleMaterialRef}
             map={textures[currentTexture]}
           />
@@ -269,54 +277,71 @@ const Blob = () => {
 
         <mesh ref={sphereMeshRef}>
           <sphereBufferGeometry args={[sphereSize, 128, 128]} />
-
-          <MeshTransmissionMaterial
-            ref={sphereMaterialRef}
-            //   onBeforeCompile={(shader: THREE.Shader) => {
-            //     shader.uniforms = {
-            //       ...shader.uniforms,
-            //       ...{
-            //         distortTime: { value: 0.5 },
-            //         simplexDistort: { value: 0.4 },
-            //         radius: { value: 1 },
-            //       },
-            //     };
-            //
-            //     shader.vertexShader = `
-            // uniform float distortTime;
-            // uniform float radius;
-            // uniform float simplexDistort;
-            // ${distort}
-            // ${shader.vertexShader}
-            // `;
-            //
-            //     shader.vertexShader = shader.vertexShader.replace(
-            //       '#include <begin_vertex>',
-            //       `
-            //   float updateTime = distortTime / 50.0;
-            //   float noise = snoise(vec3(position / 2.0 + updateTime * 5.0));
-            //   vec3 transformed = vec3(position * (noise * pow(simplexDistort, 2.0) + radius));
-            //   `
-            //     );
-            //     // shader.fragmentShader = shader.fragmentShader;
-            //   }}
-            toneMapped={false}
-            transmission={1}
-            samples={3} // WARNING Performance tuning
-            // precision='lowp' // WARNING Performance tuning
-            depthWrite={false} // WARNING Performance tuning
-            chromaticAberration={0.008}
-            specularColor='#ffffff'
-            temporalDistortion={0}
-            distortion={0}
-            distortionScale={0}
-            anisotropy={0}
-            clearcoat={1}
-            clearcoatRoughness={0}
-            reflectivity={0.3}
-            envMapIntensity={0.7}
-            ior={1.07}
-          />
+          {gpu.tier === 0 || gpu.isMobile ? (
+            <meshPhysicalMaterial
+              ref={sphereMaterialRef}
+              precision={'highp'}
+              roughness={0}
+              toneMapped={false}
+              transmission={1}
+              specularIntensity={1}
+              specularColor='#ffffff'
+              clearcoat={1}
+              clearcoatRoughness={0}
+              reflectivity={0.3}
+              envMapIntensity={0.5}
+              ior={1.1}
+            />
+          ) : (
+            <MeshTransmissionMaterial
+              ref={sphereMaterialRef}
+              //   onBeforeCompile={(shader: THREE.Shader) => {
+              //     shader.uniforms = {
+              //       ...shader.uniforms,
+              //       ...{
+              //         distortTime: { value: 0.5 },
+              //         simplexDistort: { value: 0.4 },
+              //         radius: { value: 1 },
+              //       },
+              //     };
+              //
+              //     shader.vertexShader = `
+              // uniform float distortTime;
+              // uniform float radius;
+              // uniform float simplexDistort;
+              // ${distort}
+              // ${shader.vertexShader}
+              // `;
+              //
+              //     shader.vertexShader = shader.vertexShader.replace(
+              //       '#include <begin_vertex>',
+              //       `
+              //   float updateTime = distortTime / 50.0;
+              //   float noise = snoise(vec3(position / 2.0 + updateTime * 5.0));
+              //   vec3 transformed = vec3(position * (noise * pow(simplexDistort, 2.0) + radius));
+              //   `
+              //     );
+              //     // shader.fragmentShader = shader.fragmentShader;
+              //   }}
+              toneMapped={false}
+              transmission={1}
+              samples={2} // WARNING Performance tuning
+              precision='lowp' // WARNING Performance tuning
+              // depthWrite={false} // WARNING Performance tuning
+              chromaticAberration={0.008}
+              specularColor='#ffffff'
+              temporalDistortion={0}
+              distortion={0}
+              distortionScale={0}
+              anisotropy={0}
+              clearcoat={1}
+              clearcoatRoughness={0}
+              reflectivity={0.3}
+              envMapIntensity={0.7}
+              // ior={1.07}
+              ior={1.07}
+            />
+          )}
         </mesh>
       </motion.group>
     </Float>
