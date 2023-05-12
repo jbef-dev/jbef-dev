@@ -6,14 +6,12 @@ import * as React from 'react';
 import {
   Environment,
   Loader,
-  OrbitControls,
   PerformanceMonitor,
   Stats,
-  useDetectGPU,
 } from '@react-three/drei';
 
 const CenterFluid = () => {
-  const gpu = useDetectGPU();
+  // const gpu = useDetectGPU();
   const [dpr, setDpr] = React.useState<number>(2);
 
   return (
@@ -30,7 +28,7 @@ const CenterFluid = () => {
         // dpr={[1, 1.75]} // THIS IMPROVES PERFORMANCE
       >
         <PerformanceMonitor
-          factor={0.5}
+          factor={1}
           onChange={({ factor }) => setDpr(Math.round(0.5 + 1.5 * factor))}
         />
         <Stats showPanel={0} />

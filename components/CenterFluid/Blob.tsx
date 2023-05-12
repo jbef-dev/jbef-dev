@@ -1,13 +1,9 @@
 'use client';
 
-import { useFrame, useLoader, useThree } from '@react-three/fiber';
 import * as React from 'react';
 import * as THREE from 'three';
-import {
-  Float,
-  MeshTransmissionMaterial,
-  useDetectGPU,
-} from '@react-three/drei';
+import { useFrame, useLoader, useThree } from '@react-three/fiber';
+import { Float, MeshTransmissionMaterial } from '@react-three/drei';
 
 import {
   animate,
@@ -20,15 +16,14 @@ import {
 import { motion } from 'framer-motion-3d';
 import { CenterFluidTexture, useCenterFluidCtx } from './CenterFluidCtx';
 
-// import { makeNoise4D } from './simplex';
-// import { simplex3 } from './perlin';
+import { makeNoise4D } from './simplex';
 
 const Blob = () => {
   const { height, width } = useThree(state => state.viewport);
   const viewportSmallestSide = Math.min(width, height);
   const viewportAspectRatio = width / height;
 
-  const gpu = useDetectGPU();
+  // const gpu = useDetectGPU();
 
   const { scrollY } = useScroll();
 
@@ -54,7 +49,7 @@ const Blob = () => {
   const circleScaleX = useTransform(
     scrollVelocity,
     [-scaleThreshold, 0, scaleThreshold],
-    [0.75, 1, 0.75],
+    [0.78, 1, 0.78],
     {
       clamp: false,
     }
@@ -89,40 +84,41 @@ const Blob = () => {
   // *************************************************************
   const circleMeshRef = React.useRef<THREE.Mesh>(null);
   const circleMaterialRef = React.useRef<THREE.MeshPhysicalMaterial>(null);
-  const circleSize = Math.min(Math.max(viewportSmallestSide / 2.9, 1.3), 2.1);
+  const circleSize = Math.min(Math.max(viewportSmallestSide / 2.8, 1.5), 2.3);
 
   // SPHERE IS DEFINED FROM HERE ONWARDS
   // *************************************************************
   const sphereMeshRef = React.useRef<THREE.Mesh>(null);
-  const sphereMaterialRef =
-    // React.useRef<(typeof MeshTransmissionMaterial)['defaultProps']>(null);
-    React.useRef<THREE.MeshPhysicalMaterial>(null);
-  // const sphereGeometryRef = React.useRef<THREE.SphereGeometry>(null);
-  // const sphereGeometryRef = React.useRef<THREE.SphereGeometry>(null);
+  const sphereMaterialRef = React.useRef<THREE.MeshPhysicalMaterial>(null);
+
+  const sphereWidthSegments = 48;
+  const sphereHeightSegments = 32;
 
   const sphereSize = Math.min(Math.max(viewportSmallestSide / 2.7, 1.6), 2.4);
   // const sphereSize = circleSize;
 
-  const initialDistort = 0.28;
-  const initialThickness = sphereSize * 12;
+  const initialIOR = 1.07;
   const initialColor = '#000000';
-  // const initialRotationSpeed = 0.01;
   const initialRotationSpeed = 0;
 
-  const sphereDistort = useMotionValue(initialDistort);
-  const sphereThickness = useMotionValue(initialThickness);
+  // const sphereDistort = useMotionValue(initialDistort);
+  // const sphereThickness = useMotionValue(initialThickness);
+  const sphereIOR = useMotionValue(initialIOR);
   const sphereColor = useMotionValue(initialColor);
   const sphereRotationSpeed = useMotionValue(initialRotationSpeed);
 
   // MEMOIZING THE NOISE MAKES SO THAT WHEN UPDATING STATE THE NOISE IS PRESERVED AND THERE IS NO JUMP IN THE SPHERE NOISE APPLICATION
-  // const noise = React.useMemo(() => makeNoise4D(Date.now()), []);
-  // const initialSimplexScale = 0.06;
-  // const initialSimplexSpeed = 0.2;
-  // const simplexScale = useMotionValue(initialSimplexScale);
-  // const simplexSpeed = useMotionValue(initialSimplexSpeed);
+  const noise = React.useMemo(() => makeNoise4D(Date.now()), []);
+  const initialSimplexScale = 0.1;
+  const simplexScale = useMotionValue(initialSimplexScale);
 
   const sphere_clone = React.useMemo(
-    () => new THREE.SphereGeometry(sphereSize, 128, 128),
+    () =>
+      new THREE.SphereGeometry(
+        sphereSize,
+        sphereWidthSegments,
+        sphereHeightSegments
+      ),
     [sphereSize]
   );
 
@@ -168,8 +164,11 @@ const Blob = () => {
 
   React.useEffect(() => {
     if (currentTexture === activeTexture) {
-      animate(sphereDistort, initialDistort, { duration: transitionDuration });
-      animate(sphereThickness, initialThickness, {
+      // animate(sphereDistort, initialDistort, { duration: transitionDuration });
+      // animate(sphereThickness, initialThickness, {
+      //   duration: transitionDuration,
+      // });
+      animate(sphereIOR, initialIOR, {
         duration: transitionDuration,
       });
       animate(sphereColor, '#ffffff', { duration: transitionDuration });
@@ -177,18 +176,19 @@ const Blob = () => {
         duration: transitionDuration,
         ease: 'easeInOut',
       });
-      // animate(simplexScale, initialSimplexScale, {
-      //   duration: transitionDuration,
-      // });
+      animate(simplexScale, initialSimplexScale, {
+        duration: transitionDuration,
+      });
     } else if (currentTexture !== activeTexture) {
-      animate(sphereDistort, 0.45, { duration: transitionDuration });
-      animate(sphereThickness, 10, { duration: transitionDuration });
+      // animate(sphereDistort, 0.45, { duration: transitionDuration });
+      // animate(sphereThickness, 200, { duration: transitionDuration });
+      animate(sphereIOR, 1.5, { duration: transitionDuration });
       animate(sphereColor, initialColor, { duration: transitionDuration });
-      animate(sphereRotationSpeed, 0.05, {
+      animate(sphereRotationSpeed, 0.04, {
         duration: transitionDuration,
         ease: 'easeInOut',
       });
-      // animate(simplexScale, 0.15, { duration: transitionDuration });
+      animate(simplexScale, 0.25, { duration: transitionDuration });
     }
   }, [activeTexture, currentTexture]);
 
@@ -208,7 +208,8 @@ const Blob = () => {
     }
 
     if (sphereMaterialRef.current) {
-      sphereMaterialRef.current.thickness = sphereThickness.get();
+      // sphereMaterialRef.current.thickness = sphereThickness.get();
+      sphereMaterialRef.current.ior = sphereIOR.get();
       sphereMaterialRef.current.color = new THREE.Color(sphereColor.get());
     }
 
@@ -228,25 +229,26 @@ const Blob = () => {
         // const z = pos.getZ(i);
 
         const ix = original_pos.getX(i);
-        // const iy = original_pos.getY(i);
+        const iy = original_pos.getY(i);
         const iz = original_pos.getZ(i);
 
-        // const p = new THREE.Vector3(ix, iy, iz);
-        // const setNoise = noise(ix, iy, iz, time * simplexSpeed.get());
-        // // const setNoise = simplex3(ix, iy, iz);
-        // const v3 = new THREE.Vector3()
-        //   .copy(p)
-        //   .addScaledVector(p, setNoise * simplexScale.get());
+        const simplexSpeed = 0.5;
+        const p = new THREE.Vector3(ix, iy, iz);
+        const setNoise = noise(ix, iy, iz, time * simplexSpeed);
+        // const setNoise = simplex3(ix, iy, iz);
+        const v3 = new THREE.Vector3()
+          .copy(p)
+          .addScaledVector(p, setNoise * simplexScale.get());
 
-        const waveX1 = 0.2 * Math.sin(ix + time * 2.3);
-        const waveZ2 = 0.1 * Math.cos(ix + time * 4);
-        // const waveY1 = 0.15 * Math.cos(iy * 2 + time * 2) + 0.1;
-        // const waveZ1 = 0.2 * Math.sin(iz + time * 2) + 0.1;
+        // const waveX1 = 0.2 * Math.sin(ix + time * 2.3);
+        // const waveZ2 = 0.1 * Math.cos(ix + time * 4);
+        // // const waveY1 = 0.15 * Math.cos(iy * 2 + time * 2) + 0.1;
+        // // const waveZ1 = 0.2 * Math.sin(iz + time * 2) + 0.1;
 
-        // pos.setXYZ(i, v3.x, v3.y, v3.z);
+        pos.setXYZ(i, v3.x, v3.y, v3.z);
         // pos.setXYZ(i, ix, iy, iz);
         // pos.setZ(i, iz + waveX1 + waveZ2);
-        pos.setZ(i, iz + waveX1 + waveZ2);
+        // pos.setZ(i, iz + waveX1 + waveZ2);
       }
       geometry.computeVertexNormals(); // THIS IS HEAVY ON PERFORMANCE
       // geometry.computeTangents(); // THIS IS HEAVY ON PERFORMANCE
@@ -276,8 +278,11 @@ const Blob = () => {
         </mesh>
 
         <mesh ref={sphereMeshRef}>
-          <sphereBufferGeometry args={[sphereSize, 128, 128]} />
-          {gpu.tier === 0 || gpu.isMobile ? (
+          <sphereBufferGeometry
+            args={[sphereSize, sphereWidthSegments, sphereHeightSegments]}
+          />
+          {false ? (
+            // {gpu.tier === 0 || gpu.isMobile ? (
             <meshPhysicalMaterial
               ref={sphereMaterialRef}
               precision={'highp'}
@@ -325,8 +330,10 @@ const Blob = () => {
               //   }}
               toneMapped={false}
               transmission={1}
-              samples={2} // WARNING Performance tuning
-              precision='lowp' // WARNING Performance tuning
+              thickness={sphereSize * 3.5}
+              samples={3} // WARNING Performance tuning
+              // precision='lowp' // WARNING Performance tuning
+              // resolution={512}
               // depthWrite={false} // WARNING Performance tuning
               chromaticAberration={0.008}
               specularColor='#ffffff'
@@ -336,10 +343,10 @@ const Blob = () => {
               anisotropy={0}
               clearcoat={1}
               clearcoatRoughness={0}
-              reflectivity={0.3}
+              reflectivity={0.28}
               envMapIntensity={0.7}
               // ior={1.07}
-              ior={1.07}
+              // ior={1.07}
             />
           )}
         </mesh>
