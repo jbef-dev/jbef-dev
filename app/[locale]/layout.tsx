@@ -1,6 +1,7 @@
 import clsx from 'clsx';
-import { Header } from '@/components/Navbar/Navbar';
+import * as React from 'react';
 
+import { Header } from '@/components/Navbar/Navbar';
 import { fontSans, fontTitle } from '@/styles/fonts';
 import '@/styles/globals.css';
 // import { useLocale } from 'next-intl';

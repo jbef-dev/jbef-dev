@@ -51,7 +51,7 @@ const Hero = ({ titles }: { titles: string[] }) => {
       animate='animate'
       transition={{ staggerChildren: 0.21 }}
     >
-      <motion.div className='w-full' style={{ y: yTitles }}>
+      <motion.div className='-z-10 w-full' style={{ y: yTitles }}>
         <motion.div
           variants={customVariants.appearFromBottom}
           transition={customTransitions.default}
@@ -71,10 +71,7 @@ const Hero = ({ titles }: { titles: string[] }) => {
         </motion.div>
       </motion.div>
 
-      <motion.div
-        className='z-10 w-full overflow-hidden'
-        style={{ y: yTitles }}
-      >
+      <motion.div className='w-full overflow-hidden' style={{ y: yTitles }}>
         <motion.div
           variants={customVariants.appearFromBottom}
           transition={customTransitions.default}

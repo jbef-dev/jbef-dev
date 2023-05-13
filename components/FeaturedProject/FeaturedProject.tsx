@@ -60,7 +60,7 @@ const FeaturedProject = ({
         className='relative grid min-h-[65svh] w-full lg:min-h-[80svh]'
       >
         <motion.div
-          className='z-0 flex items-center justify-center text-black [grid-area:1/1]'
+          className='-z-10 flex items-center justify-center text-black [grid-area:1/1]'
           style={{ y: titleY, scale: titleScale }}
         >
           <motion.span className='flex flex-col items-center whitespace-pre'>
@@ -85,7 +85,7 @@ const FeaturedProject = ({
           </motion.span>
         </motion.div>
 
-        <motion.div className='z-0 flex items-center justify-center [grid-area:1/1]'>
+        <motion.div className='-z-10 flex items-center justify-center [grid-area:1/1]'>
           {/* <motion.div */}
           {/*   // className='absolute aspect-[10/16] max-h-[25svh] max-w-[20vw] overflow-hidden rounded-3xl shadow-2xl shadow-neutral-500' */}
           {/*   className='absolute aspect-square max-h-[25svh] max-w-[20vw] overflow-hidden bg-black shadow-2xl shadow-neutral-500' */}
