@@ -1,4 +1,5 @@
-// import 'server-only';
+// import 'server-only'; // optional to detect if this code si run on client and spit out error
+
 import type { Locale } from './config';
 import enMessages from './messages/en';
 

@@ -9,9 +9,9 @@ import {
 import { Logo } from '@/components/Logo/Logo';
 import { Locale } from '@/i18n/config';
 import Link from 'next/link';
-import { getDictionary } from '@/i18n/get-dictionary';
+import { getDictionary } from '@/i18n/getDictionary';
 
-const Header = async ({ locale }: { locale: Locale }) => {
+const Navbar = async ({ locale }: { locale: Locale }) => {
   const dict = await getDictionary(locale);
 
   const navLinks = [
@@ -103,4 +103,4 @@ const Header = async ({ locale }: { locale: Locale }) => {
   );
 };
 
-export { Header };
+export { Navbar };

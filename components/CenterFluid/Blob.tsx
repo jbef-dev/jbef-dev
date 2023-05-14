@@ -21,6 +21,7 @@ import { motion } from 'framer-motion-3d';
 import { CenterFluidTexture, useCenterFluidCtx } from './CenterFluidCtx';
 
 import { makeNoise4D } from './simplex';
+import { customTransitions } from '@/ui/animation';
 
 const Blob = () => {
   const { height, width } = useThree(state => state.viewport);
@@ -32,9 +33,9 @@ const Blob = () => {
   const { scrollY } = useScroll();
 
   const scrollYSmooth = useSpring(scrollY, {
-    stiffness: 260,
+    stiffness: 120,
     bounce: 0,
-    damping: 100,
+    damping: 60,
   });
 
   const scrollVelocity = useVelocity(scrollYSmooth);
@@ -140,7 +141,7 @@ const Blob = () => {
     '/assets/img/threejs/sea-torrevieja.webp',
   ]);
 
-  const videoTexture = useVideoTexture('/assets/vid/test_vid.mp4');
+  // const videoTexture = useVideoTexture('/assets/vid/test_vid.mp4');
 
   const textures: {
     [k in CenterFluidTexture]: THREE.VideoTexture | THREE.Texture;
@@ -249,7 +250,7 @@ const Blob = () => {
       <motion.group
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        transition={{ type: 'keyframes', ease: 'easeOut', duration: 0.9 }}
+        transition={{ ...customTransitions.easeOutSlow, delay: 0.25 }}
       >
         <mesh ref={circleMeshRef}>
           <circleGeometry args={[circleRadius, 40]} />

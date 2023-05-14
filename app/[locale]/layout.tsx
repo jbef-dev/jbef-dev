@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 
-import { Header } from '@/components/Navbar/Navbar';
+import { Navbar } from '@/components/Navbar/Navbar';
 import { fontSans, fontTitle } from '@/styles/fonts';
 import '@/styles/globals.css';
 // import { useLocale } from 'next-intl';
@@ -9,7 +9,16 @@ import { Analytics } from '@vercel/analytics/react';
 import { i18n, Locale } from '@/i18n/config';
 import { Metadata } from 'next';
 import { Footer } from '@/components/Footer/Footer';
-// import { PageTransition } from '@/ui/PageTransition/PageTransition';
+
+const CenterFluid = dynamic(() =>
+  import('@/components/CenterFluid').then(mod => mod.CenterFluid)
+);
+// import { CenterFluid } from '@/components/CenterFluid/CenterFluid';
+
+import { LoadingProvider } from '@/components/LoadingComponent/LoadingCtx';
+import { CenterFluidProvider } from '@/components/CenterFluid/CenterFluidCtx';
+import dynamic from 'next/dynamic';
+import { LoadingComponent } from '@/components/LoadingComponent/LoadingComponent';
 
 export async function generateStaticParams() {
   return i18n.locales.map(locale => ({ locale: locale }));
@@ -41,11 +50,17 @@ export default async function LocaleLayout({
       <body
         className={clsx(fontTitle.variable, fontSans.variable, 'font-sans')}
       >
-        {/* @ts-expect-error async Server Component */}
-        <Header locale={params.locale} />
-        {children}
-        <Footer />
-        <Analytics />
+        <LoadingProvider>
+          <CenterFluidProvider>
+            <LoadingComponent />
+            <CenterFluid />
+            {/* @ts-expect-error async Server Component */}
+            <Navbar locale={params.locale} />
+            {children}
+            <Footer />
+            <Analytics />
+          </CenterFluidProvider>
+        </LoadingProvider>
       </body>
       {/* <PageTransition /> */}
     </html>

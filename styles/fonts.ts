@@ -11,7 +11,8 @@ export const fontTitle = localFont({
   // src: '../public/fonts/Nohemi-VF.ttf',
   src: '../public/fonts/MESHED-VF.ttf',
   variable: '--font-title',
-  display: 'swap',
+  display: 'block',
+  // display: 'swap',
 });
 
 // export const fontTitle = Poppins({

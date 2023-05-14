@@ -1,6 +1,6 @@
 import { FlexContainer } from '@/ui/Containers';
 import { Locale } from '@/i18n/config';
-import { getDictionary } from '@/i18n/get-dictionary';
+import { getDictionary } from '@/i18n/getDictionary';
 import { AppearOnScroll, AppearOnScrollChild } from '@/ui/Animated';
 import { FaCheck } from 'react-icons/fa';
 import { Button } from '@/ui/Button/Button';
