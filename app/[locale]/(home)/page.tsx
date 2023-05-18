@@ -33,12 +33,33 @@ export async function generateMetadata({
 
 // export const runtime = 'edge';
 
+async function getData() {
+  const res = await fetch(
+    'https://64668cb22ea3cae8dc19b163.mockapi.io/username',
+    { cache: 'no-store' }
+  );
+
+  // Recommendation: handle errors
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data');
+  }
+
+  const resData = await res.json();
+
+  const usernames = resData.map((data: any) => data.name);
+
+  return usernames;
+}
+
 export default async function Home({
   params: { locale },
 }: {
   params: { locale: Locale };
 }) {
   const dict = await getDictionary(locale);
+
+  const usernames = await getData();
 
   // const kek = await new Promise(resolve =>
   //   setTimeout(resolve, 2000)
@@ -61,7 +82,8 @@ export default async function Home({
 
       <SectionContainer flexCol>
         <FeaturedProject
-          title={['CNG Lawyers']}
+          // title={['CNG Lawyers']}
+          title={[usernames[0]]}
           fluidTextureName='cnglawyers'
           clientName='CNG Lawyers'
           workDesc='Website redesign / SEO'
