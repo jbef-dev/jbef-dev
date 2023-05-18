@@ -15,6 +15,8 @@ const CalendarWidget = dynamic(
   () => import('@/components/CalendarWidget/CalendarWidget')
 );
 
+export const runtime = 'edge';
+
 export default async function Contact({
   params: { locale },
 }: {
@@ -80,5 +82,3 @@ export async function generateMetadata({
     description: dict['pages'].contact.SEO.description,
   };
 }
-
-export const runtime = 'edge';

@@ -5,8 +5,14 @@ import { useLoadingCtx } from './LoadingCtx';
 import { customTransitions } from '@/ui/animation';
 import clsx from 'clsx';
 
-const LoadingComponent = () => {
-  const { isLoading } = useLoadingCtx();
+import * as React from 'react';
+
+export function LoadingComponent() {
+  const { isLoading, setIsLoading } = useLoadingCtx();
+
+  React.useEffect(() => {
+    setTimeout(() => setIsLoading(false), 1300);
+  }, []);
 
   return (
     <AnimatePresence>
@@ -36,6 +42,4 @@ const LoadingComponent = () => {
       ) : null}
     </AnimatePresence>
   );
-};
-
-export { LoadingComponent };
+}
