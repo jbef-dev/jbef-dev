@@ -10,14 +10,14 @@ import { Metadata } from 'next';
 //   () => import('@/components/FeatureSection/FeatureSection')
 // );
 
-import { PageContainer, SectionContainer } from '@/ui/Containers';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
+import { PageContainer, SectionContainer } from '@/ui/Containers';
 
-import PricingSection from '@/components/PricingSection/PricingSection';
-import { Hero } from '@/components/Hero/Hero';
 import FeaturedProject from '@/components/FeaturedProject/FeaturedProject';
+import { Hero } from '@/components/Hero/Hero';
 import MottoParagraph from '@/components/MottoParagraph/MottoParagraph';
+import PricingSection from '@/components/PricingSection/PricingSection';
 
 export default async function Home({
   params: { locale },

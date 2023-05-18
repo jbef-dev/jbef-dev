@@ -91,7 +91,7 @@ const Hero = ({ titles }: { titles: string[] }) => {
           scale: scaleH2,
         }}
       >
-        <Heading as='h2'>
+        <Heading as='h2' className='text-xl'>
           <Balancer>
             <StaggerText
               className='justify-center'

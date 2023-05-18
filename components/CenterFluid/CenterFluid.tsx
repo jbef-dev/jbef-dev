@@ -13,7 +13,7 @@ import { Blob } from './Blob';
 
 const CenterFluid = () => {
   // const gpu = useDetectGPU();
-  const [dpr, setDpr] = React.useState<number>(2);
+  const [dpr, setDpr] = React.useState<number>(1.85);
 
   const { setIsLoading } = useLoadingCtx();
   const { progress } = useProgress();
@@ -22,7 +22,7 @@ const CenterFluid = () => {
     if (progress === 100) {
       setIsLoading(false);
     }
-  }, [progress]);
+  }, [progress, setIsLoading]);
 
   return (
     <div className='fixed inset-0 z-0 grid h-screen select-none'>

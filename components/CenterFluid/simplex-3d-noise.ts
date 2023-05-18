@@ -9,8 +9,7 @@
 //               https://github.com/ashima/webgl-noise
 //
 
-export default //glsl
-  `
+const shader_code = /*glsl*/ `
 vec3 mod289(vec3 x) {
   return x - floor(x * (1.0 / 289.0)) * 289.0;
 }
@@ -105,3 +104,5 @@ float snoise(vec3 v)
 
 #pragma glslify: export(snoise)
 `;
+
+export default shader_code;

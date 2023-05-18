@@ -84,18 +84,18 @@ const Navbar = async ({ locale }: { locale: Locale }) => {
                 </HamburgerMenuNavItem>
               ))}
             </div>
-            {/* <div className='flex text-xl w-full text-black items-evenly gap-x-14 lg:gap-x-20 justify-center'> */}
-            {/*   {SOCIALS.map(social => ( */}
-            {/*     <Link */}
-            {/*       key={social.name} */}
-            {/*       href={social.url} */}
-            {/*       title={social.name} */}
-            {/*       target='_blank' */}
-            {/*     > */}
-            {/*       {social.icon} */}
-            {/*     </Link> */}
-            {/*   ))} */}
-            {/* </div> */}
+            {/* <div className='flex text-xl w-full text-black items-evenly gap-x-14 lg:gap-x-20 justify-center'>
+              {SOCIALS.map(social => (
+                <Link
+                  key={social.name}
+                  href={social.url}
+                  title={social.name}
+                  target='_blank'
+                >
+                  {social.icon}
+                </Link>
+              ))}
+            </div> */}
           </div>
         </HamburgerMenuContent>
       </HamburgerMenu>

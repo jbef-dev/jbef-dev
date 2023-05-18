@@ -171,7 +171,7 @@ const NavigationMenuIndicator = forwardRef<
     )}
     {...props}
   >
-    <div className='relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-white/80 dark:bg-black/50' />
+    <div className='relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-white/80 shadow-md dark:bg-black/50' />
   </NavigationMenuPrimitive.Indicator>
 ));
 NavigationMenuIndicator.displayName =

@@ -14,15 +14,15 @@
     "@radix-ui/react-navigation-menu": "^1.1.2",
     "@react-three/drei": "9.68.3",
     "@react-three/fiber": "^8.13.0",
-    "@types/node": "20.1.4",
+    "@types/node": "20.1.7",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
     "@vercel/analytics": "^1.0.1",
     "clsx": "^1.2.1",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
-    "framer-motion": "^10.12.10",
-    "framer-motion-3d": "^10.12.10",
+    "framer-motion": "^10.12.12",
+    "framer-motion-3d": "^10.12.12",
     "negotiator": "^0.6.3",
     "next": "13.3.0",
     "nookies": "^2.5.2",
@@ -34,11 +34,12 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^0.10.1",
     "@types/negotiator": "^0.6.1",
     "@types/three": "^0.152.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.23",
-    "prettier-plugin-tailwindcss": "^0.2.8",
+    "prettier-plugin-tailwindcss": "^0.3.0",
     "tailwindcss": "^3.3.2"
   }
 }

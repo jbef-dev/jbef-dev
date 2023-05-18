@@ -1,13 +1,9 @@
 'use client';
 
+import { Float, MeshTransmissionMaterial } from '@react-three/drei';
+import { useFrame, useLoader, useThree } from '@react-three/fiber';
 import * as React from 'react';
 import * as THREE from 'three';
-import { useFrame, useLoader, useThree } from '@react-three/fiber';
-import {
-  Float,
-  MeshTransmissionMaterial,
-  useVideoTexture,
-} from '@react-three/drei';
 
 import {
   animate,
@@ -20,8 +16,8 @@ import {
 import { motion } from 'framer-motion-3d';
 import { CenterFluidTexture, useCenterFluidCtx } from './CenterFluidCtx';
 
-import { makeNoise4D } from './simplex';
 import { customTransitions } from '@/ui/animation';
+import { makeNoise4D } from './simplex';
 
 const Blob = () => {
   const { height, width } = useThree(state => state.viewport);
@@ -190,7 +186,14 @@ const Blob = () => {
       });
       animate(simplexScale, 0.25, { duration: transitionDuration });
     }
-  }, [activeTexture, currentTexture]);
+  }, [
+    activeTexture,
+    currentTexture,
+    simplexScale,
+    sphereColor,
+    sphereIOR,
+    sphereRotationSpeed,
+  ]);
 
   useFrame(state => {
     const time = state.clock.getElapsedTime();

@@ -1,15 +1,21 @@
-import { Inter } from 'next/font/google';
+// import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 
-export const fontSans = Inter({
-  subsets: ['latin'],
+// export const fontSans = Inter({
+//   subsets: ['latin'],
+//   variable: '--font-sans',
+//   display: 'swap',
+// });
+
+export const fontSans = localFont({
+  src: '../public/fonts/Satoshi-Variable.ttf',
   variable: '--font-sans',
   display: 'swap',
 });
 
 export const fontTitle = localFont({
-  // src: '../public/fonts/Nohemi-VF.ttf',
   src: '../public/fonts/MESHED-VF.ttf',
+  // src: '../public/fonts/Boska-Variable.ttf',
   variable: '--font-title',
   display: 'block',
   // display: 'swap',
