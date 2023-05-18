@@ -19,7 +19,7 @@ import { CenterFluidTexture, useCenterFluidCtx } from './CenterFluidCtx';
 import { customTransitions } from '@/ui/animation';
 import { makeNoise4D } from './simplex';
 
-const Blob = () => {
+export function Blob() {
   const { height, width } = useThree(state => state.viewport);
   const viewportSmallestSide = Math.min(width, height);
   const viewportAspectRatio = width / height;
@@ -85,7 +85,7 @@ const Blob = () => {
   // *************************************************************
   const circleMeshRef = React.useRef<THREE.Mesh>(null);
   const circleMaterialRef = React.useRef<THREE.MeshPhysicalMaterial>(null);
-  const circleRadius = Math.min(Math.max(viewportSmallestSide / 2.8, 1.5), 2.3);
+  const circleRadius = Math.min(Math.max(viewportSmallestSide / 2.8, 1.5), 2.0);
 
   // SPHERE IS DEFINED FROM HERE ONWARDS
   // *************************************************************
@@ -96,7 +96,7 @@ const Blob = () => {
   const sphereWSegments = 48;
   const sphereHSegments = 32;
 
-  const sphereRadius = Math.min(Math.max(viewportSmallestSide / 2.7, 1.6), 2.4);
+  const sphereRadius = Math.min(Math.max(viewportSmallestSide / 2.7, 1.6), 2.1);
   // const sphereSize = circleSize;
 
   const initialIOR = 1.07;
@@ -291,6 +291,4 @@ const Blob = () => {
       </motion.group>
     </Float>
   );
-};
-
-export { Blob };
+}
