@@ -9,6 +9,7 @@ const nextConfig = {
   // swcMinify: true,
   experimental: {
     appDir: true,
+    runtime: 'edge',
   },
   // async headers() {
   //   return [
