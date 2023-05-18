@@ -25,50 +25,77 @@ import type { NextRequest } from 'next/server';
 
 import { i18n } from '@/i18n/config';
 
-import { match as matchLocale } from '@formatjs/intl-localematcher';
+import { match } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
 
-function getLocale(request: NextRequest): string | undefined {
-  // Negotiator expects plain object so we need to transform headers
-  const negotiatorHeaders: Record<string, string> = {};
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
-
-  // Use negotiator and intl-localematcher to get best locale
-  let languages = new Negotiator({ headers: negotiatorHeaders }).languages();
-  // @ts-ignore locales are readonly
-  const locales: string[] = i18n.locales;
-  return matchLocale(languages, locales, i18n.defaultLocale);
-}
-
 export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
+  const pathName = request.nextUrl.pathname;
+  const headers = request.headers;
+  const cookies = request.cookies;
 
-  // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
-  // // If you have one
-  // if (
-  //   [
-  //     '/manifest.json',
-  //     '/favicon.ico',
-  //     // Your other files in `public`
-  //   ].includes(pathname)
-  // )
-  //   return
+  let locale;
 
-  // Check if there is any supported locale in the pathname
-  const pathnameIsMissingLocale = i18n.locales.every(
-    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  );
-
-  // Redirect if there is no locale
-  if (pathnameIsMissingLocale) {
-    const locale = getLocale(request);
-
-    // e.g. incoming request is /products
-    // The new URL is now /en-US/products
-    return NextResponse.redirect(
-      new URL(`/${locale}/${pathname}`, request.url)
-    );
+  // Prio 1: Use route prefix
+  if (pathName) {
+    const pathLocale = pathName.split('/')[1];
+    if (([...i18n.locales] as string[]).includes(pathLocale)) {
+      locale = pathLocale;
+    }
   }
+
+  // Prio 2: Use cookie
+  if (!locale && cookies.has(i18n.cookieLocaleName)) {
+    locale = cookies.get(i18n.cookieLocaleName)?.value;
+  }
+
+  // Prio 3: Use Accept-Language headers
+  if (!locale) {
+    let loc;
+    const languages = new Negotiator({
+      headers: {
+        'accept-language': headers.get('accept-language') || undefined,
+      },
+    }).languages();
+    try {
+      loc = match(languages, [...i18n.locales], i18n.defaultLocale);
+    } catch (e) {
+      // Invalid language, do nothing
+    }
+    locale = loc;
+  }
+
+  // Prio 4: Use default locale
+  if (!locale) {
+    locale = i18n.defaultLocale;
+  }
+
+  let response;
+
+  // Redirect if lng in path is not supported
+  if (
+    !i18n.locales.some(locale => pathName.startsWith(`/${locale}`)) &&
+    !pathName.startsWith('/_next')
+  ) {
+    response = NextResponse.redirect(
+      new URL(`/${locale}${pathName}`, request.url)
+    );
+  } else {
+    response = NextResponse.next();
+  }
+
+  // if (headers.has('referer')) {
+  //   const refererUrl = new URL(headers.get('referer') || '');
+  //   const lngInReferer = i18n.locales.find(l =>
+  //     refererUrl.pathname.startsWith(`/${l}`)
+  //   );
+  //   const response = NextResponse.next();
+  //   if (lngInReferer) response.cookies.set(i18n.cookieLocaleName, lngInReferer);
+  //   return response;
+  // }
+
+  response.cookies.set(i18n.cookieLocaleName, locale);
+
+  return response;
 }
 
 export const config = {

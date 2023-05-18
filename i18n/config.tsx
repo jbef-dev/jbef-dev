@@ -23,6 +23,7 @@ import enMessages from '@/i18n/messages/en';
 const i18n = {
   defaultLocale: 'en',
   locales: ['en', 'es', 'fr'],
+  cookieLocaleName: 'NEXT_LOCALE',
 } as const;
 
 type Locale = (typeof i18n)['locales'][number];
