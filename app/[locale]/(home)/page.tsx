@@ -83,3 +83,5 @@ export async function generateMetadata({
     description: dict['pages'].home.SEO.description,
   };
 }
+
+export const runtime = 'edge';

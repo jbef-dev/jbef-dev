@@ -4,7 +4,7 @@ import {
   PageContainer,
   SectionContainer,
 } from '@/ui/Containers';
-import { Heading, Heading3 } from '@/ui/Typography';
+import { Heading } from '@/ui/Typography';
 import { Metadata } from 'next';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
@@ -60,3 +60,5 @@ export async function generateMetadata({
     description: dict['pages'].contact.SEO.description,
   };
 }
+
+export const runtime = 'edge';
