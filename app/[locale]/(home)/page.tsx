@@ -19,6 +19,20 @@ import { Hero } from '@/components/Hero/Hero';
 import MottoParagraph from '@/components/MottoParagraph/MottoParagraph';
 import PricingSection from '@/components/PricingSection/PricingSection';
 
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const dict = await getDictionary(locale);
+  return {
+    title: dict['pages'].home.SEO.title,
+    description: dict['pages'].home.SEO.description,
+  };
+}
+
+// export const runtime = 'edge';
+
 export default async function Home({
   params: { locale },
 }: {
@@ -71,17 +85,3 @@ export default async function Home({
     </PageContainer>
   );
 }
-
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: Locale };
-}): Promise<Metadata> {
-  const dict = await getDictionary(locale);
-  return {
-    title: dict['pages'].home.SEO.title,
-    description: dict['pages'].home.SEO.description,
-  };
-}
-
-export const runtime = 'edge';

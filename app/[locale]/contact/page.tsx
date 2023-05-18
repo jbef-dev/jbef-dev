@@ -9,13 +9,13 @@ import { Metadata } from 'next';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
 import { Heading } from '@/ui/Typography';
-import { Button } from '@/ui/Button/Button';
+// import { Button } from '@/ui/Button/Button';
 
 const CalendarWidget = dynamic(
   () => import('@/components/CalendarWidget/CalendarWidget')
 );
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 export default async function Contact({
   params: { locale },

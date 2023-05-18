@@ -9,6 +9,8 @@ import { Metadata } from 'next';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
 
+// export const runtime = 'edge';
+
 export default async function About({
   params: { locale },
 }: {
@@ -60,5 +62,3 @@ export async function generateMetadata({
     description: dict['pages'].contact.SEO.description,
   };
 }
-
-export const runtime = 'edge';
