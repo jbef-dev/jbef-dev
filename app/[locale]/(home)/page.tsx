@@ -39,7 +39,6 @@ async function getData() {
     { cache: 'no-store' }
   );
 
-  // Recommendation: handle errors
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data');
