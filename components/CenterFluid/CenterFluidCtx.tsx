@@ -2,7 +2,11 @@
 
 import * as React from 'react';
 
-type CenterFluidTexture = 'me' | 'cnglawyers' | 'guidoaudisio';
+type TextureName = 'me' | 'cnglawyers' | 'guidoaudisio';
+type CenterFluidTexture = {
+  name: TextureName;
+  transitionColor: string;
+};
 
 interface ICenterFluidCtx {
   isVisible: boolean;
@@ -19,8 +23,10 @@ const useCenterFluidCtx = () =>
 
 const CenterFluidProvider = ({ children }: { children: React.ReactNode }) => {
   const [isVisible, setIsVisible] = React.useState(true);
-  const [activeTexture, setActiveTexture] =
-    React.useState<CenterFluidTexture>('me');
+  const [activeTexture, setActiveTexture] = React.useState<CenterFluidTexture>({
+    name: 'me',
+    transitionColor: '#3f3f3f',
+  });
 
   return (
     <CenterFluidCtx.Provider

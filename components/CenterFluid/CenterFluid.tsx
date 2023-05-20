@@ -41,13 +41,14 @@ const CenterFluid = () => {
             factor={1}
             onChange={({ factor }) => setDpr(Math.round(0.5 + 1.5 * factor))}
           />
-          <ambientLight intensity={0.35} />
+          <ambientLight intensity={0.4} />
           <spotLight position={[-50, 70, 20]} intensity={0.5} />
-          <spotLight position={[50, 20, 70]} intensity={0.4} />
+          <spotLight position={[50, -20, 70]} intensity={0.9} />
           <Environment
             resolution={256}
             // files='/assets/img/threejs/photo_studio_01_1k_compressed.hdr'
-            files='/assets/img/threejs/potsdamer_platz_1k.hdr'
+            // files='/assets/img/threejs/potsdamer_platz_1k.hdr'
+            files='/assets/img/threejs/potsdamer_platz_1k_compressed.hdr'
           />
           <Blob />
         </Canvas>

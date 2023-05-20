@@ -35,13 +35,13 @@ export function Blob() {
   });
 
   const scrollVelocity = useVelocity(scrollYSmooth);
-  const scaleThreshold = viewportAspectRatio > 1 ? 1000 : 800;
+  const scaleThreshold = viewportAspectRatio > 1 ? 2800 : 2500;
   const scrollThreshold = viewportAspectRatio > 1 ? 1500 : 1100;
 
   const y = useTransform(
     scrollVelocity,
     [-scrollThreshold, 0, scrollThreshold],
-    [-2, 0, 2],
+    [-2.2, 0, 2.2],
     {
       clamp: false,
     }
@@ -50,18 +50,18 @@ export function Blob() {
   const circleScaleX = useTransform(
     scrollVelocity,
     [-scaleThreshold, 0, scaleThreshold],
-    [0.78, 1, 0.78],
-    {
-      clamp: false,
-    }
+    [0.19, 1, 0.19]
+    // {
+    //   clamp: false,
+    // }
   );
   const sphereScaleX = useTransform(
     scrollVelocity,
     [-scaleThreshold, 0, scaleThreshold],
-    [0.8, 1, 0.8],
-    {
-      clamp: false,
-    }
+    [0.2, 1, 0.2]
+    // {
+    //   clamp: false,
+    // }
   );
 
   const sphereScaleY = useTransform(
@@ -100,10 +100,12 @@ export function Blob() {
   // const sphereSize = circleSize;
 
   const initialIOR = 1.07;
-  const initialColor = '#000000';
+  const initialChromaticAberration = 0.008;
+  const initialColor = '#5786A6';
   const initialRotationSpeed = 0;
 
   const sphereIOR = useMotionValue(initialIOR);
+  const sphereChromaticAberration = useMotionValue(initialChromaticAberration);
   const sphereColor = useMotionValue(initialColor);
   const sphereRotationSpeed = useMotionValue(initialRotationSpeed);
 
@@ -129,7 +131,7 @@ export function Blob() {
   const transitionDuration = 0.75;
 
   const [currentTexture, setCurrentTexture] =
-    React.useState<CenterFluidTexture>('me');
+    React.useState<CenterFluidTexture>({ name: 'me', transitionColor: '#3f3f3f' });
 
   const imgTexture = useLoader(THREE.TextureLoader, [
     '/assets/img/threejs/prueba_perfil_bw.png',
@@ -140,10 +142,10 @@ export function Blob() {
   // const videoTexture = useVideoTexture('/assets/vid/test_vid.mp4');
 
   const textures: {
-    [k in CenterFluidTexture]: THREE.VideoTexture | THREE.Texture;
+    [k in CenterFluidTexture['name']]: THREE.VideoTexture | THREE.Texture;
   } = React.useMemo(() => {
     const t: {
-      [k in CenterFluidTexture]: THREE.VideoTexture | THREE.Texture;
+      [k in CenterFluidTexture['name']]: THREE.VideoTexture | THREE.Texture;
     } = {
       me: imgTexture[0],
       cnglawyers: imgTexture[1],
@@ -152,10 +154,6 @@ export function Blob() {
     };
     return t;
   }, [imgTexture]);
-
-  React.useEffect(() => {
-    console.log('RENDERING BLOB');
-  }, []);
 
   React.useEffect(() => {
     setTimeout(
@@ -169,6 +167,9 @@ export function Blob() {
       animate(sphereIOR, initialIOR, {
         duration: transitionDuration,
       });
+      animate(sphereChromaticAberration, initialChromaticAberration, {
+        duration: transitionDuration * 1.5,
+      });
       animate(sphereColor, '#ffffff', { duration: transitionDuration });
       animate(sphereRotationSpeed, initialRotationSpeed, {
         duration: transitionDuration,
@@ -179,7 +180,11 @@ export function Blob() {
       });
     } else if (currentTexture !== activeTexture) {
       animate(sphereIOR, 1.5, { duration: transitionDuration });
-      animate(sphereColor, initialColor, { duration: transitionDuration });
+      animate(sphereChromaticAberration, 0.1, {
+        duration: transitionDuration,
+      });
+      // animate(sphereColor, initialColor, { duration: transitionDuration });
+      animate(sphereColor, activeTexture.transitionColor, { duration: transitionDuration });
       animate(sphereRotationSpeed, 0.04, {
         duration: transitionDuration,
         ease: 'easeInOut',
@@ -192,6 +197,7 @@ export function Blob() {
     simplexScale,
     sphereColor,
     sphereIOR,
+    sphereChromaticAberration,
     sphereRotationSpeed,
   ]);
 
@@ -206,6 +212,8 @@ export function Blob() {
 
     if (sphereMaterialRef.current) {
       sphereMaterialRef.current.ior = sphereIOR.get();
+      sphereMaterialRef.current.chromaticAberration =
+        sphereChromaticAberration.get();
       sphereMaterialRef.current.color = new THREE.Color(sphereColor.get());
     }
 
@@ -260,7 +268,7 @@ export function Blob() {
           <meshPhysicalMaterial
             precision={'highp'}
             ref={circleMaterialRef}
-            map={textures[currentTexture]}
+            map={textures[currentTexture.name]}
           />
         </mesh>
 
@@ -276,7 +284,7 @@ export function Blob() {
             samples={3} // WARNING Performance tuning
             // precision='lowp' // WARNING Performance tuning
             // depthWrite={false} // WARNING Performance tuning
-            chromaticAberration={0.008}
+            // chromaticAberration={0.008}
             specularColor='#ffffff'
             temporalDistortion={0}
             distortion={0}
@@ -285,7 +293,7 @@ export function Blob() {
             clearcoat={1}
             clearcoatRoughness={0}
             reflectivity={0.28}
-            envMapIntensity={0.7}
+            envMapIntensity={1}
           />
         </mesh>
       </motion.group>

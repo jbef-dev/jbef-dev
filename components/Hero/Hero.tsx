@@ -35,13 +35,14 @@ const Hero = ({ titles }: { titles: string[] }) => {
   const yH2 = useTransform(springProgress, [0, 1], ['0%', '150%']);
   const scaleH2 = useTransform(springProgress, [0, 1], [1, 1.15]);
 
-  const { setActiveTexture } = useCenterFluidCtx();
+  const { activeTexture, setActiveTexture } = useCenterFluidCtx();
 
   const isVisible = useInView(containerRef, { once: false, amount: 0.75 });
 
   React.useEffect(() => {
-    if (isVisible) setActiveTexture('me');
-  }, [isVisible, setActiveTexture]);
+    if (isVisible && activeTexture.name !== 'me')
+      setActiveTexture({ name: 'me', transitionColor: '#3f3f3f' });
+  }, [isVisible, setActiveTexture, activeTexture]);
 
   return (
     <motion.div
@@ -59,12 +60,6 @@ const Hero = ({ titles }: { titles: string[] }) => {
         >
           <BannerInfinite className='whitespace-nowrap' direction='ltr'>
             <Heading as='h1' className='text-responsive-6xl font-medium'>
-              {titles[0]}&nbsp;
-            </Heading>
-            <Heading
-              as='h1'
-              className='absolute inset-0 z-20 text-responsive-6xl font-medium text-white mix-blend-soft-light'
-            >
               {titles[0]}&nbsp;
             </Heading>
           </BannerInfinite>
