@@ -90,23 +90,24 @@ export function Blob() {
   // SPHERE IS DEFINED FROM HERE ONWARDS
   // *************************************************************
   const sphereMeshRef = React.useRef<THREE.Mesh>(null);
-  const sphereMaterialRef =
-    React.useRef<JSX.IntrinsicElements['meshTransmissionMaterial']>(null);
 
   const sphereWSegments = 48;
-  const sphereHSegments = 32;
+  const sphereHSegments = 48;
 
   const sphereRadius = Math.min(Math.max(viewportSmallestSide / 2.7, 1.6), 2.1);
   // const sphereSize = circleSize;
 
+  const sphereMaterialRef =
+    React.useRef<JSX.IntrinsicElements['meshTransmissionMaterial']>(null);
+
   const initialIOR = 1.07;
   const initialChromaticAberration = 0.008;
-  const initialColor = '#5786A6';
+  const initialSphereColor = '#ffffff';
   const initialRotationSpeed = 0;
 
   const sphereIOR = useMotionValue(initialIOR);
-  const sphereChromaticAberration = useMotionValue(initialChromaticAberration);
-  const sphereColor = useMotionValue(initialColor);
+  const sphereChromAberration = useMotionValue(initialChromaticAberration);
+  const sphereColor = useMotionValue(initialSphereColor);
   const sphereRotationSpeed = useMotionValue(initialRotationSpeed);
 
   // MEMOIZING THE NOISE MAKES SO THAT WHEN UPDATING STATE THE NOISE IS PRESERVED AND THERE IS NO JUMP IN THE SPHERE NOISE APPLICATION
@@ -131,7 +132,10 @@ export function Blob() {
   const transitionDuration = 0.75;
 
   const [currentTexture, setCurrentTexture] =
-    React.useState<CenterFluidTexture>({ name: 'me', transitionColor: '#3f3f3f' });
+    React.useState<CenterFluidTexture>({
+      name: 'me',
+      transitionColor: '#3f3f3f',
+    });
 
   const imgTexture = useLoader(THREE.TextureLoader, [
     '/assets/img/threejs/prueba_perfil_bw.png',
@@ -167,10 +171,12 @@ export function Blob() {
       animate(sphereIOR, initialIOR, {
         duration: transitionDuration,
       });
-      animate(sphereChromaticAberration, initialChromaticAberration, {
+      animate(sphereChromAberration, initialChromaticAberration, {
         duration: transitionDuration * 1.5,
       });
-      animate(sphereColor, '#ffffff', { duration: transitionDuration });
+      animate(sphereColor, initialSphereColor, {
+        duration: transitionDuration,
+      });
       animate(sphereRotationSpeed, initialRotationSpeed, {
         duration: transitionDuration,
         ease: 'easeInOut',
@@ -180,11 +186,13 @@ export function Blob() {
       });
     } else if (currentTexture !== activeTexture) {
       animate(sphereIOR, 1.5, { duration: transitionDuration });
-      animate(sphereChromaticAberration, 0.1, {
+      animate(sphereChromAberration, 0.1, {
         duration: transitionDuration,
       });
       // animate(sphereColor, initialColor, { duration: transitionDuration });
-      animate(sphereColor, activeTexture.transitionColor, { duration: transitionDuration });
+      animate(sphereColor, activeTexture.transitionColor, {
+        duration: transitionDuration,
+      });
       animate(sphereRotationSpeed, 0.04, {
         duration: transitionDuration,
         ease: 'easeInOut',
@@ -197,7 +205,7 @@ export function Blob() {
     simplexScale,
     sphereColor,
     sphereIOR,
-    sphereChromaticAberration,
+    sphereChromAberration,
     sphereRotationSpeed,
   ]);
 
@@ -213,7 +221,7 @@ export function Blob() {
     if (sphereMaterialRef.current) {
       sphereMaterialRef.current.ior = sphereIOR.get();
       sphereMaterialRef.current.chromaticAberration =
-        sphereChromaticAberration.get();
+        sphereChromAberration.get();
       sphereMaterialRef.current.color = new THREE.Color(sphereColor.get());
     }
 
