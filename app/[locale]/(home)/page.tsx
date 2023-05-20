@@ -33,23 +33,23 @@ export async function generateMetadata({
 
 // export const runtime = 'edge';
 
-// async function getData() {
-//   const res = await fetch(
-//     'https://64668cb22ea3cae8dc19b163.mockapi.io/username',
-//     { cache: 'no-store' }
-//   );
-//
-//   if (!res.ok) {
-//     // This will activate the closest `error.js` Error Boundary
-//     throw new Error('Failed to fetch data');
-//   }
-//
-//   const resData = await res.json();
-//
-//   const usernames = resData.map((data: any) => data.name);
-//
-//   return usernames;
-// }
+async function getData() {
+  const res = await fetch(
+    'https://64668cb22ea3cae8dc19b163.mockapi.io/username',
+    { cache: 'no-store' }
+  );
+
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data');
+  }
+
+  const resData = await res.json();
+
+  const usernames = resData.map((data: any) => data.name);
+
+  return usernames;
+}
 
 export default async function Home({
   params: { locale },
@@ -58,11 +58,9 @@ export default async function Home({
 }) {
   const dict = await getDictionary(locale);
 
-  // const usernames = await getData();
+  const usernames = await getData();
 
-  // const kek = await new Promise(resolve =>
-  //   setTimeout(resolve, 2000)
-  // );
+  // const kek = await new Promise(resolve => setTimeout(resolve, 2000));
 
   return (
     <PageContainer>
@@ -81,8 +79,8 @@ export default async function Home({
 
       <SectionContainer flexCol>
         <FeaturedProject
-          title={['CNG Lawyers']}
-          // title={[usernames[0]]}
+          // title={['CNG Lawyers']}
+          title={[usernames[0]]}
           fluidTexture={{ name: 'cnglawyers', transitionColor: '#5786A6' }}
           clientName='CNG Lawyers'
           workDesc='Website redesign / SEO'
@@ -91,7 +89,7 @@ export default async function Home({
         />
         <FeaturedProject
           title={['Guido Audisio', 'Dental Clinic']}
-          fluidTexture={{name: 'guidoaudisio',transitionColor:'#f7f6A6' }}
+          fluidTexture={{ name: 'guidoaudisio', transitionColor: '#f7f6A6' }}
           clientName='Guido Audisio Dental Clinic'
           workDesc='Website redesign'
           workResult='Reduced bounce rate by 30% & new visitors from +10 countries'
