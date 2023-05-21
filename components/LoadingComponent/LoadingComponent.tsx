@@ -7,7 +7,11 @@ import clsx from 'clsx';
 import * as React from 'react';
 
 export function LoadingComponent() {
-  const { isLoading } = useLoadingCtx();
+  const { isLoading, setIsLoading } = useLoadingCtx();
+
+  React.useEffect(() => {
+    setTimeout(() => setIsLoading(false), 2000);
+  }, []);
 
   return (
     <AnimatePresence>
