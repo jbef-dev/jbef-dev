@@ -1,13 +1,17 @@
 import { Heading3 } from '@/ui/Typography';
 import { Button } from '@/ui/Button/Button';
 import { FlexContainer } from '@/ui/Containers';
+import { LocalTime } from './LocalTime';
+import Image from 'next/image';
+
+import testImage from '@/public/assets/img/laguna-rosa.webp';
 
 export const Footer = () => {
-  const time = new Intl.DateTimeFormat('default', {
+  /* const time = new Intl.DateTimeFormat('default', {
     timeZone: 'Europe/Madrid',
     hour: 'numeric',
     minute: 'numeric',
-  }).format(new Date());
+  }).format(new Date()); */
 
   return (
     <footer className='relative flex w-full flex-col items-center justify-center gap-y-16 bg-black py-10'>
@@ -17,6 +21,11 @@ export const Footer = () => {
             {/* <Logo /> */}
             Get in touch
           </Heading3>
+          <Image
+            className='h-8 w-8 object-cover'
+            src={testImage}
+            alt='laguna rosa'
+          />
           <div className='flex items-center justify-around gap-4 max-lg:flex-col'>
             <a href='mailto:jorge@jbef.dev' target='_blank'>
               <Button buttonSize='lg' flavor='outlined' colorMode='light'>
@@ -42,7 +51,8 @@ export const Footer = () => {
             <div className='flex flex-col gap-y-2'>
               <span className='text-neutral-500'>Local time</span>
               {/* <span>13:00 PM GMT+1</span> */}
-              <span>{time} — UTC+2</span>
+              {/* <span>{time} — UTC+2</span> */}
+              <LocalTime />
             </div>
           </div>
 
