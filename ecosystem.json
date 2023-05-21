@@ -1,0 +1,8 @@
+{
+  "name": "jbef.dev-frontend",
+  "script": "npm start",
+  "watch": true,
+  "env": {
+    "PORT": "1100"
+  }
+}
