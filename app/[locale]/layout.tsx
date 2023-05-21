@@ -9,14 +9,14 @@ import { i18n, Locale } from '@/i18n/config';
 import { Metadata } from 'next';
 import { Footer } from '@/components/Footer/Footer';
 
-const CenterFluid = dynamic(() =>
-  import('@/components/CenterFluid').then(mod => mod.CenterFluid)
-);
+// const CenterFluid = dynamic(() =>
+//   import('@/components/CenterFluid').then(mod => mod.CenterFluid)
+// );
 // import CenterFluid from '@/components/CenterFluid/CenterFluid';
 
 import { LoadingProvider } from '@/components/LoadingComponent/LoadingCtx';
 import { CenterFluidProvider } from '@/components/CenterFluid/CenterFluidCtx';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import { LoadingComponent } from '@/components/LoadingComponent/LoadingComponent';
 
 export async function generateStaticParams() {
@@ -73,7 +73,7 @@ export default async function LocaleLayout({
         <LoadingProvider>
           <CenterFluidProvider>
             <LoadingComponent />
-            <CenterFluid />
+            {/* <CenterFluid /> */}
             {/* @ts-expect-error async Server Component */}
             <Navbar locale={params.locale} />
             {children}
