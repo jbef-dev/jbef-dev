@@ -9,9 +9,15 @@ import * as React from 'react';
 export function LoadingSections() {
   const { isLoading, progress } = useLoadingCtx();
 
+  const [open, setOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    !isLoading && setTimeout(() => setOpen(true), 1000);
+  }, [isLoading]);
+
   return (
     <AnimatePresence>
-      {isLoading ? (
+      {!open ? (
         <motion.div className='fixed inset-0 z-[60] flex' exit='exit'>
           {[...new Array(2)].map((_, i) => (
             <motion.div
