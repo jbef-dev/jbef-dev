@@ -25,9 +25,9 @@ export const LocaleSwitcher = ({
   const redirectedPathName = (locale: string) => {
     if (!pathName) return '/';
     const segments = pathName.split('/');
-    console.log(segments[1]);
+    // console.log(segments[1]);
     segments[1] = locale;
-    console.log(segments.join('/'));
+    // console.log(segments.join('/'));
     return segments.join('/');
   };
 
