@@ -70,17 +70,19 @@ export default async function LocaleLayout({
       <body
         className={clsx(fontTitle.variable, fontSans.variable, 'font-sans')}
       >
-        <LoadingProvider>
-          <CenterFluidProvider>
-            <LoadingComponent />
-            <CenterFluid />
-            {/* @ts-expect-error async Server Component */}
-            <Navbar locale={params.locale} />
-            {children}
-            <Footer />
-            <Analytics />
-          </CenterFluidProvider>
-        </LoadingProvider>
+        <React.Suspense>
+          <LoadingProvider>
+            <CenterFluidProvider>
+              {/* <LoadingComponent /> */}
+              <CenterFluid />
+              {/* @ts-expect-error async Server Component */}
+              <Navbar locale={params.locale} />
+              {children}
+              <Footer />
+              <Analytics />
+            </CenterFluidProvider>
+          </LoadingProvider>
+        </React.Suspense>
       </body>
       {/* <PageTransition /> */}
     </html>
