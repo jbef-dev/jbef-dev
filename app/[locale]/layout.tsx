@@ -12,7 +12,7 @@ import { Footer } from '@/components/Footer/Footer';
 const CenterFluid = dynamic(() =>
   import('@/components/CenterFluid').then(mod => mod.CenterFluid)
 );
-// import CenterFluid from '@/components/CenterFluid/CenterFluid';
+// import { CenterFluid } from '@/components/CenterFluid/CenterFluid';
 
 import { LoadingProvider } from '@/components/LoadingComponent/LoadingCtx';
 import { CenterFluidProvider } from '@/components/CenterFluid/CenterFluidCtx';
@@ -73,12 +73,16 @@ export default async function LocaleLayout({
         <React.Suspense>
           <LoadingProvider>
             <CenterFluidProvider>
-              {/* <LoadingComponent /> */}
-              <CenterFluid />
-              {/* @ts-expect-error async Server Component */}
-              <Navbar locale={params.locale} />
-              {children}
-              <Footer />
+              <React.Suspense
+                fallback={<LoadingComponent />}
+                // fallback={<div>LOADING</div>}
+              >
+                <CenterFluid />
+                {/* @ts-expect-error async Server Component */}
+                <Navbar locale={params.locale} />
+                {children}
+                <Footer />
+              </React.Suspense>
               <Analytics />
             </CenterFluidProvider>
           </LoadingProvider>
