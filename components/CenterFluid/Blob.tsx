@@ -266,10 +266,10 @@ export function Blob() {
       floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
       floatingRange={[-0.2, 0.2]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
     >
-      <motion.group
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ ...customTransitions.easeOutSlow, delay: 0.25 }}
+      <group
+      // initial={{ scale: 0 }}
+      // animate={{ scale: 1 }}
+      // transition={{ ...customTransitions.easeOutSlow, delay: 0.25 }}
       >
         <mesh ref={circleMeshRef}>
           <circleGeometry args={[circleRadius, 40]} />
@@ -304,7 +304,7 @@ export function Blob() {
             envMapIntensity={1}
           />
         </mesh>
-      </motion.group>
+      </group>
     </Float>
   );
 }
