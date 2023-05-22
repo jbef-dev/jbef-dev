@@ -147,11 +147,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         onTapStart={toggleHover}
         onTouchCancel={() => {
           setTimeout(() => setIsHover(false), 300);
-          console.log('touch cancel');
+          // console.log('touch cancel');
         }}
         onTouchMove={() => {
           setTimeout(() => setIsHover(false), 300);
-          console.log('touch move');
+          // console.log('touch move');
         }}
         onTouchEnd={() => setTimeout(() => setIsHover(false), 300)}
         onTap={() => setTimeout(() => setIsHover(false), 300)}

@@ -27,7 +27,7 @@ export const useInView = (
   const callbackFn = (entries: IntersectionObserverEntry[]) => {
     const [entry] = entries;
     setIsVisible(entry.isIntersecting);
-    console.log(entry.isIntersecting);
+    // console.log(entry.isIntersecting);
   };
 
   useEffect(() => {

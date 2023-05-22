@@ -3,7 +3,7 @@ const getUnlocalizedPath = (pathName: string | null): string => {
 
   const segments = pathName.split('/');
   segments[1] = '';
-  console.log(segments.join('/'));
+  // console.log(segments.join('/'));
   // return segments.join('/');
 
   const findNthOcurrence = (haystack: string, needle: string, n: number) => {
