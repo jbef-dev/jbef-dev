@@ -3,6 +3,7 @@
 import { Canvas } from '@react-three/fiber';
 import * as React from 'react';
 import {
+  AdaptiveDpr,
   Environment,
   PerformanceMonitor,
   useProgress,
@@ -13,7 +14,7 @@ import { Blob } from './Blob';
 
 const CenterFluid = () => {
   // const gpu = useDetectGPU();
-  const [dpr, setDpr] = React.useState<number>(1.85);
+  const [dpr, setDpr] = React.useState<number>(1.5);
 
   const { setIsLoading } = useLoadingCtx();
   const { progress } = useProgress();
@@ -40,6 +41,7 @@ const CenterFluid = () => {
           factor={1}
           onChange={({ factor }) => setDpr(Math.round(0.5 + 1.5 * factor))}
         />
+        <AdaptiveDpr pixelated />
         <ambientLight intensity={0.4} />
         <spotLight position={[-50, 70, 20]} intensity={0.5} />
         <spotLight position={[50, -20, 70]} intensity={0.9} />
