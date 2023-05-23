@@ -90,7 +90,7 @@ const FeaturedProject = ({
             y: titleY,
             scale: titleScale,
             WebkitTextStroke: 1,
-            WebkitTextStrokeColor: '#000000',
+            WebkitTextStrokeColor: 'rgba(255,255,255,0.5)',
           }}
         >
           <motion.span className='flex flex-col items-center whitespace-pre'>

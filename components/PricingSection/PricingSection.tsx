@@ -94,7 +94,7 @@ const PricingSection = async ({ locale }: { locale: Locale }) => {
                 ))}
               </ul>
               <div className='flex flex-col items-center gap-y-2'>
-                <h4 className='text-responsive-lg font-medium'>
+                <h4 className='text-responsive-xl font-medium'>
                   {price.amount}
                   {price.frequency ? (
                     <span className='text-xl'>{price.frequency}</span>

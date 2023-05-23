@@ -13,10 +13,8 @@ import {
   useTransform,
   useVelocity,
 } from 'framer-motion';
-import { motion } from 'framer-motion-3d';
 import { CenterFluidTexture, useCenterFluidCtx } from './CenterFluidCtx';
 
-import { customTransitions } from '@/ui/animation';
 import { makeNoise4D } from './simplex';
 
 export function Blob() {
@@ -92,7 +90,7 @@ export function Blob() {
   const sphereMeshRef = React.useRef<THREE.Mesh>(null);
 
   const sphereWSegments = 48;
-  const sphereHSegments = 48;
+  const sphereHSegments = 32;
 
   const sphereRadius = Math.min(Math.max(viewportSmallestSide / 2.7, 1.6), 2.1);
   // const sphereSize = circleSize;

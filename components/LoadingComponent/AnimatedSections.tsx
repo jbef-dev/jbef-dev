@@ -12,7 +12,7 @@ export function LoadingSections() {
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
-    !isLoading && setTimeout(() => setOpen(true), 1000);
+    !isLoading && setTimeout(() => setOpen(true), 450);
   }, [isLoading]);
 
   return (
