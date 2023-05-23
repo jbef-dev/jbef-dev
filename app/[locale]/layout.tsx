@@ -72,7 +72,7 @@ export default async function LocaleLayout({
       >
         <LoadingProvider>
           <CenterFluidProvider>
-            {/* <LoadingComponent /> */}
+            <LoadingComponent />
             <CenterFluid />
             {/* @ts-expect-error async Server Component */}
             <Navbar locale={params.locale} />

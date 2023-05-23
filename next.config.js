@@ -10,7 +10,8 @@ const nextConfig = {
     return [
       {
         // Cache all content pages
-        source: '/((?!_next|assets|favicon.ico).*)',
+        // source: '/((?!_next|assets|favicon.ico).*)',
+        source: '/(.*)',
         headers: [
           {
             key: 'Cache-Control',
