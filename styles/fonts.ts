@@ -17,8 +17,8 @@ export const fontTitle = localFont({
   src: '../public/fonts/MESHED-VF.ttf',
   // src: '../public/fonts/Boska-Variable.ttf',
   variable: '--font-title',
-  display: 'block',
-  // display: 'swap',
+  // display: 'block',
+  display: 'swap',
 });
 
 // export const fontTitle = Poppins({
