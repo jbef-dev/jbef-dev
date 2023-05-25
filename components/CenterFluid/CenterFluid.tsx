@@ -43,13 +43,11 @@ const CenterFluid = () => {
         />
         <AdaptiveDpr pixelated />
         <ambientLight intensity={0.4} />
-        <spotLight position={[-50, 70, 20]} intensity={0.5} />
-        <spotLight position={[50, -20, 70]} intensity={0.9} />
+        {/* <spotLight position={[-50, 70, 20]} intensity={0.5} /> */}
+        {/* <spotLight position={[0, 0, 20]} intensity={0.45} /> */}
         <Environment
           resolution={256}
-          // files='/assets/img/threejs/photo_studio_01_1k_compressed.hdr'
-          // files='/assets/img/threejs/potsdamer_platz_1k.hdr'
-          files='/assets/img/threejs/potsdamer_platz_1k_compressed.hdr'
+          files='/assets/img/threejs/autoshop_01_1k_small.hdr'
         />
         <Blob />
       </Canvas>

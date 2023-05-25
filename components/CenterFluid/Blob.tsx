@@ -33,8 +33,8 @@ export function Blob() {
   });
 
   const scrollVelocity = useVelocity(scrollYSmooth);
-  const scaleThreshold = viewportAspectRatio > 1 ? 2800 : 2500;
-  const scrollThreshold = viewportAspectRatio > 1 ? 1500 : 1100;
+  const scaleThreshold = viewportAspectRatio > 1 ? 3100 : 2500;
+  const scrollThreshold = viewportAspectRatio > 1 ? 1300 : 1100;
 
   const y = useTransform(
     scrollVelocity,
@@ -83,17 +83,23 @@ export function Blob() {
   // *************************************************************
   const circleMeshRef = React.useRef<THREE.Mesh>(null);
   const circleMaterialRef = React.useRef<THREE.MeshPhysicalMaterial>(null);
-  const circleRadius = Math.min(Math.max(viewportSmallestSide / 2.8, 1.5), 2.0);
+  const circleRadius = Math.min(
+    Math.max(viewportSmallestSide / 2.6, 1.45),
+    2.1
+  );
 
   // SPHERE IS DEFINED FROM HERE ONWARDS
   // *************************************************************
   const sphereMeshRef = React.useRef<THREE.Mesh>(null);
 
   const sphereWSegments = 48;
-  const sphereHSegments = 32;
+  const sphereHSegments = 48;
 
-  const sphereRadius = Math.min(Math.max(viewportSmallestSide / 2.7, 1.6), 2.1);
-  // const sphereSize = circleSize;
+  const sphereRadius = Math.min(
+    Math.max(viewportSmallestSide / 2.4, 1.55),
+    2.2
+  );
+  // const sphereRadius = circleRadius * 1.02;
 
   const sphereMaterialRef =
     React.useRef<JSX.IntrinsicElements['meshTransmissionMaterial']>(null);
@@ -101,7 +107,7 @@ export function Blob() {
   const initialIOR = 1.07;
   const initialChromaticAberration = 0.008;
   const initialSphereColor = '#ffffff';
-  const initialRotationSpeed = 0;
+  const initialRotationSpeed = 0.002;
 
   const sphereIOR = useMotionValue(initialIOR);
   const sphereChromAberration = useMotionValue(initialChromaticAberration);
@@ -136,7 +142,8 @@ export function Blob() {
     });
 
   const imgTexture = useLoader(THREE.TextureLoader, [
-    '/assets/img/threejs/prueba_perfil_bw.png',
+    // '/assets/img/threejs/prueba_perfil_bw.png',
+    '/assets/img/threejs/prueba_perfil_bw_izq.jpg',
     '/assets/img/threejs/sea.webp',
     '/assets/img/threejs/sea-torrevieja.webp',
   ]);
@@ -188,14 +195,14 @@ export function Blob() {
         duration: transitionDuration,
       });
       // animate(sphereColor, initialColor, { duration: transitionDuration });
-      animate(sphereColor, activeTexture.transitionColor, {
+      animate(sphereColor, '#000000', {
         duration: transitionDuration,
       });
       animate(sphereRotationSpeed, 0.04, {
         duration: transitionDuration,
         ease: 'easeInOut',
       });
-      animate(simplexScale, 0.25, { duration: transitionDuration });
+      animate(simplexScale, 0.27, { duration: transitionDuration });
     }
   }, [
     activeTexture,
@@ -228,6 +235,7 @@ export function Blob() {
       sphereMeshRef.current.scale.y = sphereScaleY.get();
       sphereMeshRef.current.position.y = y.get();
       sphereMeshRef.current.rotation.x += sphereRotationSpeed.get();
+      // sphereMeshRef.current.rotation.y -= 0.004;
 
       const geometry = sphereMeshRef.current.geometry;
       const pos = geometry.getAttribute('position') as THREE.BufferAttribute;
@@ -237,20 +245,14 @@ export function Blob() {
         const iy = original_pos.getY(i);
         const iz = original_pos.getZ(i);
 
-        const simplexSpeed = 0.5;
-        const p = new THREE.Vector3(ix, iy, iz);
+        const simplexSpeed = 0.4;
+        const originalPos = new THREE.Vector3(ix, iy, iz);
         const setNoise = noise(ix, iy, iz, time * simplexSpeed);
         const v3 = new THREE.Vector3()
-          .copy(p)
-          .addScaledVector(p, setNoise * simplexScale.get());
-
-        // const waveX1 = 0.2 * Math.sin(ix + time * 2.3);
-        // const waveZ2 = 0.1 * Math.cos(ix + time * 4);
-        // // const waveY1 = 0.15 * Math.cos(iy * 2 + time * 2) + 0.1;
-        // // const waveZ1 = 0.2 * Math.sin(iz + time * 2) + 0.1;
+          .copy(originalPos)
+          .addScaledVector(originalPos, setNoise * simplexScale.get());
 
         pos.setXYZ(i, v3.x, v3.y, v3.z);
-        // pos.setZ(i, iz + waveX1 + waveZ2);
       }
       geometry.computeVertexNormals(); // THIS IS HEAVY ON PERFORMANCE
       pos.needsUpdate = true;
@@ -270,7 +272,7 @@ export function Blob() {
       // transition={{ ...customTransitions.easeOutSlow, delay: 0.25 }}
       >
         <mesh ref={circleMeshRef}>
-          <circleGeometry args={[circleRadius, 40]} />
+          <circleGeometry args={[circleRadius, 64]} />
           <meshPhysicalMaterial
             precision={'highp'}
             ref={circleMaterialRef}
@@ -286,11 +288,12 @@ export function Blob() {
             ref={sphereMaterialRef}
             toneMapped={false}
             transmission={1}
-            thickness={sphereRadius * 3.5}
+            thickness={sphereRadius * 2}
+            // thickness={sphereRadius * (viewportSmallestSide * 0.12)}
+            // thickness={0.4}
             samples={3} // WARNING Performance tuning
-            // precision='lowp' // WARNING Performance tuning
+            precision='lowp' // WARNING Performance tuning
             // depthWrite={false} // WARNING Performance tuning
-            // chromaticAberration={0.008}
             specularColor='#ffffff'
             temporalDistortion={0}
             distortion={0}
@@ -298,8 +301,8 @@ export function Blob() {
             anisotropy={0}
             clearcoat={1}
             clearcoatRoughness={0}
-            reflectivity={0.28}
-            envMapIntensity={1}
+            reflectivity={0.25}
+            envMapIntensity={0.3}
           />
         </mesh>
       </group>
