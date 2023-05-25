@@ -24,6 +24,7 @@ a {
 /*     color: black; */ /*     background: white; */ /*   } */ /* } */
 @layer base {
   body {
-    @apply bg-white text-black;
+    /* @apply bg-white text-black; */
+    @apply bg-black text-white;
   }
 }
