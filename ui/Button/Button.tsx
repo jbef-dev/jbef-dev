@@ -136,7 +136,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <motion.button
         ref={forwardedRef}
         className={clsx(
-          'relative cursor-pointer touch-none select-none overflow-hidden rounded-[20%]',
+          'relative cursor-pointer touch-none select-none overflow-hidden rounded-full',
           flavors[flavor],
           size[buttonSize],
           mode[colorMode],
