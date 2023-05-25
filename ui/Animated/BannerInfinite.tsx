@@ -10,6 +10,13 @@ interface BannerProps extends React.ComponentPropsWithoutRef<'div'> {
   direction?: 'ltr' | 'rtl';
 }
 
+/**
+ * Creates an infinite scroll banner
+ *
+ * @param repeat - times to repeat content to fit full width (default: 3)
+ * @param direction - ltr or rtl (default: ltr)
+ * @param duration - duration in seconds of full loop (default: 18)
+ * */
 const BannerInfinite = React.forwardRef<HTMLDivElement, BannerProps>(
   (
     {
