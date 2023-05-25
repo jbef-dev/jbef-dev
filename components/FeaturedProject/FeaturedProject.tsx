@@ -60,7 +60,7 @@ const FeaturedProject = ({
         className='relative grid min-h-[65svh] w-full lg:min-h-[80svh]'
       >
         <motion.div
-          className='-z-10 flex items-center justify-center text-black [grid-area:1/1]'
+          className='z-10 flex items-center justify-center mix-blend-difference text-white [grid-area:1/1]'
           style={{ y: titleY, scale: titleScale }}
         >
           <motion.span className='flex flex-col items-center whitespace-pre'>
@@ -71,36 +71,23 @@ const FeaturedProject = ({
             ))}
           </motion.span>
         </motion.div>
-
-        <motion.div
-          className='z-10 flex items-center justify-center text-white mix-blend-soft-light [grid-area:1/1]'
-          style={{ y: titleY, scale: titleScale }}
-        >
-          <motion.span className='flex flex-col items-center whitespace-pre'>
-            {title.map(t => (
-              <Heading as='span' className='text-responsive-5xl' key={t}>
-                {t}
-              </Heading>
-            ))}
-          </motion.span>
-        </motion.div>
-        <motion.div
-          className='z-10 flex items-center justify-center text-transparent opacity-60 [grid-area:1/1]'
-          style={{
-            y: titleY,
-            scale: titleScale,
-            WebkitTextStroke: 1,
-            WebkitTextStrokeColor: 'rgba(255,255,255,0.5)',
-          }}
-        >
-          <motion.span className='flex flex-col items-center whitespace-pre'>
-            {title.map(t => (
-              <Heading as='span' className='text-responsive-5xl' key={t}>
-                {t}
-              </Heading>
-            ))}
-          </motion.span>
-        </motion.div>
+        {/* <motion.div */}
+        {/*   className='z-10 flex items-center justify-center text-transparent [grid-area:1/1]' */}
+        {/*   style={{ */}
+        {/*     y: titleY, */}
+        {/*     scale: titleScale, */}
+        {/*     WebkitTextStroke: 1, */}
+        {/*     WebkitTextStrokeColor: 'rgba(0,0,0,0.9)', */}
+        {/*   }} */}
+        {/* > */}
+        {/*   <motion.span className='flex flex-col items-center whitespace-pre'> */}
+        {/*     {title.map(t => ( */}
+        {/*       <Heading as='span' className='text-responsive-5xl' key={t}> */}
+        {/*         {t} */}
+        {/*       </Heading> */}
+        {/*     ))} */}
+        {/*   </motion.span> */}
+        {/* </motion.div> */}
       </div>
 
       <div className='flex w-full flex-wrap justify-between gap-x-10 px-4 py-4 text-responsive-sm font-light uppercase lg:px-8'>

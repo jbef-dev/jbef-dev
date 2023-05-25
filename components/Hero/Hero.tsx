@@ -60,7 +60,7 @@ const Hero = ({ titles }: { titles: string[] }) => {
           transition={customTransitions.default}
           className='w-full overflow-hidden'
         >
-          <BannerInfinite className='whitespace-nowrap' direction='ltr'>
+          <BannerInfinite duration={20} className='whitespace-nowrap' direction='ltr'>
             <Heading as='h1' className='text-responsive-6xl font-medium'>
               {titles[0]}&nbsp;
             </Heading>
@@ -68,12 +68,12 @@ const Hero = ({ titles }: { titles: string[] }) => {
         </motion.div>
       </motion.div>
 
-      <motion.div className='w-full overflow-hidden' style={{ y: yTitles }}>
+      <motion.div className='w-full overflow-hidden mix-blend-difference' style={{ y: yTitles }}>
         <motion.div
           variants={customVariants.appearFromBottom}
           transition={customTransitions.default}
         >
-          <BannerInfinite className='whitespace-nowrap' direction='rtl'>
+          <BannerInfinite duration={20} className='whitespace-nowrap' direction='rtl'>
             <Heading as='h1' className='text-responsive-6xl font-extralight'>
               &nbsp;{titles[1]}
             </Heading>
