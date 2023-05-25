@@ -28,27 +28,27 @@ const MottoParagraph = () => {
   // const textY = useTransform(springProgress, [0, 1], ['-10svh', '50svh']);
   const textY = useTransform(springProgress, [0, 1], ['-5svh', '5svh']);
 
-  const logoOpacity = useTransform(
-    springProgress,
-    [0.1, 0.4, 0.8, 1],
-    [0, 0.8, 0.8, 0]
-  );
-  // const logoScale = useTransform(springProgress, [0, 0.5, 1], [0.85, 1, 0.75]);
+  // const logoOpacity = useTransform(
+  //   springProgress,
+  //   [0.1, 0.4, 0.8, 1],
+  //   [0, 0.8, 0.8, 0]
+  // );
+  // // const logoScale = useTransform(springProgress, [0, 0.5, 1], [0.85, 1, 0.75]);
 
-  const y1 = useTransform(springProgress, [0, 1], ['45svh', '15svh']);
-  const rotateX1 = useTransform(springProgress, [0, 1], ['-20deg', '20deg']);
-  const rotateY1 = useTransform(springProgress, [0, 1], ['220deg', '-210deg']);
-  const rotateZ1 = useTransform(springProgress, [0, 1], ['-10deg', '15deg']);
-
-  const y2 = useTransform(springProgress, [0, 1], ['-20svh', '-25svh']);
-  const rotateX2 = useTransform(springProgress, [0, 1], ['-10deg', '30deg']);
-  const rotateY2 = useTransform(springProgress, [0, 1], ['-120deg', '120deg']);
-  const rotateZ2 = useTransform(springProgress, [0, 1], ['0deg', '15deg']);
-
-  const y3 = useTransform(springProgress, [0, 1], ['30svh', '15svh']);
-  const rotateX3 = useTransform(springProgress, [0, 1], ['0deg', '10deg']);
-  const rotateY3 = useTransform(springProgress, [0, 1], ['-180deg', '170deg']);
-  const rotateZ3 = useTransform(springProgress, [0, 1], ['-20deg', '5deg']);
+  // const y1 = useTransform(springProgress, [0, 1], ['45svh', '15svh']);
+  // const rotateX1 = useTransform(springProgress, [0, 1], ['-20deg', '20deg']);
+  // const rotateY1 = useTransform(springProgress, [0, 1], ['220deg', '-210deg']);
+  // const rotateZ1 = useTransform(springProgress, [0, 1], ['-10deg', '15deg']);
+  //
+  // const y2 = useTransform(springProgress, [0, 1], ['-20svh', '-25svh']);
+  // const rotateX2 = useTransform(springProgress, [0, 1], ['-10deg', '30deg']);
+  // const rotateY2 = useTransform(springProgress, [0, 1], ['-120deg', '120deg']);
+  // const rotateZ2 = useTransform(springProgress, [0, 1], ['0deg', '15deg']);
+  //
+  // const y3 = useTransform(springProgress, [0, 1], ['30svh', '15svh']);
+  // const rotateX3 = useTransform(springProgress, [0, 1], ['0deg', '10deg']);
+  // const rotateY3 = useTransform(springProgress, [0, 1], ['-180deg', '170deg']);
+  // const rotateZ3 = useTransform(springProgress, [0, 1], ['-20deg', '5deg']);
 
   return (
     <MotionComponent
@@ -123,17 +123,17 @@ const MottoParagraph = () => {
         </h3>
 
         <AppearOnScroll asChild variants={{}}>
-          <div className='relative w-full max-w-screen-sm overflow-hidden'>
+          <div className='relative w-full max-w-screen-md overflow-hidden'>
             <AppearOnScrollChild asChild>
-              <BannerInfinite duration={12} repeat={3}>
-                <div className='ml-10 flex gap-x-10 opacity-75 md:ml-20 md:gap-x-20'>
-                  <AmazonLogo className='h-12 lg:h-16' />
-                  <CNGLawyers className='h-12 lg:h-16' />
-                  <GuidoAudisioLogo className='h-12 lg:h-16' />
+              <BannerInfinite duration={18} repeat={3}>
+                <div className='ml-14 flex gap-x-14 opacity-75 md:ml-24 md:gap-x-24'>
+                  <AmazonLogo className='h-12 fill-white lg:h-16' />
+                  <CNGLawyers className='h-12 fill-white lg:h-16' />
+                  <GuidoAudisioLogo className='h-12 fill-white lg:h-16' />
                 </div>
               </BannerInfinite>
             </AppearOnScrollChild>
-            <div className='absolute inset-0 border-l border-r border-neutral-300'></div>
+            <div className='absolute inset-0 border-l border-r border-neutral-600'></div>
           </div>
         </AppearOnScroll>
       </div>
