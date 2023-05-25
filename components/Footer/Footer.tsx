@@ -2,9 +2,8 @@ import { Heading3 } from '@/ui/Typography';
 import { Button } from '@/ui/Button/Button';
 import { FlexContainer } from '@/ui/Containers';
 import { LocalTime } from './LocalTime';
-import Image from 'next/image';
 
-import testImage from '@/public/assets/img/laguna-rosa.webp';
+// import testImage from '@/public/assets/img/laguna-rosa.webp';
 
 export const Footer = () => {
   /* const time = new Intl.DateTimeFormat('default', {
@@ -21,11 +20,6 @@ export const Footer = () => {
             {/* <Logo /> */}
             Get in touch
           </Heading3>
-          <Image
-            className='h-8 w-8 object-cover'
-            src={testImage}
-            alt='laguna rosa'
-          />
           <div className='flex items-center justify-around gap-4 max-lg:flex-col'>
             <a href='mailto:jorge@jbef.dev' target='_blank'>
               <Button buttonSize='lg' flavor='outlined' colorMode='light'>
