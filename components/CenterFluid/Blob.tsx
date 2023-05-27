@@ -144,8 +144,10 @@ export function Blob() {
   const imgTexture = useLoader(THREE.TextureLoader, [
     // '/assets/img/threejs/prueba_perfil_bw.png',
     '/assets/img/threejs/prueba_perfil_bw_izq.jpg',
-    '/assets/img/threejs/sea.webp',
-    '/assets/img/threejs/sea-torrevieja.webp',
+    // '/assets/img/threejs/sea.webp',
+    '/assets/img/threejs/sea.jpg',
+    // '/assets/img/threejs/sea-torrevieja.webp',
+    '/assets/img/threejs/sea-torrevieja.jpg',
   ]);
 
   // const videoTexture = useVideoTexture('/assets/vid/test_vid.mp4');
