@@ -1,26 +1,40 @@
 'use client';
 
-import { HTMLMotionProps, motion } from 'framer-motion';
-import { Slot } from '@/ui/Slot';
 import * as React from 'react';
+import { HTMLMotionProps, motion } from 'framer-motion';
+import { customTransitions, customVariants } from '../animation';
 
-interface MotionComponentProps extends HTMLMotionProps<'div'> {
-  asChild?: boolean;
-}
-
-const MotionComponent = React.forwardRef<HTMLDivElement, MotionComponentProps>(
-  ({ asChild = false, children, ...props }, forwardedRef) => {
-    const Comp = asChild ? Slot : 'div';
-
-    const MotionComp = motion(Comp);
-
+const MotionComponent = React.forwardRef<
+  HTMLDivElement,
+  HTMLMotionProps<'div'>
+>(
+  (
+    {
+      children,
+      initial = 'initial',
+      animate = 'animate',
+      exit = 'exit',
+      variants = customVariants.appearFromBottom,
+      transition = customTransitions.default,
+      ...props
+    },
+    forwardedRef
+  ) => {
     return (
-      <MotionComp ref={forwardedRef} {...props}>
+      <motion.div
+        ref={forwardedRef}
+        initial={initial}
+        animate={animate}
+        exit={exit}
+        variants={variants}
+        transition={transition}
+        {...props}
+      >
         {children}
-      </MotionComp>
+      </motion.div>
     );
   }
 );
 MotionComponent.displayName = 'MotionComponent';
 
-export default MotionComponent;
+export { MotionComponent };

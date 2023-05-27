@@ -23,7 +23,8 @@ const Heading = React.forwardRef(
     return (
       <Comp
         ref={forwardedRef}
-        className={clsx('block pb-[0.12em] font-title leading-none', className)}
+        // className={clsx('block pb-[0.12em] font-title leading-none', className)}
+        className={clsx('block font-title leading-[1.15]', className)}
         {...(props as any)}
       >
         {children}

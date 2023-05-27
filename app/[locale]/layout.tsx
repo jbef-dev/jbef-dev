@@ -17,7 +17,6 @@ const CenterFluid = dynamic(() =>
 import { LoadingProvider } from '@/components/LoadingComponent/LoadingCtx';
 import { CenterFluidProvider } from '@/components/CenterFluid/CenterFluidCtx';
 import dynamic from 'next/dynamic';
-import { LoadingComponent } from '@/components/LoadingComponent/LoadingComponent';
 
 export async function generateStaticParams() {
   return i18n.locales.map(locale => ({ locale: locale }));
@@ -72,7 +71,7 @@ export default async function LocaleLayout({
       >
         <LoadingProvider>
           <CenterFluidProvider>
-            <LoadingComponent />
+            {/* <LoadingComponent /> */}
             <CenterFluid />
             {/* @ts-expect-error async Server Component */}
             <Navbar locale={params.locale} />

@@ -5,7 +5,7 @@ import { HTMLMotionProps, motion } from 'framer-motion';
 import { customTransitions, customVariants } from '@/ui/animation';
 
 import { Slot } from '@/ui/Slot';
-import MotionComponent from './MotionComponent';
+import { MotionComponent } from './MotionComponent';
 
 const AppearOnScroll = React.forwardRef<
   HTMLDivElement,
@@ -71,7 +71,7 @@ const AppearOnScrollChild = React.forwardRef<
     return (
       <MotionComponent
         ref={forwardedRef}
-        asChild={asChild}
+        // asChild={asChild}
         variants={variants}
         transition={transition}
         {...props}
