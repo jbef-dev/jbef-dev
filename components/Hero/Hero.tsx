@@ -20,8 +20,6 @@ import {
 import { Heading } from '@/ui/Typography';
 import Balancer from 'react-wrap-balancer';
 import { useCenterFluidCtx } from '../CenterFluid/CenterFluidCtx';
-import { Text } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
 
 const Hero = ({ titles }: { titles: string[] }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -60,7 +58,11 @@ const Hero = ({ titles }: { titles: string[] }) => {
           transition={customTransitions.default}
           className='w-full overflow-hidden'
         >
-          <BannerInfinite duration={20} className='whitespace-nowrap' direction='ltr'>
+          <BannerInfinite
+            duration={20}
+            className='whitespace-nowrap'
+            direction='ltr'
+          >
             <Heading as='h1' className='text-responsive-6xl font-medium'>
               {titles[0]}&nbsp;
             </Heading>
@@ -68,12 +70,19 @@ const Hero = ({ titles }: { titles: string[] }) => {
         </motion.div>
       </motion.div>
 
-      <motion.div className='w-full overflow-hidden mix-blend-difference' style={{ y: yTitles }}>
+      <motion.div
+        className='w-full overflow-hidden mix-blend-difference'
+        style={{ y: yTitles }}
+      >
         <motion.div
           variants={customVariants.appearFromBottom}
           transition={customTransitions.default}
         >
-          <BannerInfinite duration={20} className='whitespace-nowrap' direction='rtl'>
+          <BannerInfinite
+            duration={20}
+            className='whitespace-nowrap'
+            direction='rtl'
+          >
             <Heading as='h1' className='text-responsive-6xl font-extralight'>
               &nbsp;{titles[1]}
             </Heading>
@@ -82,13 +91,16 @@ const Hero = ({ titles }: { titles: string[] }) => {
       </motion.div>
 
       <motion.div
-        className='absolute bottom-0 mx-auto mb-6 flex items-center px-4 font-light uppercase lg:mb-8'
+        className='absolute bottom-0 mx-auto mb-6 flex items-center px-4 font-light lg:mb-8'
         style={{
           y: yH2,
           scale: scaleH2,
         }}
       >
-        <Heading as='h2' className='text-responsive-lg md:text-responsive-lg'>
+        <Heading
+          as='h2'
+          className='!font-sans text-responsive-lg md:text-responsive-lg'
+        >
           <Balancer>
             <StaggerText
               className='justify-center'
@@ -98,7 +110,8 @@ const Hero = ({ titles }: { titles: string[] }) => {
                 staggerDirection: 1,
               }}
             >
-              Elevated web design for businesses worldwide.
+              Bringing high-end web design and development to businesses
+              worldwide.
             </StaggerText>
           </Balancer>
         </Heading>
