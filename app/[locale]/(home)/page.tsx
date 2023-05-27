@@ -31,7 +31,7 @@ export async function generateMetadata({
   };
 }
 
-export const runtime = 'experimental-edge';
+export const runtime = 'edge';
 
 async function getData() {
   const res = await fetch(

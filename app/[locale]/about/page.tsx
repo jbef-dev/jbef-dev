@@ -9,7 +9,7 @@ import { Metadata } from 'next';
 import { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
 
-export const runtime = 'experimental-edge';
+export const runtime = 'edge';
 
 export default async function About({
   params: { locale },

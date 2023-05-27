@@ -16,8 +16,13 @@ import { Footer } from '@/components/Footer/Footer';
 
 import { LoadingProvider } from '@/components/LoadingComponent/LoadingCtx';
 import { CenterFluidProvider } from '@/components/CenterFluid/CenterFluidCtx';
+<<<<<<< Updated upstream
 // import dynamic from 'next/dynamic';
 import { LoadingComponent } from '@/components/LoadingComponent/LoadingComponent';
+=======
+import dynamic from 'next/dynamic';
+// import { LoadingComponent } from '@/components/LoadingComponent/LoadingComponent';
+>>>>>>> Stashed changes
 
 export async function generateStaticParams() {
   return i18n.locales.map(locale => ({ locale: locale }));
@@ -72,8 +77,13 @@ export default async function LocaleLayout({
       >
         <LoadingProvider>
           <CenterFluidProvider>
+<<<<<<< Updated upstream
             <LoadingComponent />
             {/* <CenterFluid /> */}
+=======
+            {/* <LoadingComponent /> */}
+            <CenterFluid />
+>>>>>>> Stashed changes
             {/* @ts-expect-error async Server Component */}
             <Navbar locale={params.locale} />
             {children}

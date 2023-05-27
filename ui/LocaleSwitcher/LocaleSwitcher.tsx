@@ -80,7 +80,7 @@ export const LocaleSwitcher = ({
             transition={customTransitions.appearMenu}
           >
             <div></div>
-            <div className='flex flex-col items-end justify-center gap-3 px-0.5'>
+            <div className='flex flex-col items-end justify-center gap-3 pl-0.5 text-end'>
               {otherLocales.map(locale => (
                 <Link key={locale} href={redirectedPathName(locale)}>
                   {locale.toUpperCase()}

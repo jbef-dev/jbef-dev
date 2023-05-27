@@ -15,7 +15,7 @@ const CalendarWidget = dynamic(
   () => import('@/components/CalendarWidget/CalendarWidget')
 );
 
-export const runtime = 'experimental-edge';
+export const runtime = 'edge';
 
 export default async function Contact({
   params: { locale },
