@@ -15,7 +15,8 @@ import { Blob } from './Blob';
 
 const CenterFluid = () => {
   // const gpu = useDetectGPU();
-  const [dpr, setDpr] = React.useState<number>(1.5);
+  // const [dpr, setDpr] = React.useState<number>(1.5);
+  const [dpr, setDpr] = React.useState<number>(1.0);
 
   const { setIsLoading } = useLoadingCtx();
   const { progress } = useProgress();
