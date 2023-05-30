@@ -2,7 +2,7 @@
 
 import useOutsideClick from '@/hooks/useOutsideClick';
 // import { Locale } from '@/i18n/config';
-import { I18nLocales } from '@/i18n/config';
+import { I18nLocales } from '@/util/i18n/config';
 import { motion, Variants } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
 import { useLocaleSwitcher } from './useLocaleSwitcher';

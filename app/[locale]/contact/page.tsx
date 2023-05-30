@@ -6,8 +6,7 @@ import {
   SectionContainer,
 } from '@/ui/Containers';
 import { Metadata } from 'next';
-import { I18nLocales } from '@/i18n/config';
-import { getDictionary } from '@/i18n/getDictionary';
+import { I18nLocales } from '@/util/i18n/config';
 import { Heading } from '@/ui/Typography';
 // import { Button } from '@/ui/Button/Button';
 

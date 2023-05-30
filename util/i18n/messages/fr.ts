@@ -1,4 +1,4 @@
-import { I18nMessages } from '@/i18n/config';
+import { I18nMessages } from '@/util/i18n/config';
 
 const frMessages: I18nMessages = {
   pages: {

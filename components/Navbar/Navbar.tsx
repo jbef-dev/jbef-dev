@@ -9,7 +9,7 @@ import {
 import { Logo } from '@/components/Logo/Logo';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { I18nLocales } from '@/i18n/config';
+import { I18nLocales } from '@/util/i18n/config';
 
 const Navbar = () => {
   const locale = useLocale() as I18nLocales;

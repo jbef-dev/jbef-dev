@@ -18,7 +18,7 @@ import FeaturedProject from '@/components/FeaturedProject/FeaturedProject';
 import { Hero } from '@/components/Hero/Hero';
 import MottoParagraph from '@/components/MottoParagraph/MottoParagraph';
 import PricingSection from '@/components/PricingSection/PricingSection';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 // export async function generateMetadata({
 //   params: { locale },

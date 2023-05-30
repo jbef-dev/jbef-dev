@@ -6,7 +6,7 @@ import { fontSans, fontTitle } from '@/styles/fonts';
 import '@/styles/globals.css';
 import { Analytics } from '@vercel/analytics/react';
 // import { i18n, Locale } from '@/i18n/config';
-import { I18nLocales } from '@/i18n/config';
+import { I18nLocales } from '@/util/i18n/config';
 import { Metadata } from 'next';
 import { Footer } from '@/components/Footer/Footer';
 
@@ -25,28 +25,28 @@ import { notFound } from 'next/navigation';
 //   return i18n.locales.map(locale => ({ locale: locale }));
 // }
 
-// export async function generateMetadata(): Promise<Metadata> {
-//   return {
-//     icons: {
-//       icon: [
-//         {
-//           sizes: '32x32',
-//           type: 'image/png',
-//           url: '/favicons/favicon-32x32.png',
-//         },
-//         {
-//           sizes: '16x16',
-//           type: 'image/png',
-//           url: '/favicons/favicon-16x16.png',
-//         },
-//       ],
-//       apple: { sizes: '180x180', url: '/favicons/apple-touch-icon.png' },
-//       shortcut: '/favicons/favicon.ico',
-//     },
-//     manifest: '/favicons/site.webmanifest',
-//     themeColor: '#ffffff',
-//   };
-// }
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    icons: {
+      icon: [
+        {
+          sizes: '32x32',
+          type: 'image/png',
+          url: '/favicons/favicon-32x32.png',
+        },
+        {
+          sizes: '16x16',
+          type: 'image/png',
+          url: '/favicons/favicon-16x16.png',
+        },
+      ],
+      apple: { sizes: '180x180', url: '/favicons/apple-touch-icon.png' },
+      shortcut: '/favicons/favicon.ico',
+    },
+    manifest: '/favicons/site.webmanifest',
+    themeColor: '#ffffff',
+  };
+}
 
 export default function LocaleLayout({
   children,
