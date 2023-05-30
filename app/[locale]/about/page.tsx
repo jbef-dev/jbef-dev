@@ -5,17 +5,10 @@ import {
   SectionContainer,
 } from '@/ui/Containers';
 import { Heading } from '@/ui/Typography';
-import { Metadata } from 'next';
-import { Locale } from '@/i18n/config';
-import { getDictionary } from '@/i18n/getDictionary';
 
 // export const runtime = 'edge';
 
-export default async function About({
-  params: { locale },
-}: {
-  params: { locale: Locale };
-}) {
+export default function About() {
   return (
     <PageContainer mt={false} mb={false}>
       <SectionContainer flex pb={false} center>
@@ -51,14 +44,15 @@ export default async function About({
     </PageContainer>
   );
 }
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: Locale };
-}): Promise<Metadata> {
-  const dict = await getDictionary(locale);
-  return {
-    title: dict['pages'].contact.SEO.title,
-    description: dict['pages'].contact.SEO.description,
-  };
-}
+
+// export async function generateMetadata({
+//   params: { locale },
+// }: {
+//   params: { locale: Locale };
+// }): Promise<Metadata> {
+//   const dict = await getDictionary(locale);
+//   return {
+//     title: dict['pages'].contact.SEO.title,
+//     description: dict['pages'].contact.SEO.description,
+//   };
+// }

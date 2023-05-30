@@ -1,5 +1,5 @@
 // import dynamic from 'next/dynamic';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 
 // const EvolveSection = dynamic(() =>
 //   import('@/components/EvolveSection/EvolveSection').then(
@@ -10,26 +10,27 @@ import { Metadata } from 'next';
 //   () => import('@/components/FeatureSection/FeatureSection')
 // );
 
-import { Locale } from '@/i18n/config';
-import { getDictionary } from '@/i18n/getDictionary';
+// import { I18nLocales } from '@/i18n/config';
+// import { getDictionary } from '@/i18n/getDictionary';
 import { PageContainer, SectionContainer } from '@/ui/Containers';
 
 import FeaturedProject from '@/components/FeaturedProject/FeaturedProject';
 import { Hero } from '@/components/Hero/Hero';
 import MottoParagraph from '@/components/MottoParagraph/MottoParagraph';
 import PricingSection from '@/components/PricingSection/PricingSection';
+import { useLocale, useTranslations } from 'next-intl';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: Locale };
-}): Promise<Metadata> {
-  const dict = await getDictionary(locale);
-  return {
-    title: dict['pages'].home.SEO.title,
-    description: dict['pages'].home.SEO.description,
-  };
-}
+// export async function generateMetadata({
+//   params: { locale },
+// }: {
+//   params: { locale: I18nLocales };
+// }): Promise<Metadata> {
+//   const dict = await getDictionary(locale);
+//   return {
+//     title: dict['pages'].home.SEO.title,
+//     description: dict['pages'].home.SEO.description,
+//   };
+// }
 
 // export const runtime = 'edge';
 
@@ -47,12 +48,8 @@ export async function generateMetadata({
   return usernames;
 } */
 
-export default async function Home({
-  params: { locale },
-}: {
-  params: { locale: Locale };
-}) {
-  const dict = await getDictionary(locale);
+export default function Home() {
+  const t = useTranslations('pages.home');
 
   // const usernames = await getData();
 
@@ -63,8 +60,10 @@ export default async function Home({
       <SectionContainer pt={false} center>
         <Hero
           titles={[
-            dict['pages'].home.hero.titles.title1,
-            dict['pages'].home.hero.titles.title2,
+            // dict['pages'].home.hero.titles.title1,
+            t('hero.titles.title1'),
+            // dict['pages'].home.hero.titles.title2,
+            t('hero.titles.title2'),
           ]}
         />
       </SectionContainer>
@@ -94,8 +93,7 @@ export default async function Home({
       </SectionContainer>
 
       <SectionContainer flexCol>
-        {/* @ts-expect-error async Server Component */}
-        <PricingSection locale={locale} />
+        <PricingSection />
       </SectionContainer>
     </PageContainer>
   );

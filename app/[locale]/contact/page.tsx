@@ -6,7 +6,7 @@ import {
   SectionContainer,
 } from '@/ui/Containers';
 import { Metadata } from 'next';
-import { Locale } from '@/i18n/config';
+import { I18nLocales } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
 import { Heading } from '@/ui/Typography';
 // import { Button } from '@/ui/Button/Button';
@@ -17,11 +17,7 @@ const CalendarWidget = dynamic(
 
 // export const runtime = 'edge';
 
-export default async function Contact({
-  params: { locale },
-}: {
-  params: { locale: Locale };
-}) {
+export default function Contact() {
   return (
     <PageContainer mb={false}>
       <SectionContainer flex flexCol center>
@@ -71,14 +67,14 @@ export default async function Contact({
   );
 }
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: Locale };
-}): Promise<Metadata> {
-  const dict = await getDictionary(locale);
-  return {
-    title: dict['pages'].contact.SEO.title,
-    description: dict['pages'].contact.SEO.description,
-  };
-}
+// export async function generateMetadata({
+//   params: { locale },
+// }: {
+//   params: { locale: I18nLocales };
+// }): Promise<Metadata> {
+//   const dict = await getDictionary(locale);
+//   return {
+//     title: dict['pages'].contact.SEO.title,
+//     description: dict['pages'].contact.SEO.description,
+//   };
+// }

@@ -1,7 +1,8 @@
 'use client';
 
 import useOutsideClick from '@/hooks/useOutsideClick';
-import { Locale } from '@/i18n/config';
+// import { Locale } from '@/i18n/config';
+import { I18nLocales } from '@/i18n/config';
 import { motion, Variants } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
 import { useLocaleSwitcher } from './useLocaleSwitcher';
@@ -13,8 +14,8 @@ import { usePathname } from 'next/navigation';
 import { customValues, customTransitions } from '@/ui/animation';
 
 interface Props {
-  locale: Locale;
-  otherLocales: Locale[];
+  locale: I18nLocales;
+  otherLocales: I18nLocales[];
 }
 
 export const LocaleOptions = ({ locale, otherLocales }: Props) => {

@@ -5,59 +5,68 @@ import { Navbar } from '@/components/Navbar/Navbar';
 import { fontSans, fontTitle } from '@/styles/fonts';
 import '@/styles/globals.css';
 import { Analytics } from '@vercel/analytics/react';
-import { i18n, Locale } from '@/i18n/config';
+// import { i18n, Locale } from '@/i18n/config';
+import { I18nLocales } from '@/i18n/config';
 import { Metadata } from 'next';
 import { Footer } from '@/components/Footer/Footer';
 
-const CenterFluid = dynamic(() =>
-  import('@/components/CenterFluid').then(mod => mod.CenterFluid)
-);
-// import { CenterFluid } from '@/components/CenterFluid/CenterFluid';
+// const CenterFluid = dynamic(() =>
+//   import('@/components/CenterFluid').then(mod => mod.CenterFluid)
+// );
+import CenterFluid from '@/components/CenterFluid/CenterFluid';
 
 import { LoadingProvider } from '@/components/LoadingComponent/LoadingCtx';
 import { CenterFluidProvider } from '@/components/CenterFluid/CenterFluidCtx';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
+import { useLocale } from 'next-intl';
+import { notFound } from 'next/navigation';
 
-export async function generateStaticParams() {
-  return i18n.locales.map(locale => ({ locale: locale }));
-}
+// export async function generateStaticParams() {
+//   return i18n.locales.map(locale => ({ locale: locale }));
+// }
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    icons: {
-      icon: [
-        {
-          sizes: '32x32',
-          type: 'image/png',
-          url: '/favicons/favicon-32x32.png',
-        },
-        {
-          sizes: '16x16',
-          type: 'image/png',
-          url: '/favicons/favicon-16x16.png',
-        },
-      ],
-      apple: { sizes: '180x180', url: '/favicons/apple-touch-icon.png' },
-      shortcut: '/favicons/favicon.ico',
-    },
-    manifest: '/favicons/site.webmanifest',
-    themeColor: '#ffffff',
-  };
-}
+// export async function generateMetadata(): Promise<Metadata> {
+//   return {
+//     icons: {
+//       icon: [
+//         {
+//           sizes: '32x32',
+//           type: 'image/png',
+//           url: '/favicons/favicon-32x32.png',
+//         },
+//         {
+//           sizes: '16x16',
+//           type: 'image/png',
+//           url: '/favicons/favicon-16x16.png',
+//         },
+//       ],
+//       apple: { sizes: '180x180', url: '/favicons/apple-touch-icon.png' },
+//       shortcut: '/favicons/favicon.ico',
+//     },
+//     manifest: '/favicons/site.webmanifest',
+//     themeColor: '#ffffff',
+//   };
+// }
 
-export default async function LocaleLayout({
+export default function LocaleLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
   params: {
-    locale: Locale;
+    locale: I18nLocales;
   };
 }) {
+  const locale = useLocale();
+
   // // Show a 404 error for unknown locales
   // if (params.locale satisfies Locale) {
   //   notFound();
   // }
+
+  if (params.locale !== locale) {
+    notFound();
+  }
 
   return (
     <html
@@ -73,8 +82,7 @@ export default async function LocaleLayout({
           <CenterFluidProvider>
             {/* <LoadingComponent /> */}
             <CenterFluid />
-            {/* @ts-expect-error async Server Component */}
-            <Navbar locale={params.locale} />
+            <Navbar />
             {children}
             <Footer />
             <Analytics />

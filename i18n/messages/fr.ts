@@ -1,6 +1,6 @@
-import { Dictionary } from '@/i18n/config';
+import { I18nMessages } from '@/i18n/config';
 
-const frMessages: Dictionary = {
+const frMessages: I18nMessages = {
   pages: {
     home: {
       SEO: {

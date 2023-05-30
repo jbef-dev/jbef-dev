@@ -1,6 +1,6 @@
 'use client';
 
-import { Locale, i18n } from '@/i18n/config';
+import { LOCALES } from '@/i18n/config';
 import clsx from 'clsx';
 import { ComponentPropsWithoutRef, useRef, useState } from 'react';
 
@@ -10,17 +10,15 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { customTransitions, customVariants } from '@/ui/animation';
 import { FaChevronUp } from 'react-icons/fa';
+import { useLocale } from 'next-intl';
 
-interface LocaleSwitcherProps extends ComponentPropsWithoutRef<'button'> {
-  currentLocale: Locale;
-}
 export const LocaleSwitcher = ({
-  currentLocale,
   className,
   children,
   ...props
-}: LocaleSwitcherProps) => {
+}: ComponentPropsWithoutRef<'button'>) => {
   const pathName = usePathname();
+  const currentLocale = useLocale();
 
   const redirectedPathName = (locale: string) => {
     if (!pathName) return '/';
@@ -36,7 +34,7 @@ export const LocaleSwitcher = ({
 
   const ref = useRef<HTMLDivElement>(null);
   useOutsideClick(toggleOpen, open, ref);
-  const otherLocales = i18n.locales.filter(locale => locale != currentLocale);
+  const otherLocales = LOCALES.filter(locale => locale != currentLocale);
 
   return (
     <button

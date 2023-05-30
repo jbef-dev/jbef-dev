@@ -1,4 +1,4 @@
-import { LocaleSwitcher } from '@/ui/LocaleSwitcher/LocaleSwitcher';
+// import { LocaleSwitcher } from '@/ui/LocaleSwitcher/LocaleSwitcher';
 import {
   HamburgerMenu,
   HamburgerMenuButton,
@@ -7,28 +7,27 @@ import {
   HamburgerMenuNavLink,
 } from '@/ui/HamburgerMenu/HamburgerMenu';
 import { Logo } from '@/components/Logo/Logo';
-import { Locale } from '@/i18n/config';
 import Link from 'next/link';
-import { getDictionary } from '@/i18n/getDictionary';
+import { useTranslations } from 'next-intl';
 
-const Navbar = async ({ locale }: { locale: Locale }) => {
-  const dict = await getDictionary(locale);
+const Navbar = () => {
+  const t = useTranslations('ui.navbar');
 
   const navLinks = [
     {
-      label: dict.ui.navbar.home,
+      label: t('home'),
       url: '/',
     },
     {
-      label: dict.ui.navbar.portfolio,
+      label: t('portfolio'),
       url: '/portfolio',
     },
     {
-      label: dict.ui.navbar.about,
+      label: t('about'),
       url: '/about',
     },
     {
-      label: dict.ui.navbar.contact,
+      label: t('contact'),
       url: '/contact',
     },
   ];
@@ -45,7 +44,7 @@ const Navbar = async ({ locale }: { locale: Locale }) => {
           </Link>
 
           <div className='flex items-center text-responsive-sm leading-none'>
-            <LocaleSwitcher currentLocale={locale} className='text-white' />
+            {/* <LocaleSwitcher className='text-white' /> */}
             <div className='mx-5 h-3 w-[1px] self-center bg-white'></div>
             <HamburgerMenuButton
               className='font-medium tracking-wide text-white'

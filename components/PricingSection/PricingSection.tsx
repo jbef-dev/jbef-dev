@@ -1,13 +1,11 @@
 import { FlexContainer } from '@/ui/Containers';
-import { Locale } from '@/i18n/config';
-import { getDictionary } from '@/i18n/getDictionary';
 import { AppearOnScroll, AppearOnScrollChild } from '@/ui/Animated';
 import { FaCheck } from 'react-icons/fa';
 import { Button } from '@/ui/Button/Button';
-import { useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 
-const PricingSection = async ({ locale }: { locale: Locale }) => {
-  const dict = await getDictionary(locale);
+const PricingSection = () => {
+  const t = useTranslations('pages.home.pricing');
 
   const pricingStrategy = [
     {
@@ -52,7 +50,8 @@ const PricingSection = async ({ locale }: { locale: Locale }) => {
         <h3 className='flex flex-col text-responsive-2xl leading-tight'>
           <AppearOnScroll className='overflow-hidden font-medium' variants={{}}>
             <AppearOnScrollChild asChild>
-              <span>{dict.pages.home.pricing.title.title1}</span>
+              {/* <span>{dict.pages.home.pricing.title.title1}</span> */}
+              <span>{t('title.title1')}</span>
             </AppearOnScrollChild>
           </AppearOnScroll>
 
@@ -61,7 +60,8 @@ const PricingSection = async ({ locale }: { locale: Locale }) => {
             variants={{}}
           >
             <AppearOnScrollChild asChild>
-              <span>{dict.pages.home.pricing.title.title2}</span>
+              {/* <span>{dict.pages.home.pricing.title.title2}</span> */}
+              <span>{t('title.title2')}</span>
             </AppearOnScrollChild>
           </AppearOnScroll>
         </h3>
@@ -69,7 +69,8 @@ const PricingSection = async ({ locale }: { locale: Locale }) => {
         <AppearOnScroll variants={{}} className='overflow-hidden'>
           <AppearOnScrollChild asChild>
             <p className='flex w-full text-responsive-lg font-extralight leading-tight'>
-              {dict.pages.home.pricing.subtitle}
+              {/* {dict.pages.home.pricing.subtitle} */}
+              {t('subtitle')}
             </p>
           </AppearOnScrollChild>
         </AppearOnScroll>
