@@ -1,5 +1,5 @@
 import createIntlMiddleware from 'next-intl/middleware';
-import { DEFAULTLOCALE, LOCALES } from '@/i18n/config';
+import { DEFAULTLOCALE, LOCALES } from '@/util/i18n/config';
 
 // The middleware intercepts requests to `/` and will redirect
 // to one of the configured locales instead (e.g. `/en`).

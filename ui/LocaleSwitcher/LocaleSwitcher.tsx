@@ -1,33 +1,32 @@
 'use client';
 
-import { LOCALES } from '@/i18n/config';
+import { I18nLocales, LOCALES } from '@/util/i18n/config';
+// import { LOCALES } from '@/config/constants/i18n';
 import clsx from 'clsx';
 import { ComponentPropsWithoutRef, useRef, useState } from 'react';
 
 import useOutsideClick from '@/hooks/useOutsideClick';
 import { AnimatePresence, motion } from 'framer-motion';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 import { customTransitions, customVariants } from '@/ui/animation';
 import { FaChevronUp } from 'react-icons/fa';
-import { useLocale } from 'next-intl';
+import { usePathname } from 'next-intl/client';
+import Link from 'next-intl/link';
 
 export const LocaleSwitcher = ({
+  currentLocale,
   className,
-  children,
   ...props
-}: ComponentPropsWithoutRef<'button'>) => {
+}: ComponentPropsWithoutRef<'button'> & { currentLocale: I18nLocales }) => {
   const pathName = usePathname();
-  const currentLocale = useLocale();
 
-  const redirectedPathName = (locale: string) => {
-    if (!pathName) return '/';
-    const segments = pathName.split('/');
-    console.log(segments[1]);
-    segments[1] = locale;
-    console.log(segments.join('/'));
-    return segments.join('/');
-  };
+  // const redirectedPathName = (locale: string) => {
+  //   if (!pathName) return '/';
+  //   const segments = pathName.split('/');
+  //   console.log(segments[1]);
+  //   segments[1] = locale;
+  //   console.log(segments.join('/'));
+  //   return segments.join('/');
+  // };
 
   const [open, setOpen] = useState<boolean>(false);
   const toggleOpen = () => setOpen(open => !open);
@@ -65,7 +64,6 @@ export const LocaleSwitcher = ({
           </div>
         </div>
       </div>
-      {children}
       <AnimatePresence mode='wait'>
         {open && (
           <motion.div
@@ -80,7 +78,7 @@ export const LocaleSwitcher = ({
             <div></div>
             <div className='flex flex-col items-end justify-center gap-3 px-0.5'>
               {otherLocales.map(locale => (
-                <Link key={locale} href={redirectedPathName(locale)}>
+                <Link key={locale} href={pathName}>
                   {locale.toUpperCase()}
                 </Link>
               ))}

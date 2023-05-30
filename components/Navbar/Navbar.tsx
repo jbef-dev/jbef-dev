@@ -1,4 +1,4 @@
-// import { LocaleSwitcher } from '@/ui/LocaleSwitcher/LocaleSwitcher';
+import { LocaleSwitcher } from '@/ui/LocaleSwitcher/LocaleSwitcher';
 import {
   HamburgerMenu,
   HamburgerMenuButton,
@@ -8,9 +8,11 @@ import {
 } from '@/ui/HamburgerMenu/HamburgerMenu';
 import { Logo } from '@/components/Logo/Logo';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { I18nLocales } from '@/i18n/config';
 
 const Navbar = () => {
+  const locale = useLocale() as I18nLocales;
   const t = useTranslations('ui.navbar');
 
   const navLinks = [
@@ -44,7 +46,7 @@ const Navbar = () => {
           </Link>
 
           <div className='flex items-center text-responsive-sm leading-none'>
-            {/* <LocaleSwitcher className='text-white' /> */}
+            <LocaleSwitcher currentLocale={locale} className='text-white' />
             <div className='mx-5 h-3 w-[1px] self-center bg-white'></div>
             <HamburgerMenuButton
               className='font-medium tracking-wide text-white'

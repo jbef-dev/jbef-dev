@@ -1,4 +1,4 @@
-import { mergeReactProps } from '@/util/mergeReactProps';
+import { mergeReactProps } from '@/lib/mergeReactProps';
 import { combinedRef } from '@/hooks/useMultipleRefs';
 import * as React from 'react';
 
